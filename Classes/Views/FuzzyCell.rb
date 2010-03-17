@@ -12,7 +12,7 @@
 # the tableView:willDisplayCell:forTableColumn:row: callback.
 
 class FuzzyCell < NSCell
-  
+
   # For a task-specific cell like this, use setRepresentedObject and
   # representedObject instead.
   attr_accessor :subtitle, :image
@@ -24,39 +24,36 @@ class FuzzyCell < NSCell
   HORIZONTAL_PADDING = 10.0
 
   SUBTITLE_VERTICAL_PADDING = 2.0
-  
-  def drawInteriorWithFrame(theCellFrame, inView:theControlView)
-    anInsetRect = NSInsetRect(theCellFrame, 10, 0)
 
+  def drawInteriorWithFrame(theCellFrame, inView:theControlView)
     # Make attributes for our strings
     aParagraphStyle = NSMutableParagraphStyle.new
     aParagraphStyle.setLineBreakMode(NSLineBreakByTruncatingTail)
 
-    # Title attributes: system font, 14pt, black, truncate tail
     aTitleAttributes = {
       NSForegroundColorAttributeName => NSColor.blackColor,
-      NSFontAttributeName => NSFont.systemFontOfSize(14.0),
-      NSParagraphStyleAttributeName => aParagraphStyle
+      NSFontAttributeName            => NSFont.systemFontOfSize(14.0),
+      NSParagraphStyleAttributeName  => aParagraphStyle
     }
 
-    # Subtitle attributes: system font, 12pt, gray, truncate tail
     aSubtitleAttributes = {
       NSForegroundColorAttributeName => NSColor.grayColor,
-      NSFontAttributeName => NSFont.systemFontOfSize(10.0),
-      NSParagraphStyleAttributeName => aParagraphStyle
+      NSFontAttributeName            => NSFont.boldSystemFontOfSize(10.0),
+      NSParagraphStyleAttributeName  => aParagraphStyle
     }
 
     # Create strings for labels
-    aTitle = self.objectValue
-    aTitleSize = aTitle.sizeWithAttributes(aTitleAttributes)
+    aTitle        = self.objectValue
+    aTitleSize    = aTitle.sizeWithAttributes(aTitleAttributes)
 
-    aSubtitle =  self.subtitle || ""
+    aSubtitle     = self.subtitle || ""
     aSubtitleSize = aSubtitle.sizeWithAttributes(aSubtitleAttributes)
 
     # Make the layout boxes for all of our elements - remember that
     # we're in a flipped coordinate system when setting the y-values
 
     # Icon box: center the icon vertically inside of the inset rect
+    anInsetRect = NSInsetRect(theCellFrame, 10, 0)
     anIconBox = drawIconInRect(anInsetRect)
 
     # Make a box for our text
@@ -82,15 +79,10 @@ class FuzzyCell < NSCell
                               aSubtitleSize.height)
 
     if self.highlighted?
-      # if the cell is highlighted, draw the text white
       aTitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
       aSubtitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
-    else
-      # if the cell is not highlighted, draw the title black and the subtile gray
-      aTitleAttributes[NSForegroundColorAttributeName] = NSColor.blackColor
-      aSubtitleAttributes[NSForegroundColorAttributeName] = NSColor.grayColor
     end
-    
+
     # Draw the text
     aTitle.drawInRect(aTitleBox, withAttributes:aTitleAttributes)
     aSubtitle.drawInRect(aSubtitleBox, withAttributes:aSubtitleAttributes)
