@@ -17,6 +17,8 @@ class FuzzyCell < NSCell
   # representedObject instead.
   attr_accessor :subtitle, :image
 
+  ICON_WIDTH = 30
+  
   # Vertical padding between the lines of text
   VERTICAL_PADDING = 5.0
 
@@ -26,8 +28,8 @@ class FuzzyCell < NSCell
   SUBTITLE_VERTICAL_PADDING = 2.0
 
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
-#     setDrawsBackground(true)
-#     setBackgroundColor(NSColor.greenColor)
+    #     setDrawsBackground(true)
+    #     setBackgroundColor(NSColor.greenColor)
 
     # Make attributes for our strings
     aParagraphStyle = NSMutableParagraphStyle.new
@@ -101,9 +103,12 @@ class FuzzyCell < NSCell
     #anIconSize = anIcon.size
 
     iconRect = NSMakeRect(aRect.origin.x,
-                          aRect.origin.y + aRect.size.height * 0.5 - 48 * 0.5,
-                          48,
-                          48)
+                          (aRect.origin.y + aRect.size.height * 0.5 - ICON_WIDTH * 0.5).ceil,
+                          ICON_WIDTH,
+                          ICON_WIDTH)
+    
+    NSColor.colorWithCalibratedRed(0.5, green:0.5, blue:0.5, alpha:1.0).setFill
+    NSBezierPath.bezierPathWithRect(iconRect).fill
 
     # Draw the icon
     #     anIcon.drawInRect(iconRect,
