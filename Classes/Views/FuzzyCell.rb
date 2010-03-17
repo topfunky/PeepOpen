@@ -26,6 +26,9 @@ class FuzzyCell < NSCell
   SUBTITLE_VERTICAL_PADDING = 2.0
 
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
+#     setDrawsBackground(true)
+#     setBackgroundColor(NSColor.greenColor)
+
     # Make attributes for our strings
     aParagraphStyle = NSMutableParagraphStyle.new
     aParagraphStyle.setLineBreakMode(NSLineBreakByTruncatingTail)
