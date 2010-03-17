@@ -39,6 +39,7 @@ class FuzzyTableViewController
 
   def tableView(tableView, willDisplayCell:cell, forTableColumn:column, row:row)
     # TODO: Set cell attributes from @records[row]
+    cell.subtitle = @records[row].projectRoot
   end
 
 end

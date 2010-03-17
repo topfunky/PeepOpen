@@ -12,7 +12,9 @@
 # the tableView:willDisplayCell:forTableColumn:row: callback.
 
 class FuzzyCell < NSCell
-
+  
+  # For a task-specific cell like this, use setRepresentedObject and
+  # representedObject instead.
   attr_accessor :subtitle, :image
 
   # Vertical padding between the lines of text
@@ -21,6 +23,8 @@ class FuzzyCell < NSCell
   # Horizontal padding between icon and text
   HORIZONTAL_PADDING = 10.0
 
+  SUBTITLE_VERTICAL_PADDING = 2.0
+  
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
     anInsetRect = NSInsetRect(theCellFrame, 10, 0)
 
@@ -38,29 +42,19 @@ class FuzzyCell < NSCell
     # Subtitle attributes: system font, 12pt, gray, truncate tail
     aSubtitleAttributes = {
       NSForegroundColorAttributeName => NSColor.grayColor,
-      NSFontAttributeName => NSFont.systemFontOfSize(12.0),
+      NSFontAttributeName => NSFont.systemFontOfSize(10.0),
       NSParagraphStyleAttributeName => aParagraphStyle
     }
 
-    # Make the strings and get their sizes
-    # I'm hard coding these strings here.  In a real implementation of a table cell, you'll
-    # use the cell's "objectValue" to display real data.
-
-    #    NSString *      aTitle = @"A Realy Realy Realy Really Long Title" # try using this string as the title for testing the truncating tail attribute
-
-    # Make a Title string
+    # Create strings for labels
     aTitle = self.objectValue
-    # get the size of the string for layout
     aTitleSize = aTitle.sizeWithAttributes(aTitleAttributes)
 
-    # Make a Subtitle string
     aSubtitle =  self.subtitle || ""
-
-    # get the size of the string for layout
     aSubtitleSize = aSubtitle.sizeWithAttributes(aSubtitleAttributes)
 
-    # Make the layout boxes for all of our elements - remember that we're in a flipped coordinate system when setting the y-values
-
+    # Make the layout boxes for all of our elements - remember that
+    # we're in a flipped coordinate system when setting the y-values
 
     # Icon box: center the icon vertically inside of the inset rect
     anIconBox = drawIconInRect(anInsetRect)
@@ -76,14 +70,14 @@ class FuzzyCell < NSCell
                           anInsetRect.size.width - anIconBox.size.width - HORIZONTAL_PADDING,
                           aCombinedHeight)
 
-    # Now split the text box in half and put the title box in the top half and subtitle box in bottom half
+    # Put the title in the top half and subtitle in the bottom half
     aTitleBox = NSMakeRect(aTextBox.origin.x,
                            aTextBox.origin.y + aTextBox.size.height * 0.5 - aTitleSize.height,
                            aTextBox.size.width,
                            aTitleSize.height)
 
     aSubtitleBox = NSMakeRect(aTextBox.origin.x,
-                              aTextBox.origin.y + aTextBox.size.height * 0.5,
+                              aTextBox.origin.y + aTitleSize.height + SUBTITLE_VERTICAL_PADDING,
                               aTextBox.size.width,
                               aSubtitleSize.height)
 
@@ -96,7 +90,7 @@ class FuzzyCell < NSCell
       aTitleAttributes[NSForegroundColorAttributeName] = NSColor.blackColor
       aSubtitleAttributes[NSForegroundColorAttributeName] = NSColor.grayColor
     end
-
+    
     # Draw the text
     aTitle.drawInRect(aTitleBox, withAttributes:aTitleAttributes)
     aSubtitle.drawInRect(aSubtitleBox, withAttributes:aSubtitleAttributes)
