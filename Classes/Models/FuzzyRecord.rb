@@ -15,6 +15,7 @@ class FuzzyRecord
   def initWithProjectRoot(theProjectRoot, filePath:theFilePath)
     @projectRoot = theProjectRoot
     @filePath = theFilePath
+    self
   end
 
 end

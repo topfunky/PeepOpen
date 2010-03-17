@@ -10,35 +10,35 @@ class FuzzyTableViewController
 
   def initialize
     # Dummy
-    # @records = 
+    projectRoot = "~/tmp/heroku-sinatra-app"
+    @records = [
+                FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
+                                                      filePath:"heroku-sinatra-app.rb"),
+                FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
+                                                      filePath:"root-app.rb"),
+                FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
+                                                      filePath:"README.markdown"),
+                FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
+                                                      filePath:"config.ru"),
+               ]
   end
 
   # NSTableDataSource methods
   def numberOfRowsInTableView(tableView)
-    self.updates.length
+    @records.length
   end
 
   def tableView(tableView, objectValueForTableColumn:column, row:row)
-    if row < updates.length
-      case column.identifier
-      when "user"
-        # This is the title value for the custom cell
-        return updates[row][:user]
-      when "tweet"
-        return updates[row][:tweet]
-      end
+    if row < @records.length
+      # There is only one column
+      return @records[row].filePath
     end
+    # Should be an error if execution reaches here
     nil
   end
 
   def tableView(tableView, willDisplayCell:cell, forTableColumn:column, row:row)
-    case column.identifier
-    when "user"
-      # Subtitle and image values will be drawn together with the title from above
-      cell.subtitle = updates[row][:created_at]
-      cell.image    =
-        NSImage.alloc.initByReferencingURL(NSURL.URLWithString(updates[row][:profile_image_url]))
-    end
+    # TODO: Set cell attributes from @records[row]
   end
 
 end

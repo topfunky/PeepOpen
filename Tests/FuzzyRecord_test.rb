@@ -13,6 +13,6 @@ class FuzzyRecordTest < Test::Unit::TestCase
   
   def test_creates_from_filePath
     fuzzyRecord = FuzzyRecord.alloc.initWithProjectRoot("aaa", filePath:"bbb")
-    assert_equal
+    assert_equal "aaa", fuzzyRecord.projectRoot
   end
 end
