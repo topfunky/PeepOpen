@@ -18,6 +18,9 @@ class FuzzyCell < NSCell
   attr_accessor :subtitle, :image
 
   ICON_WIDTH = 30
+  ICON_HEIGHT = 27
+  
+  ICON_PADDING_SIDE = 2
   
   # Vertical padding between the lines of text
   VERTICAL_PADDING = 5.0
@@ -68,7 +71,7 @@ class FuzzyCell < NSCell
     aCombinedHeight = aTitleSize.height + aSubtitleSize.height + VERTICAL_PADDING
 
     aTextBox = NSMakeRect(anIconBox.origin.x + anIconBox.size.width + HORIZONTAL_PADDING,
-                          anInsetRect.origin.y + anInsetRect.size.height * 0.5 - aCombinedHeight * 0.5,
+                          anInsetRect.origin.y + (anInsetRect.size.height/2) - (aCombinedHeight/2),
                           anInsetRect.size.width - anIconBox.size.width - HORIZONTAL_PADDING,
                           aCombinedHeight)
 
@@ -83,7 +86,7 @@ class FuzzyCell < NSCell
                               aTextBox.size.width,
                               aSubtitleSize.height)
 
-    if self.highlighted?
+    if highlighted?
       aTitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
       aSubtitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
     end
@@ -94,29 +97,36 @@ class FuzzyCell < NSCell
   end
 
   def drawIconInRect(aRect)
-    #anIcon = self.image || NSImage.imageNamed("example")
-
-    # Flip the icon because the entire cell has a flipped coordinate system
-    #anIcon.setFlipped(true)
-
-    # get the size of the icon for layout
-    #anIconSize = anIcon.size
-
-    iconRect = NSMakeRect(aRect.origin.x,
-                          (aRect.origin.y + aRect.size.height * 0.5 - ICON_WIDTH * 0.5).ceil,
-                          ICON_WIDTH,
-                          ICON_WIDTH)
+    filetypeLabelAttributes = {
+      NSForegroundColorAttributeName => NSColor.blackColor,
+      NSFontAttributeName => NSFont.fontWithName("Futura-CondensedMedium", size:22)
+    }
+    filetypeLabelSize = filetypeSuffix.sizeWithAttributes(filetypeLabelAttributes)
     
-    NSColor.colorWithCalibratedRed(0.5, green:0.5, blue:0.5, alpha:1.0).setFill
+    iconRect = NSMakeRect(aRect.origin.x,
+                          aRect.origin.y + 8, # Should be specified elsewhere
+                          filetypeLabelSize.width + (ICON_PADDING_SIDE*2),
+                          ICON_HEIGHT)
+
+    if highlighted?
+      NSColor.colorWithCalibratedRed(0.7, green:0.7, blue:0.7, alpha:1.0).setFill
+    else
+      NSColor.colorWithCalibratedRed(0.5, green:0.5, blue:0.5, alpha:1.0).setFill
+    end
     NSBezierPath.bezierPathWithRect(iconRect).fill
 
-    # Draw the icon
-    #     anIcon.drawInRect(iconRect,
-    #                       fromRect:NSZeroRect,
-    #                       operation:NSCompositeSourceOver,
-    #                       fraction:1.0)
+    filetypeLabelRect = NSInsetRect(iconRect, ICON_PADDING_SIDE, 0)
+    filetypeLabelRect.size.width = filetypeLabelSize.width
+    filetypeSuffix.drawInRect(filetypeLabelRect, withAttributes:filetypeLabelAttributes)
 
     return iconRect
+  end
+
+  ##
+  # Returns "haml" for "a/b/c/d.haml"
+
+  def filetypeSuffix
+    File.extname(objectValue).sub(/^\./, '')[0..3]
   end
 
 end
