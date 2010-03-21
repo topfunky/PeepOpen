@@ -8,29 +8,31 @@ class FuzzyTableViewController
 
   attr_accessor :tableView, :allRecords, :records
 
+  def initialize
+    @allRecords = []
+    @records = []
+    #     loadFilesFromProjectRoot(File.expand_path("~/repos-private/blog-nesta"))
+  end
+
+  def loadFilesFromProjectRoot(theProjectRoot)
+    @allRecords = []
+    @allRecords = FuzzyRecord.recordsWithProjectRoot(theProjectRoot)
+    @records = @allRecords
+    if tableView.respondsToSelector(:reloadData)
+      tableView.reloadData
+    end
+  end
+
+  ##
+  # Text entered into the search field calls this method.
+
   def searchForString(searchString)
     if searchString.length
       @records = @allRecords.select {|r| r.fuzzyInclude?(searchString) }
     else
-      @records = []
+      @records = @allRecords
     end
     tableView.reloadData
-  end
-
-  def initialize
-    # Dummy
-    projectRoot = "~/tmp/bjeanes-dot-files"
-    @allRecords = [
-                FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
-                                                      filePath:"heroku-sinatra-app.rb"),
-                FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
-                                                      filePath:"root-app.rb"),
-                FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
-                                                      filePath:"README.markdown"),
-                FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
-                                                      filePath:"config.ru"),
-               ]
-    @records = []
   end
 
   # NSTableDataSource methods

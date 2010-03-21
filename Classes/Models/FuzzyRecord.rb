@@ -13,9 +13,21 @@ class FuzzyRecord
                   :codeObjectName, :codeObjectNames,
                   :matchedRanges]
 
+  def self.recordsWithProjectRoot(theProjectRoot)
+    records = []
+    Dir[theProjectRoot + "/**/*"].each do |filename|
+      next unless File.file?(filename)
+      filename.gsub!(/^#{theProjectRoot}\//, '')
+      records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
+                                                       filePath:filename)
+    end
+    records
+  end
+
   def initWithProjectRoot(theProjectRoot, filePath:theFilePath)
     @projectRoot = theProjectRoot
     @filePath = theFilePath
+    @matchedRanges = []
     self
   end
 

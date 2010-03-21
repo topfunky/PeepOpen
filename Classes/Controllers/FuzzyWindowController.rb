@@ -7,7 +7,9 @@
 class FuzzyWindowController
   
   attr_accessor :tableViewController
-
+  
+  # TODO: Respond to ENTER in text field
+  
   def didSearchForString(sender)
     tableViewController.searchForString(sender.stringValue)
   end

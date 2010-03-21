@@ -47,6 +47,7 @@
 		4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4DE339F60D74FCDD00ADB6EE /* rb_main.rb */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
 		756C28F911555825000E19D8 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C28F811555825000E19D8 /* NSDate+Helper.m */; };
+		756C2A631155D97F000E19D8 /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2A621155D97F000E19D8 /* AppDelegate.rb */; };
 		75E2E76B1150891E0056AD27 /* FuzzyCell.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E76A1150891E0056AD27 /* FuzzyCell.rb */; };
 		75E2E76D1150898F0056AD27 /* FuzzyRecord.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E76C1150898F0056AD27 /* FuzzyRecord.rb */; };
 		75E2E7E6115161F60056AD27 /* TFUtility.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E7E5115161F60056AD27 /* TFUtility.rb */; };
@@ -83,6 +84,7 @@
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		756C28F711555825000E19D8 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Helper.h"; path = "Classes/Helpers/NSDate+Helper.h"; sourceTree = "<group>"; };
 		756C28F811555825000E19D8 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Helper.m"; path = "Classes/Helpers/NSDate+Helper.m"; sourceTree = "<group>"; };
+		756C2A621155D97F000E19D8 /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/Controllers/AppDelegate.rb; sourceTree = "<group>"; };
 		75E2E76A1150891E0056AD27 /* FuzzyCell.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyCell.rb; path = Classes/Views/FuzzyCell.rb; sourceTree = "<group>"; };
 		75E2E76C1150898F0056AD27 /* FuzzyRecord.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyRecord.rb; path = Classes/Models/FuzzyRecord.rb; sourceTree = "<group>"; };
 		75E2E7E5115161F60056AD27 /* TFUtility.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = TFUtility.rb; path = Classes/TFUtility.rb; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			children = (
 				75ECD3BA1150884A008C0BC3 /* FuzzyWindowController.rb */,
 				75ECD3BC11508869008C0BC3 /* FuzzyTableViewController.rb */,
+				756C2A621155D97F000E19D8 /* AppDelegate.rb */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				75E2E76B1150891E0056AD27 /* FuzzyCell.rb in Resources */,
 				75E2E76D1150898F0056AD27 /* FuzzyRecord.rb in Resources */,
 				75E2E7E6115161F60056AD27 /* TFUtility.rb in Resources */,
+				756C2A631155D97F000E19D8 /* AppDelegate.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
