@@ -104,7 +104,10 @@ class FuzzyCell < NSCell
     aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
   end
-
+  
+  ##
+  # TODO: Show icon for file as specified by Finder.
+  
   def drawIconInRect(aRect)
     filetypeLabelAttributes = {
       NSForegroundColorAttributeName => NSColor.blackColor,
@@ -149,7 +152,7 @@ class FuzzyCell < NSCell
     end
 
     subtitleTemplate = "MODIFIED %s  GIT %s  CLASSES %s"
-    displayDate = NSDate.stringForDisplayFromDate(NSDate.date)
+    displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
 
     subtitleString = self.representedObject.projectRoot ? subtitleTemplate % [
                                                                               displayDate,

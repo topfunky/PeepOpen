@@ -72,5 +72,13 @@ class FuzzyRecord
     nil
   end
 
+  def modifiedAt
+    @modifiedAt ||= begin
+                      NSFileManager.defaultManager.
+                        attributesOfItemAtPath(File.join(projectRoot, filePath),
+                                               error:nil)[NSFileModificationDate]
+                    end
+  end
+
 end
 

@@ -34,6 +34,18 @@ class FuzzyTableViewController
     end
     tableView.reloadData
   end
+  
+  # BUG: Async needs to lock around table redrawing or setting records
+  #   def searchForStringAsync(searchString)
+  #     filteredRecords = @allRecords.select {|r| r.fuzzyInclude?(searchString) }
+  #     performSelectorOnMainThread("didSearchForString:",
+  #                                 withObject:filteredRecords,
+  #                                 waitUntilDone:false)
+  #   end
+  #   def didSearchForString(filteredRecords)
+  #     @records = filteredRecords
+  #     tableView.reloadData
+  #   end
 
   # NSTableDataSource methods
   def numberOfRowsInTableView(tableView)
