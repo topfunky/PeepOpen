@@ -1,0 +1,14 @@
+* [1/7] Basic Features
+
+  - [ ] Integrate BWToolkit
+  - [ ] Integrate Sparkle
+  - [X] Clear search field on Enter
+  - [ ] Handle arrow navigation
+  - [ ] Handle Ctrl-1,2,3 navigation
+  - [ ] Preferences for directories or files to ignore
+  - [ ] Save window placement and size
+
+* Optional Features
+
+  - [ ] Run searches in a background or Grand Central thread
+

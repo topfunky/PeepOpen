@@ -6,49 +6,52 @@
 
 class FuzzyWindowController < NSWindowController
 
-  attr_accessor :tableViewController, :window
+  attr_accessor :tableViewController, :window, :searchField
+
+  def activate
+    showWindow self
+    # TODO: Should it select the first row as an indicator of what
+    #       will happen if ENTER is pressed?
+    tableViewController.tableView.deselectAll self
+    searchField.setStringValue("")
+    window.makeFirstResponder(searchField)
+  end
 
   def didSearchForString(sender)
     tableViewController.searchForString(sender.stringValue)
   end
 
   ##
-  # Received when user hits Enter in search field or tabs out. Or clicks.
+  # Handle Enter, arrows, and other events in search field.
   #
-  # TODO: Allow user to navigate results with arrows or mouse.
-  
-  def controlTextDidEndEditing(aNotification)
-    record = tableViewController.records[0]
-    # TODO: Reset search field and records for next use.
-    system "open -a Emacs #{record.absFilePath}"
+  # Returns true if this class handles it, false otherwise.
+
+  def control(control, textView:textView, doCommandBySelector:commandSelector)
+    case commandSelector
+    when :"insertNewline:"
+      handleNewline
+      return true
+
+    when :"moveUp:"
+      tableViewController.selectPreviousRow
+      return true
+
+    when :"moveDown:"
+      tableViewController.selectNextRow
+      return true
+
+    end
+    return false
   end
 
-
-
-  # -(BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector {
-  #     BOOL result = NO;
-  #     if (commandSelector == @selector(insertNewline:)) {
-  #         // enter pressed
-  #         result = YES;
-  #     }
-  #     else if(commandSelector == @selector(moveLeft:)) {
-  #         // left arrow pressed
-  #         result = YES;
-  #     }
-  #     else if(commandSelector == @selector(moveRight:)) {
-  #         // rigth arrow pressed
-  #         result = YES;
-  #     }
-  #     else if(commandSelector == @selector(moveUp:)) {
-  #         // up arrow pressed
-  #         result = YES;
-  #     }
-  #     else if(commandSelector == @selector(moveDown:)) {
-  #         // down arrow pressed
-  #         result = YES;
-  #     }
-  #     return result;
-  # }
+  def handleNewline
+    selectedRowIndex = tableViewController.tableView.selectedRow
+    selectedRowIndex = 0 if selectedRowIndex == -1
+    if record = tableViewController.records[selectedRowIndex]
+      # TODO: Reset search field and records for next use.
+      system "open -a Emacs #{record.absFilePath}"
+    end
+  end
 
 end
 

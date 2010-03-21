@@ -13,7 +13,7 @@ class AppDelegate
   
   def application(sender, openFile:path)
     mainWindowController.tableViewController.loadFilesFromProjectRoot(path)
-    mainWindowController.showWindow self
+    mainWindowController.activate
   end
 
 end

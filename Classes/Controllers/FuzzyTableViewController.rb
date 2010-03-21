@@ -34,7 +34,24 @@ class FuzzyTableViewController
     end
     tableView.reloadData
   end
-  
+
+  def selectPreviousRow
+    # if row is selected, and > 0, select one up
+  end
+
+  def selectNextRow
+    # if row is selected, and < rows, select one down
+    selectedRowIndex = tableView.selectedRow
+    if (0..@records.size).include?(selectedRowIndex)
+      selectedRowIndex += 1
+    else
+      selectedRowIndex = 0
+    end
+    tableView.selectRowIndexes(NSIndexSet.indexSetWithIndex(selectedRowIndex),
+                               byExtendingSelection:false)
+  end
+
+
   # BUG: Async needs to lock around table redrawing or setting records
   #   def searchForStringAsync(searchString)
   #     filteredRecords = @allRecords.select {|r| r.fuzzyInclude?(searchString) }
@@ -47,7 +64,8 @@ class FuzzyTableViewController
   #     tableView.reloadData
   #   end
 
-  # NSTableDataSource methods
+  ## NSTableDataSource methods
+
   def numberOfRowsInTableView(tableView)
     @records.length
   end
