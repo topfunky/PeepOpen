@@ -11,7 +11,6 @@ class FuzzyTableViewController
   def initialize
     @allRecords = []
     @records = []
-    #     loadFilesFromProjectRoot(File.expand_path("~/repos-private/blog-nesta"))
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
@@ -100,6 +99,18 @@ class FuzzyTableViewController
 
   def tableView(tableView, willDisplayCell:cell, forTableColumn:column, row:row)
     cell.setRepresentedObject(@records[row])
+  end
+
+  def didClickRow(sender)
+    handleRowClick(tableView.clickedRow)
+  end
+
+  def handleRowClick(rowId)
+    rowId = 0 if rowId == -1
+    if record = @records[rowId]
+      # TODO: Hide window
+      system "open -a Emacs #{record.absFilePath}"
+    end
   end
 
 end

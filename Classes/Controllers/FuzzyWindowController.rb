@@ -43,11 +43,7 @@ class FuzzyWindowController < NSWindowController
   end
 
   def handleNewline
-    selectedRowIndex = tableViewController.tableView.selectedRow
-    selectedRowIndex = 0 if selectedRowIndex == -1
-    if record = tableViewController.records[selectedRowIndex]
-      system "open -a Emacs #{record.absFilePath}"
-    end
+    tableViewController.handleRowClick(tableViewController.tableView.selectedRow)
   end
   
   ##
