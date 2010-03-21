@@ -46,9 +46,15 @@ class FuzzyWindowController < NSWindowController
     selectedRowIndex = tableViewController.tableView.selectedRow
     selectedRowIndex = 0 if selectedRowIndex == -1
     if record = tableViewController.records[selectedRowIndex]
-      # TODO: Reset search field and records for next use.
       system "open -a Emacs #{record.absFilePath}"
     end
+  end
+  
+  ##
+  # Switch back to text editor if window is closed (usually with ESC).
+  
+  def windowWillClose(notification)
+    system "open -a Emacs"
   end
 
 end

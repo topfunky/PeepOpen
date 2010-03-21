@@ -99,27 +99,32 @@ class FuzzyCell < NSCell
     aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
   end
-
+  
   ##
-  # TODO: Show icon for file as specified by Finder.
-
+  # Shows letters of file extension as a graphic.
+  
   def drawIconInRect(aRect)
     filetypeLabelAttributes = {
-      NSForegroundColorAttributeName => NSColor.blackColor,
+      NSForegroundColorAttributeName => NSColor.colorWithCalibratedRed(0.85,
+                                                                       green:0.85,
+                                                                       blue:0.85,
+                                                                       alpha:1.0),
       NSFontAttributeName => NSFont.fontWithName("Futura-CondensedMedium", size:22)
     }
+    if highlighted?
+      filetypeLabelAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
+    end
     filetypeLabelSize = filetypeSuffix.sizeWithAttributes(filetypeLabelAttributes)
 
     iconRect = NSMakeRect(aRect.origin.x,
-                          aRect.origin.y + 8, # Should be specified elsewhere
+                          aRect.origin.y + 8, # Should be a constant
                           filetypeLabelSize.width + (ICON_PADDING_SIDE*2),
                           ICON_HEIGHT)
 
-    if highlighted?
-      NSColor.colorWithCalibratedRed(0.7, green:0.7, blue:0.7, alpha:1.0).setFill
-    else
-      NSColor.colorWithCalibratedRed(0.5, green:0.5, blue:0.5, alpha:1.0).setFill
-    end
+    NSColor.colorWithCalibratedRed(0.5,
+                                   green:0.5,
+                                   blue:0.5,
+                                   alpha:1.0).setFill
     NSBezierPath.bezierPathWithRect(iconRect).fill
 
     filetypeLabelRect = NSInsetRect(iconRect, ICON_PADDING_SIDE, -1)
@@ -133,7 +138,8 @@ class FuzzyCell < NSCell
   # Returns "haml" for "a/b/c/d.haml"
 
   def filetypeSuffix
-    File.extname(objectValue).sub(/^\./, '')[0..3].upcase
+    ext = File.extname(objectValue).sub(/^\./, '')[0..3].upcase
+    ext.length > 0 ? ext : "•"
   end
 
   def buildSubtitleString

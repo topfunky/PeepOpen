@@ -60,7 +60,7 @@ class FuzzyTableViewController
   def selectNextRow
     # Select next row down, or first row if none are selected.
     selectedRowIndex = tableView.selectedRow
-    if (0..@records.size).include?(selectedRowIndex)
+    if (0..(@records.size-2)).include?(selectedRowIndex)
       selectedRowIndex += 1
     else
       selectedRowIndex = 0
