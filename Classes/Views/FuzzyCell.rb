@@ -1,11 +1,11 @@
+# -*- coding: utf-8 -*-
 # FuzzyCell.rb
 # FuzzyWindow
 #
 # Created by Geoffrey Grosenbach on 3/16/10.
 # Copyright 2010 Topfunky Corporation. All rights reserved.
-
-
-##
+#
+#
 # A custom table cell implemented in Ruby.
 #
 # FuzzyCell#objectValue is the title. Other fields can be set in
@@ -19,9 +19,9 @@ class FuzzyCell < NSCell
 
   ICON_WIDTH = 30
   ICON_HEIGHT = 27
-  
+
   ICON_PADDING_SIDE = 2
-  
+
   # Vertical padding between the lines of text
   VERTICAL_PADDING = 5.0
 
@@ -29,33 +29,24 @@ class FuzzyCell < NSCell
   HORIZONTAL_PADDING = 10.0
 
   SUBTITLE_VERTICAL_PADDING = 2.0
+  SUBTITLE_FONT_SIZE = 10.0
 
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
     #     setDrawsBackground(true)
     #     setBackgroundColor(NSColor.greenColor)
 
-    # Make attributes for our strings
-    aParagraphStyle = NSMutableParagraphStyle.new
-    aParagraphStyle.setLineBreakMode(NSLineBreakByTruncatingTail)
-
-    aTitleAttributes = {
+    @titleAttributes = {
       NSForegroundColorAttributeName => NSColor.blackColor,
       NSFontAttributeName            => NSFont.systemFontOfSize(14.0),
-      NSParagraphStyleAttributeName  => aParagraphStyle
-    }
-
-    aSubtitleAttributes = {
-      NSForegroundColorAttributeName => NSColor.grayColor,
-      NSFontAttributeName            => NSFont.boldSystemFontOfSize(10.0),
-      NSParagraphStyleAttributeName  => aParagraphStyle
+      NSParagraphStyleAttributeName  => paragraphStyle
     }
 
     # Create strings for labels
     aTitle        = self.objectValue
-    aTitleSize    = aTitle.sizeWithAttributes(aTitleAttributes)
+    aTitleSize    = aTitle.sizeWithAttributes(@titleAttributes)
 
-    aSubtitle     = self.subtitle || ""
-    aSubtitleSize = aSubtitle.sizeWithAttributes(aSubtitleAttributes)
+    aSubtitle = buildSubtitleString
+    aSubtitleSize = aSubtitle.size
 
     # Make the layout boxes for all of our elements - remember that
     # we're in a flipped coordinate system when setting the y-values
@@ -87,13 +78,12 @@ class FuzzyCell < NSCell
                               aSubtitleSize.height)
 
     if highlighted?
-      aTitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
-      aSubtitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
+      @titleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
     end
 
     # Draw the text
-    aTitle.drawInRect(aTitleBox, withAttributes:aTitleAttributes)
-    aSubtitle.drawInRect(aSubtitleBox, withAttributes:aSubtitleAttributes)
+    aTitle.drawInRect(aTitleBox, withAttributes:@titleAttributes)
+    aSubtitle.drawInRect(aSubtitleBox)
   end
 
   def drawIconInRect(aRect)
@@ -102,7 +92,7 @@ class FuzzyCell < NSCell
       NSFontAttributeName => NSFont.fontWithName("Futura-CondensedMedium", size:22)
     }
     filetypeLabelSize = filetypeSuffix.sizeWithAttributes(filetypeLabelAttributes)
-    
+
     iconRect = NSMakeRect(aRect.origin.x,
                           aRect.origin.y + 8, # Should be specified elsewhere
                           filetypeLabelSize.width + (ICON_PADDING_SIDE*2),
@@ -115,7 +105,7 @@ class FuzzyCell < NSCell
     end
     NSBezierPath.bezierPathWithRect(iconRect).fill
 
-    filetypeLabelRect = NSInsetRect(iconRect, ICON_PADDING_SIDE, 0)
+    filetypeLabelRect = NSInsetRect(iconRect, ICON_PADDING_SIDE, -1)
     filetypeLabelRect.size.width = filetypeLabelSize.width
     filetypeSuffix.drawInRect(filetypeLabelRect, withAttributes:filetypeLabelAttributes)
 
@@ -126,7 +116,60 @@ class FuzzyCell < NSCell
   # Returns "haml" for "a/b/c/d.haml"
 
   def filetypeSuffix
-    File.extname(objectValue).sub(/^\./, '')[0..3]
+    File.extname(objectValue).sub(/^\./, '')[0..3].upcase
+  end
+
+  def buildSubtitleString
+    subtitleAttributes = {
+      NSForegroundColorAttributeName => NSColor.grayColor,
+      NSFontAttributeName => NSFont.systemFontOfSize(SUBTITLE_FONT_SIZE),
+      NSParagraphStyleAttributeName => paragraphStyle
+    }
+    if highlighted?
+      subtitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
+    end
+
+    subtitleTemplate = "MODIFIED %s  GIT %s  CLASSES %s"
+    displayDate = NSDate.stringForDisplayFromDate(NSDate.date)
+
+    subtitleString = self.subtitle ? subtitleTemplate % [
+                                                         displayDate,
+                                                         "++---",
+                                                         "ClassA • ClassB"
+                                                        ] : ""
+    attrString = NSMutableAttributedString.alloc.
+      initWithString(subtitleString,
+                     attributes:subtitleAttributes)
+
+    attrString.beginEditing
+    begin
+      ["MODIFIED", "GIT", "CLASSES"].each do |label|
+        if indexStart = subtitleString.index(/\b#{label}\b/)
+          modifiedStringRange = NSMakeRange(indexStart, label.size)
+
+          subtitleLabelColor = NSColor.colorWithCalibratedRed(0.7,
+                                                              green:0.7,
+                                                              blue:0.7,
+                                                              alpha:1.0)
+          attrString.addAttribute(NSForegroundColorAttributeName,
+                                  value:subtitleLabelColor,
+                                  range:modifiedStringRange)
+
+          subtitleLabelFont = NSFont.boldSystemFontOfSize(SUBTITLE_FONT_SIZE - 1)
+          attrString.addAttribute(NSFontAttributeName,
+                                  value:subtitleLabelFont,
+                                  range:modifiedStringRange)
+        end
+      end
+    end
+    attrString.endEditing
+
+    return attrString
+  end
+
+  def paragraphStyle
+    return NSMutableParagraphStyle.new.
+      setLineBreakMode(NSLineBreakByTruncatingTail)
   end
 
 end
