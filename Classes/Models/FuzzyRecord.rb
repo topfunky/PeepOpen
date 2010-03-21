@@ -30,9 +30,11 @@ class FuzzyRecord
     matchIsInProcess = false
     matchingRanges = []
     @matchedRanges = nil
-    
+
     filePath.each_char do |c|
-      if c == searchString[searchStringCharIndex]
+      if (c &&
+          searchString[searchStringCharIndex] &&
+          c.upcase == searchString[searchStringCharIndex].upcase)
         if matchIsInProcess
           lastRange       = matchingRanges.lastObject
           lastObjectIndex = matchingRanges.indexOfObjectIdenticalTo(lastRange)
@@ -50,7 +52,7 @@ class FuzzyRecord
     end
     # Reject partial matches
     return nil if searchStringCharIndex < searchString.length
-      
+
     if matchingRanges.length > 0
       @matchedRanges = matchingRanges
       return @matchedRanges

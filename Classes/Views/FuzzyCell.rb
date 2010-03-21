@@ -28,16 +28,19 @@ class FuzzyCell < NSCell
   # Horizontal padding between icon and text
   HORIZONTAL_PADDING = 10.0
 
+  TITLE_FONT_SIZE = 14.0
+
   SUBTITLE_VERTICAL_PADDING = 2.0
   SUBTITLE_FONT_SIZE = 10.0
 
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
     #     setDrawsBackground(true)
     #     setBackgroundColor(NSColor.greenColor)
-
+    
+    darkGrey = NSColor.colorWithCalibratedRed(0.3, green:0.3, blue:0.3, alpha:1.0)
     titleAttributes = {
-      NSForegroundColorAttributeName => NSColor.blackColor,
-      NSFontAttributeName            => NSFont.systemFontOfSize(14.0),
+      NSForegroundColorAttributeName => darkGrey,
+      NSFontAttributeName            => NSFont.systemFontOfSize(TITLE_FONT_SIZE),
       NSParagraphStyleAttributeName  => paragraphStyle
     }
     if highlighted?
@@ -47,6 +50,21 @@ class FuzzyCell < NSCell
     # Create strings for labels
     aTitle = NSMutableAttributedString.alloc.
       initWithString(self.objectValue, attributes:titleAttributes)
+    titleEmphasisFont = NSFont.boldSystemFontOfSize(TITLE_FONT_SIZE)
+    aTitle.beginEditing
+    begin
+      representedObject.matchedRanges.each do |range|
+        unless highlighted?
+          aTitle.addAttribute(NSForegroundColorAttributeName,
+                              value:NSColor.blackColor,
+                              range:range)
+        end
+        aTitle.addAttribute(NSFontAttributeName,
+                            value:titleEmphasisFont,
+                            range:range)
+      end
+    end
+    aTitle.endEditing
     aTitleSize = aTitle.size
 
     aSubtitle = buildSubtitleString
@@ -133,17 +151,18 @@ class FuzzyCell < NSCell
     subtitleTemplate = "MODIFIED %s  GIT %s  CLASSES %s"
     displayDate = NSDate.stringForDisplayFromDate(NSDate.date)
 
-    subtitleString = self.subtitle ? subtitleTemplate % [
-                                                         displayDate,
-                                                         "++---",
-                                                         "ClassA • ClassB"
-                                                        ] : ""
+    subtitleString = self.representedObject.projectRoot ? subtitleTemplate % [
+                                                                              displayDate,
+                                                                              "++---",
+                                                                              "ClassA • ClassB"
+                                                                             ] : ""
     attrString = NSMutableAttributedString.alloc.
       initWithString(subtitleString,
                      attributes:subtitleAttributes)
 
     attrString.beginEditing
     begin
+      subtitleLabelFont = NSFont.boldSystemFontOfSize(SUBTITLE_FONT_SIZE - 1)
       ["MODIFIED", "GIT", "CLASSES"].each do |label|
         if indexStart = subtitleString.index(/\b#{label}\b/)
           modifiedStringRange = NSMakeRange(indexStart, label.size)
@@ -156,7 +175,6 @@ class FuzzyCell < NSCell
                                   value:subtitleLabelColor,
                                   range:modifiedStringRange)
 
-          subtitleLabelFont = NSFont.boldSystemFontOfSize(SUBTITLE_FONT_SIZE - 1)
           attrString.addAttribute(NSFontAttributeName,
                                   value:subtitleLabelFont,
                                   range:modifiedStringRange)

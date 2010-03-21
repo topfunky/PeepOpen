@@ -19,7 +19,7 @@ class FuzzyTableViewController
 
   def initialize
     # Dummy
-    projectRoot = "~/tmp/heroku-sinatra-app"
+    projectRoot = "~/tmp/bjeanes-dot-files"
     @allRecords = [
                 FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
                                                       filePath:"heroku-sinatra-app.rb"),
@@ -48,8 +48,7 @@ class FuzzyTableViewController
   end
 
   def tableView(tableView, willDisplayCell:cell, forTableColumn:column, row:row)
-    # TODO: Set cell attributes from @records[row]
-    cell.subtitle = @records[row].projectRoot
+    cell.setRepresentedObject(@records[row])
   end
 
 end
