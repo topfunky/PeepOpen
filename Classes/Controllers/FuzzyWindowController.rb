@@ -8,15 +8,19 @@ class FuzzyWindowController < NSWindowController
 
   attr_accessor :tableViewController, :window
 
-  # TODO: Respond to ENTER in text field
-
   def didSearchForString(sender)
     tableViewController.searchForString(sender.stringValue)
   end
+
+  ##
+  # Received when user hits Enter in search field or tabs out. Or clicks.
+  #
+  # TODO: Allow user to navigate results with arrows or mouse.
   
-  # Received when user hits Enter in search field.
   def controlTextDidEndEditing(aNotification)
-    NSLog "ended editing"
+    record = tableViewController.records[0]
+    # TODO: Reset search field and records for next use.
+    system "open -a Emacs #{record.absFilePath}"
   end
 
 

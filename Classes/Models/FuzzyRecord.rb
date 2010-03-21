@@ -75,9 +75,13 @@ class FuzzyRecord
   def modifiedAt
     @modifiedAt ||= begin
                       NSFileManager.defaultManager.
-                        attributesOfItemAtPath(File.join(projectRoot, filePath),
+                        attributesOfItemAtPath(absFilePath,
                                                error:nil)[NSFileModificationDate]
                     end
+  end
+
+  def absFilePath
+    File.join(projectRoot, filePath)
   end
 
 end
