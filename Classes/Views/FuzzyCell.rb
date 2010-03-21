@@ -36,16 +36,13 @@ class FuzzyCell < NSCell
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
     #     setDrawsBackground(true)
     #     setBackgroundColor(NSColor.greenColor)
-    
+
     darkGrey = NSColor.colorWithCalibratedRed(0.3, green:0.3, blue:0.3, alpha:1.0)
     titleAttributes = {
       NSForegroundColorAttributeName => darkGrey,
       NSFontAttributeName            => NSFont.systemFontOfSize(TITLE_FONT_SIZE),
       NSParagraphStyleAttributeName  => paragraphStyle
     }
-    if highlighted?
-      titleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
-    end
 
     # Create strings for labels
     aTitle = NSMutableAttributedString.alloc.
@@ -54,11 +51,9 @@ class FuzzyCell < NSCell
     aTitle.beginEditing
     begin
       representedObject.matchedRanges.each do |range|
-        unless highlighted?
-          aTitle.addAttribute(NSForegroundColorAttributeName,
-                              value:NSColor.blackColor,
-                              range:range)
-        end
+        aTitle.addAttribute(NSForegroundColorAttributeName,
+                            value:NSColor.blackColor,
+                            range:range)
         aTitle.addAttribute(NSFontAttributeName,
                             value:titleEmphasisFont,
                             range:range)
@@ -104,10 +99,10 @@ class FuzzyCell < NSCell
     aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
   end
-  
+
   ##
   # TODO: Show icon for file as specified by Finder.
-  
+
   def drawIconInRect(aRect)
     filetypeLabelAttributes = {
       NSForegroundColorAttributeName => NSColor.blackColor,
@@ -147,9 +142,6 @@ class FuzzyCell < NSCell
       NSFontAttributeName => NSFont.systemFontOfSize(SUBTITLE_FONT_SIZE),
       NSParagraphStyleAttributeName => paragraphStyle
     }
-    if highlighted?
-      subtitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
-    end
 
     subtitleTemplate = "MODIFIED %s  GIT %s  CLASSES %s"
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
@@ -174,6 +166,10 @@ class FuzzyCell < NSCell
                                                               green:0.7,
                                                               blue:0.7,
                                                               alpha:1.0)
+          if highlighted?
+            subtitleLabelColor = NSColor.whiteColor
+
+          end
           attrString.addAttribute(NSForegroundColorAttributeName,
                                   value:subtitleLabelColor,
                                   range:modifiedStringRange)

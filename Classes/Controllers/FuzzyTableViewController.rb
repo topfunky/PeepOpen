@@ -33,14 +33,32 @@ class FuzzyTableViewController
       @records = @allRecords
     end
     tableView.reloadData
+    selectFirstRow
+  end
+
+  def selectFirstRow
+    if @records.size > 0
+      tableView.selectRowIndexes(NSIndexSet.indexSetWithIndex(0),
+                                 byExtendingSelection:false)
+      tableView.scrollRowToVisible(0)
+    end
   end
 
   def selectPreviousRow
-    # if row is selected, and > 0, select one up
+    # Select next row up, or last row if none are selected.
+    selectedRowIndex = tableView.selectedRow
+    if (1..@records.size).include?(selectedRowIndex)
+      selectedRowIndex -= 1
+    else
+      selectedRowIndex = @records.size - 1
+    end
+    tableView.selectRowIndexes(NSIndexSet.indexSetWithIndex(selectedRowIndex),
+                               byExtendingSelection:false)
+    tableView.scrollRowToVisible(selectedRowIndex)
   end
 
   def selectNextRow
-    # if row is selected, and < rows, select one down
+    # Select next row down, or first row if none are selected.
     selectedRowIndex = tableView.selectedRow
     if (0..@records.size).include?(selectedRowIndex)
       selectedRowIndex += 1
@@ -49,6 +67,7 @@ class FuzzyTableViewController
     end
     tableView.selectRowIndexes(NSIndexSet.indexSetWithIndex(selectedRowIndex),
                                byExtendingSelection:false)
+    tableView.scrollRowToVisible(selectedRowIndex)
   end
 
 

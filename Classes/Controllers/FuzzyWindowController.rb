@@ -10,9 +10,7 @@ class FuzzyWindowController < NSWindowController
 
   def activate
     showWindow self
-    # TODO: Should it select the first row as an indicator of what
-    #       will happen if ENTER is pressed?
-    tableViewController.tableView.deselectAll self
+    tableViewController.selectFirstRow
     searchField.setStringValue("")
     window.makeFirstResponder(searchField)
   end
