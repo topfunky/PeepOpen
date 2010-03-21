@@ -27,7 +27,13 @@ class FuzzyTableViewController
 
   def searchForString(searchString)
     if searchString.length
-      @records = @allRecords.select {|r| r.fuzzyInclude?(searchString) }
+      @records = @allRecords.select { |r|
+        r.fuzzyInclude?(searchString)
+      }.sort { |a,b|
+        a.filePath.length <=> b.filePath.length
+      }.sort { |a,b|
+        a.matchScore <=> b.matchScore
+      }
     else
       @records = @allRecords
     end

@@ -8,7 +8,6 @@ class FuzzyRecord
 
   attr_accessor *[:projectRoot,
                   :filePath, :filePaths,
-                  :modifiedAt,
                   :scmStatus, :scmName,
                   :codeObjectName, :codeObjectNames,
                   :matchedRanges]
@@ -42,7 +41,8 @@ class FuzzyRecord
     matchIsInProcess = false
     matchingRanges = []
     @matchedRanges = nil
-
+    @matchScore = nil
+    
     filePath.each_char do |c|
       if (c &&
           searchString[searchStringCharIndex] &&
@@ -67,9 +67,14 @@ class FuzzyRecord
 
     if matchingRanges.length > 0
       @matchedRanges = matchingRanges
-      return @matchedRanges
+      return true
     end
     nil
+  end
+
+  def matchScore
+    @matchScore ||= @matchedRanges.inject(0) {|memo, element|
+      memo + element.location }
   end
 
   def modifiedAt

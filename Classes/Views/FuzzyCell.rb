@@ -99,10 +99,10 @@ class FuzzyCell < NSCell
     aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
   end
-  
+
   ##
   # Shows letters of file extension as a graphic.
-  
+
   def drawIconInRect(aRect)
     filetypeLabelAttributes = {
       NSForegroundColorAttributeName => NSColor.colorWithCalibratedRed(0.85,
@@ -152,11 +152,11 @@ class FuzzyCell < NSCell
     subtitleTemplate = "MODIFIED %s  GIT %s  CLASSES %s"
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
 
-    subtitleString = self.representedObject.projectRoot ? subtitleTemplate % [
-                                                                              displayDate,
-                                                                              "++---",
-                                                                              "ClassA • ClassB"
-                                                                             ] : ""
+    subtitleString = representedObject.projectRoot ? subtitleTemplate % [
+                                                                         displayDate,
+                                                                         "++---",
+                                                                         "ClassA • ClassB #{representedObject.matchScore}"
+                                                                        ] : ""
     attrString = NSMutableAttributedString.alloc.
       initWithString(subtitleString,
                      attributes:subtitleAttributes)

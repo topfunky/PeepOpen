@@ -34,5 +34,12 @@ class FuzzyRecordTest < Test::Unit::TestCase
     arrayOfMatchingRanges = fuzzyRecord.fuzzyInclude?("x/y/z")
     assert_nil arrayOfMatchingRanges
   end
-
+  
+  def test_calculates_score
+    fuzzyRecord = FuzzyRecord.alloc.
+      initWithProjectRoot("~/tmp/demo", filePath:"bacon/wagyu/seasalt.rb")
+    arrayOfMatchingRanges = fuzzyRecord.fuzzyInclude?("b/w/s.rb")
+    assert_equal 35, fuzzyRecord.matchScore
+  end
+  
 end
