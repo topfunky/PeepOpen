@@ -15,7 +15,7 @@ class FuzzyCell < NSCell
 
   # For a task-specific cell like this, use setRepresentedObject and
   # representedObject instead.
-  attr_accessor :subtitle, :image
+  attr_accessor :subtitle
 
   ICON_WIDTH = 30
   ICON_HEIGHT = 27
@@ -35,15 +35,19 @@ class FuzzyCell < NSCell
     #     setDrawsBackground(true)
     #     setBackgroundColor(NSColor.greenColor)
 
-    @titleAttributes = {
+    titleAttributes = {
       NSForegroundColorAttributeName => NSColor.blackColor,
       NSFontAttributeName            => NSFont.systemFontOfSize(14.0),
       NSParagraphStyleAttributeName  => paragraphStyle
     }
+    if highlighted?
+      titleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
+    end
 
     # Create strings for labels
-    aTitle        = self.objectValue
-    aTitleSize    = aTitle.sizeWithAttributes(@titleAttributes)
+    aTitle = NSMutableAttributedString.alloc.
+      initWithString(self.objectValue, attributes:titleAttributes)
+    aTitleSize = aTitle.size
 
     aSubtitle = buildSubtitleString
     aSubtitleSize = aSubtitle.size
@@ -77,12 +81,9 @@ class FuzzyCell < NSCell
                               aTextBox.size.width,
                               aSubtitleSize.height)
 
-    if highlighted?
-      @titleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
-    end
 
     # Draw the text
-    aTitle.drawInRect(aTitleBox, withAttributes:@titleAttributes)
+    aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
   end
 

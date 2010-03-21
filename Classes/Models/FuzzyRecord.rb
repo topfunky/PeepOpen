@@ -10,7 +10,8 @@ class FuzzyRecord
                   :filePath, :filePaths,
                   :modifiedAt,
                   :scmStatus, :scmName,
-                  :codeObjectName, :codeObjectNames]
+                  :codeObjectName, :codeObjectNames,
+                  :matchedRanges]
 
   def initWithProjectRoot(theProjectRoot, filePath:theFilePath)
     @projectRoot = theProjectRoot
@@ -28,7 +29,8 @@ class FuzzyRecord
     searchStringCharIndex = 0
     matchIsInProcess = false
     matchingRanges = []
-
+    @matchedRanges = nil
+    
     filePath.each_char do |c|
       if c == searchString[searchStringCharIndex]
         if matchIsInProcess
@@ -48,8 +50,12 @@ class FuzzyRecord
     end
     # Reject partial matches
     return nil if searchStringCharIndex < searchString.length
-    
-    matchingRanges.length > 0 ? matchingRanges : nil
+      
+    if matchingRanges.length > 0
+      @matchedRanges = matchingRanges
+      return @matchedRanges
+    end
+    nil
   end
 
 end

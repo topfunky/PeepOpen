@@ -6,12 +6,21 @@
 
 class FuzzyTableViewController
 
-  attr_accessor :tableView, :records
+  attr_accessor :tableView, :allRecords, :records
+
+  def searchForString(searchString)
+    if searchString.length
+      @records = @allRecords.select {|r| r.fuzzyInclude?(searchString) }
+    else
+      @records = []
+    end
+    tableView.reloadData
+  end
 
   def initialize
     # Dummy
     projectRoot = "~/tmp/heroku-sinatra-app"
-    @records = [
+    @allRecords = [
                 FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
                                                       filePath:"heroku-sinatra-app.rb"),
                 FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
@@ -21,6 +30,7 @@ class FuzzyTableViewController
                 FuzzyRecord.alloc.initWithProjectRoot(projectRoot,
                                                       filePath:"config.ru"),
                ]
+    @records = []
   end
 
   # NSTableDataSource methods

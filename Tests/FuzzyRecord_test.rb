@@ -28,4 +28,11 @@ class FuzzyRecordTest < Test::Unit::TestCase
     assert_nil arrayOfMatchingRanges
   end
 
+  def test_rejects_failed_match
+    fuzzyRecord = FuzzyRecord.alloc.
+      initWithProjectRoot("~/tmp/demo", filePath:"bacon/wagyu/seasalt.rb")
+    arrayOfMatchingRanges = fuzzyRecord.fuzzyInclude?("x/y/z")
+    assert_nil arrayOfMatchingRanges
+  end
+
 end
