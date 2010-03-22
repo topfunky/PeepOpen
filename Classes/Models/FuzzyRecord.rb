@@ -17,6 +17,8 @@ class FuzzyRecord
     Dir[theProjectRoot + "/**/*"].each do |filename|
       next unless File.file?(filename)
       filename.gsub!(/^#{theProjectRoot}\//, '')
+      # TODO: Store ignore directories, files in preferences
+      next if filename.match(/^(build|tmp|log|vendor)/)
       records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
                                                        filePath:filename)
     end
