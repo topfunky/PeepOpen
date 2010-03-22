@@ -6,17 +6,23 @@
 
 class FuzzyWindowController < NSWindowController
 
-  attr_accessor :tableViewController, :window, :searchField
+  attr_accessor :tableViewController, :window, :searchField, :statusLabel
 
   def activate
     showWindow self
     tableViewController.selectFirstRow
     searchField.setStringValue("")
     window.makeFirstResponder(searchField)
+    updateStatusLabel
   end
 
   def didSearchForString(sender)
     tableViewController.searchForString(sender.stringValue)
+    updateStatusLabel
+  end
+
+  def updateStatusLabel
+    statusLabel.stringValue = "%i records" % [tableViewController.records.size]
   end
 
   ##
@@ -45,10 +51,13 @@ class FuzzyWindowController < NSWindowController
   def handleNewline
     tableViewController.handleRowClick(tableViewController.tableView.selectedRow)
   end
-  
+
   ##
   # Switch back to text editor if window is closed (usually with ESC).
-  
+  #
+  # TODO: Don't go to text editor if application is being quit, only
+  # if window is being hidden.
+
   def windowWillClose(notification)
     system "open -a Emacs"
   end
