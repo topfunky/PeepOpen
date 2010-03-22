@@ -699,6 +699,7 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{480, 318}</string>
 											<reference key="NSSuperview" ref="892458727"/>
+											<bool key="NSViewCanDrawConcurrently">YES</bool>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
 												<nil key="NSNextResponder"/>

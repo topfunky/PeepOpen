@@ -27,16 +27,26 @@ class FuzzyTableViewController
 
   def searchForString(searchString)
     if searchString.length
-      @records = @allRecords.select { |r|
-        r.fuzzyInclude?(searchString)
-      }.sort { |a,b|
-        a.filePath.length <=> b.filePath.length
-      }.sort { |a,b|
-        a.matchScore <=> b.matchScore
-      }
+      filterRecordsForString(searchString)
     else
-      @records = @allRecords
+      didSearchForString(@allRecords)
     end
+  end
+
+  # BUG: Async needs to lock around table redrawing or setting records
+  def filterRecordsForString(searchString)
+    filteredRecords = @allRecords.select { |r|
+      r.fuzzyInclude?(searchString)
+    }.sort { |a,b| a.filePath.length <=> b.filePath.length
+    }.sort { |a,b| a.matchScore <=> b.matchScore }
+
+    performSelectorOnMainThread("didSearchForString:",
+                                withObject:filteredRecords,
+                                waitUntilDone:true)
+  end
+
+  def didSearchForString(filteredRecords)
+    @records = filteredRecords
     tableView.reloadData
     selectFirstRow
   end
@@ -74,19 +84,6 @@ class FuzzyTableViewController
                                byExtendingSelection:false)
     tableView.scrollRowToVisible(selectedRowIndex)
   end
-
-
-  # BUG: Async needs to lock around table redrawing or setting records
-  #   def searchForStringAsync(searchString)
-  #     filteredRecords = @allRecords.select {|r| r.fuzzyInclude?(searchString) }
-  #     performSelectorOnMainThread("didSearchForString:",
-  #                                 withObject:filteredRecords,
-  #                                 waitUntilDone:false)
-  #   end
-  #   def didSearchForString(filteredRecords)
-  #     @records = filteredRecords
-  #     tableView.reloadData
-  #   end
 
   ## NSTableDataSource methods
 

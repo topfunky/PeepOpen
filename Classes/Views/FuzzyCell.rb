@@ -34,9 +34,6 @@ class FuzzyCell < NSCell
   SUBTITLE_FONT_SIZE = 10.0
 
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
-    #     setDrawsBackground(true)
-    #     setBackgroundColor(NSColor.greenColor)
-
     darkGrey = NSColor.colorWithCalibratedRed(0.3, green:0.3, blue:0.3, alpha:1.0)
     titleAttributes = {
       NSForegroundColorAttributeName => darkGrey,
@@ -149,13 +146,12 @@ class FuzzyCell < NSCell
       NSParagraphStyleAttributeName => paragraphStyle
     }
 
-    subtitleTemplate = "MODIFIED %s  GIT %s  CLASSES %s"
+    subtitleTemplate = "MODIFIED %s  GIT %s"
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
 
     subtitleString = representedObject.projectRoot ? subtitleTemplate % [
                                                                          displayDate,
-                                                                         "++---",
-                                                                         "ClassA • ClassB #{representedObject.matchScore}"
+                                                                         "++---"
                                                                         ] : ""
     attrString = NSMutableAttributedString.alloc.
       initWithString(subtitleString,

@@ -25,7 +25,9 @@ class Array
     group.wait
     result
   end
-
+  
+  # BUG: Crashes
+  
   def parallel_select(&block)
     result = []
     # Creating a group to synchronize block execution.
