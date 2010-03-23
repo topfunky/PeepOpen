@@ -50,6 +50,7 @@ class FuzzyWindowController < NSWindowController
 
   def handleNewline
     tableViewController.handleRowClick(tableViewController.tableView.selectedRow)
+    window.close
   end
 
   ##

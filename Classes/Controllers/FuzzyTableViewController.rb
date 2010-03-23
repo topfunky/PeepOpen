@@ -30,6 +30,7 @@ class FuzzyTableViewController
       filterRecordsForString(searchString)
     else
       # TODO: Reset matchedRanges and score for all records
+      # TODO: Maybe use parallel_map
       didSearchForString(@allRecords)
     end
   end
@@ -112,7 +113,7 @@ class FuzzyTableViewController
   def handleRowClick(rowId)
     rowId = 0 if rowId == -1
     if record = @records[rowId]
-      # TODO: Hide window
+      # TODO: Close window
       system "open -a Emacs #{record.absFilePath}"
     end
   end
