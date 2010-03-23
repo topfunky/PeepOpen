@@ -26,9 +26,10 @@ class FuzzyTableViewController
   # Text entered into the search field calls this method.
 
   def searchForString(searchString)
-    if searchString.length
+    if searchString.strip.length > 0
       filterRecordsForString(searchString)
     else
+      # TODO: Reset matchedRanges and score for all records
       didSearchForString(@allRecords)
     end
   end

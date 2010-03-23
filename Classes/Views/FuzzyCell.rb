@@ -45,18 +45,20 @@ class FuzzyCell < NSCell
     aTitle = NSMutableAttributedString.alloc.
       initWithString(self.objectValue, attributes:titleAttributes)
     titleEmphasisFont = NSFont.boldSystemFontOfSize(TITLE_FONT_SIZE)
-    aTitle.beginEditing
-    begin
-      representedObject.matchedRanges.each do |range|
-        aTitle.addAttribute(NSForegroundColorAttributeName,
-                            value:NSColor.blackColor,
-                            range:range)
-        aTitle.addAttribute(NSFontAttributeName,
-                            value:titleEmphasisFont,
-                            range:range)
+    if representedObject.matchedRanges
+      aTitle.beginEditing
+      begin
+        representedObject.matchedRanges.each do |range|
+          aTitle.addAttribute(NSForegroundColorAttributeName,
+                              value:NSColor.blackColor,
+                              range:range)
+          aTitle.addAttribute(NSFontAttributeName,
+                              value:titleEmphasisFont,
+                              range:range)
+        end
       end
+      aTitle.endEditing
     end
-    aTitle.endEditing
     aTitleSize = aTitle.size
 
     aSubtitle = buildSubtitleString
