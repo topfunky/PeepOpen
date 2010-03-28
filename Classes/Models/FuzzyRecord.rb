@@ -90,6 +90,7 @@ class FuzzyRecord
   def scmStatus
     return @scmStatus if @scmStatus
     # TODO: Run async
+    # TODO: Only queue once
     linesAdded, linesDeleted = [0,0]
     
     # 3       1       Tests/run_suite.rb

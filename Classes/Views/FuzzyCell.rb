@@ -154,7 +154,7 @@ class FuzzyCell < NSCell
     if scmStatus.size > 0
       subtitleString << "GIT #{scmStatus}"
     end
-    subtitleString = subtitleString.join(" ")
+    subtitleString = subtitleString.join("  ")
     attrString = NSMutableAttributedString.alloc.
       initWithString(subtitleString,
                      attributes:subtitleAttributes)
@@ -162,6 +162,50 @@ class FuzzyCell < NSCell
     attrString.beginEditing
     begin
       subtitleLabelFont = NSFont.boldSystemFontOfSize(SUBTITLE_FONT_SIZE - 1)
+      # TODO: Make string highlighting into own method.
+      # TODO: Take hash of regex, highlightedColor, color
+      #       {
+      #         /GIT (\++)/ => {
+      #           :indexStart => "+",
+      #           NSForegroundColorAttributeName => "",
+      #           :highlighted => {
+      #             NSForegroundColorAttributeName => ""
+      #           },
+      #           NSFontAttributeName => ""
+      #         },
+      #         /\b(GIT)\b/ => {
+      #           ...
+      #         }
+      #       }
+
+      # TODO: Cleanup
+      if matchObj = subtitleString.match(/GIT (\++)/)
+        indexStart = subtitleString.index("+")
+        modifiedStringRange = NSMakeRange(indexStart,
+                                          matchObj.captures.first.size)
+
+        gitPlusLabelColor = NSColor.colorWithCalibratedRed(0,
+                                                           green:0.6,
+                                                           blue:0,
+                                                           alpha:1.0)
+        attrString.addAttribute(NSForegroundColorAttributeName,
+                                value:gitPlusLabelColor,
+                                range:modifiedStringRange)
+      end
+      if matchObj = subtitleString.match(/(-+)/)
+        indexStart = subtitleString.index("-")
+        modifiedStringRange = NSMakeRange(indexStart,
+                                          matchObj.captures.first.size)
+
+        gitPlusLabelColor = NSColor.colorWithCalibratedRed(0.6,
+                                                           green:0,
+                                                           blue:0,
+                                                           alpha:1.0)
+        attrString.addAttribute(NSForegroundColorAttributeName,
+                                value:gitPlusLabelColor,
+                                range:modifiedStringRange)
+      end
+
       ["MODIFIED", "GIT", "CLASSES"].each do |label|
         if indexStart = subtitleString.index(/\b#{label}\b/)
           modifiedStringRange = NSMakeRange(indexStart, label.size)
