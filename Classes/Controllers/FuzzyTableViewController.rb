@@ -39,8 +39,8 @@ class FuzzyTableViewController
   def filterRecordsForString(searchString)
     filteredRecords = @allRecords.select { |r|
       r.fuzzyInclude?(searchString)
-    }.sort { |a,b| a.filePath.length <=> b.filePath.length
-    }.sort { |a,b| a.matchScore <=> b.matchScore }
+    }.sort_by { |record| [ record.matchScore,
+                           -record.modifiedAt.timeIntervalSince1970 ] }
 
     performSelectorOnMainThread("didSearchForString:",
                                 withObject:filteredRecords,
