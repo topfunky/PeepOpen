@@ -1,14 +1,26 @@
-* [1/7] Basic Features
+* [3/8] Basic Features
 
-  - [ ] Integrate BWToolkit
+  - [X] Integrate BWToolkit
   - [ ] Integrate Sparkle
   - [X] Clear search field on Enter
-  - [ ] Handle arrow navigation
+  - [X] Handle arrow navigation
   - [ ] Handle Ctrl-1,2,3 navigation
   - [ ] Preferences for directories or files to ignore
+  - [ ] Preference for editor to use (or detect file association?)
   - [ ] Save window placement and size
+
+* Application Name
+
+  - CanOpen – as in a can opener. Icon possibilities abound.
+  - Nip – Used by airblade in script
 
 * Optional Features
 
   - [ ] Run searches in a background or Grand Central thread
+
+* MacVim
+
+  - Launch a file in an existing window: mvim --remote-silent README.md
+  
+
 
