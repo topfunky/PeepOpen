@@ -17,8 +17,8 @@ class FuzzyRecord
     Dir[theProjectRoot + "/**/*"].each do |filename|
       next unless File.file?(filename)
       filename.gsub!(/^#{theProjectRoot}\//, '')
-      # TODO: Store ignore directories, files in preferences
-      next if filename.match(/^(build|tmp|log|vendor)/)
+      # TODO: Store ignorable directories, files in preferences
+      next if filename.match(/^(build|tmp|log|vendor)/i)
       records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
                                                        filePath:filename)
     end
@@ -44,7 +44,7 @@ class FuzzyRecord
     matchingRanges = []
     @matchedRanges = nil
     @matchScore = nil
-    
+
     filePath.each_char do |c|
       if (c &&
           searchString[searchStringCharIndex] &&
@@ -85,6 +85,21 @@ class FuzzyRecord
                         attributesOfItemAtPath(absFilePath,
                                                error:nil)[NSFileModificationDate]
                     end
+  end
+
+  def scmStatus
+    return @scmStatus if @scmStatus
+    # TODO: Run async
+    linesAdded, linesDeleted = [0,0]
+    
+    # 3       1       Tests/run_suite.rb
+    output = `cd #{projectRoot} && git diff --numstat #{filePath}`
+    if output.match(/(\d+)\s+(\d+)/)
+      linesAdded = $1.to_i
+      linesDeleted = $2.to_i      
+    end
+    @scmStatus = ("+" * linesAdded) + ("-" * linesDeleted)
+    return @scmStatus
   end
 
   def absFilePath

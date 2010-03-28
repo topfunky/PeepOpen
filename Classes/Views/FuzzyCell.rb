@@ -148,13 +148,13 @@ class FuzzyCell < NSCell
       NSParagraphStyleAttributeName => paragraphStyle
     }
 
-    subtitleTemplate = "MODIFIED %s  GIT %s"
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
-
-    subtitleString = representedObject.projectRoot ? subtitleTemplate % [
-                                                                         displayDate,
-                                                                         "++---"
-                                                                        ] : ""
+    subtitleString = ["MODIFIED #{displayDate}"]
+    scmStatus = representedObject.scmStatus
+    if scmStatus.size > 0
+      subtitleString << "GIT #{scmStatus}"
+    end
+    subtitleString = subtitleString.join(" ")
     attrString = NSMutableAttributedString.alloc.
       initWithString(subtitleString,
                      attributes:subtitleAttributes)
