@@ -1,4 +1,4 @@
-* [3/8] Basic Features
+* [3/9] Basic Features
 
   - [X] Integrate BWToolkit
   - [ ] Integrate Sparkle
@@ -6,6 +6,7 @@
   - [X] Handle arrow navigation
   - [ ] Handle Ctrl-1,2,3 navigation
   - [ ] Preferences for directories or files to ignore
+  - [ ] Sometimes "vendor" is useful to include. Maybe ignore "vendor/rails"
   - [ ] Preference for editor to use (or detect file association?)
   - [ ] Save window placement and size
 

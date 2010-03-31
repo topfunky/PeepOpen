@@ -12,16 +12,22 @@ class FuzzyRecord
                   :codeObjectName, :codeObjectNames,
                   :matchedRanges]
 
+  MAX_FILE_COUNT = 1000 # TODO: Set in preferences
+
   def self.recordsWithProjectRoot(theProjectRoot)
-    records = []
+    records = []    
     Dir[theProjectRoot + "/**/*"].each do |filename|
       next unless File.file?(filename)
+      next if records.length >= MAX_FILE_COUNT
       filename.gsub!(/^#{theProjectRoot}\//, '')
       # TODO: Store ignorable directories, files in preferences
-      next if filename.match(/^(build|tmp|log|vendor)/i)
+      next if filename.match(/^(build|tmp|log|vendor\/rails)\//i)
+      next if filename.match(/(\.png|\.elc|~)$/)
       records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
                                                        filePath:filename)
     end
+    # TODO: Run "git diff --numstat" on projectRoot and save for all
+    #       in an NSDictionary
     records
   end
 
@@ -75,6 +81,11 @@ class FuzzyRecord
   end
 
   def matchScore
+    # TODO: Files with locations close together should rank higher
+    #       than ones with locations farther apart.
+    #       FuzzyRecord_test.rb
+    #       FuzzyRecord.rb
+    #       Search => fuzr.rb
     @matchScore ||= @matchedRanges.inject(0) {|memo, element|
       memo + element.location }
   end
@@ -90,14 +101,15 @@ class FuzzyRecord
   def scmStatus
     return @scmStatus if @scmStatus
     # TODO: Run async
-    # TODO: Only queue once
+    # TODO: Run only once for all files in repo
     linesAdded, linesDeleted = [0,0]
-    
+
     # 3       1       Tests/run_suite.rb
+    # -       -       Foo/Bar.rb
     output = `cd #{projectRoot} && git diff --numstat #{filePath}`
     if output.match(/(\d+)\s+(\d+)/)
       linesAdded = $1.to_i
-      linesDeleted = $2.to_i      
+      linesDeleted = $2.to_i
     end
     @scmStatus = ("+" * linesAdded) + ("-" * linesDeleted)
     return @scmStatus
