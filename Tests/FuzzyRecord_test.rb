@@ -51,8 +51,8 @@ class FuzzyRecordTest < Test::Unit::TestCase
     assert_nil fuzzyRecord.matchedRanges
   end
 
-  test "resets with GCD" do
-    records = FuzzyRecord.recordsWithProjectRoot(File.expand_path("../"))
+  test "resets many records" do
+    records = createRecords
     filteredRecords = FuzzyRecord.filterRecords(records,
                                                 forString:"Cell")
     assert_not_nil filteredRecords.first.matchedRanges
@@ -60,9 +60,24 @@ class FuzzyRecordTest < Test::Unit::TestCase
     assert_nil filteredRecords.first.matchedRanges
   end
 
+  test "filters with best strategy" do
+    record = FuzzyRecord.alloc.
+      initWithProjectRoot(File.expand_path("../"),
+                          filePath:"Classes/Views/FuzzyCell.rb")
+    assert record.fuzzyInclude?("cell")
+    assert_equal 19, record.matchScore
+  end
+
   def createRecordWithProjectRoot(projectRoot, filePath:filePath)
     fuzzyRecord = FuzzyRecord.alloc.
       initWithProjectRoot(projectRoot, filePath:filePath)
+  end
+
+  ##
+  # Returns an array of records for this project.
+
+  def createRecords
+    FuzzyRecord.recordsWithProjectRoot(File.expand_path("../"))
   end
 
 end

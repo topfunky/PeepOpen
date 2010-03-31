@@ -36,15 +36,16 @@ class FuzzyRecord
     records.select { |r|
       r.fuzzyInclude?(searchString)
     }.sort_by { |record| [ record.matchScore,
+                           -record.longestMatch,
                            -record.modifiedAt.timeIntervalSince1970 ] }
   end
-  
+
   def self.resetMatchesForRecords!(records)
     # NOTE: parallel_map is possible, but may not be any faster
     #       unless records array is large.
     records.parallel_map {|r| r.resetMatches! }
   end
-  
+
   def initWithProjectRoot(theProjectRoot, filePath:theFilePath)
     @projectRoot = theProjectRoot
     @filePath = theFilePath
@@ -54,19 +55,40 @@ class FuzzyRecord
 
   ##
   # Finds "a/b/c" in "armadillo/bacon/cheshire"
-  # Returns an Array of NSRange objects identifying the matches.
+  #
+  # Returns true if the string matches this record.
+  #
+  # Populates @matchedRanges with an Array of NSRange objects
+  # identifying the matches.
 
   def fuzzyInclude?(searchString)
+    resetMatches!
     # TODO: Search other things like date, classes, or SCM status
-    # TODO: Try two strategies: first occurrence vs. most contiguous.
-    #       Return
+    # Attempts two strategies: first occurrence vs. most contiguous.
+    if firstOccurrenceMatches = searchText(filePath,
+                                           forFirstOccurrenceOfString:searchString)
+      if reverseSearchMatches = searchInReverseForString(searchString)
+        if calculateMatchScoreForRanges(reverseSearchMatches) <
+            calculateMatchScoreForRanges(firstOccurrenceMatches)
+          @matchedRanges = reverseSearchMatches
+        else
+          @matchedRanges = firstOccurrenceMatches
+        end
+        return true
+      end
+      @matchedRanges = firstOccurrenceMatches
+      return true
+    end
+    return nil
+  end
+
+  def searchText(theText, forFirstOccurrenceOfString:searchString)
     filePathCharIndex = 0
     searchStringCharIndex = 0
     matchIsInProcess = false
     matchingRanges = []
-    resetMatches!
 
-    filePath.each_char do |c|
+    theText.each_char do |c|
       if (c &&
           searchString[searchStringCharIndex] &&
           c.upcase == searchString[searchStringCharIndex].upcase)
@@ -89,15 +111,28 @@ class FuzzyRecord
     return nil if searchStringCharIndex < searchString.length
 
     if matchingRanges.length > 0
-      @matchedRanges = matchingRanges
-      return true
+      return matchingRanges
+    end
+    nil
+  end
+
+  def searchInReverseForString(searchString)
+    reverseMatches = searchText(filePath.reverse,
+                                forFirstOccurrenceOfString:searchString.reverse)
+    if reverseMatches.length > 0
+      forwardMatches = reverseMatches.reverse.map { |range|
+        location = filePath.length - range.location - range.length
+        NSMakeRange(location, range.length)
+      }
+      return forwardMatches
     end
     nil
   end
 
   def resetMatches!
     @matchedRanges = nil
-    @matchScore = nil
+    @matchScore    = nil
+    @longestMatch  = nil
   end
 
   def matchScore
@@ -107,8 +142,27 @@ class FuzzyRecord
     #       FuzzyRecord_test.rb
     #       FuzzyRecord.rb
     #       Search => fuzr.rb
-    @matchScore ||= @matchedRanges.inject(0) {|memo, element|
+    @matchScore ||= calculateMatchScoreForRanges(@matchedRanges)
+  end
+
+  def calculateMatchScoreForRanges(ranges)
+    ranges.inject(0) {|memo, element|
       memo + element.location }
+  end
+
+  def longestMatch
+    return 0 if @matchedRanges.nil? || @matchedRanges.length == 0
+    @longestMatch ||= calculateLongestMatch(@matchedRanges)
+  end
+
+  def calculateLongestMatch(ranges)
+    longest = 0
+    ranges.each do |range|
+      if range.length > longest
+        longest = range.length
+      end
+    end
+    return longest
   end
 
   def modifiedAt
