@@ -154,6 +154,9 @@ class FuzzyCell < NSCell
     if scmStatus.size > 0
       subtitleString << "GIT #{scmStatus}"
     end
+    if ENV["TF_VISUAL_DEBUG"]
+      subtitleString << "SCORE #{representedObject.matchScore}"
+    end
     subtitleString = subtitleString.join("  ")
     attrString = NSMutableAttributedString.alloc.
       initWithString(subtitleString,
@@ -206,7 +209,7 @@ class FuzzyCell < NSCell
                                 range:modifiedStringRange)
       end
 
-      ["MODIFIED", "GIT", "CLASSES"].each do |label|
+      ["MODIFIED", "GIT", "CLASSES", "SCORE"].each do |label|
         if indexStart = subtitleString.index(/\b#{label}\b/)
           modifiedStringRange = NSMakeRange(indexStart, label.size)
 
@@ -215,8 +218,11 @@ class FuzzyCell < NSCell
                                                               blue:0.7,
                                                               alpha:1.0)
           if highlighted?
-            subtitleLabelColor = NSColor.whiteColor
-
+            darkerGreyColor = NSColor.colorWithCalibratedRed(0.6,
+                                                             green:0.6,
+                                                             blue:0.6,
+                                                             alpha:1.0)
+            subtitleLabelColor = darkerGreyColor
           end
           attrString.addAttribute(NSForegroundColorAttributeName,
                                   value:subtitleLabelColor,

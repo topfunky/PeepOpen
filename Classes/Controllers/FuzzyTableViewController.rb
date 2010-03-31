@@ -29,18 +29,15 @@ class FuzzyTableViewController
     if searchString.strip.length > 0
       filterRecordsForString(searchString)
     else
-      # TODO: Reset matchedRanges and score for all records
-      # TODO: Maybe use parallel_map
+      FuzzyRecord.resetMatchesForRecords!(@allRecords)
       didSearchForString(@allRecords)
     end
   end
 
   # BUG: Async needs to lock around table redrawing or setting records
   def filterRecordsForString(searchString)
-    filteredRecords = @allRecords.select { |r|
-      r.fuzzyInclude?(searchString)
-    }.sort_by { |record| [ record.matchScore,
-                           -record.modifiedAt.timeIntervalSince1970 ] }
+    filteredRecords = FuzzyRecord.filterRecords(@allRecords,
+                                                forString:searchString)
 
     performSelectorOnMainThread("didSearchForString:",
                                 withObject:filteredRecords,

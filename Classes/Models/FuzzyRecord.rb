@@ -12,10 +12,11 @@ class FuzzyRecord
                   :codeObjectName, :codeObjectNames,
                   :matchedRanges]
 
-  MAX_FILE_COUNT = 1000 # TODO: Set in preferences
+  MAX_FILE_COUNT = 1_000 # TODO: Set in preferences
+  MAX_SCORE = 10_000
 
   def self.recordsWithProjectRoot(theProjectRoot)
-    records = []    
+    records = []
     Dir[theProjectRoot + "/**/*"].each do |filename|
       next unless File.file?(filename)
       next if records.length >= MAX_FILE_COUNT
@@ -31,6 +32,19 @@ class FuzzyRecord
     records
   end
 
+  def self.filterRecords(records, forString:searchString)
+    records.select { |r|
+      r.fuzzyInclude?(searchString)
+    }.sort_by { |record| [ record.matchScore,
+                           -record.modifiedAt.timeIntervalSince1970 ] }
+  end
+  
+  def self.resetMatchesForRecords!(records)
+    # NOTE: parallel_map is possible, but may not be any faster
+    #       unless records array is large.
+    records.parallel_map {|r| r.resetMatches! }
+  end
+  
   def initWithProjectRoot(theProjectRoot, filePath:theFilePath)
     @projectRoot = theProjectRoot
     @filePath = theFilePath
@@ -44,12 +58,13 @@ class FuzzyRecord
 
   def fuzzyInclude?(searchString)
     # TODO: Search other things like date, classes, or SCM status
+    # TODO: Try two strategies: first occurrence vs. most contiguous.
+    #       Return
     filePathCharIndex = 0
     searchStringCharIndex = 0
     matchIsInProcess = false
     matchingRanges = []
-    @matchedRanges = nil
-    @matchScore = nil
+    resetMatches!
 
     filePath.each_char do |c|
       if (c &&
@@ -80,7 +95,13 @@ class FuzzyRecord
     nil
   end
 
+  def resetMatches!
+    @matchedRanges = nil
+    @matchScore = nil
+  end
+
   def matchScore
+    return MAX_SCORE if @matchedRanges.nil? || @matchedRanges.length == 0
     # TODO: Files with locations close together should rank higher
     #       than ones with locations farther apart.
     #       FuzzyRecord_test.rb
