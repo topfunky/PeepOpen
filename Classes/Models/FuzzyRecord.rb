@@ -35,8 +35,8 @@ class FuzzyRecord
   def self.filterRecords(records, forString:searchString)
     records.select { |r|
       r.fuzzyInclude?(searchString)
-    }.sort_by { |record| [ record.matchScore,
-                           -record.longestMatch,
+    }.sort_by { |record| [ -record.longestMatch,
+                           record.matchScore,
                            -record.modifiedAt.timeIntervalSince1970 ] }
   end
 

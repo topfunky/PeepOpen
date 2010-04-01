@@ -16,10 +16,7 @@ class FuzzyTableViewController
   def loadFilesFromProjectRoot(theProjectRoot)
     @allRecords = []
     @allRecords = FuzzyRecord.recordsWithProjectRoot(theProjectRoot)
-    @records = @allRecords
-    if tableView.respondsToSelector(:reloadData)
-      tableView.reloadData
-    end
+    searchForString("")
   end
 
   ##
@@ -30,7 +27,8 @@ class FuzzyTableViewController
       filterRecordsForString(searchString)
     else
       FuzzyRecord.resetMatchesForRecords!(@allRecords)
-      didSearchForString(@allRecords)
+      didSearchForString(@allRecords.sort_by {|record|
+                           [-record.modifiedAt.timeIntervalSince1970] })
     end
   end
 
