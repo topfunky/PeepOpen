@@ -12,14 +12,15 @@ class FuzzyRecord
                   :codeObjectName, :codeObjectNames,
                   :matchedRanges]
 
-  MAX_FILE_COUNT = 1_000 # TODO: Set in preferences
   MAX_SCORE = 10_000
 
   def self.recordsWithProjectRoot(theProjectRoot)
     records = []
     Dir[theProjectRoot + "/**/*"].each do |filename|
       next unless File.file?(filename)
-      next if records.length >= MAX_FILE_COUNT
+      maximumDocumentCount =
+        NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
+      next if records.length >= maximumDocumentCount
       filename.gsub!(/^#{theProjectRoot}\//, '')
       # TODO: Store ignorable directories, files in preferences
       next if filename.match(/^(build|tmp|log|vendor\/rails)\//i)
