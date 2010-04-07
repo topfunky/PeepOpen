@@ -66,7 +66,6 @@ class FuzzyWindowController < NSWindowController
   def handleCancel
     editorApplicationName =
       NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
-    #     system "open -a #{editorApplicationName}"
     NSWorkspace.sharedWorkspace.launchApplication(editorApplicationName)
     window.close
   end
