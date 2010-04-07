@@ -1,14 +1,19 @@
-* [3/9] Basic Features
+* Now [0/2]
 
-  - [X] Integrate BWToolkit
+  - [ ] Efficient search: Iterate over search string
+  - [ ] Efficient search: Search filtered records
+
+* [4/9] Basic Features
+
   - [ ] Integrate Sparkle
+  - [ ] Preferences for directories or files to ignore
+  - [ ] Handle Ctrl-1,2,3 navigation
+  - [ ] Sometimes "vendor" is useful to include. Maybe ignore "vendor/rails"
+  - [ ] Save window placement and size
+  - [X] Integrate BWToolkit
   - [X] Clear search field on Enter
   - [X] Handle arrow navigation
-  - [ ] Handle Ctrl-1,2,3 navigation
-  - [ ] Preferences for directories or files to ignore
-  - [ ] Sometimes "vendor" is useful to include. Maybe ignore "vendor/rails"
-  - [ ] Preference for editor to use (or detect file association?)
-  - [ ] Save window placement and size
+  - [X] Preference for editor to use (or detect file association?)
 
 * Optional Features
 

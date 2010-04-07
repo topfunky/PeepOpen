@@ -11,9 +11,9 @@
 			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="57"/>
-			<integer value="415"/>
 			<integer value="372"/>
+			<integer value="415"/>
+			<integer value="57"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -867,6 +867,7 @@
 									<int key="NSPeriodicInterval">75</int>
 								</object>
 								<int key="NSMaximumRecents">255</int>
+								<bytes key="NSSearchFieldFlags">CAAAAA</bytes>
 							</object>
 						</object>
 						<object class="BWAddMiniBottomBar" id="272708994">
@@ -1077,10 +1078,129 @@
 					<reference key="BWSTDocumentToolbar" ref="860256215"/>
 					<object class="BWSelectableToolbarHelper" key="BWSTHelper" id="487279900">
 						<dictionary key="BWSTHContentViewsByIdentifier">
-							<object class="NSView" key="0D5950D1-D4A8-44C6-9DBC-251CFEF852E2">
-								<nil key="NSNextResponder"/>
+							<object class="NSView" key="0D5950D1-D4A8-44C6-9DBC-251CFEF852E2" id="879739435">
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">256</int>
+								<array class="NSMutableArray" key="NSSubviews">
+									<object class="NSColorWell" id="843823214">
+										<reference key="NSNextResponder" ref="879739435"/>
+										<int key="NSvFlags">268</int>
+										<set class="NSMutableSet" key="NSDragTypes">
+											<string>NSColor pasteboard type</string>
+										</set>
+										<string key="NSFrame">{{144, 32}, {44, 23}}</string>
+										<reference key="NSSuperview" ref="879739435"/>
+										<reference key="NSNextKeyView" ref="879739435"/>
+										<bool key="NSEnabled">YES</bool>
+										<bool key="NSIsBordered">YES</bool>
+										<object class="NSColor" key="NSColor">
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MC4wNTgxMzA0OTg5OCAwLjA1NTU0MTg5OTA2IDEAA</bytes>
+										</object>
+									</object>
+									<object class="NSSlider" id="526140563">
+										<reference key="NSNextResponder" ref="879739435"/>
+										<int key="NSvFlags">268</int>
+										<string key="NSFrame">{{156, 79}, {286, 21}}</string>
+										<reference key="NSSuperview" ref="879739435"/>
+										<reference key="NSNextKeyView" ref="843823214"/>
+										<bool key="NSEnabled">YES</bool>
+										<object class="NSSliderCell" key="NSCell" id="391266799">
+											<int key="NSCellFlags">-2080244224</int>
+											<int key="NSCellFlags2">0</int>
+											<string key="NSContents"/>
+											<reference key="NSControlView" ref="526140563"/>
+											<double key="NSMaxValue">20</double>
+											<double key="NSMinValue">8</double>
+											<double key="NSValue">12</double>
+											<double key="NSAltIncValue">0.0</double>
+											<int key="NSNumberOfTickMarks">0</int>
+											<int key="NSTickMarkPosition">1</int>
+											<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
+											<bool key="NSVertical">NO</bool>
+										</object>
+									</object>
+									<object class="NSPopUpButton" id="10541383">
+										<reference key="NSNextResponder" ref="879739435"/>
+										<int key="NSvFlags">268</int>
+										<string key="NSFrame">{{104, 170}, {100, 26}}</string>
+										<reference key="NSSuperview" ref="879739435"/>
+										<reference key="NSNextKeyView" ref="526140563"/>
+										<bool key="NSEnabled">YES</bool>
+										<object class="NSPopUpButtonCell" key="NSCell" id="1061550571">
+											<int key="NSCellFlags">-2076049856</int>
+											<int key="NSCellFlags2">2048</int>
+											<reference key="NSSupport" ref="338046833"/>
+											<reference key="NSControlView" ref="10541383"/>
+											<int key="NSButtonFlags">109199615</int>
+											<int key="NSButtonFlags2">129</int>
+											<string key="NSAlternateContents"/>
+											<string key="NSKeyEquivalent"/>
+											<int key="NSPeriodicDelay">400</int>
+											<int key="NSPeriodicInterval">75</int>
+											<object class="NSMenuItem" key="NSMenuItem" id="584309923">
+												<reference key="NSMenu" ref="272907881"/>
+												<string key="NSTitle">TextMate</string>
+												<string key="NSKeyEquiv"/>
+												<int key="NSKeyEquivModMask">1048576</int>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<int key="NSState">1</int>
+												<reference key="NSOnImage" ref="35465992"/>
+												<reference key="NSMixedImage" ref="807125248"/>
+												<string key="NSAction">_popUpItemAction:</string>
+												<reference key="NSTarget" ref="1061550571"/>
+											</object>
+											<bool key="NSMenuItemRespectAlignment">YES</bool>
+											<object class="NSMenu" key="NSMenu" id="272907881">
+												<string key="NSTitle">OtherViews</string>
+												<array class="NSMutableArray" key="NSMenuItems">
+													<reference ref="584309923"/>
+													<object class="NSMenuItem" id="1035265853">
+														<reference key="NSMenu" ref="272907881"/>
+														<string key="NSTitle">Emacs</string>
+														<string key="NSKeyEquiv"/>
+														<int key="NSKeyEquivModMask">1048576</int>
+														<int key="NSMnemonicLoc">2147483647</int>
+														<reference key="NSOnImage" ref="35465992"/>
+														<reference key="NSMixedImage" ref="807125248"/>
+														<string key="NSAction">_popUpItemAction:</string>
+														<reference key="NSTarget" ref="1061550571"/>
+													</object>
+													<object class="NSMenuItem" id="270907784">
+														<reference key="NSMenu" ref="272907881"/>
+														<string key="NSTitle">Aquamacs</string>
+														<string key="NSKeyEquiv"/>
+														<int key="NSKeyEquivModMask">1048576</int>
+														<int key="NSMnemonicLoc">2147483647</int>
+														<reference key="NSOnImage" ref="35465992"/>
+														<reference key="NSMixedImage" ref="807125248"/>
+														<string key="NSAction">_popUpItemAction:</string>
+														<reference key="NSTarget" ref="1061550571"/>
+													</object>
+													<object class="NSMenuItem" id="746390150">
+														<reference key="NSMenu" ref="272907881"/>
+														<string key="NSTitle">MacVim</string>
+														<string key="NSKeyEquiv"/>
+														<int key="NSKeyEquivModMask">1048576</int>
+														<int key="NSMnemonicLoc">2147483647</int>
+														<reference key="NSOnImage" ref="35465992"/>
+														<reference key="NSMixedImage" ref="807125248"/>
+														<string key="NSAction">_popUpItemAction:</string>
+														<reference key="NSTarget" ref="1061550571"/>
+													</object>
+												</array>
+												<reference key="NSMenuFont" ref="338046833"/>
+											</object>
+											<int key="NSPreferredEdge">1</int>
+											<bool key="NSUsesItemFromMenu">YES</bool>
+											<bool key="NSAltersState">YES</bool>
+											<int key="NSArrowPosition">2</int>
+										</object>
+									</object>
+								</array>
 								<string key="NSFrameSize">{480, 270}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSNextKeyView" ref="10541383"/>
 							</object>
 							<object class="NSView" key="7E6A9228-C9F3-4F21-8054-E4BF3F2F6BA8" id="1017967810">
 								<nil key="NSNextResponder"/>
@@ -1095,9 +1215,9 @@
 						</dictionary>
 						<object class="NSMutableData" key="BWSTHWindowSizesByIdentifier">
 							<bytes key="NS.bytes">BAtzdHJlYW10eXBlZIHoA4QBQISEhAxOU0RpY3Rpb25hcnkAhIQITlNPYmplY3QAhYQBaQOShISECE5T
-U3RyaW5nAZSEASskN0U2QTkyMjgtQzlGMy00RjIxLTgwNTQtRTRCRjNGMkY2QkE4hpKEhIQHTlNWYWx1
-ZQCUhAEqhIQLe0NHU2l6ZT1kZH2ageABgVwBhpKElpckMEQ1OTUwRDEtRDRBOC00NEM2LTlEQkMtMjUx
-Q0ZFRjg1MkUyhpKEmJmZmoHgAYFcAYaShJaXF0JXVG9vbGJhclNob3dDb2xvcnNJdGVthpKEmJmZmoHg
+U3RyaW5nAZSEASsXQldUb29sYmFyU2hvd0NvbG9yc0l0ZW2GkoSEhAdOU1ZhbHVlAJSEASqEhAt7Q0dT
+aXplPWRkfZqB4AGBXAGGkoSWlyQ3RTZBOTIyOC1DOUYzLTRGMjEtODA1NC1FNEJGM0YyRjZCQTiGkoSY
+mZmageABgVwBhpKElpckMEQ1OTUwRDEtRDRBOC00NEM2LTlEQkMtMjUxQ0ZFRjg1MkUyhpKEmJmZmoHg
 AYFcAYaGA</bytes>
 						</object>
 						<string key="BWSTHSelectedIdentifier">0D5950D1-D4A8-44C6-9DBC-251CFEF852E2</string>
@@ -1108,129 +1228,8 @@ AYFcAYaGA</bytes>
 					<bool key="BWSTIsPreferencesToolbar">YES</bool>
 					<dictionary key="BWSTEnabledByIdentifier"/>
 				</object>
-				<object class="NSView" key="NSWindowView" id="879739435">
-					<reference key="NSNextResponder"/>
-					<int key="NSvFlags">256</int>
-					<array class="NSMutableArray" key="NSSubviews">
-						<object class="NSColorWell" id="843823214">
-							<reference key="NSNextResponder" ref="879739435"/>
-							<int key="NSvFlags">268</int>
-							<set class="NSMutableSet" key="NSDragTypes">
-								<string>NSColor pasteboard type</string>
-							</set>
-							<string key="NSFrame">{{144, 32}, {44, 23}}</string>
-							<reference key="NSSuperview" ref="879739435"/>
-							<reference key="NSNextKeyView" ref="879739435"/>
-							<bool key="NSEnabled">YES</bool>
-							<bool key="NSIsBordered">YES</bool>
-							<object class="NSColor" key="NSColor">
-								<int key="NSColorSpace">1</int>
-								<bytes key="NSRGB">MC4wNTgxMzA0OTg5OCAwLjA1NTU0MTg5OTA2IDEAA</bytes>
-							</object>
-						</object>
-						<object class="NSSlider" id="526140563">
-							<reference key="NSNextResponder" ref="879739435"/>
-							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{156, 79}, {286, 21}}</string>
-							<reference key="NSSuperview" ref="879739435"/>
-							<reference key="NSNextKeyView" ref="843823214"/>
-							<bool key="NSEnabled">YES</bool>
-							<object class="NSSliderCell" key="NSCell" id="391266799">
-								<int key="NSCellFlags">-2080244224</int>
-								<int key="NSCellFlags2">0</int>
-								<string key="NSContents"/>
-								<reference key="NSControlView" ref="526140563"/>
-								<double key="NSMaxValue">20</double>
-								<double key="NSMinValue">8</double>
-								<double key="NSValue">12</double>
-								<double key="NSAltIncValue">0.0</double>
-								<int key="NSNumberOfTickMarks">0</int>
-								<int key="NSTickMarkPosition">1</int>
-								<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
-								<bool key="NSVertical">NO</bool>
-							</object>
-						</object>
-						<object class="NSPopUpButton" id="10541383">
-							<reference key="NSNextResponder" ref="879739435"/>
-							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{104, 170}, {100, 26}}</string>
-							<reference key="NSSuperview" ref="879739435"/>
-							<reference key="NSNextKeyView" ref="526140563"/>
-							<bool key="NSEnabled">YES</bool>
-							<object class="NSPopUpButtonCell" key="NSCell" id="1061550571">
-								<int key="NSCellFlags">-2076049856</int>
-								<int key="NSCellFlags2">2048</int>
-								<reference key="NSSupport" ref="338046833"/>
-								<reference key="NSControlView" ref="10541383"/>
-								<int key="NSButtonFlags">109199615</int>
-								<int key="NSButtonFlags2">129</int>
-								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
-								<int key="NSPeriodicDelay">400</int>
-								<int key="NSPeriodicInterval">75</int>
-								<object class="NSMenuItem" key="NSMenuItem" id="584309923">
-									<reference key="NSMenu" ref="272907881"/>
-									<string key="NSTitle">TextMate</string>
-									<string key="NSKeyEquiv"/>
-									<int key="NSKeyEquivModMask">1048576</int>
-									<int key="NSMnemonicLoc">2147483647</int>
-									<reference key="NSOnImage" ref="35465992"/>
-									<reference key="NSMixedImage" ref="807125248"/>
-									<string key="NSAction">_popUpItemAction:</string>
-									<reference key="NSTarget" ref="1061550571"/>
-								</object>
-								<bool key="NSMenuItemRespectAlignment">YES</bool>
-								<object class="NSMenu" key="NSMenu" id="272907881">
-									<string key="NSTitle">OtherViews</string>
-									<array class="NSMutableArray" key="NSMenuItems">
-										<reference ref="584309923"/>
-										<object class="NSMenuItem" id="1035265853">
-											<reference key="NSMenu" ref="272907881"/>
-											<string key="NSTitle">Emacs</string>
-											<string key="NSKeyEquiv"/>
-											<int key="NSKeyEquivModMask">1048576</int>
-											<int key="NSMnemonicLoc">2147483647</int>
-											<reference key="NSOnImage" ref="35465992"/>
-											<reference key="NSMixedImage" ref="807125248"/>
-											<string key="NSAction">_popUpItemAction:</string>
-											<reference key="NSTarget" ref="1061550571"/>
-										</object>
-										<object class="NSMenuItem" id="270907784">
-											<reference key="NSMenu" ref="272907881"/>
-											<string key="NSTitle">Aquamacs</string>
-											<string key="NSKeyEquiv"/>
-											<int key="NSKeyEquivModMask">1048576</int>
-											<int key="NSMnemonicLoc">2147483647</int>
-											<reference key="NSOnImage" ref="35465992"/>
-											<reference key="NSMixedImage" ref="807125248"/>
-											<string key="NSAction">_popUpItemAction:</string>
-											<reference key="NSTarget" ref="1061550571"/>
-										</object>
-										<object class="NSMenuItem" id="746390150">
-											<reference key="NSMenu" ref="272907881"/>
-											<string key="NSTitle">MacVim</string>
-											<string key="NSKeyEquiv"/>
-											<int key="NSKeyEquivModMask">1048576</int>
-											<int key="NSMnemonicLoc">2147483647</int>
-											<reference key="NSOnImage" ref="35465992"/>
-											<reference key="NSMixedImage" ref="807125248"/>
-											<string key="NSAction">_popUpItemAction:</string>
-											<reference key="NSTarget" ref="1061550571"/>
-										</object>
-									</array>
-									<reference key="NSMenuFont" ref="338046833"/>
-								</object>
-								<int key="NSPreferredEdge">1</int>
-								<bool key="NSUsesItemFromMenu">YES</bool>
-								<bool key="NSAltersState">YES</bool>
-								<int key="NSArrowPosition">2</int>
-							</object>
-						</object>
-					</array>
-					<string key="NSFrameSize">{480, 270}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSNextKeyView" ref="10541383"/>
-				</object>
+				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<reference key="NSWindowView" ref="879739435"/>
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
@@ -1238,11 +1237,6 @@ AYFcAYaGA</bytes>
 				<string key="NSClassName">AppDelegate</string>
 			</object>
 			<object class="NSUserDefaultsController" id="167669139">
-				<array class="NSMutableArray" key="NSDeclaredKeys">
-					<string>textColor</string>
-					<string>textSize</string>
-					<string>editorApplicationName</string>
-				</array>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSMenuItem" id="401097209">
@@ -2642,12 +2636,14 @@ AYFcAYaGA</bytes>
 				<string key="419.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="420.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="421.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="422.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="428.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="430.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="433.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="434.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="435.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="436.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
+				<string key="439.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="440.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="441.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="442.IBEditorWindowLastContentRect">{{407, 510}, {136, 83}}</string>
@@ -2655,6 +2651,7 @@ AYFcAYaGA</bytes>
 				<string key="443.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="444.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="445.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="447.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="448.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="449.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>

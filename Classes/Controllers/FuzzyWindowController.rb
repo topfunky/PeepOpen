@@ -19,7 +19,10 @@ class FuzzyWindowController < NSWindowController
   def close
     window.close
   end
-
+  
+  ##
+  # Called when text is entered into the search field.
+  
   def didSearchForString(sender)
     tableViewController.searchForString(sender.stringValue)
     updateStatusLabel
@@ -52,6 +55,7 @@ class FuzzyWindowController < NSWindowController
       editorApplicationName =
         NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
       system "open -a #{editorApplicationName}"
+      window.close
       return true
     end
     return false

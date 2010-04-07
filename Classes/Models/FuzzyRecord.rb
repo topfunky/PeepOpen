@@ -42,7 +42,7 @@ class FuzzyRecord
 
   def self.resetMatchesForRecords!(records)
     # NOTE: parallel_map is possible, but may not be any faster
-    #       unless records array is large.
+    #       unless records array is large. And it causes SIGSEGV.
     records.map {|r| r.resetMatches! }
   end
 

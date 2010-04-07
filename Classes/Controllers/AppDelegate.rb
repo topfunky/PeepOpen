@@ -24,6 +24,7 @@ class AppDelegate
   def showPreferences(sender)
     mainWindowController.close
     preferencesWindow.makeKeyAndOrderFront(self)
+    preferencesWindow.center
   end
 
 end

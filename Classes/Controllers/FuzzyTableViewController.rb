@@ -32,8 +32,13 @@ class FuzzyTableViewController
     end
   end
 
-  # BUG: Async needs to lock around table redrawing or setting records
   def filterRecordsForString(searchString)
+    # BUG: If called async, needs to lock around table redrawing or
+    # setting records.
+
+    # TODO: For efficiency, examine previous search string and search
+    # filtered records if new search is a continuation of a previous
+    # search.
     filteredRecords = FuzzyRecord.filterRecords(@allRecords,
                                                 forString:searchString)
 
