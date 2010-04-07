@@ -15,6 +15,8 @@ class FuzzyRecord
   MAX_SCORE = 10_000
 
   def self.recordsWithProjectRoot(theProjectRoot)
+    cacheScmStatus(theProjectRoot)
+
     records = []
     Dir[theProjectRoot + "/**/*"].each do |filename|
       next unless File.file?(filename)
@@ -28,9 +30,25 @@ class FuzzyRecord
       records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
                                                        filePath:filename)
     end
-    # TODO: Run "git diff --numstat" on projectRoot and save for all
-    #       in an NSDictionary
+
     records
+  end
+
+  def self.cacheScmStatus(theProjectRoot)
+    # TODO: Run async
+    #
+    # Run "git diff --numstat" on projectRoot and save for all
+    # in an NSDictionary
+    #
+    # 3       1       Tests/run_suite.rb
+    # -       -       Foo/Bar.rb
+    @@scmStatusDictionary = {}
+    if output = `cd #{theProjectRoot} && git diff --numstat`
+      output.split(/\n/).each do |outputLine|
+        added, deleted, filePath = outputLine.split
+        @@scmStatusDictionary[filePath] = [added.to_i, deleted.to_i]
+      end
+    end
   end
 
   def self.filterRecords(records, forString:searchString)
@@ -175,18 +193,11 @@ class FuzzyRecord
 
   def scmStatus
     return @scmStatus if @scmStatus
-    # TODO: Run async
-    # TODO: Run only once for all files in repo
-    linesAdded, linesDeleted = [0,0]
 
-    # 3       1       Tests/run_suite.rb
-    # -       -       Foo/Bar.rb
-    output = `cd #{projectRoot} && git diff --numstat #{filePath}`
-    if output.match(/(\d+)\s+(\d+)/)
-      linesAdded = $1.to_i
-      linesDeleted = $2.to_i
+    if statusCounts = @@scmStatusDictionary.objectForKey(filePath)
+      linesAdded, linesDeleted = statusCounts
+      @scmStatus = ("+" * linesAdded) + ("-" * linesDeleted)
     end
-    @scmStatus = ("+" * linesAdded) + ("-" * linesDeleted)
     return @scmStatus
   end
 

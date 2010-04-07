@@ -154,7 +154,7 @@ class FuzzyCell < NSCell
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
     subtitleString = ["MODIFIED #{displayDate}"]
     scmStatus = representedObject.scmStatus
-    if scmStatus.size > 0
+    if scmStatus && scmStatus.size > 0
       subtitleString << "GIT #{scmStatus}"
     end
     if ENV["TF_VISUAL_DEBUG"]

@@ -11,7 +11,7 @@ class AppDelegate
   def applicationWillFinishLaunching(aNotification)
     registrationDefaults = {
       "editorApplicationName" => "TextMate",
-      "maximumDocumentCount"  => 1500
+      "maximumDocumentCount"  => 1000
     }
     NSUserDefaults.standardUserDefaults.registerDefaults(registrationDefaults)
   end

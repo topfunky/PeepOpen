@@ -11,9 +11,9 @@
 			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="372"/>
 			<integer value="415"/>
 			<integer value="57"/>
+			<integer value="372"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1391,9 +1391,9 @@
 							</dictionary>
 							<object class="NSMutableData" key="BWSTHWindowSizesByIdentifier">
 								<bytes key="NS.bytes">BAtzdHJlYW10eXBlZIHoA4QBQISEhAxOU0RpY3Rpb25hcnkAhIQITlNPYmplY3QAhYQBaQOShISECE5T
-U3RyaW5nAZSEASskN0U2QTkyMjgtQzlGMy00RjIxLTgwNTQtRTRCRjNGMkY2QkE4hpKEhIQHTlNWYWx1
-ZQCUhAEqhIQLe0NHU2l6ZT1kZH2ageABgVwBhpKElpckMEQ1OTUwRDEtRDRBOC00NEM2LTlEQkMtMjUx
-Q0ZFRjg1MkUyhpKEmJmZmoHgAYFcAYaShJaXF0JXVG9vbGJhclNob3dDb2xvcnNJdGVthpKEmJmZmoHg
+U3RyaW5nAZSEASskMEQ1OTUwRDEtRDRBOC00NEM2LTlEQkMtMjUxQ0ZFRjg1MkUyhpKEhIQHTlNWYWx1
+ZQCUhAEqhIQLe0NHU2l6ZT1kZH2ageABgVwBhpKElpcXQldUb29sYmFyU2hvd0NvbG9yc0l0ZW2GkoSY
+mZmageABgVwBhpKElpckN0U2QTkyMjgtQzlGMy00RjIxLTgwNTQtRTRCRjNGMkY2QkE4hpKEmJmZmoHg
 AYFcAYaGA</bytes>
 							</object>
 							<string key="BWSTHSelectedIdentifier">0D5950D1-D4A8-44C6-9DBC-251CFEF852E2</string>
@@ -1415,7 +1415,6 @@ AYFcAYaGA</bytes>
 										<int key="NSvFlags">266</int>
 										<string key="NSFrame">{{44, 91}, {393, 26}}</string>
 										<reference key="NSSuperview" ref="879739435"/>
-										<reference key="NSNextKeyView"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSSliderCell" key="NSCell" id="391266799">
 											<int key="NSCellFlags">-2080244224</int>
@@ -1480,7 +1479,7 @@ AYFcAYaGA</bytes>
 													</object>
 													<object class="NSMenuItem" id="270907784">
 														<reference key="NSMenu" ref="272907881"/>
-														<string key="NSTitle">Aquamacs</string>
+														<string key="NSTitle">Aquamacs Emacs</string>
 														<string key="NSKeyEquiv"/>
 														<int key="NSKeyEquivModMask">1048576</int>
 														<int key="NSMnemonicLoc">2147483647</int>
@@ -3112,9 +3111,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 						</dictionary>
 						<object class="NSMutableData" key="BWSTHWindowSizesByIdentifier">
 							<bytes key="NS.bytes">BAtzdHJlYW10eXBlZIHoA4QBQISEhAxOU0RpY3Rpb25hcnkAhIQITlNPYmplY3QAhYQBaQOShISECE5T
-U3RyaW5nAZSEASskMEQ1OTUwRDEtRDRBOC00NEM2LTlEQkMtMjUxQ0ZFRjg1MkUyhpKEhIQHTlNWYWx1
-ZQCUhAEqhIQLe0NHU2l6ZT1kZH2ageABgVwBhpKElpcXQldUb29sYmFyU2hvd0NvbG9yc0l0ZW2GkoSY
-mZmageABgVwBhpKElpckN0U2QTkyMjgtQzlGMy00RjIxLTgwNTQtRTRCRjNGMkY2QkE4hpKEmJmZmoHg
+U3RyaW5nAZSEASsXQldUb29sYmFyU2hvd0NvbG9yc0l0ZW2GkoSEhAdOU1ZhbHVlAJSEASqEhAt7Q0dT
+aXplPWRkfZqB4AGBXAGGkoSWlyQ3RTZBOTIyOC1DOUYzLTRGMjEtODA1NC1FNEJGM0YyRjZCQTiGkoSY
+mZmageABgVwBhpKElpckMEQ1OTUwRDEtRDRBOC00NEM2LTlEQkMtMjUxQ0ZFRjg1MkUyhpKEmJmZmoHg
 AYFcAYaGA</bytes>
 						</object>
 						<string key="BWSTHSelectedIdentifier">0D5950D1-D4A8-44C6-9DBC-251CFEF852E2</string>
@@ -3134,9 +3133,6 @@ AYFcAYaGA</bytes>
 				<string key="NSClassName">AppDelegate</string>
 			</object>
 			<object class="NSUserDefaultsController" id="167669139">
-				<array class="NSMutableArray" key="NSDeclaredKeys">
-					<string>maximumDocumentCount</string>
-				</array>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSMenuItem" id="401097209">

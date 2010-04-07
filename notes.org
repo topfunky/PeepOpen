@@ -33,5 +33,16 @@
 
   - Launch a file in an existing window: Use Prefs and "open -a MacVim"
   
+* Inset Label
+
+    #     # TODO: Recreate a label's settings in code
+    #     titleField = NSTextField.alloc.initWithFrame(aTitleBox)
+    #     titleField.setEditable(false)
+    #     titleField.setBezeled(false)
+    #     titleField.setDrawsBackground(false)
+    #     titleField.setSelectable(false)
+    #     titleField.cell.setBackgroundStyle(NSBackgroundStyleRaised)
+    #     theControlView.addSubview(titleField)
+    #     titleField.setAttributedStringValue(aTitle)
 
 

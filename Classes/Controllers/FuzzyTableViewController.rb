@@ -116,7 +116,9 @@ class FuzzyTableViewController
       # TODO: Close window
       editorApplicationName =
         NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
-      system "open -a '%s' '%s'" % [editorApplicationName, record.absFilePath]
+
+      NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
+                                           withApplication:editorApplicationName)
     end
   end
 
