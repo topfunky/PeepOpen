@@ -5,15 +5,25 @@
 # Copyright 2010 Topfunky Corporation. All rights reserved.
 
 class AppDelegate
-  
-  attr_accessor :mainWindowController
-  
+
+  attr_accessor :mainWindowController, :preferencesWindow
+
   ##
   # Do something with the dropped file.
-  
+
   def application(sender, openFile:path)
     mainWindowController.tableViewController.loadFilesFromProjectRoot(path)
     mainWindowController.activate
+
+    #     applicationNames = NSWorkspace.sharedWorkspace.launchedApplications.map {|a|
+    #       a.objectForKey("NSApplicationName")
+    #     }
+    #     NSLog "Apps: #{applicationNames}"
+  end
+
+  def showPreferences(sender)
+    mainWindowController.close
+    preferencesWindow.makeKeyAndOrderFront(self)
   end
 
 end

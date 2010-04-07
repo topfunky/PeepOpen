@@ -16,6 +16,10 @@ class FuzzyWindowController < NSWindowController
     updateStatusLabel
   end
 
+  def close
+    window.close
+  end
+
   def didSearchForString(sender)
     tableViewController.searchForString(sender.stringValue)
     updateStatusLabel
@@ -44,6 +48,11 @@ class FuzzyWindowController < NSWindowController
       tableViewController.selectNextRow
       return true
 
+    when :"cancel:"
+      editorApplicationName =
+        NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
+      system "open -a #{editorApplicationName}"
+      return true
     end
     return false
   end
@@ -53,15 +62,14 @@ class FuzzyWindowController < NSWindowController
     window.close
   end
 
-  ##
-  # Switch back to text editor if window is closed (usually with ESC).
-  #
-  # TODO: Don't go to text editor if application is being quit, only
-  # if window is being hidden.
-
-  def windowWillClose(notification)
-    system "open -a Emacs"
-  end
+  #   ##
+  #   # Switch back to text editor if window is closed (usually with ESC).
+  #   #
+  #   # TODO: Don't go to text editor if application is being quit, only
+  #   # if window is being hidden.
+  #   def windowWillClose(notification)
+  #     system "open -a Emacs"
+  #   end
 
 end
 

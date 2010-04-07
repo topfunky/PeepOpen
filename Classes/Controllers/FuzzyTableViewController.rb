@@ -109,7 +109,9 @@ class FuzzyTableViewController
     rowId = 0 if rowId == -1
     if record = @records[rowId]
       # TODO: Close window
-      system "open -a Emacs #{record.absFilePath}"
+      editorApplicationName =
+        NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
+      system "open -a '%s' '%s'" % [editorApplicationName, record.absFilePath]
     end
   end
 

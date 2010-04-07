@@ -23,7 +23,7 @@
 
 * MacVim
 
-  - Launch a file in an existing window: mvim --remote-silent README.md
+  - Launch a file in an existing window: Use Prefs and "open -a MacVim"
   
 
 

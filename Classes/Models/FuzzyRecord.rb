@@ -43,7 +43,7 @@ class FuzzyRecord
   def self.resetMatchesForRecords!(records)
     # NOTE: parallel_map is possible, but may not be any faster
     #       unless records array is large.
-    records.parallel_map {|r| r.resetMatches! }
+    records.map {|r| r.resetMatches! }
   end
 
   def initWithProjectRoot(theProjectRoot, filePath:theFilePath)

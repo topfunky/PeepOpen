@@ -34,6 +34,9 @@ class FuzzyCell < NSCell
   SUBTITLE_FONT_SIZE = 10.0
 
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
+    # TODO: Text shadow with
+    # setBackgroundStyle(NSBackgroundStyleRaised)
+
     darkGrey = NSColor.colorWithCalibratedRed(0.3, green:0.3, blue:0.3, alpha:1.0)
     titleAttributes = {
       NSForegroundColorAttributeName => darkGrey,
