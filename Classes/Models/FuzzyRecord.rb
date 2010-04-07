@@ -83,32 +83,31 @@ class FuzzyRecord
   end
 
   def searchText(theText, forFirstOccurrenceOfString:searchString)
-    filePathCharIndex = 0
-    searchStringCharIndex = 0
-    matchIsInProcess = false
     matchingRanges = []
 
-    theText.each_char do |c|
-      if (c &&
-          searchString[searchStringCharIndex] &&
-          c.upcase == searchString[searchStringCharIndex].upcase)
-        if matchIsInProcess
+    upcaseText = theText.upcase
+    upcaseSearchString = searchString.upcase
+
+    upcaseSearchString.each_char do |c|
+      offset = 0
+      if matchingRanges.length > 0
+        offset =
+          matchingRanges.lastObject.location + matchingRanges.lastObject.length
+      end
+      if (foundIndex = upcaseText.index(c, offset))
+        if contiguousMatch?(foundIndex, matchingRanges)
           lastRange       = matchingRanges.lastObject
-          lastObjectIndex = matchingRanges.indexOfObjectIdenticalTo(lastRange)
+          lastObjectIndex = matchingRanges.length - 1
           matchingRanges[lastObjectIndex] = NSMakeRange(lastRange.location,
                                                         lastRange.length + 1)
         else
-          matchingRanges << NSMakeRange(filePathCharIndex, 1)
+          matchingRanges << NSMakeRange(foundIndex, 1)
         end
-        matchIsInProcess = true
-        searchStringCharIndex += 1
       else
-        matchIsInProcess = false
+        # No match or partial match
+        return nil
       end
-      filePathCharIndex += 1
     end
-    # Reject partial matches
-    return nil if searchStringCharIndex < searchString.length
 
     if matchingRanges.length > 0
       return matchingRanges
@@ -192,6 +191,12 @@ class FuzzyRecord
 
   def absFilePath
     File.join(projectRoot, filePath)
+  end
+
+  def contiguousMatch?(foundIndex, matchingRanges)
+    return false if (matchingRanges.length == 0)
+    lastObject = matchingRanges.lastObject
+    return (lastObject.location + lastObject.length == foundIndex)
   end
 
 end
