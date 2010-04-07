@@ -1,15 +1,18 @@
-* Now [0/2]
+* Now [1/2]
 
-  - [ ] Efficient search: Iterate over search string
-  - [ ] Efficient search: Search filtered records
+  - [X] Efficient search: Iterate over search string
+  - [ ] Efficient search: Search filtered records instead of whole set
 
-* [4/9] Basic Features
+* [5/12] Basic Features
 
+  - [ ] Use BWInsetTextField for main file label
+  - [ ] Run git diff --numstat only once and hash results for all files
   - [ ] Integrate Sparkle
+  - [ ] Figure out how to set colors programmatically on BWInsetTextField
   - [ ] Preferences for directories or files to ignore
   - [ ] Handle Ctrl-1,2,3 navigation
-  - [ ] Sometimes "vendor" is useful to include. Maybe ignore "vendor/rails"
   - [ ] Save window placement and size
+  - [X] Set defaults on launch: 1,500 files, TextMate
   - [X] Integrate BWToolkit
   - [X] Clear search field on Enter
   - [X] Handle arrow navigation

@@ -8,6 +8,14 @@ class AppDelegate
 
   attr_accessor :mainWindowController, :preferencesWindow
 
+  def applicationWillFinishLaunching(aNotification)
+    registrationDefaults = {
+      "editorApplicationName" => "TextMate",
+      "maximumDocumentCount"  => 1500
+    }
+    NSUserDefaults.standardUserDefaults.registerDefaults(registrationDefaults)
+  end
+
   ##
   # Do something with the dropped file.
 

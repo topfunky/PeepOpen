@@ -73,6 +73,9 @@ class FuzzyRecordTest < Test::Unit::TestCase
       initWithProjectRoot(projectRoot, filePath:filePath)
   end
 
+  # UNIMPLEMENTED: Should return one contiguous match when searching
+  # Classes/Controllers/AppDelegate.rb for "appde"
+
   ##
   # Returns an array of records for this project.
 
