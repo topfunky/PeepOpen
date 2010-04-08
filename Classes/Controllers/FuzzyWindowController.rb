@@ -70,14 +70,5 @@ class FuzzyWindowController < NSWindowController
     window.close
   end
 
-  #   ##
-  #   # Switch back to text editor if window is closed (usually with ESC).
-  #   #
-  #   # TODO: Don't go to text editor if application is being quit, only
-  #   # if window is being hidden.
-  #   def windowWillClose(notification)
-  #     system "open -a Emacs"
-  #   end
-
 end
 
