@@ -16,3 +16,6 @@ profile
 # Emacs
 *.h#
 
+dsa_priv.pem
+
+appcast/*
