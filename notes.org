@@ -1,6 +1,7 @@
-* Now [1/3]
+* Now [3/5]
 
-  - [ ] Build with one target
+  - [X] Build with one target
+  - [X] Rename to PeepOpen
   - [ ] Integrate Sparkle
   - [ ] Setup choctop
     - [ ] Basic install

@@ -53,6 +53,8 @@
 		756C2CDE1156C4C3000E19D8 /* Array+GCD.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */; };
 		756C2DA41157E9BC000E19D8 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
 		756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
+		75DB5A9A116E807600B1DD58 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
+		75DB5AA0116E809100B1DD58 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
 		75E2E76B1150891E0056AD27 /* FuzzyCell.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E76A1150891E0056AD27 /* FuzzyCell.rb */; };
 		75E2E76D1150898F0056AD27 /* FuzzyRecord.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E76C1150898F0056AD27 /* FuzzyRecord.rb */; };
 		75E2E7E6115161F60056AD27 /* TFUtility.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E7E5115161F60056AD27 /* TFUtility.rb */; };
@@ -87,6 +89,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				75DB5AA0116E809100B1DD58 /* Sparkle.framework in CopyFiles */,
 				756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +113,7 @@
 		756C2A621155D97F000E19D8 /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/Controllers/AppDelegate.rb; sourceTree = "<group>"; };
 		756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "Array+GCD.rb"; path = "Classes/Helpers/Array+GCD.rb"; sourceTree = "<group>"; };
 		756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/topfunky/src/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		75DB5A63116E804800B1DD58 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "/Users/topfunky/src/Sparkle/With Garbage Collection/Sparkle.framework"; sourceTree = "<absolute>"; };
 		75E2E76A1150891E0056AD27 /* FuzzyCell.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyCell.rb; path = Classes/Views/FuzzyCell.rb; sourceTree = "<group>"; };
 		75E2E76C1150898F0056AD27 /* FuzzyRecord.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyRecord.rb; path = Classes/Models/FuzzyRecord.rb; sourceTree = "<group>"; };
 		75E2E7E5115161F60056AD27 /* TFUtility.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = TFUtility.rb; path = Classes/TFUtility.rb; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */,
 				756C2DA41157E9BC000E19D8 /* BWToolkitFramework.framework in Frameworks */,
+				75DB5A9A116E807600B1DD58 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +156,7 @@
 				4DE3BE130D8651D900ECA448 /* MacRuby.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */,
+				75DB5A63116E804800B1DD58 /* Sparkle.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -479,6 +485,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug\"",
 					"\"$(SRCROOT)/../../../src/BWToolkit\"",
+					"\"$(SRCROOT)/../../../src/Sparkle/With Garbage Collection\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -501,6 +508,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug\"",
 					"\"$(SRCROOT)/../../../src/BWToolkit\"",
+					"\"$(SRCROOT)/../../../src/Sparkle/With Garbage Collection\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
