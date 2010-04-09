@@ -1,10 +1,5 @@
-* Now [3/7]
+* Now [4/7]
 
-  - [X] Build with one target
-  - [X] Rename to PeepOpen
-  - [-] Integrate Sparkle
-    - [X] Basic installation & Configuration
-    - [ ] Expose Settings in Preferences
   - [ ] Editor Support files & Installation
     - [ ] TextMate
     - [ ] Vim
@@ -17,6 +12,11 @@
     - [ ] App icon
     - [X] Website URLs
     - [ ] Test
+  - [X] Build with one target
+  - [X] Rename to PeepOpen
+  - [X] Integrate Sparkle
+    - [X] Basic installation & Configuration
+    - [X] Expose Settings in Preferences
   - [X] Efficient search: Iterate over search string
 
 * [6/12] Basic Features

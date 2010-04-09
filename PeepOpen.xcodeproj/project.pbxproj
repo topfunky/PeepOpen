@@ -53,6 +53,7 @@
 		756C2CDE1156C4C3000E19D8 /* Array+GCD.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */; };
 		756C2DA41157E9BC000E19D8 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
 		756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
+		75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */; };
 		75BFEA9A116E9DA600D7D862 /* Support in Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
 		75BFEA9B116E9DB200D7D862 /* Support in Copy Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
 		75DB5A9A116E807600B1DD58 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
@@ -127,6 +128,7 @@
 		756C2A621155D97F000E19D8 /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/Controllers/AppDelegate.rb; sourceTree = "<group>"; };
 		756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "Array+GCD.rb"; path = "Classes/Helpers/Array+GCD.rb"; sourceTree = "<group>"; };
 		756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/topfunky/src/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = PreferencesWindowController.rb; path = Classes/Controllers/PreferencesWindowController.rb; sourceTree = "<group>"; };
 		75BFEA8C116E9DA600D7D862 /* Support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Support; sourceTree = "<group>"; };
 		75DB5A63116E804800B1DD58 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "/Users/topfunky/src/Sparkle/With Garbage Collection/Sparkle.framework"; sourceTree = "<absolute>"; };
 		75E2E76A1150891E0056AD27 /* FuzzyCell.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyCell.rb; path = Classes/Views/FuzzyCell.rb; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				75ECD3BA1150884A008C0BC3 /* FuzzyWindowController.rb */,
 				75ECD3BC11508869008C0BC3 /* FuzzyTableViewController.rb */,
 				756C2A621155D97F000E19D8 /* AppDelegate.rb */,
+				75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				756C2A631155D97F000E19D8 /* AppDelegate.rb in Resources */,
 				756C2CDE1156C4C3000E19D8 /* Array+GCD.rb in Resources */,
 				75BFEA9A116E9DA600D7D862 /* Support in Resources */,
+				75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
