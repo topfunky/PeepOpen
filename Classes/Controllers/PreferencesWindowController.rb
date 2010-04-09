@@ -8,7 +8,11 @@
 class PreferencesWindowController < NSWindowController
 
   attr_accessor :applicationPopup
-
+  
+  def center
+    window.center
+  end
+  
   def installPlugin(sender)
     rawTitle = applicationPopup.titleOfSelectedItem
     selector = "install#{rawTitle.gsub(' ', '')}".to_sym

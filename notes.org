@@ -1,7 +1,7 @@
 * Now [4/7]
 
-  - [ ] Editor Support files & Installation
-    - [ ] TextMate
+  - [-] Editor Support files & Installation
+    - [X] TextMate
     - [ ] Vim
     - [ ] Emacs
   - [ ] Welcome screen

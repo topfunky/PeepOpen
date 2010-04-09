@@ -6,7 +6,7 @@
 
 class AppDelegate
 
-  attr_accessor :mainWindowController, :preferencesWindow
+  attr_accessor :mainWindowController, :preferencesWindowController, :welcomeWindowController
 
   def applicationWillFinishLaunching(aNotification)
     registrationDefaults = {
@@ -16,23 +16,27 @@ class AppDelegate
     NSUserDefaults.standardUserDefaults.registerDefaults(registrationDefaults)
   end
 
+  def applicationDidFinishLaunching(aNotification)
+    showWelcome(self)
+  end
+
   ##
   # Do something with the dropped file.
 
   def application(sender, openFile:path)
     mainWindowController.tableViewController.loadFilesFromProjectRoot(path)
     mainWindowController.activate
-
-    #     applicationNames = NSWorkspace.sharedWorkspace.launchedApplications.map {|a|
-    #       a.objectForKey("NSApplicationName")
-    #     }
-    #     NSLog "Apps: #{applicationNames}"
   end
 
   def showPreferences(sender)
     mainWindowController.close
-    preferencesWindow.makeKeyAndOrderFront(self)
-    preferencesWindow.center
+    preferencesWindowController.showWindow(self)
+    preferencesWindowController.center
+  end
+
+  def showWelcome(sender)
+    welcomeWindowController.showWindow(self)
+    welcomeWindowController.center
   end
 
 end
