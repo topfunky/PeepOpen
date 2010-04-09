@@ -64,15 +64,18 @@ class PreferencesWindowController < NSWindowController
   end
 
   def installEmacs(sender)
-
+    runConfirmationAlertWithMessage("The Emacs plugin is coming soon...",
+                                    informativeText:"Check updates for the latest version.")
   end
 
   def installAquamacsEmacs(sender)
-
+    runConfirmationAlertWithMessage("The Aquamacs Emacs plugin is coming soon...",
+                                    informativeText:"Check updates for the latest version.")
   end
 
   def installMacVim(sender)
-
+    runConfirmationAlertWithMessage("The MacVim plugin is coming soon...",
+                                    informativeText:"Check updates for the latest version.")
   end
 
   def runConfirmationAlertWithMessage(theMessage, informativeText:theInformativeText)

@@ -8,11 +8,11 @@
     - [X] Ask to choose editor & Install plugin
     - [ ] Design more beautiful intro screen with link to screencast
   - [-] Setup choctop
-    - [X] Basic install
-    - [ ] Background image
     - [ ] App icon
-    - [X] Website URLs
+    - [ ] Background image
     - [ ] Test
+    - [X] Basic install
+    - [X] Website URLs
   - [X] Build with one target
   - [X] Rename to PeepOpen
   - [X] Integrate Sparkle
