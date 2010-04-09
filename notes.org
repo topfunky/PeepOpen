@@ -1,13 +1,21 @@
-* Now [3/5]
+* Now [3/7]
 
   - [X] Build with one target
   - [X] Rename to PeepOpen
-  - [ ] Integrate Sparkle
-  - [ ] Setup choctop
-    - [ ] Basic install
+  - [-] Integrate Sparkle
+    - [X] Basic installation & Configuration
+    - [ ] Expose Settings in Preferences
+  - [ ] Editor Support files & Installation
+    - [ ] TextMate
+    - [ ] Vim
+    - [ ] Emacs
+  - [ ] Welcome screen
+    - [ ] Ask to choose editor & Install plugin
+  - [-] Setup choctop
+    - [X] Basic install
     - [ ] Background image
     - [ ] App icon
-    - [ ] Website URLs
+    - [X] Website URLs
     - [ ] Test
   - [X] Efficient search: Iterate over search string
 

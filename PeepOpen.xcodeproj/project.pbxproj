@@ -52,9 +52,11 @@
 		756C2A631155D97F000E19D8 /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2A621155D97F000E19D8 /* AppDelegate.rb */; };
 		756C2CDE1156C4C3000E19D8 /* Array+GCD.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */; };
 		756C2DA41157E9BC000E19D8 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
-		756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
+		756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
+		75BFEA9A116E9DA600D7D862 /* Support in Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
+		75BFEA9B116E9DB200D7D862 /* Support in Copy Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
 		75DB5A9A116E807600B1DD58 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
-		75DB5AA0116E809100B1DD58 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
+		75DB5AA0116E809100B1DD58 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
 		75E2E76B1150891E0056AD27 /* FuzzyCell.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E76A1150891E0056AD27 /* FuzzyCell.rb */; };
 		75E2E76D1150898F0056AD27 /* FuzzyRecord.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E76C1150898F0056AD27 /* FuzzyRecord.rb */; };
 		75E2E7E6115161F60056AD27 /* TFUtility.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E7E5115161F60056AD27 /* TFUtility.rb */; };
@@ -83,15 +85,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		172754B4107597CF00D0347B /* CopyFiles */ = {
+		172754B4107597CF00D0347B /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				75DB5AA0116E809100B1DD58 /* Sparkle.framework in CopyFiles */,
-				756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in CopyFiles */,
+				75DB5AA0116E809100B1DD58 /* Sparkle.framework in Copy Frameworks */,
+				756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75BFEA78116E9C4100D7D862 /* Copy Resources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				75BFEA9B116E9DB200D7D862 /* Support in Copy Resources */,
+			);
+			name = "Copy Resources";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -113,6 +127,7 @@
 		756C2A621155D97F000E19D8 /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/Controllers/AppDelegate.rb; sourceTree = "<group>"; };
 		756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "Array+GCD.rb"; path = "Classes/Helpers/Array+GCD.rb"; sourceTree = "<group>"; };
 		756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/topfunky/src/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		75BFEA8C116E9DA600D7D862 /* Support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Support; sourceTree = "<group>"; };
 		75DB5A63116E804800B1DD58 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "/Users/topfunky/src/Sparkle/With Garbage Collection/Sparkle.framework"; sourceTree = "<absolute>"; };
 		75E2E76A1150891E0056AD27 /* FuzzyCell.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyCell.rb; path = Classes/Views/FuzzyCell.rb; sourceTree = "<group>"; };
 		75E2E76C1150898F0056AD27 /* FuzzyRecord.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyRecord.rb; path = Classes/Models/FuzzyRecord.rb; sourceTree = "<group>"; };
@@ -213,6 +228,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				75BFEA8C116E9DA600D7D862 /* Support */,
 				2BFA9DA510CDF852007972A1 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -275,7 +291,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				172754B4107597CF00D0347B /* CopyFiles */,
+				172754B4107597CF00D0347B /* Copy Frameworks */,
+				75BFEA78116E9C4100D7D862 /* Copy Resources */,
 			);
 			buildRules = (
 			);
@@ -322,6 +339,7 @@
 				75E2E7E6115161F60056AD27 /* TFUtility.rb in Resources */,
 				756C2A631155D97F000E19D8 /* AppDelegate.rb in Resources */,
 				756C2CDE1156C4C3000E19D8 /* Array+GCD.rb in Resources */,
+				75BFEA9A116E9DA600D7D862 /* Support in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
