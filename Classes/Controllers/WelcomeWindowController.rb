@@ -5,10 +5,20 @@
 # Copyright 2010 Topfunky Corporation. All rights reserved.
 
 class WelcomeWindowController < NSWindowController
-  
-  def center
+
+  attr_accessor :preferencesWindowController
+
+  def show(sender)
+    showWindow(sender)
     window.center
+    NSUserDefaults.standardUserDefaults.setBool(true,
+                                                forKey:"hasBeenRunAtLeastOnce")
   end
-  
+
+  def showPreferences(sender)
+    preferencesWindowController.show(self)
+    close
+  end
+
 end
 

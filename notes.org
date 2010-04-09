@@ -4,8 +4,9 @@
     - [X] TextMate
     - [ ] Vim
     - [ ] Emacs
-  - [ ] Welcome screen
-    - [ ] Ask to choose editor & Install plugin
+  - [-] Welcome screen
+    - [X] Ask to choose editor & Install plugin
+    - [ ] Design more beautiful intro screen with link to screencast
   - [-] Setup choctop
     - [X] Basic install
     - [ ] Background image

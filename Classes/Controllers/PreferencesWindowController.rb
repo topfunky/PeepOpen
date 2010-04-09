@@ -8,18 +8,19 @@
 class PreferencesWindowController < NSWindowController
 
   attr_accessor :applicationPopup
-  
-  def center
+
+  def show(sender)
+    showWindow(sender)
     window.center
   end
-  
+
   def installPlugin(sender)
     rawTitle = applicationPopup.titleOfSelectedItem
-    selector = "install#{rawTitle.gsub(' ', '')}".to_sym
-    performSelector(selector)
+    selector = "install#{rawTitle.gsub(' ', '')}:".to_sym
+    performSelector(selector, withObject:self)
   end
 
-  def installTextMate
+  def installTextMate(sender)
     fileManager = NSFileManager.defaultManager
     applicationSupportPath =
       NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
@@ -62,15 +63,15 @@ class PreferencesWindowController < NSWindowController
                                     informativeText:"Open at least one file in a project and type ⌘-T to navigate with PeepOpen.")
   end
 
-  def installEmacs
+  def installEmacs(sender)
 
   end
 
-  def installAquamacsEmacs
+  def installAquamacsEmacs(sender)
 
   end
 
-  def installMacVim
+  def installMacVim(sender)
 
   end
 

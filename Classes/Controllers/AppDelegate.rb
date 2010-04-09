@@ -17,7 +17,9 @@ class AppDelegate
   end
 
   def applicationDidFinishLaunching(aNotification)
-    showWelcome(self)
+    unless NSUserDefaults.standardUserDefaults.boolForKey("hasBeenRunAtLeastOnce")
+      showWelcome(self)
+    end
   end
 
   ##
@@ -30,13 +32,11 @@ class AppDelegate
 
   def showPreferences(sender)
     mainWindowController.close
-    preferencesWindowController.showWindow(self)
-    preferencesWindowController.center
+    preferencesWindowController.show(self)
   end
 
   def showWelcome(sender)
-    welcomeWindowController.showWindow(self)
-    welcomeWindowController.center
+    welcomeWindowController.show(self)
   end
 
 end
