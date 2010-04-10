@@ -1,9 +1,12 @@
-* Now [4/7]
+* Now [4/9]
 
   - [-] Editor Support files & Installation
     - [X] TextMate
-    - [ ] Vim
+    - [X] Vim
+      - [X] Start Vim with --remote
     - [ ] Emacs
+  - [ ] Traverse filesystem incrementally with Cocoa instead of Dir[]
+  - [ ] Use NSTask when launching commands
   - [-] Welcome screen
     - [X] Ask to choose editor & Install plugin
     - [ ] Design more beautiful intro screen with link to screencast
@@ -46,17 +49,17 @@
   - PeepOpen
   - CanOpen – as in a can opener. Icon possibilities abound.
   - Nip – Used by airblade in script
-  
+
 * Inset Label
 
-    #     # TODO: Recreate a label's settings in code
-    #     titleField = NSTextField.alloc.initWithFrame(aTitleBox)
-    #     titleField.setEditable(false)
-    #     titleField.setBezeled(false)
-    #     titleField.setDrawsBackground(false)
-    #     titleField.setSelectable(false)
-    #     titleField.cell.setBackgroundStyle(NSBackgroundStyleRaised)
-    #     theControlView.addSubview(titleField)
-    #     titleField.setAttributedStringValue(aTitle)
+  #     # TODO: Recreate a label's settings in code
+  #     titleField = NSTextField.alloc.initWithFrame(aTitleBox)
+  #     titleField.setEditable(false)
+  #     titleField.setBezeled(false)
+  #     titleField.setDrawsBackground(false)
+  #     titleField.setSelectable(false)
+  #     titleField.cell.setBackgroundStyle(NSBackgroundStyleRaised)
+  #     theControlView.addSubview(titleField)
+  #     titleField.setAttributedStringValue(aTitle)
 
 

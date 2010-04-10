@@ -74,8 +74,56 @@ class PreferencesWindowController < NSWindowController
   end
 
   def installMacVim(sender)
-    runConfirmationAlertWithMessage("The MacVim plugin is coming soon...",
-                                    informativeText:"Check updates for the latest version.")
+    fileManager = NSFileManager.defaultManager
+
+    dotvimDirectoryPath =
+      NSString.pathWithComponents(["~", ".vim"]).stringByExpandingTildeInPath()
+
+    resourcePath = NSBundle.mainBundle.resourcePath
+    localVimPluginPath = NSString.pathWithComponents([
+                                                      resourcePath,
+                                                      "Support",
+                                                      "vim-peepopen"
+                                                     ])
+
+    # If ~/.vim/bundle exists, copy vim-peepopen directory there
+    pathogenBundlePath =
+      dotvimDirectoryPath.stringByAppendingPathComponent("bundle")
+    if fileManager.fileExistsAtPath(pathogenBundlePath)
+      # Pathogen installation to ~/.vim/bundle
+      installedVimPluginPath =
+        pathogenBundlePath.stringByAppendingPathComponent("vim-peepopen")
+      if fileManager.fileExistsAtPath(installedVimPluginPath)
+        fileManager.removeItemAtPath(installedVimPluginPath, error:nil)
+      end
+      fileManager.copyItemAtPath(localVimPluginPath,
+                                 toPath:installedVimPluginPath,
+                                 error:nil)
+    else
+      # Normal ~/.vim/plugin installation
+      dotvimPluginPath =
+        dotvimDirectoryPath.stringByAppendingPathComponent("plugin")
+      fileManager.createDirectoryAtPath(dotvimPluginPath,
+                                        withIntermediateDirectories:true,
+                                        attributes:nil,
+                                        error:nil)
+      installedPeepOpenPluginPath =
+        dotvimPluginPath.stringByAppendingPathComponent("peepopen.vim")
+      if fileManager.fileExistsAtPath(installedPeepOpenPluginPath)
+        fileManager.removeItemAtPath(installedPeepOpenPluginPath, error:nil)
+      end
+      localPeepOpenPluginPath =
+        NSString.pathWithComponents([localVimPluginPath,
+                                     "plugin",
+                                     "peepopen.vim"
+                                    ])
+      fileManager.copyItemAtPath(localPeepOpenPluginPath,
+                                 toPath:installedPeepOpenPluginPath,
+                                 error:nil)
+    end
+
+    runConfirmationAlertWithMessage("The MacVim plugin was installed successfully!",
+                                    informativeText:"Restart Vim, open a Vim project and type <Leader>p to choose a file with PeepOpen.")
   end
 
   def runConfirmationAlertWithMessage(theMessage, informativeText:theInformativeText)

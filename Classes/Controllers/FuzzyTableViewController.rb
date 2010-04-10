@@ -117,9 +117,29 @@ class FuzzyTableViewController
       editorApplicationName =
         NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
 
-      NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
-                                           withApplication:editorApplicationName)
+      case editorApplicationName
+      when "MacVim"
+        openFileWithMacVim(record.absFilePath)
+      else
+        NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
+                                             withApplication:editorApplicationName)
+      end
     end
+  end
+
+  def openFileWithMacVim(theFilePath)
+    macVimApplicationPath =
+      NSWorkspace.sharedWorkspace.fullPathForApplication("MacVim")
+    macVimCommandPath = NSString.pathWithComponents([macVimApplicationPath,
+                                                     "Contents",
+                                                     "MacOS",
+                                                     "Vim"
+                                                    ])
+    theProcess = NSTask.alloc.init
+    theProcess.setLaunchPath(macVimCommandPath)
+    theProcess.setArguments(["--remote",
+                             theFilePath])
+    theProcess.launch
   end
 
 end

@@ -17,12 +17,16 @@ class FuzzyRecord
   def self.recordsWithProjectRoot(theProjectRoot)
     cacheScmStatus(theProjectRoot)
 
+    maximumDocumentCount =
+      NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
     records = []
+    # TODO: Use OS to traverse filesystem incrementally instead of all
+    # at once.
     Dir[theProjectRoot + "/**/*"].each do |filename|
       next unless File.file?(filename)
-      maximumDocumentCount =
-        NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
-      next if records.length >= maximumDocumentCount
+      if records.length >= maximumDocumentCount
+        return records
+      end
       filename.gsub!(/^#{theProjectRoot}\//, '')
       # TODO: Store ignorable directories, files in preferences
       next if filename.match(/^(build|tmp|log|vendor\/rails)\//i)
@@ -43,6 +47,11 @@ class FuzzyRecord
     # 3       1       Tests/run_suite.rb
     # -       -       Foo/Bar.rb
     @@scmStatusDictionary = {}
+    projectDotGitPath =
+      NSString.pathWithComponents([theProjectRoot, ".git"])
+    unless NSFileManager.defaultManager.fileExistsAtPath(projectDotGitPath)
+      return
+    end
     if output = `cd #{theProjectRoot} && git diff --numstat`
       output.split(/\n/).each do |outputLine|
         added, deleted, filePath = outputLine.split

@@ -1,8 +1,21 @@
+h1. <span>2010-04-09</span> Release 0.1.4
+
+h2. MacVim Support
+
+* Installs MacVim plugin (pathogen or standard)
+* Opens chosen file in the currently active MacVim window.
+
+h1. <span>2010-04-09</span> Release 0.1.3
+
+h2. Framework Bundling Bugfix
+
+* Fix local framework bundle bug
+
 h1. <span>2010-04-09</span> Release 0.1.2
 
 h2. First Alpha Release
 
 * TextMate plugin included
 * Other editor plugins have been implemented and will be available soon.
-* Fix local frameworks bug
+
 

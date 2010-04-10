@@ -11,8 +11,8 @@
 			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="415"/>
 			<integer value="57"/>
+			<integer value="415"/>
 			<integer value="571"/>
 			<integer value="372"/>
 		</array>
@@ -995,6 +995,17 @@
 									<string key="NSTitle">OtherViews</string>
 									<array class="NSMutableArray" key="NSMenuItems">
 										<reference ref="807252324"/>
+										<object class="NSMenuItem" id="287688466">
+											<reference key="NSMenu" ref="628727806"/>
+											<string key="NSTitle">MacVim</string>
+											<string key="NSKeyEquiv"/>
+											<int key="NSKeyEquivModMask">1048576</int>
+											<int key="NSMnemonicLoc">2147483647</int>
+											<reference key="NSOnImage" ref="35465992"/>
+											<reference key="NSMixedImage" ref="807125248"/>
+											<string key="NSAction">_popUpItemAction:</string>
+											<reference key="NSTarget" ref="817319733"/>
+										</object>
 										<object class="NSMenuItem" id="917029929">
 											<reference key="NSMenu" ref="628727806"/>
 											<string key="NSTitle">Emacs</string>
@@ -1009,17 +1020,6 @@
 										<object class="NSMenuItem" id="253397749">
 											<reference key="NSMenu" ref="628727806"/>
 											<string key="NSTitle">Aquamacs Emacs</string>
-											<string key="NSKeyEquiv"/>
-											<int key="NSKeyEquivModMask">1048576</int>
-											<int key="NSMnemonicLoc">2147483647</int>
-											<reference key="NSOnImage" ref="35465992"/>
-											<reference key="NSMixedImage" ref="807125248"/>
-											<string key="NSAction">_popUpItemAction:</string>
-											<reference key="NSTarget" ref="817319733"/>
-										</object>
-										<object class="NSMenuItem" id="287688466">
-											<reference key="NSMenu" ref="628727806"/>
-											<string key="NSTitle">MacVim</string>
 											<string key="NSKeyEquiv"/>
 											<int key="NSKeyEquivModMask">1048576</int>
 											<int key="NSMnemonicLoc">2147483647</int>
@@ -1999,6 +1999,7 @@
 				<string key="NSWindowTitle">Welcome</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
+				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="747894853">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -3230,8 +3231,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWStyledTextFieldCell" key="NSCell" id="785524141">
 								<int key="NSCellFlags">67239424</int>
-								<int key="NSCellFlags2">272629760</int>
-								<string key="NSContents">In the meantime, install the TextMate plugin from the Preferences menu using the button below.</string>
+								<int key="NSCellFlags2">138412032</int>
+								<string key="NSContents">In the meantime, choose your editor and install the plugin (TextMate and MacVim currently supported).</string>
 								<reference key="NSSupport" ref="338046833"/>
 								<reference key="NSControlView" ref="539274459"/>
 								<reference key="NSBackgroundColor" ref="525439602"/>
@@ -3274,13 +3275,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 						<object class="NSButton" id="795844150">
 							<reference key="NSNextResponder" ref="747894853"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{168, 27}, {143, 25}}</string>
+							<string key="NSFrame">{{129, 27}, {222, 25}}</string>
 							<reference key="NSSuperview" ref="747894853"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="888468508">
 								<int key="NSCellFlags">-2080244224</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">Configure Editor...</string>
+								<string key="NSContents">Configure Editor Preference...</string>
 								<reference key="NSSupport" ref="338046833"/>
 								<reference key="NSControlView" ref="795844150"/>
 								<int key="NSButtonFlags">-2038152961</int>
@@ -4691,8 +4692,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 						<reference key="object" ref="628727806"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="253397749"/>
-							<reference ref="287688466"/>
 							<reference ref="917029929"/>
+							<reference ref="287688466"/>
 							<reference ref="807252324"/>
 						</array>
 						<reference key="parent" ref="817319733"/>
@@ -5232,7 +5233,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 				<string key="570.IBWindowTemplateEditedContentRect">{{376, 512}, {480, 168}}</string>
 				<boolean value="NO" key="570.NSWindowTemplate.visibleAtLaunch"/>
 				<string key="571.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="573.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="577.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="578.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="579.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
