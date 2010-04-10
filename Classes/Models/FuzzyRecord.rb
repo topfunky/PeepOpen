@@ -20,21 +20,33 @@ class FuzzyRecord
     maximumDocumentCount =
       NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
     records = []
-    # TODO: Use OS to traverse filesystem incrementally instead of all
-    # at once.
-    Dir[theProjectRoot + "/**/*"].each do |filename|
-      next unless File.file?(filename)
-      if records.length >= maximumDocumentCount
-        return records
-      end
-      filename.gsub!(/^#{theProjectRoot}\//, '')
+    fileManager = NSFileManager.defaultManager
+    filenames = fileManager.contentsOfDirectoryAtPath(theProjectRoot,
+                                                      error:nil).map {|f|
+      theProjectRoot.stringByAppendingPathComponent(f)
+    }
+    index = 0
+    while (index < filenames.length && records.length < maximumDocumentCount) do
+      filename = filenames[index]
+      index += 1
+      next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
+      relativeFilename = filename.to_s.gsub(/^#{theProjectRoot}\//, '')
       # TODO: Store ignorable directories, files in preferences
-      next if filename.match(/^(build|tmp|log|vendor\/rails)\//i)
-      next if filename.match(/(\.png|\.elc|~)$/)
+      ignorePatterns = /^(\.git|\.hg|\.svn|build|tmp|log|vendor\/rails)\b/i
+      next if relativeFilename.match(ignorePatterns)
+      next if relativeFilename.match(/\.DS_Store/)
+      next if relativeFilename.match(/(\.png|\.jpe?g|\.gif|\.elc|~)$/)
+      if File.directory?(filename)
+        # TODO: Should ignore dot directories
+        fileManager.contentsOfDirectoryAtPath(filename,
+                                              error:nil).map {|f|
+          filenames << filename.stringByAppendingPathComponent(f)
+        }
+        next
+      end
       records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
-                                                       filePath:filename)
+                                                       filePath:relativeFilename)
     end
-
     records
   end
 

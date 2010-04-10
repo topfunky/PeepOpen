@@ -52,7 +52,12 @@ class FuzzyRecordTest < Test::Unit::TestCase
   end
 
   test "resets many records" do
-    records = createRecords
+    records = [
+               createRecordWithProjectRoot(File.expand_path("."),
+                                           filePath:"Classes/Views/FuzzyCell.rb"),
+               createRecordWithProjectRoot(File.expand_path("."),
+                                           filePath:"Classes/Models/FuzzyRecord.rb")
+              ]
     filteredRecords = FuzzyRecord.filterRecords(records,
                                                 forString:"Cell")
     assert_not_nil filteredRecords.first.matchedRanges
@@ -61,9 +66,8 @@ class FuzzyRecordTest < Test::Unit::TestCase
   end
 
   test "filters with best strategy" do
-    record = FuzzyRecord.alloc.
-      initWithProjectRoot(File.expand_path("../"),
-                          filePath:"Classes/Views/FuzzyCell.rb")
+    record = createRecordWithProjectRoot(File.expand_path("."),
+                                         filePath:"Classes/Views/FuzzyCell.rb")
     assert record.fuzzyInclude?("cell")
     assert_equal 19, record.matchScore
   end
@@ -75,12 +79,14 @@ class FuzzyRecordTest < Test::Unit::TestCase
 
   # UNIMPLEMENTED: Should return one contiguous match when searching
   # Classes/Controllers/AppDelegate.rb for "appde"
-
+  
+  # UNIMPLEMENTED: Should find files in project root (class method)
+  
   ##
   # Returns an array of records for this project.
 
   def createRecords
-    FuzzyRecord.recordsWithProjectRoot(File.expand_path("../"))
+    FuzzyRecord.recordsWithProjectRoot(File.expand_path("."))
   end
 
 end

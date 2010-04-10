@@ -13,7 +13,7 @@
   - [-] Setup choctop
     - [ ] App icon
     - [ ] Background image
-    - [ ] Test
+    - [X] Test
     - [X] Basic install
     - [X] Website URLs
   - [X] Build with one target
@@ -62,4 +62,10 @@
   #     theControlView.addSubview(titleField)
   #     titleField.setAttributedStringValue(aTitle)
 
+
+
+* Quotes
+
+  - Holy shit this is awesome. – Matt Lyons
+  - PeepOpen rules. And it also "just works" in TextMate. – André Arko
 

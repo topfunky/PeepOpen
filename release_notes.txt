@@ -1,3 +1,10 @@
+h1. <span>2010-04-10</span> Release 0.1.5
+
+h2. Performance
+
+* Builds initial file list much more quickly
+* Stops building file list once limit is reached (rather than freezing)
+
 h1. <span>2010-04-09</span> Release 0.1.4
 
 h2. MacVim Support
