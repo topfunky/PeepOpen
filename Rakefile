@@ -26,6 +26,6 @@ task :release => [:clean, :dmg, :upload]
 
 desc "Delete all build-related directories"
 task :clean do
-  # rm_rf "appcast"
+  rm_rf "appcast"
   rm_rf "build"
 end
