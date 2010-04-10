@@ -6,6 +6,11 @@
 # Copyright Topfunky Corporation 2010. All rights reserved.
 #
 
+if (Dir.exist?(NSBundle.mainBundle.privateFrameworksPath))
+  $:.map! { |x| x.sub(/^\/Library\/Frameworks/, NSBundle.mainBundle.privateFrameworksPath) }
+  $:.unshift NSBundle.mainBundle.resourcePath.fileSystemRepresentation
+end
+
 # Loading the Cocoa framework. If you need to load more frameworks, you can
 # do that here too.
 framework 'Cocoa'

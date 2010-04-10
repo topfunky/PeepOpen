@@ -1,5 +1,8 @@
-h1. <span>2010-04-08</span> Release 0.1.0
+h1. <span>2010-04-09</span> Release 0.1.2
 
-h2. Initial release
+h2. First Alpha Release
 
-Yay! First release.
+* TextMate plugin included
+* Other editor plugins have been implemented and will be available soon.
+* Fix local frameworks bug
+
