@@ -53,6 +53,7 @@
 		756C2CDE1156C4C3000E19D8 /* Array+GCD.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */; };
 		756C2DA41157E9BC000E19D8 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
 		756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
+		7599303511716B9D006DDE0C /* PeepOpen.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7599303411716B9D006DDE0C /* PeepOpen.icns */; };
 		75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */; };
 		75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B04006116FDFF800053C2B /* WelcomeWindowController.rb */; };
 		75BFEA9A116E9DA600D7D862 /* Support in Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
@@ -81,7 +82,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D1107260486CEB800E47090 /* PeepOpen */;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = PeepOpen;
 		};
 /* End PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		756C2A621155D97F000E19D8 /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/Controllers/AppDelegate.rb; sourceTree = "<group>"; };
 		756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "Array+GCD.rb"; path = "Classes/Helpers/Array+GCD.rb"; sourceTree = "<group>"; };
 		756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/topfunky/src/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		7599303411716B9D006DDE0C /* PeepOpen.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PeepOpen.icns; path = "Artwork/PeepOpen Files/PeepOpen.icns"; sourceTree = "<group>"; };
 		75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = PreferencesWindowController.rb; path = Classes/Controllers/PreferencesWindowController.rb; sourceTree = "<group>"; };
 		75B04006116FDFF800053C2B /* WelcomeWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = WelcomeWindowController.rb; path = Classes/Controllers/WelcomeWindowController.rb; sourceTree = "<group>"; };
 		75BFEA8C116E9DA600D7D862 /* Support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Support; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7599303411716B9D006DDE0C /* PeepOpen.icns */,
 				75BFEA8C116E9DA600D7D862 /* Support */,
 				2BFA9DA510CDF852007972A1 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -348,6 +351,7 @@
 				75BFEA9A116E9DA600D7D862 /* Support in Resources */,
 				75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */,
 				75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */,
+				7599303511716B9D006DDE0C /* PeepOpen.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

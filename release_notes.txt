@@ -1,3 +1,9 @@
+h1. <span>2010-04-11</span> Release 0.1.6
+
+h2. Visual
+
+* App Icon (Temporary)
+
 h1. <span>2010-04-10</span> Release 0.1.5
 
 h2. Performance
