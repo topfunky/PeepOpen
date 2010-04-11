@@ -1,21 +1,21 @@
-* Now [4/9]
+* Now [5/9]
 
-  - [-] Editor Support files & Installation
-    - [X] TextMate
-    - [X] Vim
-      - [X] Start Vim with --remote
-    - [ ] Emacs
-  - [ ] Traverse filesystem incrementally with Cocoa instead of Dir[]
-  - [ ] Use NSTask when launching commands
   - [-] Welcome screen
     - [X] Ask to choose editor & Install plugin
     - [ ] Design more beautiful intro screen with link to screencast
+    - [ ] See IconBuilder welcome screen (normal window, OK button)
   - [-] Setup choctop
     - [ ] App icon
     - [ ] Background image
     - [X] Test
     - [X] Basic install
     - [X] Website URLs
+  - [-] Editor Support files & Installation
+    - [X] TextMate
+    - [X] Vim
+      - [X] Start Vim with --remote
+    - [ ] Emacs
+  - [X] Traverse filesystem incrementally with Cocoa instead of Dir[]
   - [X] Build with one target
   - [X] Rename to PeepOpen
   - [X] Integrate Sparkle
@@ -25,6 +25,7 @@
 
 * [6/12] Basic Features
 
+  - [ ] Use NSTask when launching commands
   - [ ] Use BWInsetTextField for main file label
   - [ ] Figure out how to set colors programmatically on BWInsetTextField
   - [ ] Preferences for directories or files to ignore
