@@ -1,30 +1,27 @@
-* Now [5/9]
+* Now [0/4]
 
   - [-] Welcome screen
     - [X] Ask to choose editor & Install plugin
     - [ ] Design more beautiful intro screen with link to screencast
     - [ ] See IconBuilder welcome screen (normal window, OK button)
   - [-] Setup choctop
-    - [ ] App icon
     - [ ] Background image
     - [X] Test
     - [X] Basic install
     - [X] Website URLs
+  - [-] App icon
+    - [X] First draft 
+    - [ ] Add gloss
+    - [ ] Try without circle (just italic O)
   - [-] Editor Support files & Installation
     - [X] TextMate
     - [X] Vim
       - [X] Start Vim with --remote
     - [ ] Emacs
-  - [X] Traverse filesystem incrementally with Cocoa instead of Dir[]
-  - [X] Build with one target
-  - [X] Rename to PeepOpen
-  - [X] Integrate Sparkle
-    - [X] Basic installation & Configuration
-    - [X] Expose Settings in Preferences
-  - [X] Efficient search: Iterate over search string
 
 * [6/12] Basic Features
 
+  - [ ] 45px flush right for filename icon so filenames are aligned left
   - [ ] Use NSTask when launching commands
   - [ ] Use BWInsetTextField for main file label
   - [ ] Figure out how to set colors programmatically on BWInsetTextField
@@ -70,3 +67,12 @@
   - Holy shit this is awesome. – Matt Lyons
   - PeepOpen rules. And it also "just works" in TextMate. – André Arko
 
+* Completed
+
+  - [X] Traverse filesystem incrementally with Cocoa instead of Dir[]
+  - [X] Build with one target
+  - [X] Rename to PeepOpen
+  - [X] Integrate Sparkle
+    - [X] Basic installation & Configuration
+    - [X] Expose Settings in Preferences
+  - [X] Efficient search: Iterate over search string

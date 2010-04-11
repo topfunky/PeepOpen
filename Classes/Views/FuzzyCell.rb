@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- CODING: utf-8 -*-
 # FuzzyCell.rb
 # FuzzyWindow
 #
@@ -17,8 +17,8 @@ class FuzzyCell < NSCell
   # representedObject instead.
   attr_accessor :subtitle
 
-  ICON_WIDTH = 30
   ICON_HEIGHT = 27
+  ICON_WIDTH  = 50 # Distance to right edge of right-aligned icon
 
   ICON_PADDING_SIDE = 2
 
@@ -117,10 +117,11 @@ class FuzzyCell < NSCell
       filetypeLabelAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
     end
     filetypeLabelSize = filetypeSuffix.sizeWithAttributes(filetypeLabelAttributes)
-
-    iconRect = NSMakeRect(aRect.origin.x,
+    
+    iconBoxWidth = filetypeLabelSize.width.ceil + (ICON_PADDING_SIDE*2)
+    iconRect = NSMakeRect(ICON_WIDTH - iconBoxWidth,
                           aRect.origin.y + 8, # Should be a constant
-                          filetypeLabelSize.width + (ICON_PADDING_SIDE*2),
+                          iconBoxWidth + 1,
                           ICON_HEIGHT)
 
     NSColor.colorWithCalibratedRed(0.5,
@@ -129,7 +130,7 @@ class FuzzyCell < NSCell
                                    alpha:1.0).setFill
     NSBezierPath.bezierPathWithRect(iconRect).fill
 
-    filetypeLabelRect = NSInsetRect(iconRect, ICON_PADDING_SIDE, -1)
+    filetypeLabelRect = NSInsetRect(iconRect, ICON_PADDING_SIDE + 1, -1)
     filetypeLabelRect.size.width = filetypeLabelSize.width
     filetypeSuffix.drawInRect(filetypeLabelRect, withAttributes:filetypeLabelAttributes)
 

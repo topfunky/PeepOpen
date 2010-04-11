@@ -35,7 +35,7 @@ class FuzzyRecord
       ignorePatterns = /^(\.git|\.hg|\.svn|build|tmp|log|vendor\/rails)\b/i
       next if relativeFilename.match(ignorePatterns)
       next if relativeFilename.match(/\.DS_Store/)
-      next if relativeFilename.match(/(\.png|\.jpe?g|\.gif|\.elc|~)$/)
+      next if relativeFilename.match(/(\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
       if File.directory?(filename)
         # TODO: Should ignore dot directories
         fileManager.contentsOfDirectoryAtPath(filename,
