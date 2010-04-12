@@ -16,38 +16,7 @@ class FuzzyRecord
 
   def self.recordsWithProjectRoot(theProjectRoot)
     cacheScmStatus(theProjectRoot)
-
-    maximumDocumentCount =
-      NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
-    records = []
-    fileManager = NSFileManager.defaultManager
-    filenames = fileManager.contentsOfDirectoryAtPath(theProjectRoot,
-                                                      error:nil).map {|f|
-      theProjectRoot.stringByAppendingPathComponent(f)
-    }
-    index = 0
-    while (index < filenames.length && records.length < maximumDocumentCount) do
-      filename = filenames[index]
-      index += 1
-      next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
-      relativeFilename = filename.to_s.gsub(/^#{theProjectRoot}\//, '')
-      # TODO: Store ignorable directories, files in preferences
-      ignorePatterns = /^(\.git|\.hg|\.svn|build|tmp|log|vendor\/rails)\b/i
-      next if relativeFilename.match(ignorePatterns)
-      next if relativeFilename.match(/\.DS_Store/)
-      next if relativeFilename.match(/(\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
-      if File.directory?(filename)
-        # TODO: Should ignore dot directories
-        fileManager.contentsOfDirectoryAtPath(filename,
-                                              error:nil).map {|f|
-          filenames << filename.stringByAppendingPathComponent(f)
-        }
-        next
-      end
-      records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
-                                                       filePath:relativeFilename)
-    end
-    records
+    return loadRecordsWithProjectRoot(theProjectRoot)
   end
 
   def self.cacheScmStatus(theProjectRoot)
@@ -70,6 +39,44 @@ class FuzzyRecord
         @@scmStatusDictionary[filePath] = [added.to_i, deleted.to_i]
       end
     end
+  end
+
+  ##
+  # NOTE: NSPredicate
+  #     p = NSPredicate.predicateWithFormat("name = 'john'")
+  #     p.evaluateWithObject({"name" => "bert"}) # => false
+  
+  def self.loadRecordsWithProjectRoot(theProjectRoot)
+    maximumDocumentCount =
+      NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
+    records = []
+    fileManager = NSFileManager.defaultManager
+    filenames = fileManager.contentsOfDirectoryAtPath(theProjectRoot,
+                                                      error:nil).map {|f|
+      theProjectRoot.stringByAppendingPathComponent(f)
+    }
+    index = 0
+    while (index < filenames.length && records.length < maximumDocumentCount) do
+      filename = filenames[index]
+      index += 1
+      next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
+      relativeFilename = filename.to_s.gsub(/^#{theProjectRoot}\//, '')
+      # TODO: Store ignorable directories, files in preferences
+      ignorePatterns = /^(\.DS_Store|\.git|\.hg|\.svn|build|tmp|log|vendor\/(rails|gems|plugins))\b/i
+      next if relativeFilename.match(ignorePatterns)
+      next if relativeFilename.match(/(\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
+      if File.directory?(filename)
+        # TODO: Should ignore dot directories
+        fileManager.contentsOfDirectoryAtPath(filename,
+                                              error:nil).map {|f|
+          filenames << filename.stringByAppendingPathComponent(f)
+        }
+        next
+      end
+      records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
+                                                       filePath:relativeFilename)
+    end
+    records
   end
 
   def self.filterRecords(records, forString:searchString)

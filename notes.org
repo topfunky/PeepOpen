@@ -1,9 +1,12 @@
-* Now [0/4]
+* Now [0/5]
 
   - [-] Welcome screen
     - [X] Ask to choose editor & Install plugin
     - [ ] Design more beautiful intro screen with link to screencast
     - [ ] See IconBuilder welcome screen (normal window, OK button)
+  - [-] Various
+    - [X] Ignore vendor/gems, plugins
+    - [ ] Try NSPredicate in macirb
   - [-] Setup choctop
     - [ ] Background image
     - [X] Test
