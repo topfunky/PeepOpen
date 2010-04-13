@@ -2,11 +2,14 @@ require "rubygems"
 require "rake"
 
 require "choctop"
+require "yaml"
+
+config = YAML.load_file("config.yml")
 
 ChocTop.new do |s|
   # Remote upload target (set host if not same as Info.plist['SUFeedURL'])
   # s.host     = 'fuzzywindow.com'
-  s.remote_dir = "/home/deploy/apps/peepcode.com/shared/system/apps/PeepOpen"
+  s.remote_dir = config["remote_dir"]
 
   s.build_target = "Embed"
   
