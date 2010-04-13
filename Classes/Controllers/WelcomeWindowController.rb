@@ -9,8 +9,8 @@ class WelcomeWindowController < NSWindowController
   attr_accessor :preferencesWindowController
 
   def show(sender)
-    showWindow(sender)
     window.center
+    showWindow(sender)
     NSUserDefaults.standardUserDefaults.setBool(true,
                                                 forKey:"hasBeenRunAtLeastOnce")
   end

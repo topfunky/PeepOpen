@@ -48,6 +48,7 @@
 		2BFA9DA710CDF852007972A1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA9DA510CDF852007972A1 /* MainMenu.xib */; };
 		4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4DE339F60D74FCDD00ADB6EE /* rb_main.rb */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
+		750F49FE1173F6DF00015D47 /* dmg-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F49FD1173F6DF00015D47 /* dmg-background.png */; };
 		756C28F911555825000E19D8 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C28F811555825000E19D8 /* NSDate+Helper.m */; };
 		756C2A631155D97F000E19D8 /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2A621155D97F000E19D8 /* AppDelegate.rb */; };
 		756C2CDE1156C4C3000E19D8 /* Array+GCD.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */; };
@@ -57,7 +58,6 @@
 		75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */; };
 		75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B04006116FDFF800053C2B /* WelcomeWindowController.rb */; };
 		75BFEA9A116E9DA600D7D862 /* Support in Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
-		75BFEA9B116E9DB200D7D862 /* Support in Copy Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
 		75DB5A9A116E807600B1DD58 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
 		75DB5AA0116E809100B1DD58 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
 		75E2E76B1150891E0056AD27 /* FuzzyCell.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E76A1150891E0056AD27 /* FuzzyCell.rb */; };
@@ -100,17 +100,6 @@
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		75BFEA78116E9C4100D7D862 /* Copy Resources */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-				75BFEA9B116E9DB200D7D862 /* Support in Copy Resources */,
-			);
-			name = "Copy Resources";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +114,7 @@
 		2BFA9DA610CDF852007972A1 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4DE339F60D74FCDD00ADB6EE /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
+		750F49FD1173F6DF00015D47 /* dmg-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dmg-background.png"; sourceTree = "<group>"; };
 		756C28F711555825000E19D8 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Helper.h"; path = "Classes/Helpers/NSDate+Helper.h"; sourceTree = "<group>"; };
 		756C28F811555825000E19D8 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Helper.m"; path = "Classes/Helpers/NSDate+Helper.m"; sourceTree = "<group>"; };
 		756C2A621155D97F000E19D8 /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/Controllers/AppDelegate.rb; sourceTree = "<group>"; };
@@ -234,6 +224,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				750F49FD1173F6DF00015D47 /* dmg-background.png */,
 				7599303411716B9D006DDE0C /* PeepOpen.icns */,
 				75BFEA8C116E9DA600D7D862 /* Support */,
 				2BFA9DA510CDF852007972A1 /* MainMenu.xib */,
@@ -301,7 +292,6 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				172754B4107597CF00D0347B /* Copy Frameworks */,
-				75BFEA78116E9C4100D7D862 /* Copy Resources */,
 			);
 			buildRules = (
 			);
@@ -352,6 +342,7 @@
 				75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */,
 				75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */,
 				7599303511716B9D006DDE0C /* PeepOpen.icns in Resources */,
+				750F49FE1173F6DF00015D47 /* dmg-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

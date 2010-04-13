@@ -14,7 +14,7 @@ ChocTop.new do |s|
   s.transport = :scp
 
   # Custom DMG
-  # s.background_file = "background.jpg"
+  s.background_file = "dmg-background.png"
   # s.app_icon_position = [100, 90]
   # s.applications_icon_position =  [400, 90]
   # s.volume_icon = "dmg.icns"

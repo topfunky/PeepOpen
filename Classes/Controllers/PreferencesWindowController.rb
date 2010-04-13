@@ -64,13 +64,38 @@ class PreferencesWindowController < NSWindowController
   end
 
   def installEmacs(sender)
-    runConfirmationAlertWithMessage("The Emacs plugin is coming soon...",
-                                    informativeText:"Check updates for the latest version.")
+    fileManager = NSFileManager.defaultManager
+
+    dotEmacsDirectoryPath =
+      NSString.pathWithComponents(["~", ".emacs.d", "vendor"]).stringByExpandingTildeInPath()
+
+    resourcePath = NSBundle.mainBundle.resourcePath
+    localPeepOpenPluginPath = NSString.pathWithComponents([
+                                                           resourcePath,
+                                                           "Support",
+                                                           "peepopen.el"
+                                                          ])
+
+    fileManager.createDirectoryAtPath(dotEmacsDirectoryPath,
+                                      withIntermediateDirectories:true,
+                                      attributes:nil,
+                                      error:nil)
+    installedPeepOpenPluginPath =
+      dotEmacsDirectoryPath.stringByAppendingPathComponent("peepopen.el")
+    if fileManager.fileExistsAtPath(installedPeepOpenPluginPath)
+      fileManager.removeItemAtPath(installedPeepOpenPluginPath, error:nil)
+    end
+    fileManager.copyItemAtPath(localPeepOpenPluginPath,
+                               toPath:installedPeepOpenPluginPath,
+                               error:nil)
+
+    runConfirmationAlertWithMessage("The Emacs plugin was installed successfully!",
+                                    informativeText:"Some additional Emacs configuration is required. See ~/.emacs.d/vendor/peepopen.el for the details.")
   end
 
   def installAquamacsEmacs(sender)
-    runConfirmationAlertWithMessage("The Aquamacs Emacs plugin is coming soon...",
-                                    informativeText:"Check updates for the latest version.")
+    runConfirmationAlertWithMessage("Aquamacs Emacs support has not been implemented yet.",
+                                    informativeText:"We hope to implement it soon. Contact boss@topfunky.com if you're interested in trying it.")
   end
 
   def installMacVim(sender)

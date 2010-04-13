@@ -1,3 +1,9 @@
+h1. <span>2010-04-12</span> Release 0.1.7
+
+h2. First Public Alpha
+
+* Ignore a few extra directories (editable in next release)
+
 h1. <span>2010-04-11</span> Release 0.1.6
 
 h2. Visual
