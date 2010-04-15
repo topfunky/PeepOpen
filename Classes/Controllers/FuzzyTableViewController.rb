@@ -139,7 +139,7 @@ class FuzzyTableViewController
     theProcess.setLaunchPath(macVimCommandPath)
     theProcess.setArguments(["--remote",
                              theFilePath])
-    theProcess.launch
+    retval = theProcess.launch
   end
 
 end

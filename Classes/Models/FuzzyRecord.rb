@@ -10,7 +10,7 @@ class FuzzyRecord
                   :filePath, :filePaths,
                   :scmStatus, :scmName,
                   :codeObjectName, :codeObjectNames,
-                  :matchedRanges]
+                  :matchedRanges, :matchesOnFilenameScore]
 
   MAX_SCORE = 10_000
 
@@ -45,10 +45,15 @@ class FuzzyRecord
   # NOTE: NSPredicate
   #     p = NSPredicate.predicateWithFormat("name = 'john'")
   #     p.evaluateWithObject({"name" => "bert"}) # => false
-  
+
   def self.loadRecordsWithProjectRoot(theProjectRoot)
     maximumDocumentCount =
       NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
+    if maximumDocumentCount == 0
+      # HACK: Tests don't have user defaults, so force one here
+      maximumDocumentCount =
+        AppDelegate.registrationDefaults["maximumDocumentCount"]
+    end
     records = []
     fileManager = NSFileManager.defaultManager
     filenames = fileManager.contentsOfDirectoryAtPath(theProjectRoot,
@@ -62,9 +67,9 @@ class FuzzyRecord
       next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
       relativeFilename = filename.to_s.gsub(/^#{theProjectRoot}\//, '')
       # TODO: Store ignorable directories, files in preferences
-      ignorePatterns = /^(\.DS_Store|\.git|\.hg|\.svn|build|tmp|log|vendor\/(rails|gems|plugins))\b/i
+      ignorePatterns = /^(\.git|\.hg|\.svn|build|tmp|log|vendor\/(rails|gems|plugins))\b/i
       next if relativeFilename.match(ignorePatterns)
-      next if relativeFilename.match(/(\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
+      next if relativeFilename.match(/(\.DS_Store|\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
       if File.directory?(filename)
         # TODO: Should ignore dot directories
         fileManager.contentsOfDirectoryAtPath(filename,
@@ -80,9 +85,11 @@ class FuzzyRecord
   end
 
   def self.filterRecords(records, forString:searchString)
+    correctedSearchString = searchString.gsub(" ", "")
     records.select { |r|
-      r.fuzzyInclude?(searchString)
-    }.sort_by { |record| [ -record.longestMatch,
+      r.fuzzyInclude?(correctedSearchString)
+    }.sort_by { |record| [ -record.matchesOnFilenameScore,
+                           -record.longestMatch,
                            record.matchScore,
                            -record.modifiedAt.timeIntervalSince1970 ] }
   end
@@ -111,9 +118,23 @@ class FuzzyRecord
   def fuzzyInclude?(searchString)
     resetMatches!
     # TODO: Search other things like date, classes, or SCM status
-    # Attempts two strategies: first occurrence vs. most contiguous.
-    if firstOccurrenceMatches = searchText(filePath,
-                                           forFirstOccurrenceOfString:searchString)
+    # Multiple strategies: filename, first occurrence, most
+    # contiguous.
+    filename = File.basename(filePath)
+    if filenameMatchRanges = searchText(filename,
+                                        forFirstOccurrenceOfString:searchString)
+      @matchesOnFilenameScore = 1
+      @matchScore = calculateMatchScoreForRanges(filenameMatchRanges)
+      dirname = File.dirname(filePath)
+      if dirname == "."
+        @matchedRanges = filenameMatchRanges
+      else
+        @matchedRanges = offsetRanges(filenameMatchRanges, by:dirname.length)
+      end
+      return true
+
+    elsif firstOccurrenceMatches = searchText(filePath,
+                                              forFirstOccurrenceOfString:searchString)
       if reverseSearchMatches = searchInReverseForString(searchString)
         if calculateMatchScoreForRanges(reverseSearchMatches) <
             calculateMatchScoreForRanges(firstOccurrenceMatches)
@@ -176,6 +197,7 @@ class FuzzyRecord
   end
 
   def resetMatches!
+    @matchesOnFilenameScore = 0
     @matchedRanges = nil
     @matchScore    = nil
     @longestMatch  = nil
@@ -238,6 +260,18 @@ class FuzzyRecord
     lastObject = matchingRanges.lastObject
     return (lastObject.location + lastObject.length == foundIndex)
   end
-
+  
+  ##
+  # Make a new array of ranges, moved forward by a number of
+  # characters.
+  #
+  # Used for switching filename-only match to a full path match.
+  
+  def offsetRanges(theRanges, by:theOffset)
+    theRanges.map do |range|
+      NSMakeRange(range.location + theOffset + 1, range.length)
+    end
+  end  
+  
 end
 

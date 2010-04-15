@@ -1,0 +1,8 @@
+--- 
+format: 1
+handler: 
+  commit: 0bd3be256ccdf6ca0ec95f08d339012cc42f0ba0
+  branch: master
+lock: false
+repository_class: Piston::Git::Repository
+repository_url: git@github.com:topfunky/PeepOpen-EditorSupport.git

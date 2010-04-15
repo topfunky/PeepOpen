@@ -8,12 +8,15 @@ class AppDelegate
 
   attr_accessor :mainWindowController, :preferencesWindowController, :welcomeWindowController
 
-  def applicationWillFinishLaunching(aNotification)
-    registrationDefaults = {
+  def self.registrationDefaults
+    {
       "editorApplicationName" => "TextMate",
       "maximumDocumentCount"  => 1000,
     }
-    NSUserDefaults.standardUserDefaults.registerDefaults(registrationDefaults)
+  end
+
+  def applicationWillFinishLaunching(aNotification)
+    NSUserDefaults.standardUserDefaults.registerDefaults(AppDelegate.registrationDefaults)
   end
 
   def applicationDidFinishLaunching(aNotification)

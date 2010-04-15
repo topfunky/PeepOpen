@@ -117,7 +117,7 @@ class FuzzyCell < NSCell
       filetypeLabelAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
     end
     filetypeLabelSize = filetypeSuffix.sizeWithAttributes(filetypeLabelAttributes)
-    
+
     iconBoxWidth = filetypeLabelSize.width.ceil + (ICON_PADDING_SIDE*2)
     iconRect = NSMakeRect(ICON_WIDTH - iconBoxWidth,
                           aRect.origin.y + 8, # Should be a constant
@@ -160,6 +160,9 @@ class FuzzyCell < NSCell
     end
     if ENV["TF_VISUAL_DEBUG"]
       subtitleString << "SCORE #{representedObject.matchScore}"
+      if representedObject.matchesOnFilenameScore > 0
+        subtitleString << "FILEMATCH true"
+      end
     end
     subtitleString = subtitleString.join("  ")
     attrString = NSMutableAttributedString.alloc.
@@ -213,7 +216,7 @@ class FuzzyCell < NSCell
                                 range:modifiedStringRange)
       end
 
-      ["MODIFIED", "GIT", "CLASSES", "SCORE"].each do |label|
+      ["MODIFIED", "GIT", "CLASSES", "SCORE", "FILEMATCH"].each do |label|
         if indexStart = subtitleString.index(/\b#{label}\b/)
           modifiedStringRange = NSMakeRange(indexStart, label.size)
 

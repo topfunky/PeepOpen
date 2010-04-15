@@ -12,9 +12,9 @@
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<integer value="571"/>
+			<integer value="372"/>
 			<integer value="57"/>
 			<integer value="415"/>
-			<integer value="372"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3183,7 +3183,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 							<object class="BWStyledTextFieldCell" key="NSCell" id="785524141">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">138412032</int>
-								<string key="NSContents">In the meantime, choose your editor and install the plugin (TextMate and MacVim currently supported).</string>
+								<string key="NSContents">In the meantime, choose your editor and install the plugin (TextMate, MacVim, and Emacs currently supported).</string>
 								<reference key="NSSupport" ref="338046833"/>
 								<reference key="NSControlView" ref="539274459"/>
 								<reference key="NSBackgroundColor" ref="525439602"/>

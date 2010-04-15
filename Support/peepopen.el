@@ -8,6 +8,8 @@
 ;; Keywords: textmate osx mac
 ;; Created: 8 April 2010
 ;; Author: Geoffrey Grosenbach <boss@topfunky.com>
+;;
+;; Enhancements: Josh Peek http://joshpeek.com/
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -39,9 +41,13 @@
 ;; (add-to-list 'load-path "~/.emacs.d/vendor/")
 ;; (require 'peepopen)
 
+;;;###autoload
 (defun peepopen-goto-file-gui ()
   "Uses external GUI app to quickly jump to a file in the project."
   (interactive)
+  (defun string-join (separator strings)
+    "Join all STRINGS using SEPARATOR."
+    (mapconcat 'identity strings separator))
   (let ((root (textmate-project-root)))
     (when (null root)
       (error
@@ -53,10 +59,11 @@
      (format "open -a PeepOpen '%s'"
              (expand-file-name root)))))
 
+;;;###autoload
 (defun peepopen-bind-keys ()
-  (if (boundp 'aquamacs-version)
-      (peepopen-bind-aquamacs-keys)
-    (peepopen-bind-carbon-keys)))
+  (cond ((featurep 'aquamacs) (peepopen-bind-aquamacs-keys))
+	((featurep 'mac-carbon) (peepopen-bind-carbon-keys))
+	((featurep 'ns) (peepopen-bind-ns-keys))))
 
 (defun peepopen-bind-aquamacs-keys ()
   ;; Need `osx-key-mode-map' to override
@@ -65,10 +72,10 @@
 (defun peepopen-bind-carbon-keys ()
   (define-key *textmate-mode-map* [(meta t)] 'peepopen-goto-file-gui))
 
-(defun string-join (separator strings)
-  "Join all STRINGS using SEPARATOR."
-  (mapconcat 'identity strings separator))
+(defun peepopen-bind-ns-keys ()
+  (define-key *textmate-mode-map* [(super t)] 'peepopen-goto-file-gui))
 
-(peepopen-bind-keys)
+;;;###autoload
+(add-hook 'textmate-mode-hook 'peepopen-bind-keys)
 
 (provide 'peepopen)

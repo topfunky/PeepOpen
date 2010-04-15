@@ -1,3 +1,12 @@
+h1. <span>2010-04-15</span> Release 0.1.8
+
+h2. Smarter search, spaces
+
+* Search favors matches on filenames
+* Ignore all .DS_Store files.
+* Treat a space in searches as an underscore.
+* More idiomatic peepopen.el [Josh Peek]
+
 h1. <span>2010-04-12</span> Release 0.1.7
 
 h2. First Public Alpha

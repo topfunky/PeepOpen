@@ -1,5 +1,6 @@
 require 'test/unit'
 
+require 'Classes/Controllers/AppDelegate'
 require 'Classes/Models/FuzzyRecord'
 require 'Classes/Helpers/Array+GCD'
 
@@ -69,24 +70,32 @@ class FuzzyRecordTest < Test::Unit::TestCase
     record = createRecordWithProjectRoot(File.expand_path("."),
                                          filePath:"Classes/Views/FuzzyCell.rb")
     assert record.fuzzyInclude?("cell")
-    assert_equal 19, record.matchScore
+    assert_equal 5, record.matchScore
+  end
+  
+  test "finds files" do
+    records = createRecords
+    assert_in_delta 50, records.length, 10
   end
 
+  test "filters on filename first if it matches" do
+    records = createRecords
+    filteredRecords = FuzzyRecord.filterRecords(records,
+                                                forString:"del")
+    bestMatchingFile = filteredRecords.first
+    assert_equal "Classes/Controllers/AppDelegate.rb", bestMatchingFile.filePath
+  end
+  
   def createRecordWithProjectRoot(projectRoot, filePath:filePath)
     fuzzyRecord = FuzzyRecord.alloc.
       initWithProjectRoot(projectRoot, filePath:filePath)
   end
-
-  # UNIMPLEMENTED: Should return one contiguous match when searching
-  # Classes/Controllers/AppDelegate.rb for "appde"
-  
-  # UNIMPLEMENTED: Should find files in project root (class method)
   
   ##
   # Returns an array of records for this project.
 
   def createRecords
-    FuzzyRecord.recordsWithProjectRoot(File.expand_path("."))
+    FuzzyRecord.recordsWithProjectRoot(ENV['PWD'])
   end
 
 end
