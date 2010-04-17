@@ -6,17 +6,80 @@
 
 class FuzzyRecord
 
-  attr_accessor *[:projectRoot,
-                  :filePath, :filePaths,
+  attr_accessor *[:projectRoot, :filePath,
                   :scmStatus, :scmName,
                   :codeObjectName, :codeObjectNames,
                   :matchedRanges, :matchesOnFilenameScore]
 
   MAX_SCORE = 10_000
 
-  def self.recordsWithProjectRoot(theProjectRoot)
+  # Cache is a dictionary of project roots with arrays of recent files
+  # and records.
+  #
+  #   {
+  #     "/var/www/project" => {
+  #       :recentlyOpenedRecords => [],
+  #       :records => []
+  #     }
+  #   }
+
+  @@cache = {}
+
+  def self.cacheForProjectRoot(theProjectRoot)
+    return nil if @@cache.nil?
+    @@cache[theProjectRoot]
+  end
+
+  ##
+  # Returns only the cached records for a project, or nil.
+
+  def self.cachedRecordsForProjectRoot(theProjectRoot)
+    if cacheHash = cacheForProjectRoot(theProjectRoot)
+      if records = cacheHash[:records]
+        return records
+      end
+    end
+    return nil
+  end
+  
+  ##
+  # Store records for faster launch.
+  
+  def self.setCacheRecords(theRecords, forProjectRoot:theProjectRoot)
+    @@cache ||= {}
+    if @@cache[theProjectRoot].nil?
+      @@cache[theProjectRoot] = {}
+    end
+    @@cache[theProjectRoot][:records] = theRecords
+  end
+  
+  ##
+  # Keep last 2 opened records so the user can toggle between two
+  # recent files.
+  
+  def self.storeRecentlyOpenedRecord(theRecord)
+    cacheHash = cacheForProjectRoot(theRecord.projectRoot) || {}
+    if recentArray = cacheHash[:recentlyOpenedRecords]
+      recentArray << theRecord
+      while recentArray.length > 2
+        recentArray.shift
+      end
+    else
+      cacheHash[:recentlyOpenedRecords] = [theRecord]
+    end
+    @@cache[theRecord.projectRoot] = cacheHash
+  end
+
+  def self.recordsForProjectRoot(theProjectRoot)
     cacheScmStatus(theProjectRoot)
-    return loadRecordsWithProjectRoot(theProjectRoot)
+    if records = cachedRecordsForProjectRoot(theProjectRoot)
+      return records
+    end
+
+    records = loadRecordsWithProjectRoot(theProjectRoot)
+    setCacheRecords(records, forProjectRoot:theProjectRoot)
+
+    return records
   end
 
   def self.cacheScmStatus(theProjectRoot)
@@ -69,7 +132,7 @@ class FuzzyRecord
       # TODO: Store ignorable directories, files in preferences
       ignorePatterns = /^(\.git|\.hg|\.svn|build|tmp|log|vendor\/(rails|gems|plugins))\b/i
       next if relativeFilename.match(ignorePatterns)
-      next if relativeFilename.match(/(\.DS_Store|\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
+      next if relativeFilename.match(/(\.#.+|\.DS_Store|\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
       if File.directory?(filename)
         # TODO: Should ignore dot directories
         fileManager.contentsOfDirectoryAtPath(filename,
@@ -85,13 +148,31 @@ class FuzzyRecord
   end
 
   def self.filterRecords(records, forString:searchString)
-    correctedSearchString = searchString.gsub(" ", "")
-    records.select { |r|
-      r.fuzzyInclude?(correctedSearchString)
-    }.sort_by { |record| [ -record.matchesOnFilenameScore,
-                           -record.longestMatch,
-                           record.matchScore,
-                           -record.modifiedAt.timeIntervalSince1970 ] }
+    correctedSearchString = searchString.gsub(" ", "").strip
+    if correctedSearchString.length == 0
+      filteredRecords = records
+    else
+      filteredRecords = records.select { |r|
+        r.fuzzyInclude?(correctedSearchString)
+      }
+    end
+    sortedRecords =
+      filteredRecords.sort_by { |record| [ -record.matchesOnFilenameScore,
+                                           -record.longestMatch,
+                                           record.matchScore,
+                                           -record.modifiedAt.timeIntervalSince1970 ] }
+    if correctedSearchString.length == 0
+      if cacheHash = self.cacheForProjectRoot(records.first.projectRoot)
+        if recentlyOpenedRecords = cacheHash[:recentlyOpenedRecords]
+          if recentlyOpenedRecords.length >= 2
+            recentRecord = recentlyOpenedRecords.first
+            sortedRecords.delete(recentRecord)
+            sortedRecords.unshift(recentlyOpenedRecords.first)
+          end
+        end
+      end
+    end
+    return sortedRecords
   end
 
   def self.resetMatchesForRecords!(records)
@@ -260,18 +341,18 @@ class FuzzyRecord
     lastObject = matchingRanges.lastObject
     return (lastObject.location + lastObject.length == foundIndex)
   end
-  
+
   ##
   # Make a new array of ranges, moved forward by a number of
   # characters.
   #
   # Used for switching filename-only match to a full path match.
-  
+
   def offsetRanges(theRanges, by:theOffset)
     theRanges.map do |range|
       NSMakeRange(range.location + theOffset + 1, range.length)
     end
-  end  
-  
+  end
+
 end
 

@@ -38,7 +38,14 @@ class FuzzyWindowController < NSWindowController
   # Returns true if this class handles it, false otherwise.
 
   def control(control, textView:textView, doCommandBySelector:commandSelector)
+    NSLog "cmd #{commandSelector}"
     case commandSelector
+    when :"insertTab:"
+      # Tab should not be used...arrow keys work automatically when in
+      # search field.
+      tableViewController.selectNextRow
+      return true
+
     when :"insertNewline:"
       handleNewline
       return true
@@ -54,6 +61,14 @@ class FuzzyWindowController < NSWindowController
     when :"cancel:"
       handleCancel
       return true
+
+    when :"noop:"
+      # Emacs-like C-g
+      handleCancel
+      return true
+
+      # when :"pageDown:"
+
     end
     return false
   end

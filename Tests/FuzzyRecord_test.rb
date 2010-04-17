@@ -72,7 +72,7 @@ class FuzzyRecordTest < Test::Unit::TestCase
     assert record.fuzzyInclude?("cell")
     assert_equal 5, record.matchScore
   end
-  
+
   test "finds files" do
     records = createRecords
     assert_in_delta 50, records.length, 10
@@ -85,17 +85,39 @@ class FuzzyRecordTest < Test::Unit::TestCase
     bestMatchingFile = filteredRecords.first
     assert_equal "Classes/Controllers/AppDelegate.rb", bestMatchingFile.filePath
   end
+
+  test "caches project records" do
+    records = createRecords
+    assert_kind_of NSMutableArray, FuzzyRecord.cachedRecordsForProjectRoot(".")
+  end
   
+  test "ignores spaces in search string" do
+    records = createRecords
+    assert_equal 4, FuzzyRecord.filterRecords(records, forString:"c m").length
+  end
+  
+  test "stores recently opened records" do
+    records = createRecords
+    record = records.last
+    assert_not_equal record, FuzzyRecord.filterRecords(records,
+                                                       forString:"").first
+    FuzzyRecord.storeRecentlyOpenedRecord(record)
+    FuzzyRecord.storeRecentlyOpenedRecord(records[-2])
+    
+    assert_equal record, FuzzyRecord.filterRecords(records,
+                                                   forString:"").first
+  end
+
   def createRecordWithProjectRoot(projectRoot, filePath:filePath)
     fuzzyRecord = FuzzyRecord.alloc.
       initWithProjectRoot(projectRoot, filePath:filePath)
   end
-  
+
   ##
   # Returns an array of records for this project.
 
   def createRecords
-    FuzzyRecord.recordsWithProjectRoot(ENV['PWD'])
+    FuzzyRecord.recordsForProjectRoot(".")
   end
 
 end

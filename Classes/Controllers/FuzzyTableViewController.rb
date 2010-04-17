@@ -15,7 +15,7 @@ class FuzzyTableViewController
 
   def loadFilesFromProjectRoot(theProjectRoot)
     @allRecords = []
-    @allRecords = FuzzyRecord.recordsWithProjectRoot(theProjectRoot)
+    @allRecords = FuzzyRecord.recordsForProjectRoot(theProjectRoot)
     searchForString("")
   end
 
@@ -23,13 +23,10 @@ class FuzzyTableViewController
   # Text entered into the search field calls this method.
 
   def searchForString(searchString)
-    if searchString.strip.length > 0
-      filterRecordsForString(searchString)
-    else
+    if searchString.strip.length == 0
       FuzzyRecord.resetMatchesForRecords!(@allRecords)
-      didSearchForString(@allRecords.sort_by {|record|
-                           [-record.modifiedAt.timeIntervalSince1970] })
     end
+    filterRecordsForString(searchString)
   end
 
   def filterRecordsForString(searchString)
@@ -113,33 +110,14 @@ class FuzzyTableViewController
   def handleRowClick(rowId)
     rowId = 0 if rowId == -1
     if record = @records[rowId]
-      # TODO: Close window
+      FuzzyRecord.storeRecentlyOpenedRecord(record)
+      # TODO: Close window when clicked with the mouse
       editorApplicationName =
         NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
 
-      case editorApplicationName
-      when "MacVim"
-        openFileWithMacVim(record.absFilePath)
-      else
-        NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
-                                             withApplication:editorApplicationName)
-      end
+      NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
+                                           withApplication:editorApplicationName)
     end
-  end
-
-  def openFileWithMacVim(theFilePath)
-    macVimApplicationPath =
-      NSWorkspace.sharedWorkspace.fullPathForApplication("MacVim")
-    macVimCommandPath = NSString.pathWithComponents([macVimApplicationPath,
-                                                     "Contents",
-                                                     "MacOS",
-                                                     "Vim"
-                                                    ])
-    theProcess = NSTask.alloc.init
-    theProcess.setLaunchPath(macVimCommandPath)
-    theProcess.setArguments(["--remote",
-                             theFilePath])
-    retval = theProcess.launch
   end
 
 end
