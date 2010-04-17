@@ -11,10 +11,10 @@
 			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
+			<integer value="415"/>
 			<integer value="571"/>
 			<integer value="372"/>
 			<integer value="57"/>
-			<integer value="415"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -995,6 +995,17 @@
 									<string key="NSTitle">OtherViews</string>
 									<array class="NSMutableArray" key="NSMenuItems">
 										<reference ref="807252324"/>
+										<object class="NSMenuItem" id="17385465">
+											<reference key="NSMenu" ref="628727806"/>
+											<string key="NSTitle">Coda</string>
+											<string key="NSKeyEquiv"/>
+											<int key="NSKeyEquivModMask">1048576</int>
+											<int key="NSMnemonicLoc">2147483647</int>
+											<reference key="NSOnImage" ref="35465992"/>
+											<reference key="NSMixedImage" ref="807125248"/>
+											<string key="NSAction">_popUpItemAction:</string>
+											<reference key="NSTarget" ref="817319733"/>
+										</object>
 										<object class="NSMenuItem" id="287688466">
 											<reference key="NSMenu" ref="628727806"/>
 											<string key="NSTitle">MacVim</string>
@@ -4645,6 +4656,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 							<reference ref="917029929"/>
 							<reference ref="287688466"/>
 							<reference ref="807252324"/>
+							<reference ref="17385465"/>
 						</array>
 						<reference key="parent" ref="817319733"/>
 					</object>
@@ -4946,6 +4958,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 						<reference key="object" ref="790363685"/>
 						<reference key="parent" ref="734519807"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">592</int>
+						<reference key="object" ref="17385465"/>
+						<reference key="parent" ref="628727806"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -5176,6 +5193,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 				<string key="587.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="589.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="590.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="592.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<integer value="1" key="72.ImportedFromIB2"/>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5206,7 +5224,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">591</int>
+			<int key="maxID">592</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -151,6 +151,24 @@ class PreferencesWindowController < NSWindowController
                                     informativeText:"Restart Vim, open a Vim project and type <Leader>p to choose a file with PeepOpen.")
   end
 
+  def installCoda(sender)
+    fileManager = NSFileManager.defaultManager
+
+    resourcePath = NSBundle.mainBundle.resourcePath
+    localCodaPluginPath = NSString.pathWithComponents([
+                                                       resourcePath,
+                                                       "Support",
+                                                       "PeepOpen.codaplugin"
+                                                      ])
+
+    NSWorkspace.sharedWorkspace.openFile(localCodaPluginPath,
+                                         withApplication:"Coda")
+
+    runConfirmationAlertWithMessage("The Coda plugin was installed successfully!",
+                                    informativeText:"Open a site in Coda and hit ˆ⌥⌘-T or use the Plug-ins menu.")
+  end
+
+
   def runConfirmationAlertWithMessage(theMessage, informativeText:theInformativeText)
     alert = NSAlert.alloc.init
     alert.addButtonWithTitle("OK")
