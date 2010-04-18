@@ -161,11 +161,11 @@ class PreferencesWindowController < NSWindowController
                                                        "PeepOpen.codaplugin"
                                                       ])
 
+    runConfirmationAlertWithMessage("The Coda plugin was installed successfully!",
+                                    informativeText:"Open a Site in Coda and hit ^⌥⌘-T or use the Plug-ins menu.")
+    # HACK: Run openFile after so dialog doesn't show over Coda.
     NSWorkspace.sharedWorkspace.openFile(localCodaPluginPath,
                                          withApplication:"Coda")
-
-    runConfirmationAlertWithMessage("The Coda plugin was installed successfully!",
-                                    informativeText:"Open a site in Coda and hit ˆ⌥⌘-T or use the Plug-ins menu.")
   end
 
 

@@ -120,16 +120,27 @@ class FuzzyCell < NSCell
 
     iconBoxWidth = filetypeLabelSize.width.ceil + (ICON_PADDING_SIDE*2)
     iconRect = NSMakeRect(ICON_WIDTH - iconBoxWidth,
-                          aRect.origin.y + 8, # Should be a constant
+                          aRect.origin.y + 7, # Should be a constant
                           iconBoxWidth + 1,
                           ICON_HEIGHT)
 
-    NSColor.colorWithCalibratedRed(0.5,
-                                   green:0.5,
-                                   blue:0.5,
-                                   alpha:1.0).setFill
-    NSBezierPath.bezierPathWithRect(iconRect).fill
+    boxGradentStartColor = NSColor.colorWithCalibratedRed(0.5,
+                                                          green:0.5,
+                                                          blue:0.5,
+                                                          alpha:1.0)
+    boxGradentEndColor = NSColor.colorWithCalibratedRed(0.3,
+                                                        green:0.3,
+                                                        blue:0.3,
+                                                        alpha:1.0)
 
+    boxPath = NSBezierPath.bezierPathWithRoundedRect(iconRect,
+                                                     xRadius:2.0,
+                                                     yRadius:2.0)
+    gradient =
+      NSGradient.alloc.initWithStartingColor(boxGradentStartColor,
+                                             endingColor:boxGradentEndColor)
+    gradient.drawInBezierPath(boxPath, angle:50.0)
+    
     filetypeLabelRect = NSInsetRect(iconRect, ICON_PADDING_SIDE + 1, -1)
     filetypeLabelRect.size.width = filetypeLabelSize.width
     filetypeSuffix.drawInRect(filetypeLabelRect, withAttributes:filetypeLabelAttributes)
