@@ -96,14 +96,13 @@ class FuzzyCell < NSCell
                               aTextBox.size.width,
                               aSubtitleSize.height)
 
-
     # Draw the text
     aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
 
     drawLowerCellShadowInFrame(theCellFrame)
   end
-  
+    
   ##
   # Subtle 1px shadow at bottom of cell.
   

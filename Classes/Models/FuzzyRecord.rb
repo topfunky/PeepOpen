@@ -22,9 +22,21 @@ class FuzzyRecord
   #       :records => []
   #     }
   #   }
-
   @@cache = {}
+  
+  def self.recordsForProjectRoot(theProjectRoot)
+    cacheScmStatus(theProjectRoot)
+    if records = cachedRecordsForProjectRoot(theProjectRoot)
+      records.each { |r| r.scmStatus = nil }
+      return records
+    end
 
+    records = loadRecordsWithProjectRoot(theProjectRoot)
+    setCacheRecords(records, forProjectRoot:theProjectRoot)
+
+    return records
+  end
+  
   def self.cacheForProjectRoot(theProjectRoot)
     return nil if @@cache.nil?
     @@cache[theProjectRoot]
@@ -68,18 +80,6 @@ class FuzzyRecord
       cacheHash[:recentlyOpenedRecords] = [theRecord]
     end
     @@cache[theRecord.projectRoot] = cacheHash
-  end
-
-  def self.recordsForProjectRoot(theProjectRoot)
-    cacheScmStatus(theProjectRoot)
-    if records = cachedRecordsForProjectRoot(theProjectRoot)
-      return records
-    end
-
-    records = loadRecordsWithProjectRoot(theProjectRoot)
-    setCacheRecords(records, forProjectRoot:theProjectRoot)
-
-    return records
   end
 
   def self.cacheScmStatus(theProjectRoot)
