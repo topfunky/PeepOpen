@@ -11,10 +11,10 @@
 			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="415"/>
-			<integer value="372"/>
-			<integer value="571"/>
 			<integer value="106"/>
+			<integer value="377"/>
+			<integer value="571"/>
+			<integer value="415"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

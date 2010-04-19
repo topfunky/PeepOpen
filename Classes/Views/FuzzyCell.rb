@@ -100,6 +100,38 @@ class FuzzyCell < NSCell
     # Draw the text
     aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
+
+    drawLowerCellShadowInFrame(theCellFrame)
+  end
+  
+  ##
+  # Subtle 1px shadow at bottom of cell.
+  
+  def drawLowerCellShadowInFrame(aFrame)
+    path = NSBezierPath.bezierPath
+    path.setLineWidth(1.0)
+    path.moveToPoint([aFrame.origin.x - 2.0,
+                      aFrame.origin.y + aFrame.size.height - 1.0])
+    path.lineToPoint([aFrame.origin.x + aFrame.size.width + 2.0,
+                      aFrame.origin.y + aFrame.size.height - 1.0])
+
+    lineColor = NSColor.colorWithCalibratedRed(0.8,
+                                               green:0.8,
+                                               blue:0.8,
+                                               alpha:1.0).setStroke
+
+    if highlighted?
+      lineColor = NSColor.colorWithCalibratedRed(0.7,
+                                                 green:0.7,
+                                                 blue:0.7,
+                                                 alpha:1.0).setStroke
+    end
+
+    transform = NSAffineTransform.transform
+    transform.translateXBy(0.5, yBy:0.5)
+    path.transformUsingAffineTransform(transform)
+
+    path.stroke
   end
 
   ##
@@ -140,7 +172,7 @@ class FuzzyCell < NSCell
       NSGradient.alloc.initWithStartingColor(boxGradentStartColor,
                                              endingColor:boxGradentEndColor)
     gradient.drawInBezierPath(boxPath, angle:50.0)
-    
+
     filetypeLabelRect = NSInsetRect(iconRect, ICON_PADDING_SIDE + 1, -1)
     filetypeLabelRect.size.width = filetypeLabelSize.width
     filetypeSuffix.drawInRect(filetypeLabelRect, withAttributes:filetypeLabelAttributes)
