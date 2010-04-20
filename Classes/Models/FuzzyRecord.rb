@@ -137,7 +137,7 @@ class FuzzyRecord
         # TODO: Should ignore dot directories
         fileManager.contentsOfDirectoryAtPath(filename,
                                               error:nil).map {|f|
-          filenames << filename.stringByAppendingPathComponent(f)
+          filenames.insert(index, filename.stringByAppendingPathComponent(f))
         }
         next
       end

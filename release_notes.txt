@@ -2,10 +2,11 @@ h1. <span>2010-04-16</span> Release 0.1.9
 
 h2. Coda, MacVim, Caching, Default Sort
 
-* MacVim opens files as drag-and-drop. You may need to change your MacVim preferences to "Open files from applications in the current window and set the arglist."
+* MacVim files are now opened with "open -a MacVim filename". You will need to change your MacVim preferences to "Open files from applications in the current window and set the arglist."
 * Panic's Coda editor is now supported.
 * Default sorting works more like TextMate. The previously opened file is at the top, making it possible to switch between two files without searching.
 * The list of project files is cached in memory. A future update will expire the cache when files on disk are updated.
+* File search is now depth-first and works more sensibly with deep directory structures.
 
 h1. <span>2010-04-15</span> Release 0.1.8
 

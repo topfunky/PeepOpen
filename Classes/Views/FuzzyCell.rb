@@ -99,7 +99,8 @@ class FuzzyCell < NSCell
     # Draw the text
     aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
-
+    
+    # TODO: Draw 1px white on top if this is the top cell in the table.
     drawLowerCellShadowInFrame(theCellFrame)
   end
     
