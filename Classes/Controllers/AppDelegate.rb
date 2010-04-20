@@ -42,5 +42,18 @@ class AppDelegate
     welcomeWindowController.show(self)
   end
 
+#   # Snippet
+#   def showReleaseNotesWindow sender
+#     self.releaseNotesWindowController = windowControllerForNib "ReleaseNotesWindow"
+#     releaseNotesWindowController.showWindow self
+#   end
+#   private
+#   # Given +nibName+, allocate and initialize the appropriate window
+#   # controller for the NIB.
+#   def windowControllerForNib nibName
+#     klass = Object.const_get "TF#{nibName}Controller"
+#     klass.alloc.initWithWindowNibName nibName
+#   end
+
 end
 

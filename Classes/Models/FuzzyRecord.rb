@@ -132,7 +132,7 @@ class FuzzyRecord
       # TODO: Store ignorable directories, files in preferences
       ignorePatterns = /^(\.git|\.hg|\.svn|build|tmp|log|vendor\/(rails|gems|plugins))\b/i
       next if relativeFilename.match(ignorePatterns)
-      next if relativeFilename.match(/(\.#.+|\.DS_Store|\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
+      next if relativeFilename.match(/(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
       if File.directory?(filename)
         # TODO: Should ignore dot directories
         fileManager.contentsOfDirectoryAtPath(filename,
