@@ -41,7 +41,13 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>CFBundleHelpBookName</key>
+	<string>PeepOpen Help</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>PeepOpen Help</string>
 	<key>SUFeedURL</key>
 	<string>https://peepcode.com/system/apps/PeepOpen/appcast.xml</string>
+	<key>NSSupportsSuddenTermination</key>
+	<true/>
 </dict>
 </plist>

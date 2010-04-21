@@ -23,10 +23,11 @@ class FuzzyRecord
   #     }
   #   }
   @@cache = {}
-  
+
   def self.recordsForProjectRoot(theProjectRoot)
     cacheScmStatus(theProjectRoot)
     if records = cachedRecordsForProjectRoot(theProjectRoot)
+      # Get fresh scmStatus every time
       records.each { |r| r.scmStatus = nil }
       return records
     end
@@ -36,7 +37,7 @@ class FuzzyRecord
 
     return records
   end
-  
+
   def self.cacheForProjectRoot(theProjectRoot)
     return nil if @@cache.nil?
     @@cache[theProjectRoot]
@@ -53,10 +54,10 @@ class FuzzyRecord
     end
     return nil
   end
-  
+
   ##
   # Store records for faster launch.
-  
+
   def self.setCacheRecords(theRecords, forProjectRoot:theProjectRoot)
     @@cache ||= {}
     if @@cache[theProjectRoot].nil?
@@ -64,17 +65,26 @@ class FuzzyRecord
     end
     @@cache[theProjectRoot][:records] = theRecords
   end
-  
+
   ##
   # Keep last 2 opened records so the user can toggle between two
   # recent files.
-  
+
   def self.storeRecentlyOpenedRecord(theRecord)
     cacheHash = cacheForProjectRoot(theRecord.projectRoot) || {}
     if recentArray = cacheHash[:recentlyOpenedRecords]
-      recentArray << theRecord
-      while recentArray.length > 2
-        recentArray.shift
+      if recentArray.include?(theRecord)
+        # Avoid a situation where one file occupies both slots in the
+        # recent files list.
+        if recentArray.first == theRecord
+          recentArray.reverse!
+        end
+      else
+        recentArray << theRecord
+        # Keep only two
+        while recentArray.length > 2
+          recentArray.shift
+        end
       end
     else
       cacheHash[:recentlyOpenedRecords] = [theRecord]
@@ -130,9 +140,9 @@ class FuzzyRecord
       next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
       relativeFilename = filename.to_s.gsub(/^#{theProjectRoot}\//, '')
       # TODO: Store ignorable directories, files in preferences
-      ignorePatterns = /^(\.git|\.hg|\.svn|build|tmp|log|vendor\/(rails|gems|plugins))\b/i
+      ignorePatterns = /^(\.git|\.hg|\.svn|\.sass-cache|build|tmp|log|vendor\/(rails|gems|plugins))\b/i
       next if relativeFilename.match(ignorePatterns)
-      next if relativeFilename.match(/(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.swp|~)$/)
+      next if relativeFilename.match(/(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.swp|~)$/)
       if File.directory?(filename)
         # TODO: Should ignore dot directories
         fileManager.contentsOfDirectoryAtPath(filename,

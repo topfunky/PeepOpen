@@ -57,6 +57,8 @@
 		7599303511716B9D006DDE0C /* PeepOpen.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7599303411716B9D006DDE0C /* PeepOpen.icns */; };
 		75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */; };
 		75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B04006116FDFF800053C2B /* WelcomeWindowController.rb */; };
+		75BAB436117EDA1800955D02 /* ReleaseNotesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BAB434117EDA1800955D02 /* ReleaseNotesWindow.xib */; };
+		75BAB438117EDA3800955D02 /* ReleaseNotesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75BAB437117EDA3800955D02 /* ReleaseNotesWindowController.rb */; };
 		75BFEA9A116E9DA600D7D862 /* Support in Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
 		75DB5A9A116E807600B1DD58 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
 		75DB5AA0116E809100B1DD58 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 75DB5A63116E804800B1DD58 /* Sparkle.framework */; };
@@ -123,6 +125,8 @@
 		7599303411716B9D006DDE0C /* PeepOpen.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PeepOpen.icns; path = "Artwork/PeepOpen Files/PeepOpen.icns"; sourceTree = "<group>"; };
 		75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = PreferencesWindowController.rb; path = Classes/Controllers/PreferencesWindowController.rb; sourceTree = "<group>"; };
 		75B04006116FDFF800053C2B /* WelcomeWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = WelcomeWindowController.rb; path = Classes/Controllers/WelcomeWindowController.rb; sourceTree = "<group>"; };
+		75BAB435117EDA1800955D02 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ReleaseNotesWindow.xib; sourceTree = "<group>"; };
+		75BAB437117EDA3800955D02 /* ReleaseNotesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = ReleaseNotesWindowController.rb; path = Classes/Controllers/ReleaseNotesWindowController.rb; sourceTree = "<group>"; };
 		75BFEA8C116E9DA600D7D862 /* Support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Support; sourceTree = "<group>"; };
 		75DB5A63116E804800B1DD58 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "/Users/topfunky/src/Sparkle/With Garbage Collection/Sparkle.framework"; sourceTree = "<absolute>"; };
 		75E2E76A1150891E0056AD27 /* FuzzyCell.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyCell.rb; path = Classes/Views/FuzzyCell.rb; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 				2BFA9DA510CDF852007972A1 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				75BAB434117EDA1800955D02 /* ReleaseNotesWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				756C2A621155D97F000E19D8 /* AppDelegate.rb */,
 				75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */,
 				75B04006116FDFF800053C2B /* WelcomeWindowController.rb */,
+				75BAB437117EDA3800955D02 /* ReleaseNotesWindowController.rb */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -292,6 +298,7 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				172754B4107597CF00D0347B /* Copy Frameworks */,
+				75BAB3F5117E7C4400955D02 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -343,6 +350,8 @@
 				75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */,
 				7599303511716B9D006DDE0C /* PeepOpen.icns in Resources */,
 				750F49FE1173F6DF00015D47 /* dmg-background.png in Resources */,
+				75BAB436117EDA1800955D02 /* ReleaseNotesWindow.xib in Resources */,
+				75BAB438117EDA3800955D02 /* ReleaseNotesWindowController.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +397,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# The macruby_deploy command-line tool with the --embed argument will make sure the MacRuby framework will be embedded in your .app. Default options will be used. Pass the -h option to get more information.\nPATH=\"$PATH:/usr/local/bin\" macruby_deploy --embed \"$TARGET_BUILD_DIR/$PROJECT_NAME.app\"";
 		};
+		75BAB3F5117E7C4400955D02 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ ${CONFIGURATION} == \"Release\" ]]\nthen\n\t# Set to whatever you have as CFBundleHelpBook in your Info.plist\n\tHELP_FOLDER=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/English.lproj/PeepOpen Help/\"\n\tHELP_DOC=\"English.lproj/PeepOpen Help.vpdoc\"\n\t# Clean folder, so we don't have extra junk in there\n\trm -rf \"$HELP_FOLDER\"\n\techo \"Generating documentation...\"\n\topen \"$SRCROOT/$HELP_DOC\"\n\tosascript -e \"tell application \\\"VoodooPad\\\"\" \\\n\t\t-e \"web export the document of the front window to \\\"$HELP_FOLDER\\\" using conversion format \\\"RTFD to HTML\\\" with properties {fileExtension:\\\"html\\\"}\" \\\n\t\t-e \"quit\" \\\n\t\t-e \"end tell\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -430,6 +452,14 @@
 				2BFA9DA610CDF852007972A1 /* English */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		75BAB434117EDA1800955D02 /* ReleaseNotesWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75BAB435117EDA1800955D02 /* English */,
+			);
+			name = ReleaseNotesWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
