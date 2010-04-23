@@ -22,13 +22,9 @@ class AppDelegate
   def applicationDidFinishLaunching(aNotification)
     createStatusBarMenu
 
-    # DEBUG
-    #    unless NSUserDefaults.standardUserDefaults.boolForKey("hasBeenRunAtLeastOnce")
-    showWelcome(self)
-    #    end
-
-    @fuzzyWindowController =
-      windowControllerForNib("FuzzyWindow")
+    unless NSUserDefaults.standardUserDefaults.boolForKey("hasBeenRunAtLeastOnce")
+      showWelcome(self)
+    end
   end
 
   def createStatusBarMenu
@@ -46,8 +42,8 @@ class AppDelegate
   # Do something with the dropped file.
 
   def application(sender, openFile:path)
-    fuzzyWindowController.tableViewController.loadFilesFromProjectRoot(path)
     fuzzyWindowController.show(self)
+    fuzzyWindowController.tableViewController.loadFilesFromProjectRoot(path)
   end
 
   def showPreferences(sender)
@@ -79,6 +75,10 @@ class AppDelegate
   def windowControllerForNib nibName
     klass = Object.const_get "#{nibName}Controller"
     klass.alloc.initWithWindowNibName(nibName)
+  end
+
+  def fuzzyWindowController
+    @fuzzyWindowController ||= windowControllerForNib("FuzzyWindow")
   end
 
 end

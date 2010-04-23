@@ -117,6 +117,9 @@ class FuzzyTableViewController
 
       NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
                                            withApplication:editorApplicationName)
+
+      # Reset for next search
+      searchForString("")
     end
   end
 

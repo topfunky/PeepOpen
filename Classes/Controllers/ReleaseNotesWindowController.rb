@@ -10,6 +10,7 @@ class ReleaseNotesWindowController < NSWindowController
   attr_accessor :webView
 
   def show(sender)
+    NSApp.activateIgnoringOtherApps(true)
     window.center
     showWindow(sender)
     

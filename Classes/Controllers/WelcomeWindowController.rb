@@ -24,7 +24,7 @@ class WelcomeWindowController < NSWindowController
 
   def showPreferences(sender)
     window.close
-    NSApplication.sharedApplication.delegate.showPreferences(self)
+    NSApp.delegate.showPreferences(self)
   end
 
 end

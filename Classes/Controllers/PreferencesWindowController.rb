@@ -10,8 +10,11 @@ class PreferencesWindowController < NSWindowController
   attr_accessor :applicationPopup
 
   def show(sender)
-    showWindow(sender)
+    NSApp.activateIgnoringOtherApps(true)
     window.center
+    showWindow(sender)
+
+#    configureBWWidgets
   end
 
   def installPlugin(sender)
