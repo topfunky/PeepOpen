@@ -6,9 +6,10 @@
 
 class FuzzyWindowController < NSWindowController
 
-  attr_accessor :tableViewController, :window, :searchField, :statusLabel
+  attr_accessor :tableViewController, :searchField, :statusLabel
 
-  def activate
+  def show(sender)
+    window.center
     showWindow self
     tableViewController.selectFirstRow
     searchField.setStringValue("")

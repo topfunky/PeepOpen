@@ -93,7 +93,7 @@ class FuzzyRecordTest < Test::Unit::TestCase
   
   test "ignores spaces in search string" do
     records = createRecords
-    assert_equal 4, FuzzyRecord.filterRecords(records, forString:"c m").length
+    assert_equal 5, FuzzyRecord.filterRecords(records, forString:"c m").length
   end
   
   test "stores recently opened records" do

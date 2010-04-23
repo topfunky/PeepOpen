@@ -6,7 +6,10 @@
 
 class WelcomeWindowController < NSWindowController
 
-  attr_accessor :preferencesWindowController
+  def windowDidLoad
+    NSLog "Loaded welcome"
+    # TODO: Configure styled text fields
+  end
 
   def show(sender)
     window.center
@@ -15,9 +18,13 @@ class WelcomeWindowController < NSWindowController
                                                 forKey:"hasBeenRunAtLeastOnce")
   end
 
+  def close
+    window.close
+  end
+
   def showPreferences(sender)
-    preferencesWindowController.show(self)
-    close
+    window.close
+    NSApplication.sharedApplication.delegate.showPreferences(self)
   end
 
 end

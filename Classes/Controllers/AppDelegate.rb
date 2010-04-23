@@ -6,7 +6,7 @@
 
 class AppDelegate
 
-  attr_accessor :mainWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController
+  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController
 
   def self.registrationDefaults
     {
@@ -20,25 +20,36 @@ class AppDelegate
   end
 
   def applicationDidFinishLaunching(aNotification)
-    unless NSUserDefaults.standardUserDefaults.boolForKey("hasBeenRunAtLeastOnce")
-      showWelcome(self)
-    end
+    # DEBUG
+    #    unless NSUserDefaults.standardUserDefaults.boolForKey("hasBeenRunAtLeastOnce")
+    showWelcome(self)
+    #    end
+
+    @fuzzyWindowController =
+      windowControllerForNib("FuzzyWindow")
   end
 
   ##
   # Do something with the dropped file.
 
   def application(sender, openFile:path)
-    mainWindowController.tableViewController.loadFilesFromProjectRoot(path)
-    mainWindowController.activate
+    fuzzyWindowController.tableViewController.loadFilesFromProjectRoot(path)
+    fuzzyWindowController.show(self)
   end
 
   def showPreferences(sender)
-    mainWindowController.close
+    # TODO: If visible
+    if fuzzyWindowController.respondsToSelector(:close)
+      fuzzyWindowController.close
+    end
+    self.preferencesWindowController =
+      windowControllerForNib("PreferencesWindow")
     preferencesWindowController.show(self)
   end
 
   def showWelcome(sender)
+    self.welcomeWindowController =
+      windowControllerForNib("WelcomeWindow")
     welcomeWindowController.show(self)
   end
 
@@ -49,7 +60,7 @@ class AppDelegate
   end
 
   private
-  
+
   # Given +nibName+, allocate and initialize the appropriate window
   # controller for the NIB.
   def windowControllerForNib nibName
