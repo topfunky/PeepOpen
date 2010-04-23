@@ -49,5 +49,7 @@
 	<string>https://peepcode.com/system/apps/PeepOpen/appcast.xml</string>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
+  <key>LSUIElement</key>
+	<string>1</string>
 </dict>
 </plist>

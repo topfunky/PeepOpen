@@ -6,7 +6,7 @@
 
 class AppDelegate
 
-  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController
+  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController, :statusMenu
 
   def self.registrationDefaults
     {
@@ -20,6 +20,8 @@ class AppDelegate
   end
 
   def applicationDidFinishLaunching(aNotification)
+    createStatusBarMenu
+
     # DEBUG
     #    unless NSUserDefaults.standardUserDefaults.boolForKey("hasBeenRunAtLeastOnce")
     showWelcome(self)
@@ -27,6 +29,17 @@ class AppDelegate
 
     @fuzzyWindowController =
       windowControllerForNib("FuzzyWindow")
+  end
+
+  def createStatusBarMenu
+    statusItem =
+      NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
+    # NSSquareStatusItemLength
+    statusItem.setMenu(statusMenu)
+    statusItem.setHighlightMode(true)
+    statusItem.setToolTip("PeepOpen")
+    statusItem.setImage(NSImage.imageNamed("statusItemIcon.png"))
+    # statusItem.setTitle("PeepOpen")
   end
 
   ##
