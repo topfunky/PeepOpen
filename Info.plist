@@ -36,7 +36,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.1.9</string>
+	<string>0.2.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -49,7 +49,7 @@
 	<string>https://peepcode.com/system/apps/PeepOpen/appcast.xml</string>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
-  <key>LSUIElement</key>
+	<key>LSUIElement</key>
 	<string>1</string>
 </dict>
 </plist>

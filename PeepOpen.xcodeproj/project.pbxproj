@@ -125,7 +125,7 @@
 		756C28F811555825000E19D8 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Helper.m"; path = "Classes/Helpers/NSDate+Helper.m"; sourceTree = "<group>"; };
 		756C2A621155D97F000E19D8 /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/Controllers/AppDelegate.rb; sourceTree = "<group>"; };
 		756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "Array+GCD.rb"; path = "Classes/Helpers/Array+GCD.rb"; sourceTree = "<group>"; };
-		756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/topfunky/src/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Vendor/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		758B9B2311823FA900668505 /* statusItemIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = statusItemIcon.png; path = Artwork/statusItemIcon.png; sourceTree = "<group>"; };
 		7599303411716B9D006DDE0C /* PeepOpen.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PeepOpen.icns; path = "Artwork/PeepOpen Files/PeepOpen.icns"; sourceTree = "<group>"; };
 		75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = PreferencesWindowController.rb; path = Classes/Controllers/PreferencesWindowController.rb; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		75C013E6118211C10037B468 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WelcomeWindow.xib; sourceTree = "<group>"; };
 		75C014301182196B0037B468 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		75C0144511821B030037B468 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FuzzyWindow.xib; sourceTree = "<group>"; };
-		75DB5A63116E804800B1DD58 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "/Users/topfunky/src/Sparkle/With Garbage Collection/Sparkle.framework"; sourceTree = "<absolute>"; };
+		75DB5A63116E804800B1DD58 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle.framework; sourceTree = "<group>"; };
 		75E2E76A1150891E0056AD27 /* FuzzyCell.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyCell.rb; path = Classes/Views/FuzzyCell.rb; sourceTree = "<group>"; };
 		75E2E76C1150898F0056AD27 /* FuzzyRecord.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyRecord.rb; path = Classes/Models/FuzzyRecord.rb; sourceTree = "<group>"; };
 		75E2E7E5115161F60056AD27 /* TFUtility.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = TFUtility.rb; path = Classes/TFUtility.rb; sourceTree = "<group>"; };

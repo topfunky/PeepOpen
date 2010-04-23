@@ -1,3 +1,9 @@
+h1. <span>2010-04-21</span> Release 0.2.0
+
+h2. Faceless Menu Bar Item
+
+* The app is now a menu bar item and won't show up in the dock or app switcher.
+
 h1. <span>2010-04-21</span> Release 0.1.9
 
 h2. UI, Help Docs, MacVim, Caching, Default Sort, Coda
