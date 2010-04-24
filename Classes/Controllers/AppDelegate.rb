@@ -30,12 +30,10 @@ class AppDelegate
   def createStatusBarMenu
     statusItem =
       NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
-    # NSSquareStatusItemLength
     statusItem.setMenu(statusMenu)
     statusItem.setHighlightMode(true)
     statusItem.setToolTip("PeepOpen")
     statusItem.setImage(NSImage.imageNamed("statusItemIcon.png"))
-    # statusItem.setTitle("PeepOpen")
   end
 
   ##

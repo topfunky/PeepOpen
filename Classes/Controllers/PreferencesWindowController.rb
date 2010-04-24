@@ -10,11 +10,11 @@ class PreferencesWindowController < NSWindowController
   attr_accessor :applicationPopup
 
   def show(sender)
+#    configureSubviews
+
     NSApp.activateIgnoringOtherApps(true)
     window.center
     showWindow(sender)
-
-#    configureBWWidgets
   end
 
   def installPlugin(sender)
@@ -186,6 +186,18 @@ class PreferencesWindowController < NSWindowController
 
   def alertDidEnd(alert, returnCode:returnCode, contextInfo:contextInfo)
     window.close
+  end
+
+  def configureSubviews
+    window.contentView.subviews.each do |subview|
+      NSLog "subview #{subview.class}"
+      case subview.class.name
+      when "NSTextField"
+        NSLog "textfiled"
+        subview.backgroundStyle = NSBackgroundStyleRaised
+        subview.setNeedsDisplay(true)
+      end
+    end
   end
 
 end

@@ -41,7 +41,8 @@ class FuzzyCell < NSCell
     titleAttributes = {
       NSForegroundColorAttributeName => darkGrey,
       NSFontAttributeName            => NSFont.systemFontOfSize(TITLE_FONT_SIZE),
-      NSParagraphStyleAttributeName  => paragraphStyle
+      NSParagraphStyleAttributeName  => paragraphStyle,
+      NSShadowAttributeName          => customShadow
     }
 
     # Create strings for labels
@@ -99,14 +100,14 @@ class FuzzyCell < NSCell
     # Draw the text
     aTitle.drawInRect(aTitleBox)
     aSubtitle.drawInRect(aSubtitleBox)
-    
+
     # TODO: Draw 1px white on top if this is the top cell in the table.
     drawLowerCellShadowInFrame(theCellFrame)
   end
-    
+
   ##
   # Subtle 1px shadow at bottom of cell.
-  
+
   def drawLowerCellShadowInFrame(aFrame)
     path = NSBezierPath.bezierPath
     path.setLineWidth(1.0)
@@ -292,6 +293,13 @@ class FuzzyCell < NSCell
   def paragraphStyle
     return NSMutableParagraphStyle.new.
       setLineBreakMode(NSLineBreakByTruncatingTail)
+  end
+
+  def customShadow
+    return @customShadow if @customShadow
+    @customShadow = NSShadow.new
+    @customShadow.setShadowColor(NSColor.colorWithDeviceWhite(1.0, alpha:0.5))
+    @customShadow.setShadowOffset(NSMakeSize(0.0, -1.0))
   end
 
 end
