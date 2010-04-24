@@ -42,7 +42,7 @@ class FuzzyCell < NSCell
       NSForegroundColorAttributeName => darkGrey,
       NSFontAttributeName            => NSFont.systemFontOfSize(TITLE_FONT_SIZE),
       NSParagraphStyleAttributeName  => paragraphStyle,
-      NSShadowAttributeName          => customShadow
+      NSShadowAttributeName          => whiteShadow
     }
 
     # Create strings for labels
@@ -144,7 +144,8 @@ class FuzzyCell < NSCell
                                                                        green:0.85,
                                                                        blue:0.85,
                                                                        alpha:1.0),
-      NSFontAttributeName => NSFont.fontWithName("Futura-CondensedMedium", size:22)
+      NSFontAttributeName => NSFont.fontWithName("Futura-CondensedMedium",
+                                                 size:22)
     }
     if highlighted?
       filetypeLabelAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
@@ -193,7 +194,8 @@ class FuzzyCell < NSCell
     subtitleAttributes = {
       NSForegroundColorAttributeName => NSColor.grayColor,
       NSFontAttributeName => NSFont.systemFontOfSize(SUBTITLE_FONT_SIZE),
-      NSParagraphStyleAttributeName => paragraphStyle
+      NSParagraphStyleAttributeName => paragraphStyle,
+      NSShadowAttributeName => whiteShadow
     }
 
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
@@ -295,11 +297,13 @@ class FuzzyCell < NSCell
       setLineBreakMode(NSLineBreakByTruncatingTail)
   end
 
-  def customShadow
-    return @customShadow if @customShadow
-    @customShadow = NSShadow.new
-    @customShadow.setShadowColor(NSColor.colorWithDeviceWhite(1.0, alpha:0.5))
-    @customShadow.setShadowOffset(NSMakeSize(0.0, -1.0))
+  # TODO: Put in own class
+  def whiteShadow
+    return @whiteShadow if @whiteShadow
+    @whiteShadow = NSShadow.new
+    @whiteShadow.setShadowColor(NSColor.colorWithDeviceWhite(1.0, alpha:0.9))
+    @whiteShadow.setShadowOffset(NSMakeSize(0.0, -1.0))
+    @whiteShadow.setShadowBlurRadius(0.0)
   end
 
 end
