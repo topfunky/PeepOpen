@@ -86,6 +86,26 @@
 						<reference key="NSOnImage" ref="398144755"/>
 						<reference key="NSMixedImage" ref="171779518"/>
 					</object>
+					<object class="NSMenuItem" id="664329096">
+						<reference key="NSMenu" ref="189889056"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSKeyEquivModMask">1048576</int>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="398144755"/>
+						<reference key="NSMixedImage" ref="171779518"/>
+					</object>
+					<object class="NSMenuItem" id="910018073">
+						<reference key="NSMenu" ref="189889056"/>
+						<string key="NSTitle">Reload Files</string>
+						<string key="NSKeyEquiv">r</string>
+						<int key="NSKeyEquivModMask">1048576</int>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="398144755"/>
+						<reference key="NSMixedImage" ref="171779518"/>
+					</object>
 					<object class="NSMenuItem" id="481834944">
 						<reference key="NSMenu" ref="189889056"/>
 						<bool key="NSIsDisabled">YES</bool>
@@ -205,6 +225,14 @@
 					</object>
 					<int key="connectionID">389</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">refreshFileList:</string>
+						<reference key="source" ref="700876717"/>
+						<reference key="destination" ref="910018073"/>
+					</object>
+					<int key="connectionID">393</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -252,6 +280,8 @@
 							<reference ref="360401391"/>
 							<reference ref="238773614"/>
 							<reference ref="717220529"/>
+							<reference ref="664329096"/>
+							<reference ref="910018073"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -307,6 +337,16 @@
 						<reference key="object" ref="626493118"/>
 						<reference key="parent" ref="0"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">390</int>
+						<reference key="object" ref="664329096"/>
+						<reference key="parent" ref="189889056"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">391</int>
+						<reference key="object" ref="910018073"/>
+						<reference key="parent" ref="189889056"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -330,7 +370,9 @@
 					<string>382.IBEditorWindowLastContentRect</string>
 					<string>382.IBPluginDependency</string>
 					<string>387.IBPluginDependency</string>
-					<string>388.IBPluginDependency</string>
+					<string>390.IBPluginDependency</string>
+					<string>390.ImportedFromIB2</string>
+					<string>391.IBPluginDependency</string>
 					<string>58.IBPluginDependency</string>
 					<string>58.ImportedFromIB2</string>
 				</object>
@@ -350,9 +392,11 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{313, 831}, {205, 153}}</string>
+					<string>{{372, 801}, {213, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -374,7 +418,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">389</int>
+			<int key="maxID">393</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -386,12 +430,14 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>refreshFileList:</string>
 							<string>showPreferences:</string>
 							<string>showReleaseNotesWindow:</string>
 							<string>showWelcome:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

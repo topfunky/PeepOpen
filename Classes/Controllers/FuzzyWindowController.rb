@@ -6,9 +6,10 @@
 
 class FuzzyWindowController < NSWindowController
 
-  attr_accessor :tableViewController, :searchField, :statusLabel
+  attr_accessor :tableViewController, :searchField, :statusLabel, :projectRoot
 
   def show(sender)
+    NSApp.activateIgnoringOtherApps(true)
     window.center
     showWindow self
     tableViewController.selectFirstRow
@@ -19,6 +20,11 @@ class FuzzyWindowController < NSWindowController
 
   def close
     window.close
+  end
+
+  def loadFilesFromProjectRoot(theProjectRoot)
+    self.projectRoot = theProjectRoot
+    tableViewController.loadFilesFromProjectRoot(theProjectRoot)
   end
 
   ##
@@ -64,14 +70,31 @@ class FuzzyWindowController < NSWindowController
       return true
 
     when :"noop:"
-      # Emacs-like C-g
-      handleCancel
+      unless handleKeyWithModifier
+        handleCancel
+      end
       return true
-
-      # when :"pageDown:"
-
+      
     end
+    # Other Events: :"pageDown:"
     return false
+  end
+
+  def handleKeyWithModifier
+    modifierFlags = NSApp.currentEvent.modifierFlags
+    if ((modifierFlags & NSCommandKeyMask) == NSCommandKeyMask)
+      case NSApp.currentEvent.charactersIgnoringModifiers
+      when /r/
+        FuzzyRecord.flushCache(projectRoot)
+        tableViewController.reset
+        loadFilesFromProjectRoot(projectRoot)
+        didSearchForString(searchField)
+        return true
+      end
+    elsif ((modifierFlags & NSControlKeyMask) == NSControlKeyMask)
+      # NSLog "Ctrl is down"
+    end
+    false
   end
 
   def handleNewline

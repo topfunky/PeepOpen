@@ -66,6 +66,15 @@ class FuzzyRecord
     @@cache[theProjectRoot][:records] = theRecords
   end
 
+  def self.flushCache(theProjectRoot)
+    if @@cache[theProjectRoot]
+      if @@cache[theProjectRoot][:records]
+        @@cache[theProjectRoot][:records] = nil
+        # TODO: Remove entries in :recentlyOpenedRecords if missing
+      end
+    end
+  end
+
   ##
   # Keep last 2 opened records so the user can toggle between two
   # recent files.

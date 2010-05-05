@@ -41,7 +41,7 @@ class AppDelegate
 
   def application(sender, openFile:path)
     fuzzyWindowController.show(self)
-    fuzzyWindowController.tableViewController.loadFilesFromProjectRoot(path)
+    fuzzyWindowController.loadFilesFromProjectRoot(path)
   end
 
   def showPreferences(sender)
@@ -65,6 +65,12 @@ class AppDelegate
       windowControllerForNib("ReleaseNotesWindow")
     releaseNotesWindowController.show(self)
   end
+  
+  def refreshFileList(sender)
+    # TODO: If fuzzyWindowController, flush only the records from current project, and reload.
+    FuzzyRecord.flushCache()
+  end
+    
 
   private
 

@@ -20,3 +20,4 @@ dsa_priv.pem
 
 appcast/*
 config.yml
+tmp/*

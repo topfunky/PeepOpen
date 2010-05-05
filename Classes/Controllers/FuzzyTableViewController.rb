@@ -19,6 +19,12 @@ class FuzzyTableViewController
     searchForString("")
   end
 
+  def reset
+    @allRecords = []
+    @records = []
+    tableView.reloadData
+  end
+
   ##
   # Text entered into the search field calls this method.
 
