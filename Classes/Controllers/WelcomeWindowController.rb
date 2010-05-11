@@ -7,11 +7,11 @@
 class WelcomeWindowController < NSWindowController
 
   def windowDidLoad
-    NSLog "Loaded welcome"
     # TODO: Configure styled text fields
   end
 
   def show(sender)
+    NSApp.activateIgnoringOtherApps(true)
     window.center
     showWindow(sender)
     NSUserDefaults.standardUserDefaults.setBool(true,

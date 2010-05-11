@@ -6,7 +6,7 @@
 
 class AppDelegate
 
-  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController, :statusMenu
+  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController, :statusMenu, :aboutWindowController
 
   def self.registrationDefaults
     {
@@ -64,6 +64,14 @@ class AppDelegate
     self.releaseNotesWindowController =
       windowControllerForNib("ReleaseNotesWindow")
     releaseNotesWindowController.show(self)
+  end
+
+  def showAbout(sender)
+    if (!aboutWindowController)
+      self.aboutWindowController =
+        windowControllerForNib("AboutWindow")
+    end      
+    aboutWindowController.show(self)
   end
   
   def refreshFileList(sender)

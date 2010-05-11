@@ -55,7 +55,10 @@
 		756C2DA41157E9BC000E19D8 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
 		756C2DAB1157EA08000E19D8 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */; };
 		758B9B2411823FA900668505 /* statusItemIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 758B9B2311823FA900668505 /* statusItemIcon.png */; };
-		7599303511716B9D006DDE0C /* PeepOpen.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7599303411716B9D006DDE0C /* PeepOpen.icns */; };
+		759101A81199DCE600F4E02E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 759101A71199DCE600F4E02E /* icon.icns */; };
+		759101CB1199DFCC00F4E02E /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759101C91199DFCC00F4E02E /* AboutWindow.xib */; };
+		759101CD1199DFE800F4E02E /* AboutWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 759101CC1199DFE800F4E02E /* AboutWindowController.rb */; };
+		7591020D1199E6D800F4E02E /* aboutBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7591020C1199E6D800F4E02E /* aboutBackground.png */; };
 		75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */; };
 		75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B04006116FDFF800053C2B /* WelcomeWindowController.rb */; };
 		75BAB436117EDA1800955D02 /* ReleaseNotesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BAB434117EDA1800955D02 /* ReleaseNotesWindow.xib */; };
@@ -127,7 +130,10 @@
 		756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "Array+GCD.rb"; path = "Classes/Helpers/Array+GCD.rb"; sourceTree = "<group>"; };
 		756C2DA31157E9BC000E19D8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Vendor/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		758B9B2311823FA900668505 /* statusItemIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = statusItemIcon.png; path = Artwork/statusItemIcon.png; sourceTree = "<group>"; };
-		7599303411716B9D006DDE0C /* PeepOpen.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PeepOpen.icns; path = "Artwork/PeepOpen Files/PeepOpen.icns"; sourceTree = "<group>"; };
+		759101A71199DCE600F4E02E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = Artwork/icon.icns; sourceTree = "<group>"; };
+		759101CA1199DFCC00F4E02E /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/AboutWindow.xib; sourceTree = "<group>"; };
+		759101CC1199DFE800F4E02E /* AboutWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AboutWindowController.rb; path = Classes/Controllers/AboutWindowController.rb; sourceTree = "<group>"; };
+		7591020C1199E6D800F4E02E /* aboutBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = aboutBackground.png; path = Artwork/aboutBackground.png; sourceTree = "<group>"; };
 		75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = PreferencesWindowController.rb; path = Classes/Controllers/PreferencesWindowController.rb; sourceTree = "<group>"; };
 		75B04006116FDFF800053C2B /* WelcomeWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = WelcomeWindowController.rb; path = Classes/Controllers/WelcomeWindowController.rb; sourceTree = "<group>"; };
 		75BAB435117EDA1800955D02 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ReleaseNotesWindow.xib; sourceTree = "<group>"; };
@@ -236,9 +242,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7591020C1199E6D800F4E02E /* aboutBackground.png */,
+				759101A71199DCE600F4E02E /* icon.icns */,
 				758B9B2311823FA900668505 /* statusItemIcon.png */,
 				750F49FD1173F6DF00015D47 /* dmg-background.png */,
-				7599303411716B9D006DDE0C /* PeepOpen.icns */,
 				75BFEA8C116E9DA600D7D862 /* Support */,
 				2BFA9DA510CDF852007972A1 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -247,6 +254,7 @@
 				75C013E5118211C10037B468 /* WelcomeWindow.xib */,
 				75C0142F1182196B0037B468 /* PreferencesWindow.xib */,
 				75C0144411821B030037B468 /* FuzzyWindow.xib */,
+				759101C91199DFCC00F4E02E /* AboutWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -279,6 +287,7 @@
 				75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */,
 				75B04006116FDFF800053C2B /* WelcomeWindowController.rb */,
 				75BAB437117EDA3800955D02 /* ReleaseNotesWindowController.rb */,
+				759101CC1199DFE800F4E02E /* AboutWindowController.rb */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -360,7 +369,6 @@
 				75BFEA9A116E9DA600D7D862 /* Support in Resources */,
 				75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */,
 				75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */,
-				7599303511716B9D006DDE0C /* PeepOpen.icns in Resources */,
 				750F49FE1173F6DF00015D47 /* dmg-background.png in Resources */,
 				75BAB436117EDA1800955D02 /* ReleaseNotesWindow.xib in Resources */,
 				75BAB438117EDA3800955D02 /* ReleaseNotesWindowController.rb in Resources */,
@@ -368,6 +376,10 @@
 				75C014311182196B0037B468 /* PreferencesWindow.xib in Resources */,
 				75C0144611821B030037B468 /* FuzzyWindow.xib in Resources */,
 				758B9B2411823FA900668505 /* statusItemIcon.png in Resources */,
+				759101A81199DCE600F4E02E /* icon.icns in Resources */,
+				759101CB1199DFCC00F4E02E /* AboutWindow.xib in Resources */,
+				759101CD1199DFE800F4E02E /* AboutWindowController.rb in Resources */,
+				7591020D1199E6D800F4E02E /* aboutBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +480,14 @@
 				2BFA9DA610CDF852007972A1 /* English */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		759101C91199DFCC00F4E02E /* AboutWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				759101CA1199DFCC00F4E02E /* English */,
+			);
+			name = AboutWindow.xib;
 			sourceTree = "<group>";
 		};
 		75BAB434117EDA1800955D02 /* ReleaseNotesWindow.xib */ = {

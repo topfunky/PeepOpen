@@ -67,6 +67,7 @@ class FuzzyRecord
   end
 
   def self.flushCache(theProjectRoot)
+    return if @@cache.nil?
     if @@cache[theProjectRoot]
       if @@cache[theProjectRoot][:records]
         @@cache[theProjectRoot][:records] = nil

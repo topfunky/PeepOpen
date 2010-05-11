@@ -7,15 +7,60 @@
 
 class PreferencesWindowController < NSWindowController
 
-  attr_accessor :applicationPopup
+  attr_accessor :applicationPopup, :editorView, :updatesView, :scmView
+  attr_accessor :editorToolbarItem, :updatesToolbarItem, :scmToolbarItem
+  attr_accessor :currentView
 
   def show(sender)
-#    configureSubviews
-
+    # configureSubviews
     NSApp.activateIgnoringOtherApps(true)
     window.center
     showWindow(sender)
   end
+
+  def windowDidLoad
+    switchToView(editorView, item:editorToolbarItem, animate:false)
+  end
+
+  def switchToEditor(sender)
+    NSLog "editor"
+    switchToView(editorView, item:editorToolbarItem, animate:true)
+  end
+
+  def switchToUpdates(sender)
+    NSLog "updates"
+    switchToView(updatesView, item:updatesToolbarItem, animate:true)
+  end
+
+  def switchToSCM(sender)
+    NSLog "scm"
+    switchToView(scmView, item:scmToolbarItem, animate:true)
+  end
+
+  ##
+  # Modified from the Ingredients documentation viewer project.
+
+  def switchToView(view, item:toolbarItem, animate:animate)
+    window.toolbar.setSelectedItemIdentifier(toolbarItem.itemIdentifier)
+
+    if (currentView.respondsToSelector("removeFromSuperview"))
+      currentView.removeFromSuperview
+    end
+
+    view.setFrameOrigin([0,0])
+    window.contentView.addSubview(view)
+
+    setCurrentView(view)
+
+    borderHeight = window.frame.size.height - window.contentView.frame.size.height
+
+    newWindowFrame = window.frame
+    newWindowFrame.size.height = view.frame.size.height + borderHeight
+    newWindowFrame.origin.y += window.frame.size.height - newWindowFrame.size.height
+
+    window.setFrame(newWindowFrame, display:true, animate:animate)
+  end
+
 
   def installPlugin(sender)
     rawTitle = applicationPopup.titleOfSelectedItem
