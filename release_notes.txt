@@ -1,8 +1,13 @@
-h1. <span>2010-04-21</span> Release 0.2.0
+h1. <span>2010-05-11</span> Release 0.2.0
 
-h2. Faceless Menu Bar Item
+h2. Menu Bar App, Manual File Reloading
 
 * The app is now a menu bar item and won't show up in the dock or app switcher.
+* Command-R refreshes the cached list of files for a single project (use when switching git branches or after generating new files for your app).
+* Refreshing while searching retains the search term and inserts new files with search applied.
+* UI polishing.
+* Source of BWToolkit and Sparkle are now stored in local Vendor directory for self-contained building.
+* Re-implemented preferences as a legitimate toolbar-driven window.
 
 h1. <span>2010-04-21</span> Release 0.1.9
 
