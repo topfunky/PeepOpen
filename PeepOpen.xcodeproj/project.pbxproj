@@ -595,8 +595,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug\"",
-					"\"$(SRCROOT)/../../../src/BWToolkit\"",
-					"\"$(SRCROOT)/../../../src/Sparkle/With Garbage Collection\"",
+					"\"$(SRCROOT)/Vendor\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -618,8 +617,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug\"",
-					"\"$(SRCROOT)/../../../src/BWToolkit\"",
-					"\"$(SRCROOT)/../../../src/Sparkle/With Garbage Collection\"",
+					"\"$(SRCROOT)/Vendor\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
