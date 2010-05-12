@@ -121,11 +121,16 @@ class FuzzyTableViewController
       editorApplicationName =
         NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
 
+      if (editorApplicationName.strip == "")
+        return false
+      end
+
       NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
                                            withApplication:editorApplicationName)
 
       # Reset for next search
       searchForString("")
+      return true
     end
   end
 

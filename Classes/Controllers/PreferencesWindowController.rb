@@ -12,10 +12,11 @@ class PreferencesWindowController < NSWindowController
   attr_accessor :currentView
 
   def show(sender)
-    # configureSubviews
     NSApp.activateIgnoringOtherApps(true)
     window.center
     showWindow(sender)
+
+    # configureSubviews
   end
 
   def windowDidLoad
@@ -23,22 +24,21 @@ class PreferencesWindowController < NSWindowController
   end
 
   def switchToEditor(sender)
-    NSLog "editor"
     switchToView(editorView, item:editorToolbarItem, animate:true)
   end
 
   def switchToUpdates(sender)
-    NSLog "updates"
     switchToView(updatesView, item:updatesToolbarItem, animate:true)
   end
 
   def switchToSCM(sender)
-    NSLog "scm"
     switchToView(scmView, item:scmToolbarItem, animate:true)
   end
 
   ##
   # Modified from the Ingredients documentation viewer project.
+  #
+  # TODO: Resizing is wonky. Currently using similarly sized views.
 
   def switchToView(view, item:toolbarItem, animate:animate)
     window.toolbar.setSelectedItemIdentifier(toolbarItem.itemIdentifier)
@@ -63,9 +63,18 @@ class PreferencesWindowController < NSWindowController
 
 
   def installPlugin(sender)
-    rawTitle = applicationPopup.titleOfSelectedItem
-    selector = "install#{rawTitle.gsub(' ', '')}:".to_sym
-    performSelector(selector, withObject:self)
+    # Force NSComboBox to give up focus and save its value.
+    window.makeFirstResponder(nil)
+    # HACK: Use value from defaults since NSComboBox doesn't always
+    # record the initial value correctly.
+    editorApplicationName =
+      NSUserDefaults.standardUserDefaults.stringForKey("editorApplicationName")
+    selector = "install#{editorApplicationName.gsub(' ', '')}:".to_sym
+    if (self.respondsToSelector(selector))
+      performSelector(selector, withObject:self)
+    else
+      runWarningAlertWithMessage("No Plugin Found", informativeText:"We don't have a plugin for that editor yet. You can fork our project and add one for future releases: http://github.com/topfunky/PeepOpen-EditorSupport")
+    end
   end
 
   def installTextMate(sender)
@@ -229,18 +238,35 @@ class PreferencesWindowController < NSWindowController
                                    contextInfo:nil)
   end
 
+  def runWarningAlertWithMessage(theMessage, informativeText:theInformativeText)
+    alert = NSAlert.alloc.init
+    alert.addButtonWithTitle("OK")
+    alert.setMessageText(theMessage)
+    alert.setInformativeText(theInformativeText)
+    alert.setAlertStyle(NSWarningAlertStyle)
+    alert.beginSheetModalForWindow(window,
+                                   modalDelegate:self,
+                                   didEndSelector:nil,
+                                   contextInfo:nil)
+  end
+
   def alertDidEnd(alert, returnCode:returnCode, contextInfo:contextInfo)
     window.close
   end
 
+  ##
+  # TODO: Add text shadow to text labels.
+  #
+  # Doesn't work yet.
+
   def configureSubviews
-    window.contentView.subviews.each do |subview|
-      NSLog "subview #{subview.class}"
-      case subview.class.name
-      when "NSTextField"
-        NSLog "textfiled"
-        subview.backgroundStyle = NSBackgroundStyleRaised
-        subview.setNeedsDisplay(true)
+    [editorView, updatesView, scmView].each do |prefView|
+      prefView.subviews.each do |subview|
+        case subview.class.name
+        when "NSTextField"
+          subview.cell.backgroundStyle = NSBackgroundStyleRaised
+          subview.setNeedsDisplay(true)
+        end
       end
     end
   end

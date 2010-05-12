@@ -65,7 +65,18 @@ class FuzzyWindowController < NSWindowController
       tableViewController.selectNextRow
       return true
 
+    when :"cancelOperation:"
+      # Triggered when ESC is hit but search field has text in it
+      if (searchField.stringValue != "")
+        searchField.setStringValue("")
+        didSearchForString(searchField)
+      else
+        handleCancel
+      end
+      return true
+
     when :"cancel:"
+      # Triggered when ESC is hit with blank search field
       handleCancel
       return true
 
@@ -74,7 +85,7 @@ class FuzzyWindowController < NSWindowController
         handleCancel
       end
       return true
-      
+
     end
     # Other Events: :"pageDown:"
     return false
@@ -85,10 +96,7 @@ class FuzzyWindowController < NSWindowController
     if ((modifierFlags & NSCommandKeyMask) == NSCommandKeyMask)
       case NSApp.currentEvent.charactersIgnoringModifiers
       when /r/
-        FuzzyRecord.flushCache(projectRoot)
-        tableViewController.reset
-        loadFilesFromProjectRoot(projectRoot)
-        didSearchForString(searchField)
+        refreshFileList(self)
         return true
       end
     elsif ((modifierFlags & NSControlKeyMask) == NSControlKeyMask)
@@ -97,9 +105,19 @@ class FuzzyWindowController < NSWindowController
     false
   end
 
+  def refreshFileList(sender)
+    FuzzyRecord.flushCache(projectRoot)
+    tableViewController.reset
+    loadFilesFromProjectRoot(projectRoot)
+    didSearchForString(searchField)
+  end
+
   def handleNewline
-    tableViewController.handleRowClick(tableViewController.tableView.selectedRow)
-    window.close
+    if tableViewController.handleRowClick(tableViewController.tableView.selectedRow)
+      window.close
+    else
+      runWarningAlertWithMessage("No Text Editor Found", informativeText:"Please choose a text editor in PeepOpen preferences.")
+    end
   end
 
   def handleCancel
@@ -108,6 +126,27 @@ class FuzzyWindowController < NSWindowController
     NSWorkspace.sharedWorkspace.launchApplication(editorApplicationName)
     window.close
   end
+
+  private
+
+
+  ##
+  # Shamefully copied from PreferencesWindowController.rb.
+  #
+  # Need to refactor into a subclass of NSWindowController.
+  
+  def runWarningAlertWithMessage(theMessage, informativeText:theInformativeText)
+    alert = NSAlert.alloc.init
+    alert.addButtonWithTitle("OK")
+    alert.setMessageText(theMessage)
+    alert.setInformativeText(theInformativeText)
+    alert.setAlertStyle(NSWarningAlertStyle)
+    alert.beginSheetModalForWindow(window,
+                                   modalDelegate:self,
+                                   didEndSelector:nil,
+                                   contextInfo:nil)
+  end
+
 
 end
 

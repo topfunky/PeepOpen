@@ -4,10 +4,14 @@ h2. Menu Bar App, Manual File Reloading
 
 * The app is now a menu bar item and won't show up in the dock or app switcher.
 * Command-R refreshes the cached list of files for a single project (use when switching git branches or after generating new files for your app).
+* New icon! By the talented Eddie Wilson, http://eddit.com
 * Refreshing while searching retains the search term and inserts new files with search applied.
 * UI polishing.
 * Source of BWToolkit and Sparkle are now stored in local Vendor directory for self-contained building.
 * Re-implemented preferences as a legitimate toolbar-driven window.
+* Added preference to NOT show Git metadata. This will be faster on some older machines.
+* Added preference to run Git diff against current files (not yet in the index) or HEAD (last commit). Running against HEAD may be slower on older machines.
+* Extracted graphical window layouts to separate Nib files. May launch faster in some cases.
 
 h1. <span>2010-04-21</span> Release 0.1.9
 

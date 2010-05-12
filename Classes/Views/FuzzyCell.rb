@@ -194,8 +194,7 @@ class FuzzyCell < NSCell
     subtitleAttributes = {
       NSForegroundColorAttributeName => NSColor.grayColor,
       NSFontAttributeName => NSFont.systemFontOfSize(SUBTITLE_FONT_SIZE),
-      NSParagraphStyleAttributeName => paragraphStyle,
-      NSShadowAttributeName => whiteShadow
+      NSParagraphStyleAttributeName => paragraphStyle
     }
 
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)

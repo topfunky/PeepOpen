@@ -11,7 +11,7 @@
 			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="4"/>
+			<integer value="3"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -33,7 +33,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 69}, {527, 441}}</string>
 				<int key="NSWTFlags">-1535639552</int>
-				<string key="NSWindowTitle">Window</string>
+				<string key="NSWindowTitle">Open File</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -491,9 +491,9 @@
 				<string key="23.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="24.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="25.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
-				<string key="3.IBEditorWindowLastContentRect">{{313, 526}, {527, 441}}</string>
+				<string key="3.IBEditorWindowLastContentRect">{{372, 526}, {527, 441}}</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="3.IBWindowTemplateEditedContentRect">{{313, 526}, {527, 441}}</string>
+				<string key="3.IBWindowTemplateEditedContentRect">{{372, 526}, {527, 441}}</string>
 				<boolean value="YES" key="3.NSWindowTemplate.visibleAtLaunch"/>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -543,9 +543,11 @@
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="didSearchForString:">id</string>
+						<string key="refreshFileList:">id</string>
 						<string key="show:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="projectRoot">id</string>
 						<string key="searchField">id</string>
 						<string key="statusLabel">id</string>
 						<string key="tableViewController">id</string>

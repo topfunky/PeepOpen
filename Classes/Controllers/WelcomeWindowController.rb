@@ -6,6 +6,8 @@
 
 class WelcomeWindowController < NSWindowController
 
+  attr_accessor :imageView
+
   def windowDidLoad
     # TODO: Configure styled text fields
   end
@@ -14,6 +16,7 @@ class WelcomeWindowController < NSWindowController
     NSApp.activateIgnoringOtherApps(true)
     window.center
     showWindow(sender)
+    
     NSUserDefaults.standardUserDefaults.setBool(true,
                                                 forKey:"hasBeenRunAtLeastOnce")
   end

@@ -12,6 +12,8 @@ class AppDelegate
     {
       "editorApplicationName" => "TextMate",
       "maximumDocumentCount"  => 1000,
+      "scmShowMetadata" => true,
+      "scmGitDiffAgainst" => "Current"
     }
   end
 
@@ -21,6 +23,9 @@ class AppDelegate
 
   def applicationDidFinishLaunching(aNotification)
     createStatusBarMenu
+    # HACK: Load window and immediately close it so menu validation
+    # doesn't accidentally show it.
+    fuzzyWindowController.window.close
 
     unless NSUserDefaults.standardUserDefaults.boolForKey("hasBeenRunAtLeastOnce")
       showWelcome(self)
@@ -68,17 +73,29 @@ class AppDelegate
 
   def showAbout(sender)
     if (!aboutWindowController)
-      self.aboutWindowController =
-        windowControllerForNib("AboutWindow")
-    end      
+      self.aboutWindowController = windowControllerForNib("AboutWindow")
+    end
     aboutWindowController.show(self)
   end
-  
+
   def refreshFileList(sender)
-    # TODO: If fuzzyWindowController, flush only the records from current project, and reload.
-    FuzzyRecord.flushCache()
+    fuzzyWindowController.refreshFileList(sender)
   end
-    
+
+  ##
+  # Returns true if the menu item should be enabled.
+
+  def validateMenuItem(menuItem)
+    case menuItem.title
+    when "Reload Files"
+      if fuzzyWindowController.window.isVisible
+        return true
+      else
+        return false
+      end
+    end
+    return true
+  end
 
   private
 

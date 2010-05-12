@@ -71,13 +71,14 @@ class FuzzyRecord
     if @@cache[theProjectRoot]
       if @@cache[theProjectRoot][:records]
         @@cache[theProjectRoot][:records] = nil
+        @@cache[theProjectRoot][:recentlyOpenedRecords] = nil
         # TODO: Remove entries in :recentlyOpenedRecords if missing
       end
     end
   end
 
   ##
-  # Keep last 2 opened records so the user can toggle between two
+  # Keep last few opened records so the user can toggle between
   # recent files.
 
   def self.storeRecentlyOpenedRecord(theRecord)
@@ -103,6 +104,12 @@ class FuzzyRecord
   end
 
   def self.cacheScmStatus(theProjectRoot)
+    @@scmStatusDictionary = {}
+
+    return unless NSUserDefaults.standardUserDefaults.boolForKey("scmShowMetadata")
+    gitDiffAgainst = NSUserDefaults.standardUserDefaults.stringForKey("scmGitDiffAgainst")
+    gitDiffAgainst = "" if (gitDiffAgainst == "Current")
+
     # TODO: Run async
     #
     # Run "git diff --numstat" on projectRoot and save for all
@@ -110,15 +117,16 @@ class FuzzyRecord
     #
     # 3       1       Tests/run_suite.rb
     # -       -       Foo/Bar.rb
-    @@scmStatusDictionary = {}
     projectDotGitPath =
       NSString.pathWithComponents([theProjectRoot, ".git"])
     unless NSFileManager.defaultManager.fileExistsAtPath(projectDotGitPath)
       return
     end
-    if output = `cd #{theProjectRoot} && git diff --numstat`
+    if output = `cd #{theProjectRoot} && git diff --numstat #{gitDiffAgainst}`
       output.split(/\n/).each do |outputLine|
         added, deleted, filePath = outputLine.split
+        added   = 30 if added.to_i   > 30
+        deleted = 30 if deleted.to_i > 30
         @@scmStatusDictionary[filePath] = [added.to_i, deleted.to_i]
       end
     end
