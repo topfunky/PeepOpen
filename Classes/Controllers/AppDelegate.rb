@@ -27,6 +27,9 @@ class AppDelegate
     # doesn't accidentally show it.
     fuzzyWindowController.window.close
 
+    # Force loading of help index for searching
+    NSHelpManager.sharedHelpManager
+
     unless NSUserDefaults.standardUserDefaults.boolForKey("hasBeenRunAtLeastOnce")
       showWelcome(self)
     end

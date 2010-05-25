@@ -36,15 +36,15 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.2.0</string>
+	<string>${PEEPOPEN_BUNDLE_VERSION}</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>CFBundleHelpBookName</key>
-	<string>PeepOpen Help</string>
+	<string>com.topfunky.PeepOpen.help</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>PeepOpen Help</string>
+	<string>PeepOpenHelp.help</string>
 	<key>SUFeedURL</key>
 	<string>https://peepcode.com/system/apps/PeepOpen/appcast.xml</string>
 	<key>NSSupportsSuddenTermination</key>

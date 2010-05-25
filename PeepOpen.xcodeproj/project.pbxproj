@@ -49,6 +49,7 @@
 		4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4DE339F60D74FCDD00ADB6EE /* rb_main.rb */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
 		750F49FE1173F6DF00015D47 /* dmg-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F49FD1173F6DF00015D47 /* dmg-background.png */; };
+		751C7E28119C8AEB00D86736 /* PeepOpenHelp.help in Resources */ = {isa = PBXBuildFile; fileRef = 751C7E1C119C8AEB00D86736 /* PeepOpenHelp.help */; };
 		756C28F911555825000E19D8 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C28F811555825000E19D8 /* NSDate+Helper.m */; };
 		756C2A631155D97F000E19D8 /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2A621155D97F000E19D8 /* AppDelegate.rb */; };
 		756C2CDE1156C4C3000E19D8 /* Array+GCD.rb in Resources */ = {isa = PBXBuildFile; fileRef = 756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */; };
@@ -124,6 +125,7 @@
 		4DE339F60D74FCDD00ADB6EE /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		750F49FD1173F6DF00015D47 /* dmg-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dmg-background.png"; sourceTree = "<group>"; };
+		751C7E1C119C8AEB00D86736 /* PeepOpenHelp.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PeepOpenHelp.help; sourceTree = "<group>"; };
 		756C28F711555825000E19D8 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Helper.h"; path = "Classes/Helpers/NSDate+Helper.h"; sourceTree = "<group>"; };
 		756C28F811555825000E19D8 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Helper.m"; path = "Classes/Helpers/NSDate+Helper.m"; sourceTree = "<group>"; };
 		756C2A621155D97F000E19D8 /* AppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AppDelegate.rb; path = Classes/Controllers/AppDelegate.rb; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				751C7E1C119C8AEB00D86736 /* PeepOpenHelp.help */,
 				7591020C1199E6D800F4E02E /* aboutBackground.png */,
 				759101A71199DCE600F4E02E /* icon.icns */,
 				758B9B2311823FA900668505 /* statusItemIcon.png */,
@@ -315,11 +318,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "PeepOpen" */;
 			buildPhases = (
+				75BAB3F5117E7C4400955D02 /* ShellScript */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				172754B4107597CF00D0347B /* Copy Frameworks */,
-				75BAB3F5117E7C4400955D02 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -380,6 +383,7 @@
 				759101CB1199DFCC00F4E02E /* AboutWindow.xib in Resources */,
 				759101CD1199DFE800F4E02E /* AboutWindowController.rb in Resources */,
 				7591020D1199E6D800F4E02E /* aboutBackground.png in Resources */,
+				751C7E28119C8AEB00D86736 /* PeepOpenHelp.help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +440,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ${CONFIGURATION} == \"Release\" ]]\nthen\n\t# Set to whatever you have as CFBundleHelpBook in your Info.plist\n\tHELP_FOLDER=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/English.lproj/PeepOpen Help/\"\n\tHELP_DOC=\"English.lproj/PeepOpen Help.vpdoc\"\n\t# Clean folder, so we don't have extra junk in there\n\trm -rf \"$HELP_FOLDER\"\n\techo \"Generating documentation...\"\n\topen \"$SRCROOT/$HELP_DOC\"\n\tosascript -e \"tell application \\\"VoodooPad\\\"\" \\\n\t\t-e \"web export the document of the front window to \\\"$HELP_FOLDER\\\" using conversion format \\\"RTFD to HTML\\\" with properties {fileExtension:\\\"html\\\"}\" \\\n\t\t-e \"quit\" \\\n\t\t-e \"end tell\"\nfi";
+			shellScript = "if [[ ${CONFIGURATION} == \"Release\" ]]\nthen\n\tHELP_FOLDER=\"$SRCROOT/PeepOpenHelp.help/Contents/Resources/English.lproj\"\n\tHELP_DOC=\"English.lproj/PeepOpenHelp.vpdoc\"\n\t# Clean folder, so we don't have extra junk in there\n\trm -rf \"$HELP_FOLDER\"\n\techo \"Generating documentation...\"\n\topen \"$SRCROOT/$HELP_DOC\"\n\tosascript -e \"tell application \\\"VoodooPad\\\"\" \\\n\t\t-e \"web export the document of the front window to \\\"$HELP_FOLDER\\\" using conversion format \\\"RTFD to HTML\\\" with properties {fileExtension:\\\"html\\\"}\" \\\n\t\t-e \"quit\" \\\n\t\t-e \"end tell\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -635,6 +639,7 @@
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				PEEPOPEN_BUNDLE_VERSION = 0.2.1;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
@@ -647,6 +652,7 @@
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				PEEPOPEN_BUNDLE_VERSION = 0.2.1;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};

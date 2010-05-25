@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<!-- AppleTitle -->
+	<!-- AppleIcon -->
+       <meta name="robots" content="anchors" />
+
+	<title>Editors - MacVim</title>
+	
+	<style type="text/css">
+    <!--
+    
+
+        body {
+            margin: 0 0 2em 0;
+            background:     #fff;
+        }
+
+	body, div, p, a {
+            font-family:    'Lucida Grande';  
+	}
+        
+        .header {
+            background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ccc));
+            text-shadow: #fff 0 1px 1px;
+            padding:  5px 10px 0 10px;
+            height: 20px;
+            color: #111;
+            xposition: absolute;
+            top: 0;
+            left: 0;
+		font-size: 10px;
+        }
+        
+        .header a,
+        .header a:link,
+        .header a:visited,
+        .header a:active {
+		border-bottom: 1px solid #999;
+		text-decoration: none;
+		color: black;
+        }
+        
+        .header a:hover         {
+		color: #000;
+        }
+        
+        .main {
+            margin-top:     10px;
+            margin-left:    20px;
+            margin-right:   0px;
+            padding-right:  20px;
+        }
+        
+        .main a,
+        .main a:link,
+        .main a:active {
+          color:           black;
+        }
+
+      .main a:visited {
+	  color: #444;
+	}
+
+        
+        .main a:hover { 
+            color:              blue;
+        }
+        
+    -->
+    </style>
+</head>
+
+<body>
+
+
+<div class="header">
+    <a href="index.html">Home</a> > Editors - MacVim
+    
+    <span style="float: right;"><a href="http://peepcode.com/products/peepopen">PeepOpen Home Page</a></span>
+</div>
+
+<div class="main" valign="top">
+    <style type="text/css">
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 24.0px 'Lucida Grande'}
+p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px 'Lucida Grande'; min-height: 21.0px}
+p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Lucida Grande'}
+p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Lucida Grande'; min-height: 15.0px}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Lucida Grande'}
+p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica}
+p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Lucida Grande'; min-height: 17.0px}
+span.s1 {text-decoration: underline}
+span.Apple-tab-span {white-space:pre}
+</style>
+
+<p class="p1"><b>MacVim Plugin and Tips</b></p>
+<p class="p2"><br></p>
+<p class="p3">MacVim is a powerful text editor: <a href="http://code.google.com/p/macvim/"><span class="s1">http://code.google.com/p/macvim/</span></a></p>
+<p class="p4"><br></p>
+<p class="p5"><b>Plugin</b></p>
+<p class="p4"><br></p>
+<p class="p3">Go to the PeepOpen <b>Preferences</b> menu and choose MacVim as your editor. Click the <b>Install Plugin </b>button and restart MacVim. You’re all set to use PeepOpen from MacVim.</p>
+<p class="p4"><br></p>
+<p class="p6"><img src="editors%20-%20macvim.preferences-editor-textmate.png" alt="preferences-editor-textmate.png"></p>
+<p class="p4"><br></p>
+<p class="p3">The plugin will be installed under <b>~/.vim/bundle/</b> if you use Tim Pope's <a href="http://github.com/tpope/vim-pathogen"><span class="s1">pathogen</span></a> meta-plugin. Otherwise, it will go to the standard <b>~/.vim/plugin</b> directory.</p>
+<p class="p4"><br></p>
+<p class="p3">You should also change your <b>MacVim preferences </b>to <b>“Open files from applications in the current window and set the arglist.”</b> Without this, files will spawn separate windows every time.</p>
+<p class="p4"><br></p>
+<p class="p6"><img src="editors%20-%20macvim.MacVimScreenSnapz002.png" alt="MacVimScreenSnapz002.png"></p>
+<p class="p4"><br></p>
+<p class="p7"><b></b><br></p>
+<p class="p5"><b>Usage</b></p>
+<p class="p7"><b></b><br></p>
+<p class="p3"><b>Change</b> to a directory,<span class="Apple-converted-space">&nbsp;</span></p>
+<p class="p4"><br></p>
+<p class="p3"><span class="Apple-tab-span">	</span>:cd ~/src/my_project</p>
+<p class="p4"><br></p>
+<p class="p3"><b>Edit</b> at least one file.</p>
+<p class="p4"><br></p>
+<p class="p3"><span class="Apple-tab-span">	</span>:e app.rb</p>
+<p class="p4"><br></p>
+<p class="p3">Hit <b>&lt;Leader&gt;-p</b> to activate PeepOpen (which is probably “\-p”).</p>
+<p class="p4"><br></p>
+<p class="p3">Search for a file with PeepOpen and hit <b>Enter</b> to return to MacVim.</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p5"><b>Tips</b></p>
+<p class="p4"><br></p>
+<p class="p3">See <b>~/.vim/plugin/peepopen.vim</b> for instructions on changing the hot key to <b>⌘-T</b>.</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p5"><b>Uninstall</b></p>
+<p class="p4"><br></p>
+<p class="p3">Remove <b>~/.vim/plugin/peepopen.vim </b>or <b>~/.vim/bundle/vim-peepopen</b> and restart MacVim.</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+
+</div>
+    
+</body>
+</html>
