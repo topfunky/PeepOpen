@@ -93,7 +93,7 @@ class AppDelegate
   def validateMenuItem(menuItem)
     case menuItem.title
     when "Reload Files"
-      if fuzzyWindowController.window.isVisible
+      if @fuzzyWindowController && @fuzzyWindowController.window.isVisible
         return true
       else
         return false

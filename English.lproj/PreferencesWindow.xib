@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="62"/>
 			<integer value="71"/>
 			<integer value="94"/>
+			<integer value="10"/>
 			<integer value="222"/>
 			<integer value="95"/>
 		</object>
@@ -116,8 +116,8 @@
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
 									<characters key="NS.bytes">A099646A-377C-4FF4-9123-A9640F1DD65F</characters>
 								</object>
-								<string key="NSToolbarItemLabel">Ignores</string>
-								<string key="NSToolbarItemPaletteLabel">Ignores</string>
+								<string key="NSToolbarItemLabel">Advanced</string>
+								<string key="NSToolbarItemPaletteLabel">Advanced</string>
 								<string key="NSToolbarItemToolTip"/>
 								<nil key="NSToolbarItemView"/>
 								<reference key="NSToolbarItemImage" ref="449326907"/>
@@ -402,6 +402,7 @@
 								<string>Emacs</string>
 								<string>MacVim</string>
 								<string>TextMate</string>
+								<string>Xcode</string>
 							</object>
 							<reference key="NSDelegate" ref="774976580"/>
 							<object class="NSComboTableView" key="NSTableView" id="198137718">
@@ -873,11 +874,6 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSUserDefaultsController" id="220320876">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>directoryIgnoreRegex</string>
-					<string>fileIgnoreRegex</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSCustomObject" id="116009762">
@@ -891,7 +887,7 @@
 					<object class="NSTextField" id="1050616977">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{64, 50}, {294, 85}}</string>
+						<string key="NSFrame">{{20, 116}, {410, 50}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="481301311">
@@ -913,7 +909,7 @@
 					<object class="NSTextField" id="693305287">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{61, 143}, {198, 17}}</string>
+						<string key="NSFrame">{{17, 174}, {198, 17}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="1071255257">
@@ -929,7 +925,7 @@
 					<object class="NSTextField" id="343329212">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{61, 265}, {198, 17}}</string>
+						<string key="NSFrame">{{17, 263}, {198, 17}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="440219607">
@@ -945,7 +941,7 @@
 					<object class="NSTextField" id="127306754">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{64, 176}, {294, 81}}</string>
+						<string key="NSFrame">{{20, 205}, {410, 50}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="370082208">
@@ -1813,10 +1809,10 @@
 						<reference key="object" ref="773846799"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="127306754"/>
-							<reference ref="1050616977"/>
 							<reference ref="343329212"/>
+							<reference ref="127306754"/>
 							<reference ref="693305287"/>
+							<reference ref="1050616977"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Ignores View</string>
@@ -2046,7 +2042,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{765, 749}, {616, 169}}</string>
+					<string>{{765, 918}, {616, 0}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{367, 697}, {450, 300}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
