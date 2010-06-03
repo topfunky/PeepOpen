@@ -96,13 +96,26 @@ class PreferencesWindowController < NSWindowController
       NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
                                           NSUserDomainMask,
                                           true).lastObject
-    textmateBundlesPath = NSString.pathWithComponents([
+    textmateSupportPath = NSString.pathWithComponents([
                                                        applicationSupportPath,
-                                                       "TextMate",
+                                                       "TextMate"
+                                                      ])
+
+    textmateBundlesPath = NSString.pathWithComponents([
+                                                       textmateSupportPath,
                                                        "Bundles"
                                                       ])
+    textmatePluginsPath = NSString.pathWithComponents([
+                                                       textmateSupportPath,
+                                                       "Plugins"
+                                                      ])
+
     # Returns false on error
     fileManager.createDirectoryAtPath(textmateBundlesPath,
+                                      withIntermediateDirectories:true,
+                                      attributes:nil,
+                                      error:nil)
+    fileManager.createDirectoryAtPath(textmatePluginsPath,
                                       withIntermediateDirectories:true,
                                       attributes:nil,
                                       error:nil)
@@ -114,23 +127,22 @@ class PreferencesWindowController < NSWindowController
                                    error:nil)
     end
 
-    # Copy bundle to ~/Library/ApplicationSupport/TextMate/Bundles
+    installedPeepOpenPluginPath =
+      textmatePluginsPath.stringByAppendingPathComponent("PeepOpen.tmbundle")
+
+    # Copy plugin to ~/Library/ApplicationSupport/TextMate/Plugins
     resourcePath = NSBundle.mainBundle.resourcePath
     localPeepOpenBundlePath = NSString.pathWithComponents([
                                                            resourcePath,
                                                            "Support",
-                                                           "PeepOpen.tmbundle"
+                                                           "PeepOpen.tmplugin"
                                                           ])
     fileManager.copyItemAtPath(localPeepOpenBundlePath,
-                               toPath:installedPeepOpenBundlePath,
+                               toPath:installedPeepOpenPluginPath,
                                error:nil)
-    # Use AppleScript to reload bundles
-    reloadCommand =
-      NSAppleScript.alloc.initWithSource('tell app "TextMate" to reload bundles')
-    reloadCommand.executeAndReturnError(nil)
 
     runConfirmationAlertWithMessage("The TextMate plugin was installed successfully!",
-                                    informativeText:"Open at least one file in a project and type ⌘-T to navigate with PeepOpen.")
+                                    informativeText:"Restart TextMate and type ⌘-T to navigate with PeepOpen.")
   end
 
   def installEmacs(sender)
@@ -264,7 +276,7 @@ class PreferencesWindowController < NSWindowController
   end
 
   def alertDidEnd(alert, returnCode:returnCode, contextInfo:contextInfo)
-    window.close
+    # Do nothing
   end
 
   ##
