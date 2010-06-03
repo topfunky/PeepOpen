@@ -42,6 +42,28 @@
 			name = Embed;
 			productName = Embed;
 		};
+		753B921811AEF25B00DBCCC2 /* Choctop Release */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 753B921B11AEF28A00DBCCC2 /* Build configuration list for PBXAggregateTarget "Choctop Release" */;
+			buildPhases = (
+				753B921711AEF25B00DBCCC2 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Choctop Release";
+			productName = "Choctop Release";
+		};
+		757AEC6811AEBBE300381269 /* Choctop DMG */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 757AEC6B11AEBC0200381269 /* Build configuration list for PBXAggregateTarget "Choctop DMG" */;
+			buildPhases = (
+				757AEC6711AEBBE300381269 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Choctop DMG";
+			productName = "Choctop DMG";
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -350,6 +372,8 @@
 				172754BD107597F200D0347B /* Unit Tests */,
 				4D1A51A110A4FF5D0046A98A /* Compile */,
 				4D1A51A510A4FF640046A98A /* Embed */,
+				757AEC6811AEBBE300381269 /* Choctop DMG */,
+				753B921811AEF25B00DBCCC2 /* Choctop Release */,
 			);
 		};
 /* End PBXProject section */
@@ -428,6 +452,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# The macruby_deploy command-line tool with the --embed argument will make sure the MacRuby framework will be embedded in your .app. Default options will be used. Pass the -h option to get more information.\nPATH=\"$PATH:/usr/local/bin\" macruby_deploy --embed \"$TARGET_BUILD_DIR/$PROJECT_NAME.app\"";
+		};
+		753B921711AEF25B00DBCCC2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here\nrake release";
+		};
+		757AEC6711AEBBE300381269 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here\nrake dmg";
 		};
 		75BAB3F5117E7C4400955D02 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -592,6 +642,48 @@
 			};
 			name = Release;
 		};
+		753B921911AEF25B00DBCCC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Choctop Release";
+			};
+			name = Debug;
+		};
+		753B921A11AEF25B00DBCCC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Choctop Release";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		757AEC6911AEBBE400381269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Choctop DMG";
+			};
+			name = Debug;
+		};
+		757AEC6A11AEBBE400381269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Choctop DMG";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -684,6 +776,24 @@
 			buildConfigurations = (
 				4D1A51A610A4FF640046A98A /* Debug */,
 				4D1A51A710A4FF640046A98A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		753B921B11AEF28A00DBCCC2 /* Build configuration list for PBXAggregateTarget "Choctop Release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				753B921911AEF25B00DBCCC2 /* Debug */,
+				753B921A11AEF25B00DBCCC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		757AEC6B11AEBC0200381269 /* Build configuration list for PBXAggregateTarget "Choctop DMG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				757AEC6911AEBBE400381269 /* Debug */,
+				757AEC6A11AEBBE400381269 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

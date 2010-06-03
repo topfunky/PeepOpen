@@ -23,8 +23,12 @@ class FuzzyWindowController < NSWindowController
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
-    self.projectRoot = theProjectRoot
-    tableViewController.loadFilesFromProjectRoot(theProjectRoot)
+    self.projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(theProjectRoot)
+    tableViewController.loadFilesFromProjectRoot(self.projectRoot)
+    if tableViewController.allRecords.length == 0
+      NSLog "No files found"
+    end
+    # TODO: Catch FuzzyRecord::ProjectRootNotFoundError
   end
 
   ##

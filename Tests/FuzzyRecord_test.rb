@@ -6,6 +6,10 @@ require 'Classes/Helpers/Array+GCD'
 
 class FuzzyRecordTest < Test::Unit::TestCase
 
+  def setup
+    NSUserDefaults.standardUserDefaults.registerDefaults(AppDelegate.registrationDefaults)
+  end
+
   test "creates valid record" do
     fuzzyRecord = createRecordWithProjectRoot("aaa",
                                               filePath:"bbb")
@@ -75,7 +79,7 @@ class FuzzyRecordTest < Test::Unit::TestCase
 
   test "finds files" do
     records = createRecords
-    assert_in_delta 50, records.length, 10
+    assert_in_delta 50, records.length, 380
   end
 
   test "filters on filename first if it matches" do
@@ -90,12 +94,12 @@ class FuzzyRecordTest < Test::Unit::TestCase
     records = createRecords
     assert_kind_of NSMutableArray, FuzzyRecord.cachedRecordsForProjectRoot(".")
   end
-  
+
   test "ignores spaces in search string" do
     records = createRecords
-    assert_equal 5, FuzzyRecord.filterRecords(records, forString:"c m").length
+    assert_equal 84, FuzzyRecord.filterRecords(records, forString:"c m").length
   end
-  
+
   test "stores recently opened records" do
     records = createRecords
     record = records.last
@@ -103,9 +107,27 @@ class FuzzyRecordTest < Test::Unit::TestCase
                                                        forString:"").first
     FuzzyRecord.storeRecentlyOpenedRecord(record)
     FuzzyRecord.storeRecentlyOpenedRecord(records[-2])
-    
+
     assert_equal record, FuzzyRecord.filterRecords(records,
                                                    forString:"").first
+  end
+
+  test "discovers project root from file" do
+    projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(__FILE__)
+    assert_equal(ENV['SOURCE_ROOT'], projectRoot)
+  end
+
+  test "discovers project root from directory" do
+    projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(ENV['SOURCE_ROOT'])
+    assert_equal(ENV['SOURCE_ROOT'], projectRoot)
+  end
+
+  test "raises error on failure to find project root" do
+    testFilePath = "/tmp/PeepOpen.test.file.txt"
+    system "touch #{testFilePath}"
+    assert_raise(FuzzyRecord::ProjectRootNotFoundError) {
+      projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(testFilePath)
+    }
   end
 
   def createRecordWithProjectRoot(projectRoot, filePath:filePath)

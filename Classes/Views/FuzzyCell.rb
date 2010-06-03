@@ -198,7 +198,7 @@ class FuzzyCell < NSCell
     }
 
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
-    subtitleString = ["MODIFIED #{displayDate}"]
+    subtitleString = ["#{displayDate}"]
     scmStatus = representedObject.scmStatus
     if scmStatus && scmStatus.size > 0
       subtitleString << "GIT #{scmStatus}"

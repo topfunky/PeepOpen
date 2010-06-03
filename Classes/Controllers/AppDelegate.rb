@@ -13,7 +13,9 @@ class AppDelegate
       "editorApplicationName" => "TextMate",
       "maximumDocumentCount"  => 1000,
       "scmShowMetadata" => true,
-      "scmGitDiffAgainst" => "Current"
+      "scmGitDiffAgainst" => "Current",
+      "directoryIgnoreRegex" => "^(\.git|\.hg|\.svn|\.sass-cache|build|tmp|log|vendor\/(rails|gems|plugins))",
+      "fileIgnoreRegex" => "(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.dmg|\.zip|\.gz|~)$"
     }
   end
 
@@ -25,7 +27,7 @@ class AppDelegate
     createStatusBarMenu
     # HACK: Load window and immediately close it so menu validation
     # doesn't accidentally show it.
-    fuzzyWindowController.window.close
+    # fuzzyWindowController.window.close
 
     # Force loading of help index for searching
     NSHelpManager.sharedHelpManager

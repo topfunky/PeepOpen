@@ -12,6 +12,33 @@ class FuzzyRecord
                   :matchedRanges, :matchesOnFilenameScore]
 
   MAX_SCORE = 10_000
+  
+  class ProjectRootNotFoundError < StandardError; end
+  
+  def self.discoverProjectRootForDirectoryOrFile(directoryOrFile)
+    if File.directory?(directoryOrFile)
+      return directoryOrFile
+    end
+
+    fileManager = NSFileManager.defaultManager
+    pathComponents = directoryOrFile.pathComponents
+    (pathComponents.length - 1).downto(0) do |index|
+      path = NSString.pathWithComponents(pathComponents[0..index])
+      next if File.file?(path)
+      fileManager.contentsOfDirectoryAtPath(path,
+                                            error:nil).map {|f|
+        [/^\.git$/, /^\.hg$/,
+         /^Rakefile$/, /^Makefile$/,
+         /^README\.?.*/,
+         /^build\.xml$/, /^.*\.xcodeproj$/].each do |pattern|
+          if (pattern =~ f)
+            return path.to_s
+          end
+        end
+      }
+    end
+    raise ProjectRootNotFoundError, "Couldn't find a project root for #{directoryOrFile}"
+  end
 
   # Cache is a dictionary of project roots with arrays of recent files
   # and records.
@@ -158,9 +185,10 @@ class FuzzyRecord
       next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
       relativeFilename = filename.to_s.gsub(/^#{theProjectRoot}\//, '')
       # TODO: Store ignorable directories, files in preferences
-      ignorePatterns = /^(\.git|\.hg|\.svn|\.sass-cache|build|tmp|log|vendor\/(rails|gems|plugins))\b/i
-      next if relativeFilename.match(ignorePatterns)
-      next if relativeFilename.match(/(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.dmg|\.zip|\.gz|~)$/)
+      directoryIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("directoryIgnoreRegex"))
+      next if relativeFilename.match(directoryIgnoreRegex)
+      fileIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("fileIgnoreRegex"))
+      next if relativeFilename.match(fileIgnoreRegex)
       if File.directory?(filename)
         # TODO: Should ignore dot directories
         fileManager.contentsOfDirectoryAtPath(filename,

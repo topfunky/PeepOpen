@@ -7,8 +7,9 @@
 
 class PreferencesWindowController < NSWindowController
 
-  attr_accessor :applicationPopup, :editorView, :updatesView, :scmView
-  attr_accessor :editorToolbarItem, :updatesToolbarItem, :scmToolbarItem
+  attr_accessor :applicationPopup, :editorView, :updatesView, :scmView, :ignoresView
+  attr_accessor :editorToolbarItem, :updatesToolbarItem, :scmToolbarItem, :ignoresToolbarItem
+  attr_accessor :gitExecutableLabel
   attr_accessor :currentView
 
   def show(sender)
@@ -23,6 +24,11 @@ class PreferencesWindowController < NSWindowController
     switchToView(editorView, item:editorToolbarItem, animate:false)
   end
 
+  def windowDidResignKey(notification)
+    # TODO: Text fields should resign focus and file lists should be reloaded
+    NSLog "will close"
+  end
+
   def switchToEditor(sender)
     switchToView(editorView, item:editorToolbarItem, animate:true)
   end
@@ -31,8 +37,15 @@ class PreferencesWindowController < NSWindowController
     switchToView(updatesView, item:updatesToolbarItem, animate:true)
   end
 
+  def switchToIgnores(sender)
+    switchToView(ignoresView, item:ignoresToolbarItem, animate:true)
+  end
+
   def switchToSCM(sender)
     switchToView(scmView, item:scmToolbarItem, animate:true)
+    gitExecutableLocation = `which git`
+    gitExecutableLabel.stringValue = 
+      (gitExecutableLocation == "" ? "Git not found" : gitExecutableLocation)
   end
 
   ##
