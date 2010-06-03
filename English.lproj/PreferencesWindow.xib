@@ -12,11 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="71"/>
-			<integer value="94"/>
 			<integer value="10"/>
-			<integer value="222"/>
+			<integer value="71"/>
 			<integer value="95"/>
+			<integer value="94"/>
+			<integer value="222"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -79,9 +79,9 @@
 								<string key="NSToolbarItemPaletteLabel">Updates</string>
 								<string key="NSToolbarItemToolTip"/>
 								<nil key="NSToolbarItemView"/>
-								<object class="NSCustomResource" key="NSToolbarItemImage" id="449326907">
+								<object class="NSCustomResource" key="NSToolbarItemImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">NSActionTemplate</string>
+									<string key="NSResourceName">updates-32x32</string>
 								</object>
 								<nil key="NSToolbarItemTarget"/>
 								<nil key="NSToolbarItemAction"/>
@@ -101,7 +101,10 @@
 								<string key="NSToolbarItemPaletteLabel">SCM</string>
 								<string key="NSToolbarItemToolTip"/>
 								<nil key="NSToolbarItemView"/>
-								<reference key="NSToolbarItemImage" ref="449326907"/>
+								<object class="NSCustomResource" key="NSToolbarItemImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">scm-32x32</string>
+								</object>
 								<nil key="NSToolbarItemTarget"/>
 								<nil key="NSToolbarItemAction"/>
 								<string key="NSToolbarItemMinSize">{0, 0}</string>
@@ -120,7 +123,10 @@
 								<string key="NSToolbarItemPaletteLabel">Advanced</string>
 								<string key="NSToolbarItemToolTip"/>
 								<nil key="NSToolbarItemView"/>
-								<reference key="NSToolbarItemImage" ref="449326907"/>
+								<object class="NSCustomResource" key="NSToolbarItemImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">advanced-32x32</string>
+								</object>
 								<nil key="NSToolbarItemTarget"/>
 								<nil key="NSToolbarItemAction"/>
 								<string key="NSToolbarItemMinSize">{0, 0}</string>
@@ -139,7 +145,10 @@
 								<string key="NSToolbarItemPaletteLabel">Editor</string>
 								<string key="NSToolbarItemToolTip"/>
 								<nil key="NSToolbarItemView"/>
-								<reference key="NSToolbarItemImage" ref="449326907"/>
+								<object class="NSCustomResource" key="NSToolbarItemImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">editor-32x32</string>
+								</object>
 								<nil key="NSToolbarItemTarget"/>
 								<nil key="NSToolbarItemAction"/>
 								<string key="NSToolbarItemMinSize">{0, 0}</string>
@@ -408,7 +417,7 @@
 							<object class="NSComboTableView" key="NSTableView" id="198137718">
 								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{13, 105}</string>
+								<string key="NSFrameSize">{13, 126}</string>
 								<reference key="NSSuperview"/>
 								<reference key="NSWindow"/>
 								<bool key="NSEnabled">YES</bool>
@@ -884,18 +893,18 @@
 				<int key="NSvFlags">268</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="NSTextField" id="1050616977">
+					<object class="NSTextField" id="553310507">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 116}, {410, 50}}</string>
+						<string key="NSFrame">{{20, 20}, {410, 50}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSTextFieldCell" key="NSCell" id="481301311">
+						<object class="NSTextFieldCell" key="NSCell" id="758459093">
 							<int key="NSCellFlags">-1805517311</int>
 							<int key="NSCellFlags2">272629760</int>
 							<string key="NSContents"/>
 							<reference key="NSSupport" ref="722738096"/>
-							<reference key="NSControlView" ref="1050616977"/>
+							<reference key="NSControlView" ref="553310507"/>
 							<bool key="NSDrawsBackground">YES</bool>
 							<reference key="NSBackgroundColor" ref="898161773"/>
 							<object class="NSColor" key="NSTextColor" id="521580194">
@@ -906,10 +915,43 @@
 							</object>
 						</object>
 					</object>
+					<object class="NSTextField" id="453226301">
+						<reference key="NSNextResponder" ref="773846799"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{17, 78}, {198, 17}}</string>
+						<reference key="NSSuperview" ref="773846799"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSTextFieldCell" key="NSCell" id="1060545855">
+							<int key="NSCellFlags">68288064</int>
+							<int key="NSCellFlags2">4195328</int>
+							<string key="NSContents">Project Root Pattern</string>
+							<reference key="NSSupport" ref="722738096"/>
+							<reference key="NSControlView" ref="453226301"/>
+							<reference key="NSBackgroundColor" ref="147807396"/>
+							<reference key="NSTextColor" ref="566273020"/>
+						</object>
+					</object>
+					<object class="NSTextField" id="1050616977">
+						<reference key="NSNextResponder" ref="773846799"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{20, 103}, {410, 50}}</string>
+						<reference key="NSSuperview" ref="773846799"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSTextFieldCell" key="NSCell" id="481301311">
+							<int key="NSCellFlags">-1805517311</int>
+							<int key="NSCellFlags2">272629760</int>
+							<string key="NSContents"/>
+							<reference key="NSSupport" ref="722738096"/>
+							<reference key="NSControlView" ref="1050616977"/>
+							<bool key="NSDrawsBackground">YES</bool>
+							<reference key="NSBackgroundColor" ref="898161773"/>
+							<reference key="NSTextColor" ref="521580194"/>
+						</object>
+					</object>
 					<object class="NSTextField" id="693305287">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 174}, {198, 17}}</string>
+						<string key="NSFrame">{{17, 161}, {198, 17}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="1071255257">
@@ -941,7 +983,7 @@
 					<object class="NSTextField" id="127306754">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 205}, {410, 50}}</string>
+						<string key="NSFrame">{{20, 186}, {410, 69}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="370082208">
@@ -1283,6 +1325,22 @@
 						</object>
 					</object>
 					<int key="connectionID">248</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.projectRootRegex</string>
+						<reference key="source" ref="553310507"/>
+						<reference key="destination" ref="220320876"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="553310507"/>
+							<reference key="NSDestination" ref="220320876"/>
+							<string key="NSLabel">value: values.projectRootRegex</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.projectRootRegex</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">256</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1811,8 +1869,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="343329212"/>
 							<reference ref="127306754"/>
-							<reference ref="693305287"/>
 							<reference ref="1050616977"/>
+							<reference ref="453226301"/>
+							<reference ref="553310507"/>
+							<reference ref="693305287"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Ignores View</string>
@@ -1872,6 +1932,34 @@
 						<int key="objectID">250</int>
 						<reference key="object" ref="1071255257"/>
 						<reference key="parent" ref="693305287"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">251</int>
+						<reference key="object" ref="453226301"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1060545855"/>
+						</object>
+						<reference key="parent" ref="773846799"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">252</int>
+						<reference key="object" ref="553310507"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="758459093"/>
+						</object>
+						<reference key="parent" ref="773846799"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">253</int>
+						<reference key="object" ref="758459093"/>
+						<reference key="parent" ref="553310507"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">254</int>
+						<reference key="object" ref="1060545855"/>
+						<reference key="parent" ref="453226301"/>
 					</object>
 				</object>
 			</object>
@@ -1952,6 +2040,10 @@
 					<string>247.IBPluginDependency</string>
 					<string>249.IBPluginDependency</string>
 					<string>250.IBPluginDependency</string>
+					<string>251.IBPluginDependency</string>
+					<string>252.IBPluginDependency</string>
+					<string>253.IBPluginDependency</string>
+					<string>254.IBPluginDependency</string>
 					<string>62.IBEditorWindowLastContentRect</string>
 					<string>62.IBPluginDependency</string>
 					<string>71.IBEditorWindowLastContentRect</string>
@@ -2034,7 +2126,11 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{359, 309}, {450, 300}}</string>
+					<string>{{368, 352}, {450, 300}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2048,7 +2144,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{369, 24}, {450, 300}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{368, 362}, {450, 300}}</string>
+					<string>{{366, 42}, {450, 300}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
@@ -2074,7 +2170,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">250</int>
+			<int key="maxID">256</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2765,17 +2861,23 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>NSActionTemplate</string>
 				<string>NSMenuCheckmark</string>
 				<string>NSMenuMixedState</string>
 				<string>NSSwitch</string>
+				<string>advanced-32x32</string>
+				<string>editor-32x32</string>
+				<string>scm-32x32</string>
+				<string>updates-32x32</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{15, 15}</string>
 				<string>{9, 8}</string>
 				<string>{7, 2}</string>
 				<string>{15, 15}</string>
+				<string>{32, 32}</string>
+				<string>{32, 32}</string>
+				<string>{32, 32}</string>
+				<string>{32, 32}</string>
 			</object>
 		</object>
 	</data>

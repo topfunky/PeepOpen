@@ -97,6 +97,10 @@
 		75E2E7E6115161F60056AD27 /* TFUtility.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75E2E7E5115161F60056AD27 /* TFUtility.rb */; };
 		75ECD3BB1150884A008C0BC3 /* FuzzyWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75ECD3BA1150884A008C0BC3 /* FuzzyWindowController.rb */; };
 		75ECD3BD11508869008C0BC3 /* FuzzyTableViewController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75ECD3BC11508869008C0BC3 /* FuzzyTableViewController.rb */; };
+		75FBB6EF11B85B5200116CF5 /* editor-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FBB6EE11B85B5200116CF5 /* editor-32x32.png */; };
+		75FBB6F111B85BE300116CF5 /* advanced-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FBB6F011B85BE300116CF5 /* advanced-32x32.png */; };
+		75FBB6F311B85C6600116CF5 /* scm-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FBB6F211B85C6600116CF5 /* scm-32x32.png */; };
+		75FBB6F511B85CBB00116CF5 /* updates-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FBB6F411B85CBB00116CF5 /* updates-32x32.png */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -172,6 +176,10 @@
 		75E2E7E5115161F60056AD27 /* TFUtility.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = TFUtility.rb; path = Classes/TFUtility.rb; sourceTree = "<group>"; };
 		75ECD3BA1150884A008C0BC3 /* FuzzyWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyWindowController.rb; path = Classes/Controllers/FuzzyWindowController.rb; sourceTree = "<group>"; };
 		75ECD3BC11508869008C0BC3 /* FuzzyTableViewController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = FuzzyTableViewController.rb; path = Classes/Controllers/FuzzyTableViewController.rb; sourceTree = "<group>"; };
+		75FBB6EE11B85B5200116CF5 /* editor-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "editor-32x32.png"; path = "Artwork/Icons/editor-32x32.png"; sourceTree = "<group>"; };
+		75FBB6F011B85BE300116CF5 /* advanced-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "advanced-32x32.png"; path = "Artwork/Icons/advanced-32x32.png"; sourceTree = "<group>"; };
+		75FBB6F211B85C6600116CF5 /* scm-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scm-32x32.png"; path = "Artwork/Icons/scm-32x32.png"; sourceTree = "<group>"; };
+		75FBB6F411B85CBB00116CF5 /* updates-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "updates-32x32.png"; path = "Artwork/Icons/updates-32x32.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* PeepOpen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeepOpen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -266,6 +274,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				75FBB6ED11B85B3F00116CF5 /* Icons */,
 				751C7E1C119C8AEB00D86736 /* PeepOpenHelp.help */,
 				7591020C1199E6D800F4E02E /* aboutBackground.png */,
 				759101A71199DCE600F4E02E /* icon.icns */,
@@ -331,6 +340,17 @@
 				75E2E76A1150891E0056AD27 /* FuzzyCell.rb */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		75FBB6ED11B85B3F00116CF5 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				75FBB6F411B85CBB00116CF5 /* updates-32x32.png */,
+				75FBB6F211B85C6600116CF5 /* scm-32x32.png */,
+				75FBB6F011B85BE300116CF5 /* advanced-32x32.png */,
+				75FBB6EE11B85B5200116CF5 /* editor-32x32.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +428,10 @@
 				759101CD1199DFE800F4E02E /* AboutWindowController.rb in Resources */,
 				7591020D1199E6D800F4E02E /* aboutBackground.png in Resources */,
 				751C7E28119C8AEB00D86736 /* PeepOpenHelp.help in Resources */,
+				75FBB6EF11B85B5200116CF5 /* editor-32x32.png in Resources */,
+				75FBB6F111B85BE300116CF5 /* advanced-32x32.png in Resources */,
+				75FBB6F311B85C6600116CF5 /* scm-32x32.png in Resources */,
+				75FBB6F511B85CBB00116CF5 /* updates-32x32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

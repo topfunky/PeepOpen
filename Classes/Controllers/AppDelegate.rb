@@ -15,7 +15,8 @@ class AppDelegate
       "scmShowMetadata" => true,
       "scmGitDiffAgainst" => "Current",
       "directoryIgnoreRegex" => "^(\.git|\.hg|\.svn|\.sass-cache|build|tmp|log|vendor\/(rails|gems|plugins))",
-      "fileIgnoreRegex" => "(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.dmg|\.zip|\.gz|~)$"
+      "fileIgnoreRegex" => "(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.dmg|\.zip|\.gz|~)$",
+      "projectRootRegex" => "^(\.git|\.hg|Rakefile|Makefile|README\.?.*|build\.xml|.*\.xcodeproj)$"
     }
   end
 
@@ -59,8 +60,10 @@ class AppDelegate
     if fuzzyWindowController.respondsToSelector(:close)
       fuzzyWindowController.close
     end
-    self.preferencesWindowController =
-      windowControllerForNib("PreferencesWindow")
+    if !@preferencesWindowController
+      self.preferencesWindowController =
+        windowControllerForNib("PreferencesWindow")
+    end
     preferencesWindowController.show(self)
   end
 
@@ -71,8 +74,10 @@ class AppDelegate
   end
 
   def showReleaseNotesWindow(sender)
-    self.releaseNotesWindowController =
-      windowControllerForNib("ReleaseNotesWindow")
+    if !@releaseNotesWindowController
+      self.releaseNotesWindowController =
+        windowControllerForNib("ReleaseNotesWindow")
+    end
     releaseNotesWindowController.show(self)
   end
 

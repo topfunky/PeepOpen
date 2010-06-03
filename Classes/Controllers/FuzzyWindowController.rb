@@ -8,9 +8,12 @@ class FuzzyWindowController < NSWindowController
 
   attr_accessor :tableViewController, :searchField, :statusLabel, :projectRoot
 
+  def windowDidLoad
+    setWindowFrameAutosaveName("com.topfunky.PeepOpen.FuzzyWindowController.frame")
+  end
+
   def show(sender)
     NSApp.activateIgnoringOtherApps(true)
-    window.center
     showWindow self
     tableViewController.selectFirstRow
     searchField.setStringValue("")

@@ -31,7 +31,7 @@
 			<object class="NSWindowTemplate" id="516903484">
 				<int key="NSWindowStyleMask">31</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 69}, {527, 441}}</string>
+				<string key="NSWindowRect">{{50, 500}, {527, 441}}</string>
 				<int key="NSWTFlags">-1535639552</int>
 				<string key="NSWindowTitle">Open File</string>
 				<string key="NSWindowClass">NSPanel</string>

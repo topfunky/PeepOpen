@@ -12,9 +12,9 @@ class FuzzyRecord
                   :matchedRanges, :matchesOnFilenameScore]
 
   MAX_SCORE = 10_000
-  
+
   class ProjectRootNotFoundError < StandardError; end
-  
+
   def self.discoverProjectRootForDirectoryOrFile(directoryOrFile)
     if File.directory?(directoryOrFile)
       return directoryOrFile
@@ -27,13 +27,9 @@ class FuzzyRecord
       next if File.file?(path)
       fileManager.contentsOfDirectoryAtPath(path,
                                             error:nil).map {|f|
-        [/^\.git$/, /^\.hg$/,
-         /^Rakefile$/, /^Makefile$/,
-         /^README\.?.*/,
-         /^build\.xml$/, /^.*\.xcodeproj$/].each do |pattern|
-          if (pattern =~ f)
-            return path.to_s
-          end
+        projectRootRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("projectRootRegex"))
+        if f.match(projectRootRegex)
+          return path.to_s
         end
       }
     end
@@ -184,7 +180,7 @@ class FuzzyRecord
       index += 1
       next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
       relativeFilename = filename.to_s.gsub(/^#{theProjectRoot}\//, '')
-      # TODO: Store ignorable directories, files in preferences
+
       directoryIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("directoryIgnoreRegex"))
       next if relativeFilename.match(directoryIgnoreRegex)
       fileIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("fileIgnoreRegex"))
