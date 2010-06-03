@@ -96,19 +96,10 @@ class PreferencesWindowController < NSWindowController
       NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
                                           NSUserDomainMask,
                                           true).lastObject
-    textmateSupportPath = NSString.pathWithComponents([
-                                                       applicationSupportPath,
-                                                       "TextMate"
-                                                      ])
 
-    textmateBundlesPath = NSString.pathWithComponents([
-                                                       textmateSupportPath,
-                                                       "Bundles"
-                                                      ])
-    textmatePluginsPath = NSString.pathWithComponents([
-                                                       textmateSupportPath,
-                                                       "Plugins"
-                                                      ])
+    textmateSupportPath = NSString.pathWithComponents([applicationSupportPath, "TextMate"])
+    textmateBundlesPath = NSString.pathWithComponents([textmateSupportPath, "Bundles"])
+    textmatePluginsPath = NSString.pathWithComponents([textmateSupportPath, "Plugins"])
 
     # Returns false on error
     fileManager.createDirectoryAtPath(textmateBundlesPath,
@@ -128,7 +119,7 @@ class PreferencesWindowController < NSWindowController
     end
 
     installedPeepOpenPluginPath =
-      textmatePluginsPath.stringByAppendingPathComponent("PeepOpen.tmbundle")
+      textmatePluginsPath.stringByAppendingPathComponent("PeepOpen.tmplugin")
 
     # Copy plugin to ~/Library/ApplicationSupport/TextMate/Plugins
     resourcePath = NSBundle.mainBundle.resourcePath
