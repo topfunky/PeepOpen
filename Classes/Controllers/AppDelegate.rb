@@ -14,9 +14,10 @@ class AppDelegate
       "maximumDocumentCount"  => 1000,
       "scmShowMetadata" => true,
       "scmGitDiffAgainst" => "Current",
-      "directoryIgnoreRegex" => "^(\.git|\.hg|\.svn|\.sass-cache|build|tmp|log|vendor\/(rails|gems|plugins))",
-      "fileIgnoreRegex" => "(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.dmg|\.zip|\.gz|~)$",
-      "projectRootRegex" => "^(\.git|\.hg|Rakefile|Makefile|README\.?.*|build\.xml|.*\.xcodeproj)$"
+      "directoryIgnoreRegex" => '^(\.git|\.hg|\.svn|\.sass-cache|build|tmp|log|vendor\/(rails|gems|plugins))',
+      "fileIgnoreRegex" => '(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.ai|\.pdf|\.mov|\.aep|\.dmg|\.zip|\.gz|~)$',
+      "projectRootRegex" => '^(\.git|\.hg|Rakefile|Makefile|README\.?.*|build\.xml|.*\.xcodeproj)$',
+      "useCoreAnimation" => true
     }
   end
 

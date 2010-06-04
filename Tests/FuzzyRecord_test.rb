@@ -79,7 +79,7 @@ class FuzzyRecordTest < Test::Unit::TestCase
 
   test "finds files" do
     records = createRecords
-    assert_in_delta 50, records.length, 380
+    assert_in_delta 50, records.length, 390
   end
 
   test "filters on filename first if it matches" do
@@ -97,7 +97,7 @@ class FuzzyRecordTest < Test::Unit::TestCase
 
   test "ignores spaces in search string" do
     records = createRecords
-    assert_equal 84, FuzzyRecord.filterRecords(records, forString:"c m").length
+    assert_equal 85, FuzzyRecord.filterRecords(records, forString:"c m").length
   end
 
   test "stores recently opened records" do

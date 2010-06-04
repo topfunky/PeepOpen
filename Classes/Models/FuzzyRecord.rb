@@ -163,11 +163,6 @@ class FuzzyRecord
   def self.loadRecordsWithProjectRoot(theProjectRoot)
     maximumDocumentCount =
       NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
-    if maximumDocumentCount == 0
-      # HACK: Tests don't have user defaults, so force one here
-      maximumDocumentCount =
-        AppDelegate.registrationDefaults["maximumDocumentCount"]
-    end
     records = []
     fileManager = NSFileManager.defaultManager
     filenames = fileManager.contentsOfDirectoryAtPath(theProjectRoot,
@@ -195,6 +190,8 @@ class FuzzyRecord
       end
       records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
                                                        filePath:relativeFilename)
+
+      NSNotificationCenter.defaultCenter.postNotificationName("fuzzyRecordProgress", object:records)
     end
     records
   end
@@ -213,7 +210,7 @@ class FuzzyRecord
                                            -record.longestMatch,
                                            record.matchScore,
                                            -record.modifiedAt.timeIntervalSince1970 ] }
-    if correctedSearchString.length == 0
+    if (correctedSearchString.length == 0) && (records.first != nil)
       if cacheHash = self.cacheForProjectRoot(records.first.projectRoot)
         if recentlyOpenedRecords = cacheHash[:recentlyOpenedRecords]
           if recentlyOpenedRecords.length >= 2

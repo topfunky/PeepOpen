@@ -261,7 +261,7 @@ class FuzzyCell < NSCell
                                 range:modifiedStringRange)
       end
 
-      ["MODIFIED", "GIT", "CLASSES", "SCORE", "FILEMATCH"].each do |label|
+      ["GIT"].each do |label|
         if indexStart = subtitleString.index(/\b#{label}\b/)
           modifiedStringRange = NSMakeRange(indexStart, label.size)
 

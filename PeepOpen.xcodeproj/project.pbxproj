@@ -101,6 +101,7 @@
 		75FBB6F111B85BE300116CF5 /* advanced-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FBB6F011B85BE300116CF5 /* advanced-32x32.png */; };
 		75FBB6F311B85C6600116CF5 /* scm-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FBB6F211B85C6600116CF5 /* scm-32x32.png */; };
 		75FBB6F511B85CBB00116CF5 /* updates-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FBB6F411B85CBB00116CF5 /* updates-32x32.png */; };
+		75FD918311B970DD00AA1786 /* TFProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD918211B970DD00AA1786 /* TFProgressBar.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -180,6 +181,8 @@
 		75FBB6F011B85BE300116CF5 /* advanced-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "advanced-32x32.png"; path = "Artwork/Icons/advanced-32x32.png"; sourceTree = "<group>"; };
 		75FBB6F211B85C6600116CF5 /* scm-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scm-32x32.png"; path = "Artwork/Icons/scm-32x32.png"; sourceTree = "<group>"; };
 		75FBB6F411B85CBB00116CF5 /* updates-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "updates-32x32.png"; path = "Artwork/Icons/updates-32x32.png"; sourceTree = "<group>"; };
+		75FD918111B970DD00AA1786 /* TFProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFProgressBar.h; path = Classes/Views/TFProgressBar.h; sourceTree = "<group>"; };
+		75FD918211B970DD00AA1786 /* TFProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFProgressBar.m; path = Classes/Views/TFProgressBar.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* PeepOpen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeepOpen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -315,9 +318,9 @@
 		75E2E767115088EC0056AD27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				756C2A621155D97F000E19D8 /* AppDelegate.rb */,
 				75ECD3BA1150884A008C0BC3 /* FuzzyWindowController.rb */,
 				75ECD3BC11508869008C0BC3 /* FuzzyTableViewController.rb */,
-				756C2A621155D97F000E19D8 /* AppDelegate.rb */,
 				75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */,
 				75B04006116FDFF800053C2B /* WelcomeWindowController.rb */,
 				75BAB437117EDA3800955D02 /* ReleaseNotesWindowController.rb */,
@@ -337,6 +340,8 @@
 		75E2E769115088FB0056AD27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				75FD918111B970DD00AA1786 /* TFProgressBar.h */,
+				75FD918211B970DD00AA1786 /* TFProgressBar.m */,
 				75E2E76A1150891E0056AD27 /* FuzzyCell.rb */,
 			);
 			name = Views;
@@ -525,6 +530,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				756C28F911555825000E19D8 /* NSDate+Helper.m in Sources */,
+				75FD918311B970DD00AA1786 /* TFProgressBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

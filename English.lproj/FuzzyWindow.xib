@@ -46,6 +46,7 @@
 							<int key="NSvFlags">266</int>
 							<string key="NSFrame">{{8, 411}, {512, 22}}</string>
 							<reference key="NSSuperview" ref="317856173"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSSearchFieldCell" key="NSCell" id="911927468">
 								<int key="NSCellFlags">343014976</int>
@@ -126,6 +127,7 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{527, 385}</string>
 											<reference key="NSSuperview" ref="693272034"/>
+											<int key="NSViewLayerContentsRedrawPolicy">2</int>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
 												<nil key="NSNextResponder"/>
@@ -191,6 +193,7 @@
 									<string key="NSFrame">{{1, 1}, {527, 385}}</string>
 									<reference key="NSSuperview" ref="368131091"/>
 									<reference key="NSNextKeyView" ref="431430549"/>
+									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<reference key="NSDocView" ref="431430549"/>
 									<object class="NSColor" key="NSBGColor">
 										<int key="NSColorSpace">6</int>
@@ -208,6 +211,7 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 									<reference key="NSSuperview" ref="368131091"/>
+									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<reference key="NSTarget" ref="368131091"/>
 									<string key="NSAction">_doScroller:</string>
 									<double key="NSPercent">0.99735449735449733</double>
@@ -217,6 +221,7 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{1, 119}, {223, 15}}</string>
 									<reference key="NSSuperview" ref="368131091"/>
+									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="368131091"/>
 									<string key="NSAction">_doScroller:</string>
@@ -226,6 +231,7 @@
 							<string key="NSFrame">{{-1, 16}, {529, 387}}</string>
 							<reference key="NSSuperview" ref="317856173"/>
 							<reference key="NSNextKeyView" ref="693272034"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<int key="NSsFlags">562</int>
 							<reference key="NSVScroller" ref="172362805"/>
 							<reference key="NSHScroller" ref="702208128"/>
@@ -237,12 +243,14 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{51, -8}, {46, 46}}</string>
 							<reference key="NSSuperview" ref="317856173"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						</object>
 						<object class="BWInsetTextField" id="108580295">
 							<reference key="NSNextResponder" ref="317856173"/>
 							<int key="NSvFlags">290</int>
 							<string key="NSFrame">{{5, 1}, {505, 13}}</string>
 							<reference key="NSSuperview" ref="317856173"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="419354306">
 								<int key="NSCellFlags">68288064</int>
@@ -266,6 +274,7 @@
 					</array>
 					<string key="NSFrameSize">{527, 441}</string>
 					<reference key="NSSuperview"/>
+					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -547,6 +556,7 @@
 						<string key="show:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="progressBar">id</string>
 						<string key="projectRoot">id</string>
 						<string key="searchField">id</string>
 						<string key="statusLabel">id</string>

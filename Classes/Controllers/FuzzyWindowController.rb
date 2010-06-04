@@ -7,13 +7,22 @@
 class FuzzyWindowController < NSWindowController
 
   attr_accessor :tableViewController, :searchField, :statusLabel, :projectRoot
+  attr_accessor :progressBar
 
   def windowDidLoad
+    NSNotificationCenter.defaultCenter.addObserver(self, selector:"receivedProgressNotification:", name:"fuzzyRecordProgress", object:nil)
+    
     setWindowFrameAutosaveName("com.topfunky.PeepOpen.FuzzyWindowController.frame")
+
+    self.progressBar = TFProgressBar.alloc.initWithFrame(window.contentView.frame)
+    if NSUserDefaults.standardUserDefaults.boolForKey("useCoreAnimation")
+      progressBar.setWantsLayer(true)
+    end
   end
 
   def show(sender)
     NSApp.activateIgnoringOtherApps(true)
+
     showWindow self
     tableViewController.selectFirstRow
     searchField.setStringValue("")
@@ -26,6 +35,11 @@ class FuzzyWindowController < NSWindowController
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
+    progressBar.frame = window.contentView.frame
+    window.contentView.addSubview(progressBar)
+    progressBar.maxValue = NSUserDefaults.standardUserDefaults.doubleForKey("maximumDocumentCount")
+    updateProgressBarWithDoubleValue(10)
+
     self.performSelectorInBackground("loadFilesFromProjectRootAsync:", withObject:theProjectRoot)
   end
 
@@ -36,21 +50,34 @@ class FuzzyWindowController < NSWindowController
       NSLog "No files found"
     end
     # TODO: Catch FuzzyRecord::ProjectRootNotFoundError
+    NSLog "Sending back to main thread"
     self.performSelectorOnMainThread("didFinishLoadingFilesFromProjectRoot",
                                      withObject:nil,
                                      waitUntilDone:false)
   end
 
   def didFinishLoadingFilesFromProjectRoot
-    NSLog "LOADED"
+    progressBar.removeFromSuperview()
+    
     didSearchForString(searchField)
     updateStatusLabel
+    NSLog "END didFinishLoadingFilesFromProjectRoot"
+  end
+
+  def receivedProgressNotification(theNotification)
+    updateProgressBarWithDoubleValue(theNotification.object.length)
+  end
+
+  def updateProgressBarWithDoubleValue(theDoubleValue)
+    progressBar.doubleValue = theDoubleValue
   end
 
   def refreshFileList(sender)
+    NSLog "START refreshFileList()"
     FuzzyRecord.flushCache(projectRoot)
     tableViewController.reset
     loadFilesFromProjectRoot(projectRoot)
+    NSLog "-- END refreshFileList()"
   end
 
 
