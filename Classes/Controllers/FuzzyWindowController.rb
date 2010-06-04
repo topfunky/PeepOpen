@@ -26,13 +26,33 @@ class FuzzyWindowController < NSWindowController
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
+    self.performSelectorInBackground("loadFilesFromProjectRootAsync:", withObject:theProjectRoot)
+  end
+
+  def loadFilesFromProjectRootAsync(theProjectRoot)
     self.projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(theProjectRoot)
     tableViewController.loadFilesFromProjectRoot(self.projectRoot)
     if tableViewController.allRecords.length == 0
       NSLog "No files found"
     end
     # TODO: Catch FuzzyRecord::ProjectRootNotFoundError
+    self.performSelectorOnMainThread("didFinishLoadingFilesFromProjectRoot",
+                                     withObject:nil,
+                                     waitUntilDone:false)
   end
+
+  def didFinishLoadingFilesFromProjectRoot
+    NSLog "LOADED"
+    didSearchForString(searchField)
+    updateStatusLabel
+  end
+
+  def refreshFileList(sender)
+    FuzzyRecord.flushCache(projectRoot)
+    tableViewController.reset
+    loadFilesFromProjectRoot(projectRoot)
+  end
+
 
   ##
   # Called when text is entered into the search field.
@@ -110,13 +130,6 @@ class FuzzyWindowController < NSWindowController
       # NSLog "Ctrl is down"
     end
     false
-  end
-
-  def refreshFileList(sender)
-    FuzzyRecord.flushCache(projectRoot)
-    tableViewController.reset
-    loadFilesFromProjectRoot(projectRoot)
-    didSearchForString(searchField)
   end
 
   def handleNewline
