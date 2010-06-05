@@ -89,12 +89,12 @@ class FuzzyCell < NSCell
     # Put the title in the top half and subtitle in the bottom half
     aTitleBox = NSMakeRect(aTextBox.origin.x,
                            aTextBox.origin.y + aTextBox.size.height * 0.5 - aTitleSize.height,
-                           aTextBox.size.width,
+                           aTextBox.size.width - HORIZONTAL_PADDING,
                            aTitleSize.height)
 
     aSubtitleBox = NSMakeRect(aTextBox.origin.x,
                               aTextBox.origin.y + aTitleSize.height + SUBTITLE_VERTICAL_PADDING,
-                              aTextBox.size.width,
+                              aTextBox.size.width - HORIZONTAL_PADDING,
                               aSubtitleSize.height)
 
     # Draw the text

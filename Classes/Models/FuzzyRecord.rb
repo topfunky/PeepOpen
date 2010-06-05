@@ -191,8 +191,10 @@ class FuzzyRecord
       records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
                                                        filePath:relativeFilename)
 
-      NSNotificationCenter.defaultCenter.postNotificationName("fuzzyRecordProgress", object:records)
+      NSNotificationCenter.defaultCenter.postNotificationName("fuzzyRecordProgress",
+                                                              object:records)
     end
+
     records
   end
 

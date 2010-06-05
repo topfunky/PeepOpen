@@ -6,12 +6,14 @@
 # Copyright 2010 Topfunky Corporation. All rights reserved.
 
 class PreferencesWindowController < NSWindowController
-
+  
   attr_accessor :applicationPopup, :editorView, :updatesView, :scmView, :ignoresView
   attr_accessor :editorToolbarItem, :updatesToolbarItem, :scmToolbarItem, :ignoresToolbarItem
   attr_accessor :gitExecutableLabel
   attr_accessor :currentView
-
+  
+  include NSWindowControllerHelper
+  
   def show(sender)
     NSApp.activateIgnoringOtherApps(true)
     window.center
@@ -242,33 +244,6 @@ class PreferencesWindowController < NSWindowController
   end
 
 
-  def runConfirmationAlertWithMessage(theMessage, informativeText:theInformativeText)
-    alert = NSAlert.alloc.init
-    alert.addButtonWithTitle("OK")
-    alert.setMessageText(theMessage)
-    alert.setInformativeText(theInformativeText)
-    alert.setAlertStyle(NSInformationalAlertStyle)
-    alert.beginSheetModalForWindow(window,
-                                   modalDelegate:self,
-                                   didEndSelector:"alertDidEnd:returnCode:contextInfo:",
-                                   contextInfo:nil)
-  end
-
-  def runWarningAlertWithMessage(theMessage, informativeText:theInformativeText)
-    alert = NSAlert.alloc.init
-    alert.addButtonWithTitle("OK")
-    alert.setMessageText(theMessage)
-    alert.setInformativeText(theInformativeText)
-    alert.setAlertStyle(NSWarningAlertStyle)
-    alert.beginSheetModalForWindow(window,
-                                   modalDelegate:self,
-                                   didEndSelector:nil,
-                                   contextInfo:nil)
-  end
-
-  def alertDidEnd(alert, returnCode:returnCode, contextInfo:contextInfo)
-    # Do nothing
-  end
 
   ##
   # TODO: Add text shadow to text labels.

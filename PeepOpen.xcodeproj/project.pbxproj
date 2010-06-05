@@ -82,6 +82,7 @@
 		759101CB1199DFCC00F4E02E /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759101C91199DFCC00F4E02E /* AboutWindow.xib */; };
 		759101CD1199DFE800F4E02E /* AboutWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 759101CC1199DFE800F4E02E /* AboutWindowController.rb */; };
 		7591020D1199E6D800F4E02E /* aboutBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7591020C1199E6D800F4E02E /* aboutBackground.png */; };
+		75A446DE11B9C88C0031CF15 /* NSWindowControllerHelper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75A446DD11B9C88C0031CF15 /* NSWindowControllerHelper.rb */; };
 		75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */; };
 		75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B04006116FDFF800053C2B /* WelcomeWindowController.rb */; };
 		75BAB436117EDA1800955D02 /* ReleaseNotesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BAB434117EDA1800955D02 /* ReleaseNotesWindow.xib */; };
@@ -163,6 +164,7 @@
 		759101CA1199DFCC00F4E02E /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/AboutWindow.xib; sourceTree = "<group>"; };
 		759101CC1199DFE800F4E02E /* AboutWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AboutWindowController.rb; path = Classes/Controllers/AboutWindowController.rb; sourceTree = "<group>"; };
 		7591020C1199E6D800F4E02E /* aboutBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = aboutBackground.png; path = Artwork/aboutBackground.png; sourceTree = "<group>"; };
+		75A446DD11B9C88C0031CF15 /* NSWindowControllerHelper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = NSWindowControllerHelper.rb; path = Classes/Helpers/NSWindowControllerHelper.rb; sourceTree = "<group>"; };
 		75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = PreferencesWindowController.rb; path = Classes/Controllers/PreferencesWindowController.rb; sourceTree = "<group>"; };
 		75B04006116FDFF800053C2B /* WelcomeWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = WelcomeWindowController.rb; path = Classes/Controllers/WelcomeWindowController.rb; sourceTree = "<group>"; };
 		75BAB435117EDA1800955D02 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ReleaseNotesWindow.xib; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 		756C28F2115557FD000E19D8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				75A446DD11B9C88C0031CF15 /* NSWindowControllerHelper.rb */,
 				756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */,
 				756C28F711555825000E19D8 /* NSDate+Helper.h */,
 				756C28F811555825000E19D8 /* NSDate+Helper.m */,
@@ -437,6 +440,7 @@
 				75FBB6F111B85BE300116CF5 /* advanced-32x32.png in Resources */,
 				75FBB6F311B85C6600116CF5 /* scm-32x32.png in Resources */,
 				75FBB6F511B85CBB00116CF5 /* updates-32x32.png in Resources */,
+				75A446DE11B9C88C0031CF15 /* NSWindowControllerHelper.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
