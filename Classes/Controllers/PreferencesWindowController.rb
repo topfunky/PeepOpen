@@ -64,7 +64,6 @@ class PreferencesWindowController < NSWindowController
 
     view.setFrameOrigin([0,0])
     window.contentView.addSubview(view)
-
     setCurrentView(view)
 
     borderHeight = window.frame.size.height - window.contentView.frame.size.height
@@ -73,7 +72,7 @@ class PreferencesWindowController < NSWindowController
     newWindowFrame.size.height = view.frame.size.height + borderHeight
     newWindowFrame.origin.y += window.frame.size.height - newWindowFrame.size.height
 
-    window.setFrame(newWindowFrame, display:true, animate:animate)
+    window.setFrame(newWindowFrame, display:true, animate:true)
   end
 
 
