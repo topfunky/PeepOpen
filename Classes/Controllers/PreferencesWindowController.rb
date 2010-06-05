@@ -53,7 +53,8 @@ class PreferencesWindowController < NSWindowController
   ##
   # Modified from the Ingredients documentation viewer project.
   #
-  # TODO: Resizing is wonky. Currently using similarly sized views.
+  # NOTE: Views for each pane must be configured to stick to the 
+  # bottom of the window.
 
   def switchToView(view, item:toolbarItem, animate:animate)
     window.toolbar.setSelectedItemIdentifier(toolbarItem.itemIdentifier)
