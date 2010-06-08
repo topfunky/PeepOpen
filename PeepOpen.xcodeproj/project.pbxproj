@@ -734,6 +734,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				PEEPOPEN_BUNDLE_VERSION = 0.2.2;
 				PRODUCT_NAME = PeepOpen;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -753,6 +754,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				PEEPOPEN_BUNDLE_VERSION = 0.2.2;
 				PRODUCT_NAME = PeepOpen;
 				WRAPPER_EXTENSION = app;
 			};
