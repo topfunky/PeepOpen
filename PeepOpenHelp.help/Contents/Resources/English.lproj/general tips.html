@@ -98,6 +98,16 @@ ul.ul1 {list-style-type: disc}
 <p class="p2"><br></p>
 <p class="p3">Our goal is that PeepOpen should just work as you expect it to. But understanding how it searches may help you a bit.</p>
 <p class="p2"><br></p>
+<p class="p4"><b>Customize Directories and Files</b></p>
+<p class="p5"><br></p>
+<p class="p3">Use the <b>Advanced</b> pane of the Preferences window to customize the regular expression that filters directories and files. If the Regex matches, the file or directory will be omitted from the list you see when you search.</p>
+<p class="p5"><br></p>
+<p class="p3">Basically, the <b>directory</b> regex is a chance to match against the beginning of a path (relative to the current project) and the <b>file</b> is a chance to match against the end of the path. Both are applied to the same path string.</p>
+<p class="p5"><br></p>
+<p class="p3">The <b>project root regex</b> is used for Xcode projects (and maybe others in the future) to find the starting directory for the project.</p>
+<p class="p5"><b></b><br></p>
+<p class="p3">You must refresh existing projects to see the results (Menu &gt; Reload Files or Command-R).</p>
+<p class="p2"><br></p>
 <p class="p4"><b>Search Algorithm Prefers Filenames</b></p>
 <p class="p5"><br></p>
 <p class="p3"><b>Filenames score</b> <b>higher</b> than paths. So you may find it easiest to start by typing part of a filename. If you recently edited a file, it will probably show up at the top.</p>
