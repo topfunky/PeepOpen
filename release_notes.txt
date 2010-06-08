@@ -1,3 +1,18 @@
+h1. <span>2010-06-07</span> Release 0.2.1
+
+h2. Custom Ignores, Background Refresh, Progress Bar, Native TextMate helper plugin
+
+* Directory and file ignore patterns are configurable in the Advanced Preference pane.
+* Files are loaded in a background thread (with a progress bar) for speed. Future updates will use this to refresh file metadata more intelligently.
+* The progress bar uses Core Animation (and will trigger the Nvidia card in the newer MacBook Pro) but it can be disabled in the Advanced Preference pane. Or, force your machine to use a specific graphics chip with "gfxCardStatus":http://codykrieger.com/gfxCardStatus/.
+* Copying, cutting, pasting, and selecting in the search field is now possible.
+* Native TextMate helper plugin activates PeepOpen even with no individual project files open (but a project must be open). Re-install the plugin from the Preferences pane.
+* The preferences window no longer closes after installing the plugin.
+* Experimental Xcode support (see the Help docs).
+* Better build system with Choctop used inside the Xcode build.
+* Various bugfixes.
+
+
 h1. <span>2010-05-11</span> Release 0.2.0
 
 h2. Menu Bar App, Manual File Reloading

@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="222"/>
 			<integer value="95"/>
+			<integer value="222"/>
 			<integer value="94"/>
 			<integer value="71"/>
 		</object>
@@ -881,10 +881,6 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSUserDefaultsController" id="220320876">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>useCoreAnimation</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSCustomObject" id="116009762">
@@ -898,7 +894,7 @@
 					<object class="NSTextField" id="106151960">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{182, 324}, {236, 14}}</string>
+						<string key="NSFrame">{{172, 324}, {236, 14}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="219576360">
@@ -917,7 +913,7 @@
 					<object class="NSTextField" id="871147230">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{182, 222}, {236, 14}}</string>
+						<string key="NSFrame">{{172, 222}, {236, 14}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="308398342">
@@ -936,7 +932,7 @@
 					<object class="NSTextField" id="731531315">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{182, 139}, {236, 14}}</string>
+						<string key="NSFrame">{{172, 139}, {236, 14}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="796875262">
@@ -955,13 +951,13 @@
 					<object class="NSTextField" id="327185823">
 						<reference key="NSNextResponder" ref="773846799"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{182, 40}, {236, 14}}</string>
+						<string key="NSFrame">{{172, 40}, {263, 14}}</string>
 						<reference key="NSSuperview" ref="773846799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="933339540">
 							<int key="NSCellFlags">67239488</int>
 							<int key="NSCellFlags2">4196352</int>
-							<string key="NSContents">Turning off may save battery life.</string>
+							<string key="NSContents">Turn off to save battery life. Relaunch required.</string>
 							<reference key="NSSupport" ref="26916033"/>
 							<reference key="NSControlView" ref="327185823"/>
 							<reference key="NSBackgroundColor" ref="147807396"/>
@@ -980,7 +976,7 @@
 						<object class="NSButtonCell" key="NSCell" id="828327912">
 							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Use Core Animation</string>
+							<string key="NSContents">Use Animation</string>
 							<reference key="NSSupport" ref="722738096"/>
 							<reference key="NSControlView" ref="474304761"/>
 							<int key="NSButtonFlags">1211912703</int>
@@ -2381,7 +2377,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">272</int>
+			<int key="maxID">275</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2393,12 +2389,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>installAquamacsEmacs:</string>
+							<string>installAquamacs:</string>
 							<string>installCoda:</string>
 							<string>installEmacs:</string>
 							<string>installMacVim:</string>
 							<string>installPlugin:</string>
 							<string>installTextMate:</string>
+							<string>installXcode:</string>
 							<string>show:</string>
 							<string>switchToEditor:</string>
 							<string>switchToIgnores:</string>
@@ -2407,6 +2404,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

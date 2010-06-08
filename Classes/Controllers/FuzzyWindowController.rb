@@ -22,9 +22,9 @@ class FuzzyWindowController < NSWindowController
                                                    object:nil)
 
     setWindowFrameAutosaveName("com.topfunky.PeepOpen.FuzzyWindowController.frame")
-    
+
     statusLabel.stringValue = ""
-    
+
     self.progressBar = TFProgressBar.alloc.initWithFrame(window.contentView.frame)
     if NSUserDefaults.standardUserDefaults.boolForKey("useCoreAnimation")
       progressBar.setWantsLayer(true)
@@ -47,7 +47,7 @@ class FuzzyWindowController < NSWindowController
 
   def loadFilesFromProjectRoot(theProjectRoot)
     statusLabel.stringValue = "Loading..."
-    
+
     self.projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(theProjectRoot)
     if nil == FuzzyRecord.cachedRecordsForProjectRoot(self.projectRoot)
       progressBar.frame = window.contentView.frame
@@ -79,10 +79,12 @@ class FuzzyWindowController < NSWindowController
   end
 
   def didFinishLoadingFilesFromProjectRoot
-    progressBar.removeFromSuperview()
+    @queue.sync do
+      progressBar.removeFromSuperview()
 
-    didSearchForString(searchField)
-    updateStatusLabel
+      didSearchForString(searchField)
+      updateStatusLabel
+    end
   end
 
   def receivedProgressNotification(theNotification)
@@ -169,11 +171,36 @@ class FuzzyWindowController < NSWindowController
     if ((modifierFlags & NSCommandKeyMask) == NSCommandKeyMask)
       case NSApp.currentEvent.charactersIgnoringModifiers
       when /r/
+        # Refresh
         refreshFileList(self)
+        return true
+      when /v/
+        # Paste
+        searchField.stringValue = NSPasteboard.generalPasteboard.stringForType(NSPasteboardTypeString)
+        didSearchForString(searchField)
+        return true
+      when /c/
+        # Copy
+        pasteboard = NSPasteboard.generalPasteboard
+        pasteboard.declareTypes([NSPasteboardTypeString], owner:nil)
+        pasteboard.setString(searchField.stringValue, forType:NSPasteboardTypeString)
+        return true
+      when /x/
+        # Cut
+        pasteboard = NSPasteboard.generalPasteboard
+        pasteboard.declareTypes([NSPasteboardTypeString], owner:nil)
+        pasteboard.setString(searchField.stringValue, forType:NSPasteboardTypeString)
+        searchField.stringValue = ""
+        didSearchForString(searchField)
+        return true
+      when /a/
+        # Select all
+        window.makeFirstResponder(searchField)
+        #[theTextView setSelectedRange: NSMakeRange(0,0)];
         return true
       end
     elsif ((modifierFlags & NSControlKeyMask) == NSControlKeyMask)
-      # NSLog "Ctrl is down"
+      # Control key is down
     end
     false
   end
@@ -191,7 +218,7 @@ class FuzzyWindowController < NSWindowController
     editorApplicationName =
       NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
     NSWorkspace.sharedWorkspace.launchApplication(editorApplicationName)
-    
+
     tableViewController.reset
     window.close
   end

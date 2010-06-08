@@ -181,7 +181,7 @@ class FuzzyRecord
       fileIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("fileIgnoreRegex"))
       next if relativeFilename.match(fileIgnoreRegex)
       if File.directory?(filename)
-        # TODO: Should ignore dot directories
+        # TODO: Should probably ignore all dot directories
         fileManager.contentsOfDirectoryAtPath(filename,
                                               error:nil).map {|f|
           filenames.insert(index, filename.stringByAppendingPathComponent(f))

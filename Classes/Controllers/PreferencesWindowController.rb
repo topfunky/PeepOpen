@@ -6,20 +6,18 @@
 # Copyright 2010 Topfunky Corporation. All rights reserved.
 
 class PreferencesWindowController < NSWindowController
-  
+
   attr_accessor :applicationPopup, :editorView, :updatesView, :scmView, :ignoresView
   attr_accessor :editorToolbarItem, :updatesToolbarItem, :scmToolbarItem, :ignoresToolbarItem
   attr_accessor :gitExecutableLabel
   attr_accessor :currentView
-  
+
   include NSWindowControllerHelper
-  
+
   def show(sender)
     NSApp.activateIgnoringOtherApps(true)
     window.center
     showWindow(sender)
-
-    # configureSubviews
   end
 
   def windowDidLoad
@@ -28,7 +26,7 @@ class PreferencesWindowController < NSWindowController
 
   def windowDidResignKey(notification)
     # TODO: Text fields should resign focus and file lists should be reloaded
-    NSLog "will close"
+    window.makeFirstResponder(nil)
   end
 
   def switchToEditor(sender)
@@ -46,14 +44,29 @@ class PreferencesWindowController < NSWindowController
   def switchToSCM(sender)
     switchToView(scmView, item:scmToolbarItem, animate:true)
     gitExecutableLocation = `which git`
-    gitExecutableLabel.stringValue = 
+
+#     task = NSTask.alloc.init
+#     pipe = NSPipe.pipe
+
+#     task.launchPath = "which"
+#     task.arguments = ["git"]
+#     task.standardOutput = pipe
+#     task.environment = ENV
+#     task.standardInput = NSPipe.pipe
+
+#     task.launch
+#     task.waitUntilExit
+#     data = pipe.fileHandleForReading.readDataToEndOfFile
+#     gitExecutableLocation = NSString.alloc.initWithData(data, encoding:NSUTF8StringEncoding)
+
+    gitExecutableLabel.stringValue =
       (gitExecutableLocation == "" ? "Git not found" : gitExecutableLocation)
   end
 
   ##
   # Modified from the Ingredients documentation viewer project.
   #
-  # NOTE: Views for each pane must be configured to stick to the 
+  # NOTE: Views for each pane must be configured to stick to the
   # bottom of the window.
 
   def switchToView(view, item:toolbarItem, animate:animate)
@@ -168,9 +181,14 @@ class PreferencesWindowController < NSWindowController
                                     informativeText:"Some additional Emacs configuration is required. See ~/.emacs.d/vendor/peepopen.el for the details.")
   end
 
-  def installAquamacsEmacs(sender)
+  def installAquamacs(sender)
     runConfirmationAlertWithMessage("Aquamacs Emacs support has not been implemented yet.",
                                     informativeText:"We hope to implement it soon. Contact boss@topfunky.com if you're interested in trying it.")
+  end
+
+  def installXcode(sender)
+    runConfirmationAlertWithMessage("See the Help menu for Xcode installation.",
+                                    informativeText:"The PeepOpen Help menu includes instructions for configuring Xcode to use PeepOpen.")
   end
 
   def installMacVim(sender)
@@ -241,25 +259,6 @@ class PreferencesWindowController < NSWindowController
     # HACK: Run openFile after so dialog doesn't show over Coda.
     NSWorkspace.sharedWorkspace.openFile(localCodaPluginPath,
                                          withApplication:"Coda")
-  end
-
-
-
-  ##
-  # TODO: Add text shadow to text labels.
-  #
-  # Doesn't work yet.
-
-  def configureSubviews
-    [editorView, updatesView, scmView].each do |prefView|
-      prefView.subviews.each do |subview|
-        case subview.class.name
-        when "NSTextField"
-          subview.cell.backgroundStyle = NSBackgroundStyleRaised
-          subview.setNeedsDisplay(true)
-        end
-      end
-    end
   end
 
 end
