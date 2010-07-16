@@ -37,7 +37,7 @@
 				4D1A51A410A4FF640046A98A /* ShellScript */,
 			);
 			dependencies = (
-				75B0406C116FF7F400053C2B /* PBXTargetDependency */,
+				75FE619611D907DF009D1E98 /* PBXTargetDependency */,
 			);
 			name = Embed;
 			productName = Embed;
@@ -116,12 +116,12 @@
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = FuzzyWindow;
 		};
-		75B0406B116FF7F400053C2B /* PBXContainerItemProxy */ = {
+		75FE619511D907DF009D1E98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D1107260486CEB800E47090;
-			remoteInfo = PeepOpen;
+			remoteGlobalIDString = 4D1A51A110A4FF5D0046A98A;
+			remoteInfo = Compile;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -484,7 +484,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# The macruby_deploy command-line tool with the --embed argument will make sure the MacRuby framework will be embedded in your .app. Default options will be used. Pass the -h option to get more information.\nPATH=\"$PATH:/usr/local/bin\" macruby_deploy --embed \"$TARGET_BUILD_DIR/$PROJECT_NAME.app\"";
+			shellScript = "# The macruby_deploy command-line tool with the --embed argument will make sure the MacRuby framework will be embedded in your .app. Default options will be used. Pass the -h option to get more information.\nPATH=\"$PATH:/usr/local/bin\" macruby_deploy --embed --no-stdlib \"$TARGET_BUILD_DIR/$PROJECT_NAME.app\"";
 		};
 		753B921711AEF25B00DBCCC2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -546,10 +546,10 @@
 			target = 8D1107260486CEB800E47090 /* PeepOpen */;
 			targetProxy = 756366FF116E7ACA0030769A /* PBXContainerItemProxy */;
 		};
-		75B0406C116FF7F400053C2B /* PBXTargetDependency */ = {
+		75FE619611D907DF009D1E98 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D1107260486CEB800E47090 /* PeepOpen */;
-			targetProxy = 75B0406B116FF7F400053C2B /* PBXContainerItemProxy */;
+			target = 4D1A51A110A4FF5D0046A98A /* Compile */;
+			targetProxy = 75FE619511D907DF009D1E98 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

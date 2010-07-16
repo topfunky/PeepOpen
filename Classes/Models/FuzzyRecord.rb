@@ -9,7 +9,7 @@ class FuzzyRecord
   attr_accessor *[:projectRoot, :filePath,
                   :scmStatus, :scmName,
                   :codeObjectName, :codeObjectNames,
-                  :matchedRanges, :matchesOnFilenameScore]
+                  :matchedRanges, :matchesOnFilenameScore, :longestMatch]
 
   MAX_SCORE = 10_000
 
@@ -209,8 +209,8 @@ class FuzzyRecord
     end
     sortedRecords =
       filteredRecords.sort_by { |record| [ -record.matchesOnFilenameScore,
-                                           -record.longestMatch,
                                            record.matchScore,
+                                           -record.longestMatch,
                                            -record.modifiedAt.timeIntervalSince1970 ] }
     if (correctedSearchString.length == 0) && (records.first != nil)
       if cacheHash = self.cacheForProjectRoot(records.first.projectRoot)

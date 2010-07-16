@@ -31,15 +31,28 @@
 ;;
 ;; Copy this file to ~/.emacs.d/vendor/peepopen.el (or use the menu
 ;; item in the PeepOpen application).
+;;
 
-;; $ cd ~/.emacs.d/vendor
-;; $ git clone git://github.com/defunkt/textmate.el.git
+;; You'll also need textmate.el:
+;;
+;;   $ cd ~/.emacs.d/vendor
+;;   $ git clone git://github.com/defunkt/textmate.el.git
 
-;; (add-to-list 'load-path "~/.emacs.d/vendor/textmate.el")
-;; (require 'textmate)
-;; (textmate-mode)
-;; (add-to-list 'load-path "~/.emacs.d/vendor/")
-;; (require 'peepopen)
+;; Finally, require both libraries and activate textmate-mode.
+;; In most Emacs distributions, you'll do this in ~/.emacs.d/init.el
+;; or your personal configuration file.
+;;
+;; In Aquamacs, this goes in ~/Library/Preferences/Aquamacs Emacs/Preferences.el.
+
+;;   (add-to-list 'load-path "~/.emacs.d/vendor/textmate.el")
+;;   (require 'textmate)
+;;   (add-to-list 'load-path "~/.emacs.d/vendor/")
+;;   (require 'peepopen)
+;;   (textmate-mode)
+
+;; For Emacs 23 or Aquamacs, use this to open files in the existing frame:
+;;
+;;   (setq ns-pop-up-frames nil)
 
 ;;;###autoload
 (defun peepopen-goto-file-gui ()
@@ -67,7 +80,8 @@
 
 (defun peepopen-bind-aquamacs-keys ()
   ;; Need `osx-key-mode-map' to override
-  (define-key osx-key-mode-map (kbd "A-t") 'peepopen-goto-file-gui))
+  (define-key osx-key-mode-map (kbd "A-t") 'peepopen-goto-file-gui)
+  (define-key *textmate-mode-map* (kbd "A-t") 'peepopen-goto-file-gui))
 
 (defun peepopen-bind-carbon-keys ()
   (define-key *textmate-mode-map* [(meta t)] 'peepopen-goto-file-gui))

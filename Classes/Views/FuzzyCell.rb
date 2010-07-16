@@ -208,6 +208,9 @@ class FuzzyCell < NSCell
       if representedObject.matchesOnFilenameScore > 0
         subtitleString << "FILEMATCH true"
       end
+      if representedObject.longestMatch > 0
+        subtitleString << "LONGEST #{representedObject.longestMatch}"
+      end
     end
     subtitleString = subtitleString.join("  ")
     attrString = NSMutableAttributedString.alloc.
