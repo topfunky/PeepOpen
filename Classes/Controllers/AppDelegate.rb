@@ -78,6 +78,9 @@ class AppDelegate
   end
 
   def showReleaseNotesWindow(sender)
+    if fuzzyWindowController.respondsToSelector(:close)
+      fuzzyWindowController.close
+    end
     if !@releaseNotesWindowController
       self.releaseNotesWindowController =
         windowControllerForNib("ReleaseNotesWindow")
@@ -86,6 +89,9 @@ class AppDelegate
   end
 
   def showAbout(sender)
+    if fuzzyWindowController.respondsToSelector(:close)
+      fuzzyWindowController.close
+    end
     if (!aboutWindowController)
       self.aboutWindowController = windowControllerForNib("AboutWindow")
     end
