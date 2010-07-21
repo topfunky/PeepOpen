@@ -9,7 +9,7 @@ require 'NSWindowControllerHelper'
 class FuzzyWindowController < NSWindowController
 
   attr_accessor :tableViewController, :searchField, :statusLabel, :projectRoot
-  attr_accessor :progressBar
+  attr_accessor :progressBar, :settingsMenuButton
 
   include NSWindowControllerHelper
 
@@ -29,6 +29,12 @@ class FuzzyWindowController < NSWindowController
     if NSUserDefaults.standardUserDefaults.boolForKey("useCoreAnimation")
       progressBar.setWantsLayer(true)
     end
+    
+    settingsMenuButton.setMenu(NSApp.delegate.statusMenu)    
+  end
+
+  def showStatusMenu(sender)
+    NSMenu.popUpContextMenu(NSApp.delegate.statusMenu, withEvent:NSApp.currentEvent, forView:window.contentView)
   end
 
   def show(sender)

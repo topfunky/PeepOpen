@@ -7,6 +7,7 @@ h2. Better Sorting, More Preferences, App Speed & Size
 * Smaller executable (Omits unused Ruby standard library)
 * Indexing "All" files is now possible in Preferences (previous limit was 4,000)
 * Plugin and sample Preferences.el files for Aquamacs Emacs
+* Option to hide icon in menu bar (in Advanced Preferences)
 
 h1. <span>2010-06-07</span> Release 0.2.1
 

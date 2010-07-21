@@ -17,7 +17,8 @@ class AppDelegate
       "directoryIgnoreRegex" => '^(\.git|\.hg|\.svn|\.sass-cache|build|tmp|log|vendor\/(rails|gems|plugins))',
       "fileIgnoreRegex" => '(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.ai|\.pdf|\.mov|\.aep|\.dmg|\.zip|\.gz|~)$',
       "projectRootRegex" => '^(\.git|\.hg|Rakefile|Makefile|README\.?.*|build\.xml|.*\.xcodeproj)$',
-      "useCoreAnimation" => true
+      "useCoreAnimation" => true,
+      "showStatusBarMenu" => true
     }
   end
 
@@ -26,7 +27,9 @@ class AppDelegate
   end
 
   def applicationDidFinishLaunching(aNotification)
-    createStatusBarMenu
+    if NSUserDefaults.standardUserDefaults.boolForKey("showStatusBarMenu")
+      createStatusBarMenu
+    end
     # HACK: Load window and immediately close it so menu validation
     # doesn't accidentally show it.
     # fuzzyWindowController.window.close
