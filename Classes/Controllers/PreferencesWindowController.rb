@@ -45,19 +45,19 @@ class PreferencesWindowController < NSWindowController
     switchToView(scmView, item:scmToolbarItem, animate:true)
     gitExecutableLocation = `which git`
 
-#     task = NSTask.alloc.init
-#     pipe = NSPipe.pipe
+    #     task = NSTask.alloc.init
+    #     pipe = NSPipe.pipe
 
-#     task.launchPath = "which"
-#     task.arguments = ["git"]
-#     task.standardOutput = pipe
-#     task.environment = ENV
-#     task.standardInput = NSPipe.pipe
+    #     task.launchPath = "which"
+    #     task.arguments = ["git"]
+    #     task.standardOutput = pipe
+    #     task.environment = ENV
+    #     task.standardInput = NSPipe.pipe
 
-#     task.launch
-#     task.waitUntilExit
-#     data = pipe.fileHandleForReading.readDataToEndOfFile
-#     gitExecutableLocation = NSString.alloc.initWithData(data, encoding:NSUTF8StringEncoding)
+    #     task.launch
+    #     task.waitUntilExit
+    #     data = pipe.fileHandleForReading.readDataToEndOfFile
+    #     gitExecutableLocation = NSString.alloc.initWithData(data, encoding:NSUTF8StringEncoding)
 
     gitExecutableLabel.stringValue =
       (gitExecutableLocation == "" ? "Git not found" : gitExecutableLocation)
@@ -182,8 +182,37 @@ class PreferencesWindowController < NSWindowController
   end
 
   def installAquamacs(sender)
-    runConfirmationAlertWithMessage("Aquamacs Emacs support has not been implemented yet.",
-                                    informativeText:"We hope to implement it soon. Contact boss@topfunky.com if you're interested in trying it.")
+    fileManager = NSFileManager.defaultManager
+    dotEmacsDirectoryPath =
+      NSString.pathWithComponents(["~",
+                                   "Library",
+                                   "Application Support",
+                                   "Aquamacs Emacs"]).stringByExpandingTildeInPath()
+    dotEmacsVendorDirectoryPath =
+      dotEmacsDirectoryPath.stringByAppendingPathComponent("vendor")
+
+    resourcePath = NSBundle.mainBundle.resourcePath
+    bundleSupportPath =
+      NSString.pathWithComponents([NSBundle.mainBundle.resourcePath, "Support"])
+
+    fileManager.createDirectoryAtPath(dotEmacsVendorDirectoryPath,
+                                      withIntermediateDirectories:true,
+                                      attributes:nil,
+                                      error:nil)
+    ["vendor/peepopen.el", "vendor/textmate.el", "Preferences.sample.el"].each do |filename|
+      installedFilePath = dotEmacsDirectoryPath.stringByAppendingPathComponent(filename)
+      if fileManager.fileExistsAtPath(installedFilePath)
+        fileManager.removeItemAtPath(installedFilePath, error:nil)
+      end
+      bundleFilePath =
+        bundleSupportPath.stringByAppendingPathComponent(File.basename(filename))
+      fileManager.copyItemAtPath(bundleFilePath,
+                                 toPath:installedFilePath,
+                                 error:nil)
+    end
+
+    runConfirmationAlertWithMessage("The Aquamacs plugin was installed successfully!",
+                                    informativeText:"Some additional Aquamacs configuration is required. See ~/Library/Application Support/Aquamacs Emacs/Preferences.sample.el for the details.")
   end
 
   def installXcode(sender)

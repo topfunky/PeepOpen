@@ -1,3 +1,13 @@
+h1. <span>2010-07-20</span> Release 0.2.2
+
+h2. Better Sorting, More Preferences, App Speed & Size
+
+* Better sorting when search string matches beginning of filename
+* Minor speed improvement (Compiles to machine code instead of Ruby source)
+* Smaller executable (Omits unused Ruby standard library)
+* Indexing "All" files is now possible in Preferences (previous limit was 4,000)
+* Plugin and sample Preferences.el files for Aquamacs Emacs
+
 h1. <span>2010-06-07</span> Release 0.2.1
 
 h2. Custom Ignores, Background Refresh, Progress Bar, Native TextMate helper plugin

@@ -1,0 +1,5 @@
+if [[ -s "~/.rvm/environments/ree-1.8.6-20090610@peepopen" ]] ; then
+  . "~/.rvm/environments/ree-1.8.6-20090610@peepopen"
+else
+  rvm --create use  "ree-1.8.6-20090610@peepopen"
+fi

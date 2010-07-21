@@ -170,7 +170,7 @@ class FuzzyRecord
       theProjectRoot.stringByAppendingPathComponent(f)
     }
     index = 0
-    while (index < filenames.length && records.length < maximumDocumentCount) do
+    while ( (index < filenames.length) && ((maximumDocumentCount >= 4000) || (records.length < maximumDocumentCount)) ) do
       filename = filenames[index]
       index += 1
       next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
