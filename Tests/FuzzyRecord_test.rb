@@ -79,7 +79,7 @@ class FuzzyRecordTest < Test::Unit::TestCase
 
   test "finds files" do
     records = createRecords
-    assert_in_delta 50, records.length, 390
+    assert_in_delta 50, records.length, 400
   end
 
   test "filters on filename first if it matches" do
