@@ -43,7 +43,7 @@ class PreferencesWindowController < NSWindowController
 
   def switchToSCM(sender)
     switchToView(scmView, item:scmToolbarItem, animate:true)
-    shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL")
+    shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL") || "/bin/bash"
     gitExecutableLocation = `#{shellString} -l -c "which git"`
 
     #     task = NSTask.alloc.init

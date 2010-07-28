@@ -146,7 +146,7 @@ class FuzzyRecord
       return
     end
     
-    shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL")
+    shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL") || "/bin/bash"
     
     if output = `#{shellString} -l -c "cd #{theProjectRoot} && git diff --numstat #{gitDiffAgainst}"`
       output.split(/\n/).each do |outputLine|
