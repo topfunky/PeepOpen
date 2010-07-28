@@ -1,3 +1,9 @@
+h1. <span>2010-07-28</span> Release 0.2.3
+
+h2. Git PATH Fix
+
+* Your shell's PATH is now used to find Git and should work if you can use Git from your terminal.
+
 h1. <span>2010-07-20</span> Release 0.2.2
 
 h2. Better Sorting, More Preferences, App Speed & Size

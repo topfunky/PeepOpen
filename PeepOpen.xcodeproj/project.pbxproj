@@ -83,6 +83,7 @@
 		759101CD1199DFE800F4E02E /* AboutWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 759101CC1199DFE800F4E02E /* AboutWindowController.rb */; };
 		7591020D1199E6D800F4E02E /* aboutBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7591020C1199E6D800F4E02E /* aboutBackground.png */; };
 		75955B9411F79EED00C0DA26 /* settings-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 75955B9311F79EED00C0DA26 /* settings-16x16.png */; };
+		759B3C761200AB6B000B0BA8 /* statusItemIcon.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 759B3C751200AB6B000B0BA8 /* statusItemIcon.dark.png */; };
 		75A446DE11B9C88C0031CF15 /* NSWindowControllerHelper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75A446DD11B9C88C0031CF15 /* NSWindowControllerHelper.rb */; };
 		75B03F4A116F0B7D00053C2B /* PreferencesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */; };
 		75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B04006116FDFF800053C2B /* WelcomeWindowController.rb */; };
@@ -166,6 +167,7 @@
 		759101CC1199DFE800F4E02E /* AboutWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AboutWindowController.rb; path = Classes/Controllers/AboutWindowController.rb; sourceTree = "<group>"; };
 		7591020C1199E6D800F4E02E /* aboutBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = aboutBackground.png; path = Artwork/aboutBackground.png; sourceTree = "<group>"; };
 		75955B9311F79EED00C0DA26 /* settings-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings-16x16.png"; path = "Artwork/Icons/settings-16x16.png"; sourceTree = "<group>"; };
+		759B3C751200AB6B000B0BA8 /* statusItemIcon.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = statusItemIcon.dark.png; path = Artwork/statusItemIcon.dark.png; sourceTree = "<group>"; };
 		75A446DD11B9C88C0031CF15 /* NSWindowControllerHelper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = NSWindowControllerHelper.rb; path = Classes/Helpers/NSWindowControllerHelper.rb; sourceTree = "<group>"; };
 		75B03F49116F0B7D00053C2B /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = PreferencesWindowController.rb; path = Classes/Controllers/PreferencesWindowController.rb; sourceTree = "<group>"; };
 		75B04006116FDFF800053C2B /* WelcomeWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = WelcomeWindowController.rb; path = Classes/Controllers/WelcomeWindowController.rb; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				751C7E1C119C8AEB00D86736 /* PeepOpenHelp.help */,
 				7591020C1199E6D800F4E02E /* aboutBackground.png */,
 				759101A71199DCE600F4E02E /* icon.icns */,
+				759B3C751200AB6B000B0BA8 /* statusItemIcon.dark.png */,
 				758B9B2311823FA900668505 /* statusItemIcon.png */,
 				750F49FD1173F6DF00015D47 /* dmg-background.png */,
 				75BFEA8C116E9DA600D7D862 /* Support */,
@@ -445,6 +448,7 @@
 				75FBB6F511B85CBB00116CF5 /* updates-32x32.png in Resources */,
 				75A446DE11B9C88C0031CF15 /* NSWindowControllerHelper.rb in Resources */,
 				75955B9411F79EED00C0DA26 /* settings-16x16.png in Resources */,
+				759B3C761200AB6B000B0BA8 /* statusItemIcon.dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,7 +742,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PEEPOPEN_BUNDLE_VERSION = 0.2.2;
+				PEEPOPEN_BUNDLE_VERSION = 0.2.3;
 				PRODUCT_NAME = PeepOpen;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -758,7 +762,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PEEPOPEN_BUNDLE_VERSION = 0.2.2;
+				PEEPOPEN_BUNDLE_VERSION = 0.2.3;
 				PRODUCT_NAME = PeepOpen;
 				WRAPPER_EXTENSION = app;
 			};

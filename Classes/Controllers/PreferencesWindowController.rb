@@ -43,7 +43,8 @@ class PreferencesWindowController < NSWindowController
 
   def switchToSCM(sender)
     switchToView(scmView, item:scmToolbarItem, animate:true)
-    gitExecutableLocation = `which git`
+    shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL")
+    gitExecutableLocation = `#{shellString} -l -c "which git"`
 
     #     task = NSTask.alloc.init
     #     pipe = NSPipe.pipe

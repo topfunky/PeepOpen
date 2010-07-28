@@ -145,7 +145,10 @@ class FuzzyRecord
     unless NSFileManager.defaultManager.fileExistsAtPath(projectDotGitPath)
       return
     end
-    if output = `cd #{theProjectRoot} && git diff --numstat #{gitDiffAgainst}`
+    
+    shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL")
+    
+    if output = `#{shellString} -l -c "cd #{theProjectRoot} && git diff --numstat #{gitDiffAgainst}"`
       output.split(/\n/).each do |outputLine|
         added, deleted, filePath = outputLine.split
         added   = 30 if added.to_i   > 30
