@@ -32,3 +32,22 @@ task :clean do
   rm_rf "appcast"
   rm_rf "build"
 end
+
+desc "Package download with source and release notes"
+task :pkg do
+  raise "Please provide VERSION=0.5.0" unless ENV["VERSION"]
+  
+  dotted_version = ENV["VERSION"]
+  numeric_version = dotted_version.gsub('.', '')
+  pkg_dir = "peepcode-peepopen-#{numeric_version}-code"
+  
+  if File.exist?(pkg_dir)
+    rm_rf pkg_dir
+  end
+  mkdir pkg_dir
+  system "cd #{pkg_dir} && wget http://peepcode.com/system/apps/PeepOpen/release_notes.html"
+  system "cd #{pkg_dir} && wget http://peepcode.com/system/apps/PeepOpen/PeepOpen.dmg"
+  system "git archive master > #{pkg_dir}/source.tar"
+  system "zip -r #{pkg_dir}.zip #{pkg_dir}"
+end
+
