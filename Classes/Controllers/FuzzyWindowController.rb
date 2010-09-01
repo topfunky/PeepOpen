@@ -26,6 +26,7 @@ class FuzzyWindowController < NSWindowController
     statusLabel.stringValue = ""
 
     self.progressBar = TFProgressBar.alloc.initWithFrame(window.contentView.frame)
+    self.progressBar.labelText = ""
     if NSUserDefaults.standardUserDefaults.boolForKey("useCoreAnimation")
       progressBar.setWantsLayer(true)
     end
@@ -53,6 +54,7 @@ class FuzzyWindowController < NSWindowController
 
   def loadFilesFromProjectRoot(theProjectRoot)
     statusLabel.stringValue = "Loading..."
+    progressBar.labelText = "Reading files..."
 
     self.projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(theProjectRoot)
     if nil == FuzzyRecord.cachedRecordsForProjectRoot(self.projectRoot)
@@ -99,6 +101,9 @@ class FuzzyWindowController < NSWindowController
 
   def updateProgressBarWithDoubleValue(theDoubleValue)
     progressBar.doubleValue = theDoubleValue
+    if (theDoubleValue % 100) == 0
+      progressBar.labelText = "Reading #{theDoubleValue} files..."
+    end
   end
 
   def refreshFileList(sender)

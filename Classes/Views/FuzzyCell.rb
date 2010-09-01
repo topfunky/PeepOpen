@@ -34,9 +34,6 @@ class FuzzyCell < NSCell
   SUBTITLE_FONT_SIZE = 10.0
 
   def drawInteriorWithFrame(theCellFrame, inView:theControlView)
-    # TODO: Text shadow with
-    # setBackgroundStyle(NSBackgroundStyleRaised)
-
     darkGrey = NSColor.colorWithCalibratedRed(0.3, green:0.3, blue:0.3, alpha:1.0)
     titleAttributes = {
       NSForegroundColorAttributeName => darkGrey,
@@ -44,6 +41,10 @@ class FuzzyCell < NSCell
       NSParagraphStyleAttributeName  => paragraphStyle,
       NSShadowAttributeName          => whiteShadow
     }
+    if darkBackground?
+      titleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
+      titleAttributes.delete(NSShadowAttributeName)
+    end
 
     # Create strings for labels
     aTitle = NSMutableAttributedString.alloc.
@@ -54,7 +55,7 @@ class FuzzyCell < NSCell
       begin
         representedObject.matchedRanges.each do |range|
           aTitle.addAttribute(NSForegroundColorAttributeName,
-                              value:NSColor.blackColor,
+                              value:(darkBackground? ? NSColor.whiteColor : NSColor.blackColor),
                               range:range)
           aTitle.addAttribute(NSFontAttributeName,
                               value:titleEmphasisFont,
@@ -147,7 +148,7 @@ class FuzzyCell < NSCell
       NSFontAttributeName => NSFont.fontWithName("Futura-CondensedMedium",
                                                  size:22)
     }
-    if highlighted?
+    if highlighted? || darkBackground?
       filetypeLabelAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
     end
     filetypeLabelSize = filetypeSuffix.sizeWithAttributes(filetypeLabelAttributes)
@@ -196,6 +197,9 @@ class FuzzyCell < NSCell
       NSFontAttributeName => NSFont.systemFontOfSize(SUBTITLE_FONT_SIZE),
       NSParagraphStyleAttributeName => paragraphStyle
     }
+    if darkBackground?
+      subtitleAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
+    end
 
     displayDate = NSDate.stringForDisplayFromDate(representedObject.modifiedAt)
     subtitleString = ["#{displayDate}"]
@@ -216,6 +220,10 @@ class FuzzyCell < NSCell
     attrString = NSMutableAttributedString.alloc.
       initWithString(subtitleString,
                      attributes:subtitleAttributes)
+
+    if darkBackground?
+      return attrString
+    end
 
     attrString.beginEditing
     begin
@@ -292,6 +300,13 @@ class FuzzyCell < NSCell
     attrString.endEditing
 
     return attrString
+  end
+
+  ##
+  # Background is dark when selected with the mouse.
+  
+  def darkBackground?
+    self.backgroundStyle == NSBackgroundStyleDark
   end
 
   def paragraphStyle

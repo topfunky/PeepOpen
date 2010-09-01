@@ -19,15 +19,19 @@
 - (void) drawOutline;
 - (void) drawDeterminateInnerBar;
 - (void) drawIndeterminateInnerBar;
+- (void) drawLabel;
 - (void) alignPathToPixel:(NSBezierPath *)thePath;
 @end
 
 @implementation TFProgressBar
 
+@synthesize labelText;
+
 - (id) initWithFrame:(NSRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
     [self setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+    labelText = @"";
   }
   return self;
 }
@@ -45,6 +49,7 @@
   [self drawOutline];
   // TODO: Optionally draw indeterminate bar
   [self drawDeterminateInnerBar];
+  [self drawLabel];
 }
 
 - (void) drawOutline {
@@ -61,6 +66,20 @@
   [self alignPathToPixel:path];
   [[NSColor whiteColor] set];    
   [path stroke];
+}
+
+- (void) drawLabel
+{
+  NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+  [paragraphStyle setAlignment:NSCenterTextAlignment];
+  
+  [labelText drawInRect:NSMakeRect(self.frame.size.width / 2.0 - TFProgressBarWidth / 2.0,
+                                   (self.frame.size.height / 2.0 - TFProgressBarHeight / 2.0) + TFProgressBarHeight * 1.5,
+                                   TFProgressBarWidth,
+                                   TFProgressBarHeight)    
+         withAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
+                         [NSFont systemFontOfSize:10.0f], NSFontAttributeName, 
+                         paragraphStyle, NSParagraphStyleAttributeName, nil]];
 }
 
 - (void) drawDeterminateInnerBar {

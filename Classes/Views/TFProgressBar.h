@@ -10,7 +10,9 @@
 
 
 @interface TFProgressBar : NSProgressIndicator {
-
+  NSString *labelText;
 }
+
+@property (nonatomic, assign) NSString *labelText;
 
 @end
