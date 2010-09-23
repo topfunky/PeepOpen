@@ -1,3 +1,12 @@
+h1. <span>2010-09-23</span> Release 0.2.4
+
+h2. Visual Cleanup
+
+* Progress bar is now labeled with the number of files being loaded (useful for large projects).
+* Selected cell draws text in white for readability.
+* Filetype icon at left of search results can be hidden in preferences.
+* Menu item links to bug tracker.
+
 h1. <span>2010-07-28</span> Release 0.2.3
 
 h2. Git PATH Fix
@@ -105,5 +114,4 @@ h2. First Alpha Release
 
 * TextMate plugin included
 * Other editor plugins have been implemented and will be available soon.
-
 

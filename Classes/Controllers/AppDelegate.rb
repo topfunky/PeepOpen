@@ -88,6 +88,10 @@ class AppDelegate
     releaseNotesWindowController.show(self)
   end
 
+  def showSupportSite(sender)
+    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString("http://github.com/topfunky/peepopen-issues/issues"))
+  end
+
   def showAbout(sender)
     if fuzzyWindowController.respondsToSelector(:close)
       fuzzyWindowController.close
@@ -118,6 +122,41 @@ class AppDelegate
   end
 
   private
+
+  ##
+  # Watch filesystem for changes so new files can be indexed automatically.
+  
+  def setupFSEventListener(thePaths)
+    # HACK: Disable until fully implemented and reliable
+    return
+    
+    # TODO: Needs to be able to watch several paths and distinguish between them.
+    # Scenarios: Switch projects. Should it keep watching the inactive project or just upon return?
+    #            Should the model watch files or just the controller or AppDelegate?
+    
+    events = SCEvents.sharedPathWatcher
+    events.setDelegate(self)
+      
+    # excludePaths = [NSMutableArray arrayWithObject:[NSHomeDirectory() stringByAppendingPathComponent:@"Downloads"]];
+    # Set the paths to be excluded
+    # events.setExcludedPaths(excludePaths)
+    
+    # Start receiving events
+    events.stopWatchingPaths
+    events.startWatchingPaths(thePaths)
+
+    if ENV["TF_VISUAL_DEBUG"]
+      # Display a description of the stream
+      NSLog("%@", events.streamDescription)
+    end
+  end
+
+  ##
+  # Take action on directories that have changed recently.
+
+  def pathWatcher(pathWatcher, eventOccurred:event)
+    # NSLog("%@", event)
+  end
 
   # Given +nibName+, allocate and initialize the appropriate window
   # controller for the NIB.

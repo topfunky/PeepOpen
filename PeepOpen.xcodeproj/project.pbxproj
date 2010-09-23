@@ -89,6 +89,9 @@
 		75B04007116FDFF800053C2B /* WelcomeWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75B04006116FDFF800053C2B /* WelcomeWindowController.rb */; };
 		75BAB436117EDA1800955D02 /* ReleaseNotesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BAB434117EDA1800955D02 /* ReleaseNotesWindow.xib */; };
 		75BAB438117EDA3800955D02 /* ReleaseNotesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 75BAB437117EDA3800955D02 /* ReleaseNotesWindowController.rb */; };
+		75BEE8A6122EE2A600C94E41 /* SCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BEE8A2122EE2A600C94E41 /* SCEvent.m */; };
+		75BEE8A7122EE2A600C94E41 /* SCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BEE8A5122EE2A600C94E41 /* SCEvents.m */; };
+		75BEE8D2122EE4B900C94E41 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75BEE8D1122EE4B900C94E41 /* CoreServices.framework */; };
 		75BFEA9A116E9DA600D7D862 /* Support in Resources */ = {isa = PBXBuildFile; fileRef = 75BFEA8C116E9DA600D7D862 /* Support */; };
 		75C013E7118211C10037B468 /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C013E5118211C10037B468 /* WelcomeWindow.xib */; };
 		75C014311182196B0037B468 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C0142F1182196B0037B468 /* PreferencesWindow.xib */; };
@@ -173,6 +176,12 @@
 		75B04006116FDFF800053C2B /* WelcomeWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = WelcomeWindowController.rb; path = Classes/Controllers/WelcomeWindowController.rb; sourceTree = "<group>"; };
 		75BAB435117EDA1800955D02 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ReleaseNotesWindow.xib; sourceTree = "<group>"; };
 		75BAB437117EDA3800955D02 /* ReleaseNotesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = ReleaseNotesWindowController.rb; path = Classes/Controllers/ReleaseNotesWindowController.rb; sourceTree = "<group>"; };
+		75BEE8A1122EE2A600C94E41 /* SCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvent.h; path = Classes/Helpers/SCEvent/SCEvent.h; sourceTree = "<group>"; };
+		75BEE8A2122EE2A600C94E41 /* SCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvent.m; path = Classes/Helpers/SCEvent/SCEvent.m; sourceTree = "<group>"; };
+		75BEE8A3122EE2A600C94E41 /* SCEventListenerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEventListenerProtocol.h; path = Classes/Helpers/SCEvent/SCEventListenerProtocol.h; sourceTree = "<group>"; };
+		75BEE8A4122EE2A600C94E41 /* SCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvents.h; path = Classes/Helpers/SCEvent/SCEvents.h; sourceTree = "<group>"; };
+		75BEE8A5122EE2A600C94E41 /* SCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvents.m; path = Classes/Helpers/SCEvent/SCEvents.m; sourceTree = "<group>"; };
+		75BEE8D1122EE4B900C94E41 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		75BFEA8C116E9DA600D7D862 /* Support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Support; sourceTree = "<group>"; };
 		75C013E6118211C10037B468 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WelcomeWindow.xib; sourceTree = "<group>"; };
 		75C014301182196B0037B468 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
@@ -202,6 +211,7 @@
 				4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */,
 				756C2DA41157E9BC000E19D8 /* BWToolkitFramework.framework in Frameworks */,
 				75DB5A9A116E807600B1DD58 /* Sparkle.framework in Frameworks */,
+				75BEE8D2122EE4B900C94E41 /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +247,7 @@
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				75BEE8D1122EE4B900C94E41 /* CoreServices.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -315,12 +326,25 @@
 		756C28F2115557FD000E19D8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				75BEE8A0122EE29300C94E41 /* SCEvent */,
 				75A446DD11B9C88C0031CF15 /* NSWindowControllerHelper.rb */,
 				756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */,
 				756C28F711555825000E19D8 /* NSDate+Helper.h */,
 				756C28F811555825000E19D8 /* NSDate+Helper.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		75BEE8A0122EE29300C94E41 /* SCEvent */ = {
+			isa = PBXGroup;
+			children = (
+				75BEE8A1122EE2A600C94E41 /* SCEvent.h */,
+				75BEE8A2122EE2A600C94E41 /* SCEvent.m */,
+				75BEE8A3122EE2A600C94E41 /* SCEventListenerProtocol.h */,
+				75BEE8A4122EE2A600C94E41 /* SCEvents.h */,
+				75BEE8A5122EE2A600C94E41 /* SCEvents.m */,
+			);
+			name = SCEvent;
 			sourceTree = "<group>";
 		};
 		75E2E767115088EC0056AD27 /* Controllers */ = {
@@ -543,6 +567,8 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				756C28F911555825000E19D8 /* NSDate+Helper.m in Sources */,
 				75FD918311B970DD00AA1786 /* TFProgressBar.m in Sources */,
+				75BEE8A6122EE2A600C94E41 /* SCEvent.m in Sources */,
+				75BEE8A7122EE2A600C94E41 /* SCEvents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,7 +801,7 @@
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PEEPOPEN_BUNDLE_VERSION = 0.2.4;
+				PEEPOPEN_BUNDLE_VERSION = 0.2.3;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
@@ -788,7 +814,7 @@
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PEEPOPEN_BUNDLE_VERSION = 0.2.4;
+				PEEPOPEN_BUNDLE_VERSION = 0.2.3;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
