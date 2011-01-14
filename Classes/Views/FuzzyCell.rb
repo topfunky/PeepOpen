@@ -20,7 +20,7 @@ class FuzzyCell < NSCell
   ICON_HEIGHT = 27
   ICON_WIDTH  = 50 # Distance to right edge of right-aligned icon
 
-  ICON_PADDING_SIDE = 2
+  ICON_PADDING_SIDE = 2.0
 
   # Vertical padding between the lines of text
   VERTICAL_PADDING = 5.0
@@ -140,6 +140,10 @@ class FuzzyCell < NSCell
   # Shows letters of file extension as a graphic.
 
   def drawIconInRect(aRect)
+    if !NSUserDefaults.standardUserDefaults.boolForKey("showCellIcon")
+      return NSMakeRect(-2.0, 0, 0, 0)
+    end
+  
     filetypeLabelAttributes = {
       NSForegroundColorAttributeName => NSColor.colorWithCalibratedRed(0.85,
                                                                        green:0.85,

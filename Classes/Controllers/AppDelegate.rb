@@ -18,7 +18,8 @@ class AppDelegate
       "fileIgnoreRegex" => '(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.ai|\.pdf|\.mov|\.aep|\.dmg|\.zip|\.gz|~)$',
       "projectRootRegex" => '^(\.git|\.hg|Rakefile|Makefile|README\.?.*|build\.xml|.*\.xcodeproj)$',
       "useCoreAnimation" => true,
-      "showStatusBarMenu" => true
+      "showStatusBarMenu" => true,
+      "showCellIcon" => true
     }
   end
 
@@ -89,7 +90,7 @@ class AppDelegate
   end
 
   def showSupportSite(sender)
-    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString("http://github.com/topfunky/peepopen-issues/issues"))
+    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString("https://github.com/topfunky/peepopen-issues/issues"))
   end
 
   def showAbout(sender)
@@ -121,8 +122,6 @@ class AppDelegate
     return true
   end
 
-  private
-
   ##
   # Watch filesystem for changes so new files can be indexed automatically.
   
@@ -151,12 +150,14 @@ class AppDelegate
     end
   end
 
+
   ##
   # Take action on directories that have changed recently.
 
   def pathWatcher(pathWatcher, eventOccurred:event)
     # NSLog("%@", event)
   end
+
 
   # Given +nibName+, allocate and initialize the appropriate window
   # controller for the NIB.
