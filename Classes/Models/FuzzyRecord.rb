@@ -19,6 +19,8 @@ class FuzzyRecord
   class ProjectRootNotFoundError < StandardError; end
 
   def self.discoverProjectRootForDirectoryOrFile(directoryOrFile)
+    directoryOrFile.gsub!(/\/$/, '') # Normalize: remove trailing slash
+
     if File.directory?(directoryOrFile)
       return directoryOrFile
     end
