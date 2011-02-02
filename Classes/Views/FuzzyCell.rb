@@ -213,10 +213,10 @@ class FuzzyCell < NSCell
     end
     if ENV["TF_VISUAL_DEBUG"]
       subtitleString << "SCORE #{representedObject.matchScore}"
-      if representedObject.matchesOnFilenameScore > 0
+      if representedObject.matchesOnFilenameScore && representedObject.matchesOnFilenameScore > 0
         subtitleString << "FILEMATCH true"
       end
-      if representedObject.longestMatch > 0
+      if representedObject.longestMatch && representedObject.longestMatch > 0
         subtitleString << "LONGEST #{representedObject.longestMatch}"
       end
     end
