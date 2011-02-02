@@ -23,7 +23,7 @@ class AppDelegate
       @editorName = customUrl.split('?')[1] ? customUrl.split('?')[1].gsub!('editor=', '') : ''
       
       NSUserDefaults.standardUserDefaults.setObject(@editorName, forKey:"editorApplicationName")
-  
+
       application(nil, openFile:path)
     end
   end
