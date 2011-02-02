@@ -70,6 +70,9 @@
 		2BFA9DA710CDF852007972A1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA9DA510CDF852007972A1 /* MainMenu.xib */; };
 		4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4DE339F60D74FCDD00ADB6EE /* rb_main.rb */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
+		5BE5780612F9693E0050D748 /* Constants.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BE5780512F9693E0050D748 /* Constants.rb */; };
+		5BE5781D12F969C80050D748 /* CreateFuzzyRecordOperation.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BE5781B12F969C80050D748 /* CreateFuzzyRecordOperation.rb */; };
+		5BE5781E12F969C80050D748 /* PathOperation.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BE5781C12F969C80050D748 /* PathOperation.rb */; };
 		750F49FE1173F6DF00015D47 /* dmg-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F49FD1173F6DF00015D47 /* dmg-background.png */; };
 		751C7E28119C8AEB00D86736 /* PeepOpenHelp.help in Resources */ = {isa = PBXBuildFile; fileRef = 751C7E1C119C8AEB00D86736 /* PeepOpenHelp.help */; };
 		756C28F911555825000E19D8 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C28F811555825000E19D8 /* NSDate+Helper.m */; };
@@ -157,6 +160,9 @@
 		2BFA9DA610CDF852007972A1 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4DE339F60D74FCDD00ADB6EE /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
+		5BE5780512F9693E0050D748 /* Constants.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = Constants.rb; path = Classes/Helpers/Constants.rb; sourceTree = "<group>"; };
+		5BE5781B12F969C80050D748 /* CreateFuzzyRecordOperation.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = CreateFuzzyRecordOperation.rb; path = Classes/Operations/CreateFuzzyRecordOperation.rb; sourceTree = "<group>"; };
+		5BE5781C12F969C80050D748 /* PathOperation.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = PathOperation.rb; path = Classes/Operations/PathOperation.rb; sourceTree = "<group>"; };
 		750F49FD1173F6DF00015D47 /* dmg-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dmg-background.png"; sourceTree = "<group>"; };
 		751C7E1C119C8AEB00D86736 /* PeepOpenHelp.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PeepOpenHelp.help; sourceTree = "<group>"; };
 		756C28F711555825000E19D8 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Helper.h"; path = "Classes/Helpers/NSDate+Helper.h"; sourceTree = "<group>"; };
@@ -221,6 +227,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5BE5780C12F969720050D748 /* Operations */,
 				756C28F2115557FD000E19D8 /* Helpers */,
 				75E2E769115088FB0056AD27 /* Views */,
 				75E2E768115088F50056AD27 /* Models */,
@@ -323,9 +330,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5BE5780C12F969720050D748 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				5BE5781B12F969C80050D748 /* CreateFuzzyRecordOperation.rb */,
+				5BE5781C12F969C80050D748 /* PathOperation.rb */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
 		756C28F2115557FD000E19D8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5BE5780512F9693E0050D748 /* Constants.rb */,
 				75BEE8A0122EE29300C94E41 /* SCEvent */,
 				75A446DD11B9C88C0031CF15 /* NSWindowControllerHelper.rb */,
 				756C2CDD1156C4C3000E19D8 /* Array+GCD.rb */,
@@ -421,7 +438,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PeepOpen" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* FuzzyWindow */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -473,6 +497,9 @@
 				75A446DE11B9C88C0031CF15 /* NSWindowControllerHelper.rb in Resources */,
 				75955B9411F79EED00C0DA26 /* settings-16x16.png in Resources */,
 				759B3C761200AB6B000B0BA8 /* statusItemIcon.dark.png in Resources */,
+				5BE5780612F9693E0050D748 /* Constants.rb in Resources */,
+				5BE5781D12F969C80050D748 /* CreateFuzzyRecordOperation.rb in Resources */,
+				5BE5781E12F969C80050D748 /* PathOperation.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

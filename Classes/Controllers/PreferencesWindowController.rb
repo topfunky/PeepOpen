@@ -13,6 +13,12 @@ class PreferencesWindowController < NSWindowController
   attr_accessor :currentView
 
   include NSWindowControllerHelper
+  
+  def awakeFromNib
+    puts "#{self.class}, #{self.__method__}, #{__LINE__}, editorApplicationName is #{NSUserDefaults.standardUserDefaults.objectForKey('editorApplicationName')}"
+    applicationPopup.selectItemWithObjectValue(NSUserDefaults.standardUserDefaults.objectForKey('editorApplicationName'))
+    
+  end
 
   def show(sender)
     NSApp.activateIgnoringOtherApps(true)
@@ -96,6 +102,10 @@ class PreferencesWindowController < NSWindowController
     window.makeFirstResponder(nil)
     # HACK: Use value from defaults since NSComboBox doesn't always
     # record the initial value correctly.
+    
+    # As the binding between Shared User Defaults Controller and the combo box does not appear to work,
+    # do it programmatically 
+    NSUserDefaults.standardUserDefaults.setObject(@applicationPopup.objectValueOfSelectedItem, forKey:"editorApplicationName")
     editorApplicationName =
       NSUserDefaults.standardUserDefaults.stringForKey("editorApplicationName")
     selector = "install#{editorApplicationName.gsub(' ', '')}:".to_sym

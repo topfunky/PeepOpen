@@ -7,6 +7,8 @@
 require 'NSWindowControllerHelper'
 
 class FuzzyWindowController < NSWindowController
+  
+  include Constants
 
   attr_accessor :tableViewController, :searchField, :statusLabel, :projectRoot
   attr_accessor :progressBar, :settingsMenuButton
@@ -14,15 +16,7 @@ class FuzzyWindowController < NSWindowController
   include NSWindowControllerHelper
 
   def windowDidLoad
-    @queue = Dispatch::Queue.new('com.topfunky.PeepOpen.FuzzyWindowController')
-
-    NSNotificationCenter.defaultCenter.addObserver(self,
-                                                   selector:"receivedProgressNotification:",
-                                                   name:"fuzzyRecordProgress",
-                                                   object:nil)
-
     setWindowFrameAutosaveName("com.topfunky.PeepOpen.FuzzyWindowController.frame")
-
     statusLabel.stringValue = ""
 
     self.progressBar = TFProgressBar.alloc.initWithFrame(window.contentView.frame)
@@ -53,10 +47,17 @@ class FuzzyWindowController < NSWindowController
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
+    NSTimer.scheduledTimerWithTimeInterval( 0.25,
+                                     target: self,
+                                   selector: :"checkProgress:",
+                                   userInfo: nil,
+                                    repeats: true)
+                                    
     statusLabel.stringValue = "Loading..."
     progressBar.labelText = "Reading files..."
 
     self.projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(theProjectRoot)
+
     if nil == FuzzyRecord.cachedRecordsForProjectRoot(self.projectRoot)
       progressBar.frame = window.contentView.frame
       window.contentView.addSubview(progressBar)
@@ -64,39 +65,21 @@ class FuzzyWindowController < NSWindowController
       updateProgressBarWithDoubleValue(10)
     end
 
-    self.performSelectorInBackground("loadFilesFromProjectRootAsync:",
-                                     withObject:self.projectRoot)
+    tableViewController.loadFilesFromProjectRoot(self.projectRoot)
+                                     
   rescue FuzzyRecord::ProjectRootNotFoundError => e
     statusLabel.stringValue = "Project not found."
     runWarningAlertWithMessage("Couldn't Find a Project",
                                informativeText:"#{theProjectRoot} wasn't part of a Git, Ruby, Xcode, or other project. See the Help menu or the Project Root Pattern preference in the Advanced tab for configuration options.")
   end
 
-  def loadFilesFromProjectRootAsync(theProjectRoot)
-    @queue.sync do
-      tableViewController.loadFilesFromProjectRoot(self.projectRoot)
-    end
-    if tableViewController.allRecords.length == 0
-      runWarningAlertWithMessage("Couldn't Find Files",
-                                 informativeText:"Try another directory or see the Project Root Pattern preference in the Advanced tab.")
-    end
-
-    self.performSelectorOnMainThread("didFinishLoadingFilesFromProjectRoot",
-                                     withObject:nil,
-                                     waitUntilDone:false)
-  end
 
   def didFinishLoadingFilesFromProjectRoot
-    @queue.sync do
       progressBar.removeFromSuperview()
 
       didSearchForString(searchField)
       updateStatusLabel
-    end
-  end
-
-  def receivedProgressNotification(theNotification)
-    updateProgressBarWithDoubleValue(theNotification.object.length)
+    # end
   end
 
   def updateProgressBarWithDoubleValue(theDoubleValue)
@@ -108,6 +91,8 @@ class FuzzyWindowController < NSWindowController
 
   def refreshFileList(sender)
     FuzzyRecord.flushCache(projectRoot)
+    # Give the notifications a little time to catch up
+    sleep(0.25)
     tableViewController.reset
     loadFilesFromProjectRoot(projectRoot)
   end
@@ -183,7 +168,8 @@ class FuzzyWindowController < NSWindowController
       case NSApp.currentEvent.charactersIgnoringModifiers
       when /r/
         # Refresh
-        refreshFileList(self)
+          @tableViewController.queue.cancelAllOperations
+          refreshFileList(self)
         return true
       when /v/
         # Paste
@@ -232,6 +218,16 @@ class FuzzyWindowController < NSWindowController
 
     tableViewController.reset
     window.close
+  end
+  
+  def checkProgress(timer)
+    if @tableViewController.queue.operations.size == 0
+      timer.invalidate
+      @tableViewController.createAllRecords
+      FuzzyRecord.setCacheRecords(@tableViewController.allRecords, forProjectRoot:projectRoot)
+      didFinishLoadingFilesFromProjectRoot
+    
+    end
   end
 
 end

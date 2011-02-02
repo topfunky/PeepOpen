@@ -4,6 +4,9 @@
 # Created by Geoffrey Grosenbach on 3/16/10.
 # Copyright 2010 Topfunky Corporation. All rights reserved.
 
+require 'Constants'
+include Constants
+
 class FuzzyRecord
 
   attr_accessor *[:projectRoot, :filePath,
@@ -47,18 +50,17 @@ class FuzzyRecord
   #   }
   @@cache = {}
 
-  def self.recordsForProjectRoot(theProjectRoot)
+  def self.recordsForProjectRoot(theProjectRoot, withFuzzyTableViewController:fuzzyTableViewController)
     cacheScmStatus(theProjectRoot)
+
     if records = cachedRecordsForProjectRoot(theProjectRoot)
       # Get fresh scmStatus every time
       records.each { |r| r.scmStatus = nil }
-      return records
+      NSNotificationCenter.defaultCenter.postNotificationName(TFAllRecordsCreatedNotification, object:records)
+      return
     end
 
-    records = loadRecordsWithProjectRoot(theProjectRoot)
-    setCacheRecords(records, forProjectRoot:theProjectRoot)
-
-    return records
+    loadRecordsWithProjectRoot(theProjectRoot, withFuzzyTableViewController:fuzzyTableViewController)
   end
 
   def self.cacheForProjectRoot(theProjectRoot)
@@ -163,42 +165,15 @@ class FuzzyRecord
   #     p = NSPredicate.predicateWithFormat("name = 'john'")
   #     p.evaluateWithObject({"name" => "bert"}) # => false
 
-  def self.loadRecordsWithProjectRoot(theProjectRoot)
+  def self.loadRecordsWithProjectRoot(theProjectRoot, withFuzzyTableViewController:fuzzyTableViewController)
+    fuzzyTableViewController.queue.cancelAllOperations
+    
     maximumDocumentCount =
-      NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
-    records = []
-    fileManager = NSFileManager.defaultManager
-    filenames = fileManager.contentsOfDirectoryAtPath(theProjectRoot,
-                                                      error:nil).map {|f|
-      theProjectRoot.stringByAppendingPathComponent(f)
-    }
-    index = 0
-    while ( (index < filenames.length) && ((maximumDocumentCount >= 4000) || (records.length < maximumDocumentCount)) ) do
-      filename = filenames[index]
-      index += 1
-      next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
-      relativeFilename = filename.to_s.gsub(/^#{theProjectRoot}\//, '')
-
-      directoryIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("directoryIgnoreRegex"))
-      next if relativeFilename.match(directoryIgnoreRegex)
-      fileIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("fileIgnoreRegex"))
-      next if relativeFilename.match(fileIgnoreRegex)
-      if File.directory?(filename)
-        # TODO: Should probably ignore all dot directories
-        fileManager.contentsOfDirectoryAtPath(filename,
-                                              error:nil).map {|f|
-          filenames.insert(index, filename.stringByAppendingPathComponent(f))
-        }
-        next
-      end
-      records << FuzzyRecord.alloc.initWithProjectRoot(theProjectRoot,
-                                                       filePath:relativeFilename)
-
-      NSNotificationCenter.defaultCenter.postNotificationName("fuzzyRecordProgress",
-                                                              object:records)
-    end
-
-    records
+    NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
+    
+    pathOp = PathOperation.alloc.initWithProjectRoot( theProjectRoot, maximumDocumentCount:maximumDocumentCount, andFuzzyTableViewController:fuzzyTableViewController)
+    pathOp.setQueuePriority(2.0)
+    fuzzyTableViewController.queue.addOperation(pathOp)
   end
 
   def self.filterRecords(records, forString:searchString)

@@ -4,19 +4,34 @@
 # Created by Geoffrey Grosenbach on 3/16/10.
 # Copyright 2010 Topfunky Corporation. All rights reserved.
 
-class FuzzyTableViewController
 
-  attr_accessor :tableView, :allRecords, :records
+class FuzzyTableViewController
+  
+  include Constants
+
+  attr_accessor :tableView, :allRecords, :records, :queue, :fuzzyWindowController
 
   def initialize
-    @allRecords = []
     @records = []
+    @queue = NSOperationQueue.alloc.init
+    @nc = NSNotificationCenter.defaultCenter
+    @fuzzyWindowController = fuzzyWindowController
+  end
+  
+  def awakeFromNib
+    @nc.addObserver(self,
+        selector:"anyThread_HandleRecordCreated:" ,
+            name:TFRecordCreatedNotification,
+          object:nil)
+    @nc.addObserver(self,
+        selector:"handleAllRecordsCreated:" ,
+            name:TFAllRecordsCreatedNotification,
+          object:nil)
+    
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
-    @allRecords = []
-    @allRecords = FuzzyRecord.recordsForProjectRoot(theProjectRoot)
-    searchForString("")
+    FuzzyRecord.recordsForProjectRoot(theProjectRoot, withFuzzyTableViewController:self)
   end
 
   def reset
@@ -97,7 +112,7 @@ class FuzzyTableViewController
   end
 
   def tableView(tableView, objectValueForTableColumn:column, row:row)
-    if row < @records.length
+    if row < @records.size
       # There is only one column
       return @records[row].filePath
     end
@@ -124,7 +139,7 @@ class FuzzyTableViewController
       if (editorApplicationName.strip == "")
         return false
       end
-
+puts "#{self.class}, #{self.__method__}, #{__LINE__}, editorApplicationName is #{editorApplicationName}"
       NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
                                            withApplication:editorApplicationName)
 
@@ -132,6 +147,32 @@ class FuzzyTableViewController
       searchForString("")
       return true
     end
+  end
+  
+
+  # Notifications will be sent from many threads but GUI activity needs to take place
+  # on the main thread, hence this collect and forward pair
+  # i.e.
+  #   anyThread_HandleRecordCreated and 
+  #   mainThread_handleRecordCreated
+  def anyThread_HandleRecordCreated(notification)
+    performSelectorOnMainThread(:"mainThread_handleRecordCreated:", withObject:notification, waitUntilDone:false)
+  end
+  
+  def mainThread_handleRecordCreated(notification)
+    @records << notification.object
+    tableView.reloadData
+    @fuzzyWindowController.updateProgressBarWithDoubleValue(@records.size)
+  end
+  
+  def createAllRecords
+    @allRecords = @records
+  end
+  
+  def handleAllRecordsCreated(notification)
+    @records = notification.object
+    createAllRecords
+    @fuzzyWindowController.didFinishLoadingFilesFromProjectRoot
   end
 
 end

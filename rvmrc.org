@@ -1,0 +1,3 @@
+rvm macruby
+export GEM_HOME=/Users/martin/.rvm/gems/macruby-0.8
+rvm_project_rvmrc_default=1

@@ -7,6 +7,26 @@
 class AppDelegate
 
   attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController, :statusMenu, :aboutWindowController
+  
+  def awakeFromNib
+    NSUserDefaults.standardUserDefaults.registerDefaults(AppDelegate.registrationDefaults)
+    sharedAEManager = NSAppleEventManager.sharedAppleEventManager
+    sharedAEManager.setEventHandler(self, andSelector: :"getURLandStart:withReplyEvent:", forEventClass: KInternetEventClass, andEventID: KAEGetURL)
+  end
+
+  def getURLandStart(event, withReplyEvent:replyEvent)
+    if event.respond_to?(:paramDescriptorForKeyword)
+      customUrl = event.paramDescriptorForKeyword(KeyDirectObject).stringValue
+  
+      path = customUrl.split('?')[0].gsub!('peepopen://', '')
+      path = '' if path == '(null)'
+      @editorName = customUrl.split('?')[1] ? customUrl.split('?')[1].gsub!('editor=', '') : ''
+      
+      NSUserDefaults.standardUserDefaults.setObject(@editorName, forKey:"editorApplicationName")
+  
+      application(nil, openFile:path)
+    end
+  end
 
   def self.registrationDefaults
     {
@@ -21,10 +41,6 @@ class AppDelegate
       "showStatusBarMenu" => true,
       "showCellIcon" => true
     }
-  end
-
-  def applicationWillFinishLaunching(aNotification)
-    NSUserDefaults.standardUserDefaults.registerDefaults(AppDelegate.registrationDefaults)
   end
 
   def applicationDidFinishLaunching(aNotification)
@@ -56,7 +72,7 @@ class AppDelegate
   # Do something with the dropped file.
 
   def application(sender, openFile:path)
-    fuzzyWindowController.show(self)
+    fuzzyWindowController.show(nil)
     fuzzyWindowController.loadFilesFromProjectRoot(path)
   end
 
@@ -171,4 +187,3 @@ class AppDelegate
   end
 
 end
-
