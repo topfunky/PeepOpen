@@ -19,14 +19,14 @@ class FuzzyRecord
   class ProjectRootNotFoundError < StandardError; end
 
   def self.discoverProjectRootForDirectoryOrFile(directoryOrFile)
-    directoryOrFile.gsub!(/\/$/, '') # Normalize: remove trailing slash
+    normalizedPath = directoryOrFile.gsub(/\/$/, '') # Normalize: remove trailing slash
 
-    if File.directory?(directoryOrFile)
-      return directoryOrFile
+    if File.directory?(normalizedPath)
+      return normalizedPath
     end
 
     fileManager = NSFileManager.defaultManager
-    pathComponents = directoryOrFile.pathComponents
+    pathComponents = normalizedPath.pathComponents
     (pathComponents.length - 1).downto(0) do |index|
       path = NSString.pathWithComponents(pathComponents[0..index])
       next if File.file?(path)
