@@ -27,8 +27,29 @@ static PeepOpen *po;
 @implementation OakProjectController (PeepOpen)
 - (void)goToFile:(id)sender
 {
-	NSString *projectFile = [NSString stringWithFormat:@"peepopen://%@?editor=TextMate", [currentDocument valueForKey:@"filename"]];
-	NSURL *url = [NSURL URLWithString:projectFile];
+	NSString *projectDir;
+	// If there is no window open we need to find the open window and extract
+	// the projectDirectory from that
+	if([[currentDocument valueForKey:@"filename"] length] == 0)
+	{
+		OakProjectController *project = NULL;
+		for (NSWindow *w in [[NSApplication sharedApplication] orderedWindows]) {
+			if ([[[w windowController] className] isEqualToString: @"OakProjectController"] &&
+				[[w windowController] projectDirectory]) {
+				project = [w windowController];
+				break;
+			}
+		}
+		if (project != NULL) {
+			projectDir =  [project projectDirectory];
+		}
+	}
+	else
+	{
+		projectDir = [currentDocument valueForKey:@"filename"];
+	}
+	NSString *projectURLString = [NSString stringWithFormat:@"peepopen://%@?editor=TextMate", projectDir];
+	NSURL *url = [NSURL URLWithString:projectURLString];
 	NSLog(@"OakprojectController (PeepOpen), sending url %@ to NSWorkspace", [url absoluteString]);
 	[[NSWorkspace sharedWorkspace] openURL:url];
 }
