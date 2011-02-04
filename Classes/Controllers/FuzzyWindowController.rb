@@ -57,6 +57,8 @@ class FuzzyWindowController < NSWindowController
     progressBar.labelText = "Reading files..."
 
     self.projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(theProjectRoot)
+    
+    @tableViewController.reset
 
     if nil == FuzzyRecord.cachedRecordsForProjectRoot(self.projectRoot)
       progressBar.frame = window.contentView.frame
