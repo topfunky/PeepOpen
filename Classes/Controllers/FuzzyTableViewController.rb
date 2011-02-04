@@ -133,13 +133,20 @@ class FuzzyTableViewController
     if record = @records[rowId]
       FuzzyRecord.storeRecentlyOpenedRecord(record)
       # TODO: Close window when clicked with the mouse
+      
+      # Pluck the SessionConfig object from space
+      sessionConfig = nil
+      ObjectSpace.each_object(SessionConfig) {|obj| sessionConfig = obj}
+
+      editorApplicationName = sessionConfig.editorName
       editorApplicationName =
-        NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
+        NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName') if editorApplicationName.empty?
 
       if (editorApplicationName.strip == "")
+        # Haven't a clue where to open the file
         return false
       end
-puts "#{self.class}, #{self.__method__}, #{__LINE__}, editorApplicationName is #{editorApplicationName}"
+
       NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
                                            withApplication:editorApplicationName)
 

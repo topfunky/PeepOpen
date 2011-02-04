@@ -28,7 +28,7 @@ static PeepOpen *po;
 - (void)goToFile:(id)sender
 {
 	NSString *projectDir;
-	// If there is no window open we need to find the open window and extract
+	// If there is no file open we need to find the open window and extract
 	// the projectDirectory from that
 	if([[currentDocument valueForKey:@"filename"] length] == 0)
 	{

@@ -15,7 +15,6 @@ class PreferencesWindowController < NSWindowController
   include NSWindowControllerHelper
   
   def awakeFromNib
-    puts "#{self.class}, #{self.__method__}, #{__LINE__}, editorApplicationName is #{NSUserDefaults.standardUserDefaults.objectForKey('editorApplicationName')}"
     applicationPopup.selectItemWithObjectValue(NSUserDefaults.standardUserDefaults.objectForKey('editorApplicationName'))
     
   end

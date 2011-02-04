@@ -6,25 +6,36 @@
 
 class AppDelegate
 
-  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController, :statusMenu, :aboutWindowController
+  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController, :statusMenu, :aboutWindowController, :sessionConfig
   
   def awakeFromNib
     NSUserDefaults.standardUserDefaults.registerDefaults(AppDelegate.registrationDefaults)
     sharedAEManager = NSAppleEventManager.sharedAppleEventManager
     sharedAEManager.setEventHandler(self, andSelector: :"getURLandStart:withReplyEvent:", forEventClass: KInternetEventClass, andEventID: KAEGetURL)
+    
+    # Create SessionConfig to store editorName
+    @sessionConfig = SessionConfig.new("")
   end
 
   def getURLandStart(event, withReplyEvent:replyEvent)
     if event.respond_to?(:paramDescriptorForKeyword)
-      customUrl = event.paramDescriptorForKeyword(KeyDirectObject).stringValue
-  
-      path = customUrl.split('?')[0].gsub!('peepopen://', '')
-      path = '' if path == '(null)'
-      @editorName = customUrl.split('?')[1] ? customUrl.split('?')[1].gsub!('editor=', '') : ''
-      
-      NSUserDefaults.standardUserDefaults.setObject(@editorName, forKey:"editorApplicationName")
+      # Plugins should send a customURL in the form peepopen:///path/to/local/file?editor=TextMate
+      # 
+      # The following code converts the event from NSAppleEventDescriptor to an NSURL
+      # so that the NSURL path and query methods can be called to extract the file path
+      # and the editor name
+      # 
 
-      application(nil, openFile:path)
+      customUrl = NSURL.URLWithString(event.paramDescriptorForKeyword(KeyDirectObject).stringValue)
+      
+      NSBeep() if customUrl.path.length == 0 
+      editorName = customUrl.query.gsub('editor=', '')
+      
+      # Save the editor name to a SessionConfig object so we can pluck it out of the air later
+      # (see FuzzyTableViewController.handleRowClick)
+      @sessionConfig.editorName = editorName
+
+      application(nil, openFile:customUrl.path)
     end
   end
 
