@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Classes/Controllers/FuzzyWindowController.rb</string>
+	<string>Classes/Controllers/AppDelegate.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -25,6 +25,8 @@
 		<dict>
 			<key>filename</key>
 			<string>main.m</string>
+			<key>lastUsed</key>
+			<date>2011-02-08T09:22:35Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -33,6 +35,8 @@
 		<dict>
 			<key>filename</key>
 			<string>rb_main.rb</string>
+			<key>lastUsed</key>
+			<date>2011-02-08T09:22:59Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -84,14 +88,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>42</integer>
+				<integer>143</integer>
 				<key>line</key>
-				<integer>86</integer>
+				<integer>13</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>65</integer>
+			<integer>6</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>138</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>147</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
 		</dict>
 		<key>Classes/Controllers/FuzzyTableViewController.rb</key>
 		<dict>
