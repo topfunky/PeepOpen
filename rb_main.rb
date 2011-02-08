@@ -16,6 +16,11 @@ end
 framework 'Cocoa'
 framework 'BWToolkitFramework'
 
+# HACK: From http://lists.macosforge.org/pipermail/macruby-devel/2009-May/001710.html
+KInternetEventClass = 'GURL'.unpack('N').first
+KAEGetURL = 'GURL'.unpack('N').first
+
+
 # Loading all the Ruby project files.
 main = File.basename(__FILE__, File.extname(__FILE__))
 dir_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
