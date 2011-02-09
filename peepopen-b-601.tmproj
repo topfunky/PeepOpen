@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Classes/Controllers/AppDelegate.rb</string>
+	<string>Classes/Controllers/FuzzyWindowController.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -74,45 +74,21 @@
 		</dict>
 		<dict>
 			<key>filename</key>
+			<string>.gitattributes</string>
+			<key>lastUsed</key>
+			<date>2011-02-09T09:18:13Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
 			<string>.gitignore</string>
 			<key>lastUsed</key>
-			<date>2011-02-03T13:22:17Z</date>
+			<date>2011-02-09T09:18:15Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>455</integer>
 	<key>metaData</key>
 	<dict>
-		<key>Classes/Controllers/AppDelegate.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>143</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>6</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>138</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>147</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-		</dict>
 		<key>Classes/Controllers/FuzzyTableViewController.rb</key>
 		<dict>
 			<key>caret</key>
@@ -160,7 +136,6 @@
 	<array>
 		<string>Classes/Controllers/FuzzyTableViewController.rb</string>
 		<string>Classes/Controllers/FuzzyWindowController.rb</string>
-		<string>Classes/Controllers/AppDelegate.rb</string>
 		<string>Classes/Models/FuzzyRecord.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
