@@ -17,8 +17,10 @@ framework 'Cocoa'
 framework 'BWToolkitFramework'
 
 # HACK: From http://lists.macosforge.org/pipermail/macruby-devel/2009-May/001710.html
-KInternetEventClass = 'GURL'.unpack('N').first
-KAEGetURL = 'GURL'.unpack('N').first
+# disabled to test if the inclusion of HIServices.bridgesupport in Resources/BridgeSupport
+# solves the problem
+# KInternetEventClass = 'GURL'.unpack('N').first
+# KAEGetURL = 'GURL'.unpack('N').first
 
 
 # Loading all the Ruby project files.
