@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Classes/Controllers/FuzzyWindowController.rb</string>
+	<string>Classes/Controllers/PreferencesWindowController.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -36,7 +36,7 @@
 			<key>filename</key>
 			<string>rb_main.rb</string>
 			<key>lastUsed</key>
-			<date>2011-02-08T09:22:59Z</date>
+			<date>2011-02-14T09:59:02Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -89,6 +89,20 @@
 	<integer>455</integer>
 	<key>metaData</key>
 	<dict>
+		<key>Classes/Controllers/AppDelegate.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>143</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>39</integer>
+		</dict>
 		<key>Classes/Controllers/FuzzyTableViewController.rb</key>
 		<dict>
 			<key>caret</key>
@@ -117,6 +131,20 @@
 			<key>firstVisibleLine</key>
 			<integer>39</integer>
 		</dict>
+		<key>Classes/Controllers/PreferencesWindowController.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>69</integer>
+				<key>line</key>
+				<integer>110</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>88</integer>
+		</dict>
 		<key>Classes/Models/FuzzyRecord.rb</key>
 		<dict>
 			<key>caret</key>
@@ -129,14 +157,31 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>76</integer>
+			<integer>18</integer>
+		</dict>
+		<key>rb_main.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>Classes/Controllers/FuzzyTableViewController.rb</string>
 		<string>Classes/Controllers/FuzzyWindowController.rb</string>
+		<string>rb_main.rb</string>
 		<string>Classes/Models/FuzzyRecord.rb</string>
+		<string>Classes/Controllers/AppDelegate.rb</string>
+		<string>Classes/Controllers/PreferencesWindowController.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>

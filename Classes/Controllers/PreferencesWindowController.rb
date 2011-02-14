@@ -107,6 +107,9 @@ class PreferencesWindowController < NSWindowController
     NSUserDefaults.standardUserDefaults.setObject(@applicationPopup.objectValueOfSelectedItem, forKey:"editorApplicationName")
     editorApplicationName =
       NSUserDefaults.standardUserDefaults.stringForKey("editorApplicationName")
+    unless NSUserDefaults.standardUserDefaults.synchronize
+      puts "PEEPOPEN :: #{Time.now.strftime("%m/%d/%Y %H:%M:%S")} :: Couldn't update UserPreferences in PreferencesController.installPlugin"
+    end
     selector = "install#{editorApplicationName.gsub(' ', '')}:".to_sym
     if (self.respondsToSelector(selector))
       performSelector(selector, withObject:self)
