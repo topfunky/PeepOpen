@@ -26,17 +26,30 @@ class AppDelegate
       # and the editor name
       # 
 
+      NSLog("Opening URL:  " + event.paramDescriptorForKeyword(KeyDirectObject).stringValue)
+
       customUrl = NSURL.URLWithString(event.paramDescriptorForKeyword(KeyDirectObject).stringValue)
       
-      NSBeep() if customUrl.path.length == 0 
+      if customUrl.path.length == 0 
+        raise "Shouldn't have an empty path"
+      end
       editorName = customUrl.query.gsub('editor=', '')
       
       # Save the editor name to a SessionConfig object so we can pluck it out of the air later
       # (see FuzzyTableViewController.handleRowClick)
       @sessionConfig.editorName = editorName
 
+      NSLog("Using Editor: #{@sessionConfig.editorName} for path #{customUrl.path}")
+
       application(nil, openFile:customUrl.path)
     end
+  end
+
+  # Do something with the dropped file.
+  def application(sender, openFile:path)
+    NSLog("Opening Path: #{path} from sender #{sender}")
+    fuzzyWindowController.show(nil)
+    fuzzyWindowController.loadFilesFromProjectRoot(path)
   end
 
   def self.registrationDefaults
@@ -77,14 +90,6 @@ class AppDelegate
     statusItem.setHighlightMode(true)
     statusItem.setToolTip("PeepOpen")
     statusItem.setImage(NSImage.imageNamed("statusItemIcon.png"))
-  end
-
-  ##
-  # Do something with the dropped file.
-
-  def application(sender, openFile:path)
-    fuzzyWindowController.show(nil)
-    fuzzyWindowController.loadFilesFromProjectRoot(path)
   end
 
   def showPreferences(sender)

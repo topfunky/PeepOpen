@@ -149,6 +149,12 @@ class PreferencesWindowController < NSWindowController
     installedPeepOpenPluginPath =
       textmatePluginsPath.stringByAppendingPathComponent("PeepOpen.tmplugin")
 
+    # Remove existing PeepOpen plugin
+    if fileManager.fileExistsAtPath(installedPeepOpenPluginPath)
+      fileManager.removeItemAtPath(installedPeepOpenPluginPath,
+                                   error:nil)
+    end
+
     # Copy plugin to ~/Library/ApplicationSupport/TextMate/Plugins
     resourcePath = NSBundle.mainBundle.resourcePath
     localPeepOpenBundlePath = NSString.pathWithComponents([
