@@ -209,13 +209,15 @@ class FuzzyWindowController < NSWindowController
       searchField.setStringValue("")
       window.close
     else
-      runWarningAlertWithMessage("No Text Editor Found", informativeText:"Please choose a text editor in PeepOpen preferences.")
+      runWarningAlertWithMessage("No Files Were Found", informativeText:"Please activate PeepOpen again from a code project.")
     end
   end
 
   def handleCancel
+    editorApplicationName = NSApp.delegate.sessionConfig.editorName
     editorApplicationName =
-      NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
+      NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName') if editorApplicationName.empty?
+
     NSWorkspace.sharedWorkspace.launchApplication(editorApplicationName)
 
     tableViewController.reset

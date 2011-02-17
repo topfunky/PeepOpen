@@ -134,11 +134,7 @@ class FuzzyTableViewController
       FuzzyRecord.storeRecentlyOpenedRecord(record)
       # TODO: Close window when clicked with the mouse
       
-      # Pluck the SessionConfig object from space
-      sessionConfig = nil
-      ObjectSpace.each_object(SessionConfig) {|obj| sessionConfig = obj}
-
-      editorApplicationName = sessionConfig.editorName
+      editorApplicationName = NSApp.delegate.sessionConfig.editorName
       editorApplicationName =
         NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName') if editorApplicationName.empty?
 
