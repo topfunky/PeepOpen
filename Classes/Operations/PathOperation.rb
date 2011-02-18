@@ -18,10 +18,7 @@ class PathOperation < NSOperation
 
   def main
     fileManager = NSFileManager.defaultManager
-
-    # HACK: the following will only work with a local variable
-    theProjectRoot = @theProjectRoot
-    filenames = fileManager.contentsOfDirectoryAtPath(theProjectRoot, error:nil).map {|f| theProjectRoot.stringByAppendingPathComponent(f) }
+    filenames = fileManager.contentsOfDirectoryAtPath(@theProjectRoot, error:nil).map {|f| @theProjectRoot.stringByAppendingPathComponent(f) }
       
     index = 0
     recordsSize = @fuzzyTableViewController.records.size
