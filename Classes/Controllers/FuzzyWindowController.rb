@@ -39,7 +39,6 @@ class FuzzyWindowController < NSWindowController
     tableViewController.selectFirstRow
     searchField.setStringValue("")
     window.makeFirstResponder(searchField)
-    updateStatusLabel
   end
 
   def close
@@ -80,8 +79,6 @@ class FuzzyWindowController < NSWindowController
       progressBar.removeFromSuperview()
 
       didSearchForString(searchField)
-      updateStatusLabel
-    # end
   end
 
   def updateProgressBarWithDoubleValue(theDoubleValue)
@@ -105,7 +102,6 @@ class FuzzyWindowController < NSWindowController
 
   def didSearchForString(sender)
     tableViewController.searchForString(sender.stringValue)
-    updateStatusLabel
   end
 
   def updateStatusLabel

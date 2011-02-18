@@ -63,6 +63,7 @@ class FuzzyTableViewController
     performSelectorOnMainThread("didSearchForString:",
                                 withObject:filteredRecords,
                                 waitUntilDone:true)
+    @fuzzyWindowController.updateStatusLabel
   end
 
   def didSearchForString(filteredRecords)
