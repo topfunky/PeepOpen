@@ -197,6 +197,7 @@ class FuzzyRecord
         if recentlyOpenedRecords = cacheHash[:recentlyOpenedRecords]
           if recentlyOpenedRecords.length >= 2
             recentRecord = recentlyOpenedRecords.first
+            
             sortedRecords.delete(recentRecord)
             sortedRecords.unshift(recentlyOpenedRecords.first)
           end

@@ -26,8 +26,6 @@ class AppDelegate
       # and the editor name
       # 
 
-      NSLog("Opening URL:  " + event.paramDescriptorForKeyword(KeyDirectObject).stringValue)
-
       customUrl = NSURL.URLWithString(event.paramDescriptorForKeyword(KeyDirectObject).stringValue)
       
       if customUrl.path.length == 0 
@@ -39,15 +37,12 @@ class AppDelegate
       # (see FuzzyTableViewController.handleRowClick)
       @sessionConfig.editorName = editorName
 
-      NSLog("Using Editor: #{@sessionConfig.editorName} for path #{customUrl.path}")
-
       application(nil, openFile:customUrl.path)
     end
   end
 
   # Do something with the dropped file.
   def application(sender, openFile:path)
-    NSLog("Opening Path: #{path} from sender #{sender}")
     fuzzyWindowController.show(nil)
     fuzzyWindowController.loadFilesFromProjectRoot(path)
   end
@@ -187,7 +182,7 @@ class AppDelegate
   # Take action on directories that have changed recently.
 
   def pathWatcher(pathWatcher, eventOccurred:event)
-    # NSLog("%@", event)
+
   end
 
 
