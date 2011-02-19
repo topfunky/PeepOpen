@@ -165,7 +165,6 @@ class FuzzyTableViewController
   end
 
   def mainThread_handleRecordCreated(notification)
-    NSLog("Handling record created: #{notification.object.filePath}")
     FuzzyRecord.addRecord(notification.object,
                           toCacheForProjectRoot:@fuzzyWindowController.projectRoot)
     @records = FuzzyRecord.cachedRecordsForProjectRoot(@fuzzyWindowController.projectRoot)
@@ -176,13 +175,10 @@ class FuzzyTableViewController
   end
 
   def createAllRecords
-    NSLog("Project Root: #{fuzzyWindowController.projectRoot}")
     @allRecords = FuzzyRecord.cachedRecordsForProjectRoot(@fuzzyWindowController.projectRoot)
-    NSLog("All Records: #{@allRecords.length}")
   end
 
   def handleAllRecordsCreated(notification)
-    NSLog("Handling all records created: #{notification.object.length}")
     @records = notification.object
     createAllRecords
     @fuzzyWindowController.didFinishLoadingFilesFromProjectRoot
