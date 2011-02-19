@@ -6,7 +6,7 @@
 
 
 class FuzzyTableViewController
-  
+
   include Constants
 
   attr_accessor :tableView, :allRecords, :records, :queue, :fuzzyWindowController
@@ -14,20 +14,19 @@ class FuzzyTableViewController
   def initialize
     @records = []
     @queue = NSOperationQueue.alloc.init
-    @nc = NSNotificationCenter.defaultCenter
     @fuzzyWindowController = fuzzyWindowController
   end
-  
+
   def awakeFromNib
-    @nc.addObserver(self,
-        selector:"anyThread_HandleRecordCreated:" ,
-            name:TFRecordCreatedNotification,
-          object:nil)
-    @nc.addObserver(self,
-        selector:"handleAllRecordsCreated:" ,
-            name:TFAllRecordsCreatedNotification,
-          object:nil)
-    
+    nc = NSNotificationCenter.defaultCenter
+    nc.addObserver(self,
+                   selector:"anyThread_HandleRecordCreated:" ,
+                   name:TFRecordCreatedNotification,
+                   object:nil)
+    nc.addObserver(self,
+                   selector:"handleAllRecordsCreated:" ,
+                   name:TFAllRecordsCreatedNotification,
+                   object:nil)
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
@@ -134,7 +133,7 @@ class FuzzyTableViewController
     if record = @records[rowId]
       FuzzyRecord.storeRecentlyOpenedRecord(record)
       # TODO: Close window when clicked with the mouse
-      
+
       editorApplicationName = NSApp.delegate.sessionConfig.editorName
       editorApplicationName =
         NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName') if editorApplicationName.empty?
@@ -152,28 +151,38 @@ class FuzzyTableViewController
       return true
     end
   end
-  
+
 
   # Notifications will be sent from many threads but GUI activity needs to take place
   # on the main thread, hence this collect and forward pair
   # i.e.
-  #   anyThread_HandleRecordCreated and 
+  #   anyThread_HandleRecordCreated and
   #   mainThread_handleRecordCreated
   def anyThread_HandleRecordCreated(notification)
-    performSelectorOnMainThread(:"mainThread_handleRecordCreated:", withObject:notification, waitUntilDone:false)
+    performSelectorOnMainThread(:"mainThread_handleRecordCreated:",
+                                withObject:notification,
+                                waitUntilDone:false)
   end
-  
+
   def mainThread_handleRecordCreated(notification)
-    @records << notification.object
-    tableView.reloadData
-    @fuzzyWindowController.updateProgressBarWithDoubleValue(@records.size)
+    NSLog("Handling record created: #{notification.object.filePath}")
+    FuzzyRecord.addRecord(notification.object,
+                          toCacheForProjectRoot:@fuzzyWindowController.projectRoot)
+    @records = FuzzyRecord.cachedRecordsForProjectRoot(@fuzzyWindowController.projectRoot)
+    if @records
+      @fuzzyWindowController.updateProgressBarWithDoubleValue(@records.size)
+      tableView.reloadData
+    end
   end
-  
+
   def createAllRecords
-    @allRecords = @records
+    NSLog("Project Root: #{fuzzyWindowController.projectRoot}")
+    @allRecords = FuzzyRecord.cachedRecordsForProjectRoot(@fuzzyWindowController.projectRoot)
+    NSLog("All Records: #{@allRecords.length}")
   end
-  
+
   def handleAllRecordsCreated(notification)
+    NSLog("Handling all records created: #{notification.object.length}")
     @records = notification.object
     createAllRecords
     @fuzzyWindowController.didFinishLoadingFilesFromProjectRoot

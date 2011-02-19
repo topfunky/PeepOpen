@@ -9,7 +9,7 @@ framework 'Foundation'
 class PathOperation < NSOperation
   def initWithProjectRoot( theProjectRoot, maximumDocumentCount:maximumDocumentCount, andFuzzyTableViewController:fuzzyTableViewController)
     init
-    @theProjectRoot = theProjectRoot
+    @projectRoot = theProjectRoot
     @queue = fuzzyTableViewController.queue
     @maximumDocumentCount = maximumDocumentCount
     @fuzzyTableViewController = fuzzyTableViewController
@@ -18,7 +18,7 @@ class PathOperation < NSOperation
 
   def main
     fileManager = NSFileManager.defaultManager
-    filenames = fileManager.contentsOfDirectoryAtPath(@theProjectRoot, error:nil).map {|f| @theProjectRoot.stringByAppendingPathComponent(f) }
+    filenames = fileManager.contentsOfDirectoryAtPath(@projectRoot, error:nil).map {|f| @projectRoot.stringByAppendingPathComponent(f) }
       
     index = 0
     recordsSize = @fuzzyTableViewController.records.size
@@ -28,7 +28,7 @@ class PathOperation < NSOperation
       filename = filenames[index]
       index += 1
       next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
-      relativeFilename = filename.to_s.gsub(/^#{@theProjectRoot}\//, '')
+      relativeFilename = filename.to_s.gsub(/^#{@projectRoot}\//, '')
       directoryIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("directoryIgnoreRegex"))
       next if relativeFilename.match(directoryIgnoreRegex)
       fileIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("fileIgnoreRegex"))
@@ -36,15 +36,14 @@ class PathOperation < NSOperation
 
       if File.directory?(filename)
         # TODO: Should probably ignore all dot directories
-        fileManager.contentsOfDirectoryAtPath(filename,
-        error:nil).map {|f|
+        fileManager.contentsOfDirectoryAtPath(filename, error:nil).map {|f|
           filenames.insert(index, filename.stringByAppendingPathComponent(f))
         }
         break if isCancelled
         next
       end
 
-      createFuzzyRecordOp = CreateFuzzyRecordOperation.alloc.initWithProjectRoot(@theProjectRoot, andFilePath:relativeFilename)
+      createFuzzyRecordOp = CreateFuzzyRecordOperation.alloc.initWithProjectRoot(@projectRoot, andFilePath:relativeFilename)
       @queue.addOperation(createFuzzyRecordOp)
       
       recordsSize = @fuzzyTableViewController.records.size

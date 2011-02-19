@@ -77,7 +77,6 @@ class FuzzyWindowController < NSWindowController
 
   def didFinishLoadingFilesFromProjectRoot
       progressBar.removeFromSuperview()
-
       didSearchForString(searchField)
   end
 
@@ -225,7 +224,6 @@ class FuzzyWindowController < NSWindowController
       @tableViewController.createAllRecords
       FuzzyRecord.setCacheRecords(@tableViewController.allRecords, forProjectRoot:projectRoot)
       didFinishLoadingFilesFromProjectRoot
-    
     end
   end
 

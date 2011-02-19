@@ -93,6 +93,17 @@ class FuzzyRecord
     @@cache[theProjectRoot][:records] = theRecords
   end
 
+  ##
+  # Add a single record to the existing cache for a project.
+  
+  def self.addRecord(theRecord, toCacheForProjectRoot:theProjectRoot)
+    @@cache ||= {}
+    if @@cache[theProjectRoot].nil?
+      @@cache[theProjectRoot] = {}
+    end
+    @@cache[theProjectRoot][:records] << theRecord
+  end
+  
   def self.flushCache(theProjectRoot)
     return if @@cache.nil?
     if @@cache[theProjectRoot]
@@ -169,11 +180,13 @@ class FuzzyRecord
 
   def self.loadRecordsWithProjectRoot(theProjectRoot, withFuzzyTableViewController:fuzzyTableViewController)
     fuzzyTableViewController.queue.cancelAllOperations
+    self.setCacheRecords([], forProjectRoot:theProjectRoot)
     
-    maximumDocumentCount =
-    NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
+    maximumDocumentCount = NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
     
-    pathOp = PathOperation.alloc.initWithProjectRoot( theProjectRoot, maximumDocumentCount:maximumDocumentCount, andFuzzyTableViewController:fuzzyTableViewController)
+    pathOp = PathOperation.alloc.initWithProjectRoot(theProjectRoot,
+                                                     maximumDocumentCount:maximumDocumentCount,
+                                                     andFuzzyTableViewController:fuzzyTableViewController)
     pathOp.setQueuePriority(2.0)
     fuzzyTableViewController.queue.addOperation(pathOp)
   end

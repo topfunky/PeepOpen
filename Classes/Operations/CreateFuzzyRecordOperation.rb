@@ -8,14 +8,14 @@
 class CreateFuzzyRecordOperation < NSOperation
   def initWithProjectRoot(theProjectRoot, andFilePath:relativeFilename)
     init
-    @theProjectRoot = theProjectRoot
+    @projectRoot = theProjectRoot
     @relativeFilename = relativeFilename
     self
   end
   
   def main
     unless isCancelled
-      fuzzyRecord = FuzzyRecord.alloc.initWithProjectRoot(@theProjectRoot, filePath:@relativeFilename)
+      fuzzyRecord = FuzzyRecord.alloc.initWithProjectRoot(@projectRoot, filePath:@relativeFilename)
       NSNotificationCenter.defaultCenter.postNotificationName(TFRecordCreatedNotification, object:fuzzyRecord)
     end
   end
