@@ -99,7 +99,9 @@ class FuzzyRecord
   def self.addRecord(theRecord, toCacheForProjectRoot:theProjectRoot)
     @@cache ||= {}
     if @@cache[theProjectRoot].nil?
-      @@cache[theProjectRoot] = {}
+      @@cache[theProjectRoot] = {
+        :records => []  
+      }
     end
     @@cache[theProjectRoot][:records] << theRecord
   end
