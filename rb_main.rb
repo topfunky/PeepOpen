@@ -21,6 +21,7 @@ framework 'BWToolkitFramework'
 # solves the problem
 KInternetEventClass = 'GURL'.unpack('N').first
 KAEGetURL = 'GURL'.unpack('N').first
+KeyDirectObject = '----'.unpack('N').first
 
 # Loading all the Ruby project files.
 main = File.basename(__FILE__, File.extname(__FILE__))

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Classes/Models/FuzzyRecord.rb</string>
+	<string>rb_main.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -13,8 +13,6 @@
 			<string>Classes</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>selected</key>
-			<true/>
 			<key>sourceDirectory</key>
 			<string>Classes</string>
 		</dict>
@@ -38,7 +36,9 @@
 			<key>filename</key>
 			<string>rb_main.rb</string>
 			<key>lastUsed</key>
-			<date>2011-02-18T14:10:41Z</date>
+			<date>2011-02-25T20:05:50Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -94,14 +94,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>75</integer>
 				<key>line</key>
-				<integer>42</integer>
+				<integer>28</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>23</integer>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>70</integer>
+				<key>line</key>
+				<integer>28</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>85</integer>
+				<key>line</key>
+				<integer>28</integer>
+			</dict>
 		</dict>
 		<key>Classes/Controllers/FuzzyTableViewController.rb</key>
 		<dict>
@@ -205,11 +221,26 @@
 			<key>firstVisibleLine</key>
 			<integer>1</integer>
 		</dict>
+		<key>rb_main.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>23</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>Classes/Models/FuzzyRecord.rb</string>
 		<string>Classes/Controllers/AppDelegate.rb</string>
+		<string>rb_main.rb</string>
 		<string>Classes/Operations/PathOperation.rb</string>
 		<string>Classes/Controllers/FuzzyWindowController.rb</string>
 		<string>Classes/Controllers/PreferencesWindowController.rb</string>
