@@ -1,4 +1,6 @@
-require "rubygems"
+Dir['Vendor/*/lib'].each do |dir|
+  $: << dir
+end
 require "rake"
 
 require "choctop"
