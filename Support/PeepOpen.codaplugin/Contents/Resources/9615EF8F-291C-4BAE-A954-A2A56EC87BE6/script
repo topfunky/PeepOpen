@@ -1,5 +1,0 @@
-if (set -u; : $CODA_SITE_LOCAL_PATH) 2> /dev/null
-then
-  open -a PeepOpen "$CODA_SITE_LOCAL_PATH"
-fi
-

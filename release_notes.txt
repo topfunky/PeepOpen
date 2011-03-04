@@ -1,3 +1,17 @@
+h1. <span>2011-03-04</span> Release 0.3.0
+
+h2. New Plugin! 
+
+* IMPORTANT! Open Preferences and run "Install Plugin" for any editors you use.
+
+h2. Stability, Multi-Editor Support
+
+* Multi-editor support. The new plugins work dynamically with multiple editors. You can switch between projects in TextMate, Emacs, MacVim, or any other editor without needing to change settings.
+* Tons of work to make the app more stable and crash proof.
+* NSOperation used for background queue. Loading and reloading files is more reliable.
+* Search is faster in many cases. Still somewhat slow for large projects over 5,000 files.
+* Upgraded to MacRuby 0.9. Faster execution, bugs fixed.
+
 h1. <span>2010-09-23</span> Release 0.2.4
 
 h2. Visual Cleanup

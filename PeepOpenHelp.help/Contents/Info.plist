@@ -13,11 +13,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2.4</string>
+	<string>0.2.5</string>
 	<key>CFBundleSignature</key>
 	<string>POHp</string>
 	<key>CFBundleVersion</key>
-	<string>0.2.4</string>
+	<string>0.2.5</string>
 	<key>CFBundleHelpTOCFile</key>
 	<string>index.html</string>
 	<key>HPDBookAccessPath</key>

@@ -6,7 +6,46 @@
 
 class AppDelegate
 
-  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController, :statusMenu, :aboutWindowController
+  attr_accessor :fuzzyWindowController, :preferencesWindowController, :welcomeWindowController, :releaseNotesWindowController, :statusMenu, :aboutWindowController, :sessionConfig
+  
+  def awakeFromNib
+    NSUserDefaults.standardUserDefaults.registerDefaults(AppDelegate.registrationDefaults)
+    sharedAEManager = NSAppleEventManager.sharedAppleEventManager
+    sharedAEManager.setEventHandler(self, andSelector: :"getURLandStart:withReplyEvent:", forEventClass: KInternetEventClass, andEventID: KAEGetURL)
+    
+    # Create SessionConfig to store editorName
+    @sessionConfig = SessionConfig.new("")
+  end
+
+  def getURLandStart(event, withReplyEvent:replyEvent)
+    if event.respond_to?(:paramDescriptorForKeyword)
+      # Plugins should send a customURL in the form peepopen:///path/to/local/file?editor=TextMate
+      # 
+      # The following code converts the event from NSAppleEventDescriptor to an NSURL
+      # so that the NSURL path and query methods can be called to extract the file path
+      # and the editor name
+      # 
+
+      customUrl = NSURL.URLWithString(event.paramDescriptorForKeyword(KeyDirectObject).stringValue)
+      
+      if customUrl.path.length == 0 
+        raise "Shouldn't have an empty path"
+      end
+      editorName = customUrl.query.gsub('editor=', '')
+      
+      # Save the editor name to a SessionConfig object so we can pluck it out of the air later
+      # (see FuzzyTableViewController.handleRowClick)
+      @sessionConfig.editorName = editorName
+
+      application(nil, openFile:customUrl.path)
+    end
+  end
+
+  # Do something with the dropped file.
+  def application(sender, openFile:path)
+    fuzzyWindowController.show(nil)
+    fuzzyWindowController.loadFilesFromProjectRoot(path)
+  end
 
   def self.registrationDefaults
     {
@@ -21,10 +60,6 @@ class AppDelegate
       "showStatusBarMenu" => true,
       "showCellIcon" => true
     }
-  end
-
-  def applicationWillFinishLaunching(aNotification)
-    NSUserDefaults.standardUserDefaults.registerDefaults(AppDelegate.registrationDefaults)
   end
 
   def applicationDidFinishLaunching(aNotification)
@@ -50,14 +85,6 @@ class AppDelegate
     statusItem.setHighlightMode(true)
     statusItem.setToolTip("PeepOpen")
     statusItem.setImage(NSImage.imageNamed("statusItemIcon.png"))
-  end
-
-  ##
-  # Do something with the dropped file.
-
-  def application(sender, openFile:path)
-    fuzzyWindowController.show(self)
-    fuzzyWindowController.loadFilesFromProjectRoot(path)
   end
 
   def showPreferences(sender)
@@ -155,7 +182,7 @@ class AppDelegate
   # Take action on directories that have changed recently.
 
   def pathWatcher(pathWatcher, eventOccurred:event)
-    # NSLog("%@", event)
+
   end
 
 
@@ -171,4 +198,3 @@ class AppDelegate
   end
 
 end
-

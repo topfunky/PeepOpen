@@ -17,5 +17,4 @@
 }
 + (id)sharedInstance;
 - (id)initWithPlugInController:(id <TMPlugInController>)controller;
-- (void)showPeepOpen;
 @end

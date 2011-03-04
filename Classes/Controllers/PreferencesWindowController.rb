@@ -13,6 +13,11 @@ class PreferencesWindowController < NSWindowController
   attr_accessor :currentView
 
   include NSWindowControllerHelper
+  
+  def awakeFromNib
+    applicationPopup.selectItemWithObjectValue(NSUserDefaults.standardUserDefaults.objectForKey('editorApplicationName'))
+    
+  end
 
   def show(sender)
     NSApp.activateIgnoringOtherApps(true)
@@ -96,8 +101,15 @@ class PreferencesWindowController < NSWindowController
     window.makeFirstResponder(nil)
     # HACK: Use value from defaults since NSComboBox doesn't always
     # record the initial value correctly.
+    
+    # As the binding between Shared User Defaults Controller and the combo box does not appear to work,
+    # do it programmatically 
+    NSUserDefaults.standardUserDefaults.setObject(@applicationPopup.objectValueOfSelectedItem, forKey:"editorApplicationName")
     editorApplicationName =
       NSUserDefaults.standardUserDefaults.stringForKey("editorApplicationName")
+    unless NSUserDefaults.standardUserDefaults.synchronize
+      puts "PEEPOPEN :: #{Time.now.strftime("%m/%d/%Y %H:%M:%S")} :: Couldn't update UserPreferences in PreferencesController.installPlugin"
+    end
     selector = "install#{editorApplicationName.gsub(' ', '')}:".to_sym
     if (self.respondsToSelector(selector))
       performSelector(selector, withObject:self)
@@ -136,6 +148,12 @@ class PreferencesWindowController < NSWindowController
 
     installedPeepOpenPluginPath =
       textmatePluginsPath.stringByAppendingPathComponent("PeepOpen.tmplugin")
+
+    # Remove existing PeepOpen plugin
+    if fileManager.fileExistsAtPath(installedPeepOpenPluginPath)
+      fileManager.removeItemAtPath(installedPeepOpenPluginPath,
+                                   error:nil)
+    end
 
     # Copy plugin to ~/Library/ApplicationSupport/TextMate/Plugins
     resourcePath = NSBundle.mainBundle.resourcePath

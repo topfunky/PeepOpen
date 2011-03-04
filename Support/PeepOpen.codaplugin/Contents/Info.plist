@@ -32,15 +32,19 @@
 			<key>keyEquivalent</key>
 			<string>~^@t</string>
 			<key>keyEquivalentConflict</key>
-			<false/>
+			<true/>
 			<key>name</key>
-			<string>Open File with PeepOpen</string>
+			<string>Open File in PeepOpen</string>
 			<key>output</key>
 			<string>discard</string>
+			<key>postprocess</key>
+			<string>none</string>
+			<key>preprocess</key>
+			<string>none</string>
 			<key>script</key>
-			<string>script</string>
+			<string>open-file-in-peepopen.sh</string>
 			<key>uuid</key>
-			<string>9615EF8F-291C-4BAE-A954-A2A56EC87BE6</string>
+			<string>8A8CDACF-6C0A-4E62-9E90-313EDA1B0229</string>
 		</dict>
 	</array>
 </dict>

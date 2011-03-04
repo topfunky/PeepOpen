@@ -51,5 +51,16 @@
 	<true/>
 	<key>LSUIElement</key>
 	<string>1</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.topfunky.PeepOpen.URLId</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>peepopen</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

@@ -4,19 +4,33 @@
 # Created by Geoffrey Grosenbach on 3/16/10.
 # Copyright 2010 Topfunky Corporation. All rights reserved.
 
+
 class FuzzyTableViewController
 
-  attr_accessor :tableView, :allRecords, :records
+  include Constants
+
+  attr_accessor :tableView, :allRecords, :records, :queue, :fuzzyWindowController
 
   def initialize
-    @allRecords = []
     @records = []
+    @queue = NSOperationQueue.alloc.init
+    @fuzzyWindowController = fuzzyWindowController
+  end
+
+  def awakeFromNib
+    nc = NSNotificationCenter.defaultCenter
+    nc.addObserver(self,
+                   selector:"anyThread_HandleRecordCreated:" ,
+                   name:TFRecordCreatedNotification,
+                   object:nil)
+    nc.addObserver(self,
+                   selector:"handleAllRecordsCreated:" ,
+                   name:TFAllRecordsCreatedNotification,
+                   object:nil)
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
-    @allRecords = []
-    @allRecords = FuzzyRecord.recordsForProjectRoot(theProjectRoot)
-    searchForString("")
+    FuzzyRecord.recordsForProjectRoot(theProjectRoot, withFuzzyTableViewController:self)
   end
 
   def reset
@@ -48,6 +62,7 @@ class FuzzyTableViewController
     performSelectorOnMainThread("didSearchForString:",
                                 withObject:filteredRecords,
                                 waitUntilDone:true)
+    @fuzzyWindowController.updateStatusLabel
   end
 
   def didSearchForString(filteredRecords)
@@ -97,7 +112,7 @@ class FuzzyTableViewController
   end
 
   def tableView(tableView, objectValueForTableColumn:column, row:row)
-    if row < @records.length
+    if row < @records.size
       # There is only one column
       return @records[row].filePath
     end
@@ -118,10 +133,13 @@ class FuzzyTableViewController
     if record = @records[rowId]
       FuzzyRecord.storeRecentlyOpenedRecord(record)
       # TODO: Close window when clicked with the mouse
+
+      editorApplicationName = NSApp.delegate.sessionConfig.editorName
       editorApplicationName =
-        NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
+        NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName') if editorApplicationName.empty?
 
       if (editorApplicationName.strip == "")
+        # Haven't a clue where to open the file
         return false
       end
 
@@ -132,6 +150,38 @@ class FuzzyTableViewController
       searchForString("")
       return true
     end
+  end
+
+
+  # Notifications will be sent from many threads but GUI activity needs to take place
+  # on the main thread, hence this collect and forward pair
+  # i.e.
+  #   anyThread_HandleRecordCreated and
+  #   mainThread_handleRecordCreated
+  def anyThread_HandleRecordCreated(notification)
+    performSelectorOnMainThread(:"mainThread_handleRecordCreated:",
+                                withObject:notification,
+                                waitUntilDone:false)
+  end
+
+  def mainThread_handleRecordCreated(notification)
+    FuzzyRecord.addRecord(notification.object,
+                          toCacheForProjectRoot:@fuzzyWindowController.projectRoot)
+    @records = FuzzyRecord.cachedRecordsForProjectRoot(@fuzzyWindowController.projectRoot)
+    if @records
+      @fuzzyWindowController.updateProgressBarWithDoubleValue(@records.size)
+      tableView.reloadData
+    end
+  end
+
+  def createAllRecords
+    @allRecords = FuzzyRecord.cachedRecordsForProjectRoot(@fuzzyWindowController.projectRoot)
+  end
+
+  def handleAllRecordsCreated(notification)
+    @records = notification.object
+    createAllRecords
+    @fuzzyWindowController.didFinishLoadingFilesFromProjectRoot
   end
 
 end

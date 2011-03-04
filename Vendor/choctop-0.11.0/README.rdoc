@@ -1,0 +1,155 @@
+= choctop
+
+* http://drnic.github.com/choctop
+
+== Modifications by billymeltdown:
+
+Just some real basic stuff for our internal use here at Zetetic. I'd ignore the :scp business, 
+in the end it turned out to be whack, but I'll preserve it here in case anyone really needs it. 
+Rsync is definitely more appropriate.
+
+The thing I needed in particular was to be able to pass build settings to xcodebuild that I 
+have set in the XCode project and that we use in dependent projects (e.g. -sdk macosx10.5, etc).
+
+Added a gemspec so I can publish it from github, allowing us here at zetetic to use it specifically.
+
+== DESCRIPTION:
+
+Build and deploy tools for Cocoa apps using Sparkle for distributions and upgrades; 
+it’s like Hoe but for Cocoa apps.
+
+Package up your OS X/Cocoa applications into Custom DMGs, generate Sparkle XML, and
+upload. Instead of hours, its only 30 seconds to release each new version of an application.
+
+Build and deploy tools for Cocoa apps using Sparkle for distributions and upgrades; it's
+like Hoe but for Cocoa apps.
+
+The main feature is a powerful rake task "rake appcast" which builds a release of your
+application, creates a DMG package, generates a Sparkle XML file, and posts the package
+and XML file to your remote host via rsync.
+
+All rake tasks:
+
+    rake appcast         # Create dmg, update appcast file, and upload to host
+    rake build   # Build Xcode Release
+    rake dmg     # Create the dmg file for appcasting
+    rake feed    # Create/update the appcast file
+    rake upload  # Upload the appcast file to the host
+
+== Why is it called 'ChocTop'? 
+
+In Australia, Choc-Tops are ice cream cones, with hardened chocolate on top, 
+normally served at the movie cinemas. When we (http://mocra.com) were brainstorming a name for this
+project we combined "Sparkle" + "Cocoa" + "it's almost lunch time and we're hungry" to remember 
+the wonderful Choc-Top ice creams. MMmmm.
+
+Wikipedia: http://en.wikipedia.org/wiki/Choc-Top
+
+== FEATURES/PROBLEMS:
+
+ChocTop comes with rake tasks to instantly deploy your latest Cocoa app's version
+to a remote host, instantly activating all your users' Sparkle auto-updates.
+
+* builds a Release of your project from your Xcode project (via xcodebuild tool)
+* packages a DMG of your released app using Info.plist configuration (rake dmg)
+* generates Sparkle-formatted XML file
+* uploads the DMG and XML files to a remote host
+
+== SYNOPSIS:
+
+  cd to/my/cocoa/app
+  install_choctop .
+  
+Alternately, if you already have a Rakefile in your Xcode project, then add the following
+to the end:
+
+    require "choctop"
+
+    ChocTop.new do |s|
+      s.remote_dir = '/path/to/upload/root/of/app'
+      
+      # Optional, showing defaults
+      s.host          = host from Info.plist['SUFeedURL']
+      s.base_url      = "http://#{s.host}"
+      s.release_notes = "release_notes.html"
+      
+      # Custom DMG
+      s.background_file = "background.jpg"
+      s.app_icon_position = [100, 90]
+      s.applications_icon_position =  [400, 90]
+      s.applications_icon =  "applications.icns"
+      
+      # Extra files
+      s.add_file 'path/to/README.txt', :position => [250, 90]
+      s.file :target_bundle, :position => [50, 100]
+      s.file proc { 'README.txt' }, :position => [50, 100]
+      s.file :position => [50, 100] { 'README.txt' }
+      
+      # Custom DMG options
+      s.volume_icon = "dmg.icns"
+      s.icon_size = 104
+    end
+
+In your Rakefile, update the ChocTop configuration with the host and remote_dir details.
+The rake tasks use rsync to upload the files, so ensure that you have ssh access to the
+remote server, with a password/ssh keys.
+
+Also, in your project's Info.plist, remember to update/add the following keys:
+
+    CFBundleExecutable - name of your project
+    CFBundleVersion - version for next release, using X.Y.Z format
+    SUFeedURL - url to Sparkle URL (future: insert this automatically)
+
+The create the distribution, Sparkle XML file, and upload it to the remote host:
+
+  rake appcast
+
+The build process uses your Xcode project file, via the xcodebuild command. If this fails,
+you may need to run the build process manually via Xcode. Set Configuration to Release (normally
+its set to Debug for development) and then Build. The "rake appcast" task should finish to completion.
+
+== REQUIREMENTS:
+
+* RubyCocoa (installed with OS X 10.5 Leopard)
+* Xcode 3+
+
+== INSTALL:
+
+    sudo gem install choctop
+
+== ORIGINAL CODE IDEAS:
+
+* Chris Bailey at http://codeintensity.blogspot.com/2008/03/creating-sparkle-appcast-via-rake-tasks.html
+* Eloy Duran's Rucola at http://github.com/alloy/rucola
+* Emanuele Vicentini's rake_dmg at http://github.com/baldowl/rake_dmg
+* AppleScript ideas from http://svn.tribler.org/abc/branches/old-mainbranch-till-4.1.7plus/mac/Makefile-from-vlc-ready
+
+    
+== SPONSORED BY:
+
+http://mocra.com - Mocra - the premier Rails/iPhone consultancy
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2009 Dr Nic Williams, drnicwilliams@gmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
