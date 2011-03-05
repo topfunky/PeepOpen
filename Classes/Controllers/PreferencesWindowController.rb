@@ -127,7 +127,7 @@ class PreferencesWindowController < NSWindowController
 
     textmateSupportPath = NSString.pathWithComponents([applicationSupportPath, "TextMate"])
     textmateBundlesPath = NSString.pathWithComponents([textmateSupportPath, "Bundles"])
-    textmatePluginsPath = NSString.pathWithComponents([textmateSupportPath, "Plugins"])
+    textmatePluginsPath = NSString.pathWithComponents([textmateSupportPath, "PlugIns"])
 
     # Returns false on error
     fileManager.createDirectoryAtPath(textmateBundlesPath,
