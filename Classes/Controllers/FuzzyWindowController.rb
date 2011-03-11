@@ -46,7 +46,7 @@ class FuzzyWindowController < NSWindowController
   end
 
   def loadFilesFromProjectRoot(theProjectRoot)
-    NSTimer.scheduledTimerWithTimeInterval( 0.25,
+    timer = NSTimer.scheduledTimerWithTimeInterval( 0.25,
                                      target: self,
                                    selector: :"checkProgress:",
                                    userInfo: nil,
@@ -69,6 +69,8 @@ class FuzzyWindowController < NSWindowController
     tableViewController.loadFilesFromProjectRoot(self.projectRoot)
                                      
   rescue FuzzyRecord::ProjectRootNotFoundError => e
+    timer.invalidate
+    @tableViewController.reset
     statusLabel.stringValue = "Project not found."
     runWarningAlertWithMessage("Couldn't Find a Project",
                                informativeText:"#{theProjectRoot} wasn't part of a Git, Ruby, Xcode, or other project. See the Help menu or the Project Root Pattern preference in the Advanced tab for configuration options.")

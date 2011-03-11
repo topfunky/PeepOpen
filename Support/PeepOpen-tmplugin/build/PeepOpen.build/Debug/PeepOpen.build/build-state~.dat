@@ -1,0 +1,172 @@
+TPeepOpen
+v7
+r0
+t321544786.572991
+cCheck dependencies
+cProcessInfoPlistFile /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Info.plist Info.plist
+cCopyStringsFile /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
+cProcessPCH /var/folders/t0/vy+4s+90+6kd0kmj41r6gwm7++++fn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PeepOpen_Prefix-ecdnpagduenukpcyzoqgviwlwyjr/PeepOpen_Prefix.pch.gch PeepOpen_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/PeepOpen.build/Debug/PeepOpen.build/Objects-normal/i386/PeepOpen.o /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/MacOS/PeepOpen normal i386
+cTouch /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/AppKit.framework/AppKit
+c000000004CAA740400000000002527C8
+t1286239236
+s2435016
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Cocoa
+c000000004C5342AB0000000000003430
+t1280524971
+s13360
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
+c0000000040C4AA6800000000000001E5
+t1086630504
+s485
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreData.framework/CoreData
+c000000004CAA74040000000000037784
+t1286239236
+s227204
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CAA740400000000000C7160
+t1286239236
+s815456
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/English.lproj/InfoPlist.strings
+c000000004D7A22110000000000000030
+t1299849745
+s48
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen.h
+c000000004D7A22110000000000000136
+t1299849745
+s310
+i<Cocoa/Cocoa.h>
+i"TextMate.h"
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen.m
+c000000004D7A29A90000000000000626
+t1299851689
+s1574
+i"PeepOpen.h"
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen_Prefix.pch
+c000000004D7A22110000000000000094
+t1299849745
+s148
+i<Cocoa/Cocoa.h>
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/TextMate.h
+c000000004D7A2211000000000000454F
+t1299849745
+s17743
+i<Cocoa/Cocoa.h>
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin
+t1299851986
+s102
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Info.plist
+t1299851983
+s714
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/MacOS/PeepOpen
+t1299851986
+s13788
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Resources/English.lproj/InfoPlist.strings
+t1299851984
+s92
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/Objects-normal/i386/PeepOpen.LinkFileList
+c000000004D7A2ACF0000000000000087
+t1299851983
+s135
+
+N/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/Objects-normal/i386/PeepOpen.o
+t1299851986
+s32676
+
+N/var/folders/t0/vy+4s+90+6kd0kmj41r6gwm7++++fn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PeepOpen_Prefix-ecdnpagduenukpcyzoqgviwlwyjr/PeepOpen_Prefix.pch.gch
+t1299851986
+s56932144
+
+NInfo.plist
+c000000004D7A22110000000000000354
+t1299849745
+s852
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies321544783#321544783#0(0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/PeepOpen.build/Debug/PeepOpen.build/Objects-normal/i386/PeepOpen.o /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s321544786.296670
+e321544786.421402
+r1
+xCompileC
+xbuild/PeepOpen.build/Debug/PeepOpen.build/Objects-normal/i386/PeepOpen.o
+x/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@80"Compile /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen.m321544786#321544786#0(0"0(0#0#72"/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen.m0#1721"    cd /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/PeepOpen-generated-files.hmap -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/PeepOpen-own-target-headers.hmap -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/PeepOpen-all-target-headers.hmap -iquote /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/PeepOpen-project-headers.hmap -F/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/include -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/DerivedSources/i386 -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/DerivedSources -include /var/folders/t0/vy+4s+90+6kd0kmj41r6gwm7++++fn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PeepOpen_Prefix-ecdnpagduenukpcyzoqgviwlwyjr/PeepOpen_Prefix.pch -c /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen.m -o /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/Objects-normal/i386/PeepOpen.o0#
+
+CCopyStringsFile /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
+s321544783.929047
+e321544784.017012
+r1
+xCopyStringsFile
+x/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Resources/English.lproj/InfoPlist.strings
+xEnglish.lproj/InfoPlist.strings
+lSLF07#2@36"Copy English.lproj/InfoPlist.strings321544783#321544784#0(0"0(0#0#93"/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/English.lproj/InfoPlist.strings0#417"    cd /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin    setenv ICONV /usr/bin/iconv    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-8 --outputencoding UTF-16 English.lproj/InfoPlist.strings --outdir /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Resources/English.lproj0#
+
+CLd /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/MacOS/PeepOpen normal i386
+s321544786.421483
+e321544786.570545
+r1
+xLd
+x/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/MacOS/PeepOpen
+xnormal
+xi386
+lSLF07#2@120"Link /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/MacOS/PeepOpen321544786#321544786#0(0"0(0#0#0"0#731"    cd /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch i386 -bundle -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug -F/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug -filelist /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/Objects-normal/i386/PeepOpen.LinkFileList -mmacosx-version-min=10.6 -framework Cocoa -framework AppKit -framework CoreData -framework Foundation -o /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/MacOS/PeepOpen0#
+
+CProcessInfoPlistFile /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Info.plist Info.plist
+s321544783.922017
+e321544783.928987
+r1
+xProcessInfoPlistFile
+x/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Info.plist
+xInfo.plist
+lSLF07#2@18"Process Info.plist321544783#321544783#0(0"0(0#0#72"/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/Info.plist0#262"    cd /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin    builtin-infoPlistUtility Info.plist -expandbuildsettings -platform macosx -o /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin/Contents/Info.plist0#
+
+CProcessPCH /var/folders/t0/vy+4s+90+6kd0kmj41r6gwm7++++fn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PeepOpen_Prefix-ecdnpagduenukpcyzoqgviwlwyjr/PeepOpen_Prefix.pch.gch PeepOpen_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s321544784.017134
+e321544786.296564
+r1
+xProcessPCH
+x/var/folders/t0/vy+4s+90+6kd0kmj41r6gwm7++++fn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PeepOpen_Prefix-ecdnpagduenukpcyzoqgviwlwyjr/PeepOpen_Prefix.pch.gch
+xPeepOpen_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@30"Precompile PeepOpen_Prefix.pch321544784#321544786#0(0"0(0#0#81"/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen_Prefix.pch0#1597"    cd /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/PeepOpen-generated-files.hmap -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/PeepOpen-own-target-headers.hmap -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/PeepOpen-all-target-headers.hmap -iquote /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/PeepOpen-project-headers.hmap -F/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/include -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/DerivedSources/i386 -I/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/PeepOpen.build/Debug/PeepOpen.build/DerivedSources -c /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/PeepOpen_Prefix.pch -o /var/folders/t0/vy+4s+90+6kd0kmj41r6gwm7++++fn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PeepOpen_Prefix-ecdnpagduenukpcyzoqgviwlwyjr/PeepOpen_Prefix.pch.gch0#
+
+CTouch /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin
+s321544786.570613
+e321544786.572962
+r1
+xTouch
+x/Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin
+lSLF07#2@97"Touch /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin321544786#321544786#0(0"0(0#0#0"0#183"    cd /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin    /usr/bin/touch -c /Users/martin/work/macruby/PeepOpen/Support/PeepOpen-tmplugin/build/Debug/PeepOpen.tmplugin0#
+

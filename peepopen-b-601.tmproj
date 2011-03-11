@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Support/PeepOpen-tmplugin/PeepOpen.m</string>
+	<string>Classes/Controllers/FuzzyTableViewController.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -36,7 +36,7 @@
 			<key>filename</key>
 			<string>rb_main.rb</string>
 			<key>lastUsed</key>
-			<date>2011-03-11T13:53:47Z</date>
+			<date>2011-03-11T14:28:09Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -94,29 +94,29 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>75</integer>
+				<integer>39</integer>
 				<key>line</key>
-				<integer>28</integer>
+				<integer>162</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>9</integer>
+			<integer>135</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>70</integer>
-				<key>line</key>
 				<integer>28</integer>
+				<key>line</key>
+				<integer>162</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>85</integer>
+				<integer>39</integer>
 				<key>line</key>
-				<integer>28</integer>
+				<integer>162</integer>
 			</dict>
 		</dict>
 		<key>Classes/Controllers/FuzzyTableViewController.rb</key>
@@ -124,28 +124,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>35</integer>
 				<key>line</key>
-				<integer>33</integer>
+				<integer>44</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>14</integer>
-		</dict>
-		<key>Classes/Controllers/FuzzyWindowController.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>56</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>49</integer>
+			<integer>26</integer>
 		</dict>
 		<key>Classes/Controllers/PreferencesWindowController.rb</key>
 		<dict>
@@ -177,36 +163,6 @@
 				<integer>111</integer>
 			</dict>
 		</dict>
-		<key>Classes/Models/FuzzyRecord.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>8</integer>
-				<key>line</key>
-				<integer>55</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>40</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>4</integer>
-				<key>line</key>
-				<integer>55</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>8</integer>
-				<key>line</key>
-				<integer>55</integer>
-			</dict>
-		</dict>
 		<key>Classes/Operations/PathOperation.rb</key>
 		<dict>
 			<key>caret</key>
@@ -221,44 +177,9 @@
 			<key>firstVisibleLine</key>
 			<integer>1</integer>
 		</dict>
-		<key>Support/PeepOpen-tmplugin/PeepOpen.m</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>112</integer>
-				<key>line</key>
-				<integer>50</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>17</integer>
-		</dict>
-		<key>rb_main.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>38</integer>
-				<key>line</key>
-				<integer>25</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>3</integer>
-		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>Classes/Models/FuzzyRecord.rb</string>
-		<string>Classes/Controllers/AppDelegate.rb</string>
-		<string>Support/PeepOpen-tmplugin/PeepOpen.m</string>
-		<string>rb_main.rb</string>
-		<string>Classes/Operations/PathOperation.rb</string>
-		<string>Classes/Controllers/FuzzyWindowController.rb</string>
-		<string>Classes/Controllers/PreferencesWindowController.rb</string>
 		<string>Classes/Controllers/FuzzyTableViewController.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
