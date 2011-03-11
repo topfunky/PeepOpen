@@ -48,7 +48,9 @@ static PeepOpen *po;
 	{
 		projectDir = [currentDocument valueForKey:@"filename"];
 	}
-	NSString *projectURLString = [NSString stringWithFormat:@"peepopen://%@?editor=TextMate", projectDir];
+	// The following amended with stringByAddingPercentEscapesUsingEncoding to allow for paths that include spaces.
+	NSString *projectURLString = 
+		[[NSString stringWithFormat:@"peepopen://%@?editor=TextMate", projectDir] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	NSURL *url = [NSURL URLWithString:projectURLString];
 	NSLog(@"OakprojectController (PeepOpen), sending url %@ to NSWorkspace", [url absoluteString]);
 	[[NSWorkspace sharedWorkspace] openURL:url];

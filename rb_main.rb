@@ -19,6 +19,14 @@ framework 'BWToolkitFramework'
 # HACK: From http://lists.macosforge.org/pipermail/macruby-devel/2009-May/001710.html
 # disabled to test if the inclusion of HIServices.bridgesupport in Resources/BridgeSupport
 # solves the problem
+# 
+# Tests were conducted against a vanilla 10.6 build.
+#  The emebd target was built with the following:
+# PATH="$PATH:/usr/local/bin" macruby_deploy --embed --no-stdlib --bs "$TARGET_BUILD_DIR/$PROJECT_NAME.app"
+# The build ran successfully but only after Foundation.bridgesupport and PrintCore.bridgesupport were removed
+# 
+# Leave 'as is' until BridgeSupport issue rectified
+#
 KInternetEventClass = 'GURL'.unpack('N').first
 KAEGetURL = 'GURL'.unpack('N').first
 KeyDirectObject = '----'.unpack('N').first
