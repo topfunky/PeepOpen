@@ -16,16 +16,13 @@ class FuzzyRecord
 
   MAX_SCORE = 10_000
 
-  class ProjectRootNotFoundError < StandardError; end
-
   def self.discoverProjectRootForDirectoryOrFile(directoryOrFile)
     normalizedPath = directoryOrFile.gsub(/\/$/, '') # Normalize: remove trailing slash
+    projectRoot = ''
+    projectRootFoundFlag = false
 
     projectRootRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("projectRootRegex"))
-    # if File.directory?(normalizedPath)
-    #   return normalizedPath
-    # end
-    #
+
     fileManager = NSFileManager.defaultManager
     pathComponents = normalizedPath.pathComponents
     (pathComponents.length - 1).downto(0) do |index|
@@ -34,11 +31,23 @@ class FuzzyRecord
       fileManager.contentsOfDirectoryAtPath(path,
                                             error:nil).map {|f|
         if f.match(projectRootRegex)
-          return path.to_s
+          projectRoot, projectRootFoundFlag =  path.to_s, true
+          break
         end
       }
     end
-    raise ProjectRootNotFoundError, "Couldn't find a project root for #{directoryOrFile}"
+
+    if projectRoot.empty?
+      projectRoot = File.directory?(normalizedPath) ? normalizedPath : File.dirname(normalizedPath)
+      # if File.directory?(normalizedPath)
+      #   projectRoot = normalizedPath
+      # else
+      #   projectRoot = File.dirname(normalizedPath)
+      # end
+      # projectRoot = projectRoot.empty? ? normalizedPath : File.dirname(normalizedPath)
+    end
+
+    return projectRoot, projectRootFoundFlag
   end
 
   # Cache is a dictionary of project roots with arrays of recent files

@@ -51,12 +51,13 @@ class FuzzyWindowController < NSWindowController
                                    selector: :"checkProgress:",
                                    userInfo: nil,
                                     repeats: true)
-                                    
+
     statusLabel.stringValue = "Loading..."
     progressBar.labelText = "Reading files..."
-
-    self.projectRoot = FuzzyRecord.discoverProjectRootForDirectoryOrFile(theProjectRoot)
     
+    # FuzzyRecord.discoverProjectRootForDirectoryOrFile returns the projectRoot and a flag
+    self.projectRoot, projectRootFoundFlag = FuzzyRecord.discoverProjectRootForDirectoryOrFile(theProjectRoot)
+
     @tableViewController.reset
 
     if nil == FuzzyRecord.cachedRecordsForProjectRoot(self.projectRoot)
@@ -67,13 +68,14 @@ class FuzzyWindowController < NSWindowController
     end
 
     tableViewController.loadFilesFromProjectRoot(self.projectRoot)
-                                     
-  rescue FuzzyRecord::ProjectRootNotFoundError => e
-    timer.invalidate
-    @tableViewController.reset
-    statusLabel.stringValue = "Project not found."
-    runWarningAlertWithMessage("Couldn't Find a Project",
-                               informativeText:"#{theProjectRoot} wasn't part of a Git, Ruby, Xcode, or other project. See the Help menu or the Project Root Pattern preference in the Advanced tab for configuration options.")
+
+    unless projectRootFoundFlag
+      # timer.invalidate
+      # statusLabel.stringValue = "Project not found."
+      runWarningAlertWithMessage("Couldn't Find a Project",
+      informativeText:"#{theProjectRoot} wasn't part of a Git, Ruby, Xcode, or other project. See the Help menu or the Project Root Pattern preference in the Advanced tab for configuration options.\n\nShowing files from\n#{self.projectRoot}")
+    end
+
   end
 
 
