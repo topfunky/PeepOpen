@@ -21,10 +21,11 @@ class FuzzyRecord
   def self.discoverProjectRootForDirectoryOrFile(directoryOrFile)
     normalizedPath = directoryOrFile.gsub(/\/$/, '') # Normalize: remove trailing slash
 
-    if File.directory?(normalizedPath)
-      return normalizedPath
-    end
-
+    projectRootRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("projectRootRegex"))
+    # if File.directory?(normalizedPath)
+    #   return normalizedPath
+    # end
+    #
     fileManager = NSFileManager.defaultManager
     pathComponents = normalizedPath.pathComponents
     (pathComponents.length - 1).downto(0) do |index|
@@ -32,7 +33,6 @@ class FuzzyRecord
       next if File.file?(path)
       fileManager.contentsOfDirectoryAtPath(path,
                                             error:nil).map {|f|
-        projectRootRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("projectRootRegex"))
         if f.match(projectRootRegex)
           return path.to_s
         end
