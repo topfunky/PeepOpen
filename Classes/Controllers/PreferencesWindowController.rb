@@ -14,6 +14,8 @@ class PreferencesWindowController < NSWindowController
 
   include NSWindowControllerHelper
   
+  class InstallPluginError < StandardError; end
+
   def awakeFromNib
     applicationPopup.selectItemWithObjectValue(NSUserDefaults.standardUserDefaults.objectForKey('editorApplicationName'))
     
@@ -307,6 +309,73 @@ class PreferencesWindowController < NSWindowController
     # HACK: Run openFile after so dialog doesn't show over Coda.
     NSWorkspace.sharedWorkspace.openFile(localCodaPluginPath,
                                          withApplication:"Coda")
+  end
+
+  def installBBEdit(sender)
+    fileManager = NSFileManager.alloc.init
+    resourcePath = NSBundle.mainBundle.resourcePath
+    errorMessage = nil
+    localBBEditPluginPath = NSString.pathWithComponents([
+                                                       resourcePath,
+                                                       "Support",
+                                                       "PeepOpen-bbedit"
+                                                      ])
+
+    applicationSupportPath =
+      NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
+                                          NSUserDomainMask,
+                                          true).lastObject
+
+    bBEditSupportPath = NSString.pathWithComponents([applicationSupportPath, "BBEdit", "Scripts"])
+
+    error = Pointer.new(:object)
+    unless fileManager.createDirectoryAtPath(bBEditSupportPath,
+                                      withIntermediateDirectories:true,
+                                      attributes:nil,
+                                      error:error)
+      errorMessage = "Couldn't create #{bBEditSupportPath} directory. #{error[0].localizedDescription}"
+      raiseError( errorMessage)
+    end
+
+    filesToCopy = fileManager.contentsOfDirectoryAtPath( localBBEditPluginPath, error:error)
+    unless filesToCopy
+      errorMessage = "Couldn't find BBEdit files in #{localBBEditPluginPath} directory. #{error[0].localizedDescription}"
+      raiseError( errorMessage)
+    end
+    if filesToCopy.empty?
+      errorMessage = "Couldn't find BBEdit files in #{localBBEditPluginPath} directory."
+      raiseError( errorMessage)
+    end
+    # fileExistsAtPath:
+
+      filesToCopy.each do |file|
+        # Remove the file if it exists
+        if fileManager.fileExistsAtPath( "#{bBEditSupportPath}/#{file}")
+          unless fileManager.removeItemAtPath( "#{bBEditSupportPath}/#{file}", error:error)
+            errorMessage = "Couldn't remove old BBEdit files #{bBEditSupportPath}/#{file} directory. #{error[0].localizedDescription}"
+            raiseError( errorMessage)
+          end
+        end
+        # Now the old file is gone, replace it with the new one
+        unless fileManager.copyItemAtPath("#{localBBEditPluginPath}/#{file}",
+                                   toPath:("#{bBEditSupportPath}/#{file}"),
+                                   error:error)
+          errorMessage = "Couldn't copy BBEdit files from #{localBBEditPluginPath} to #{bBEditSupportPath} directory. #{error[0].localizedDescription}"
+          raiseError( errorMessage)
+        end
+      end
+
+
+    runConfirmationAlertWithMessage("The BBEdit plugin was installed successfully!",
+                                    informativeText:"Now create a shortcut\n\nWindow -> Palettes -> Scripts\nSelect PeepOpen and click Set Key ...\nEnter a shortcut key combination\n(recommend Command + Option + T)")
+
+    rescue InstallPluginError => e
+      runWarningAlertWithMessage("The BBEdit plugin failed!", informativeText:e)
+  end
+
+  def raiseError( errorMessage)
+    puts "PEEPOPEN :: #{Time.now.strftime("%m/%d/%Y %H:%M:%S")} :: #{errorMessage}"
+    raise InstallPluginError, errorMessage
   end
 
 end

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Classes/Controllers/FuzzyWindowController.rb</string>
+	<string>Classes/Controllers/PreferencesWindowController.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -63,6 +63,8 @@
 		<dict>
 			<key>filename</key>
 			<string>testing.rb</string>
+			<key>lastUsed</key>
+			<date>2011-03-14T14:24:25Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -94,73 +96,71 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>39</integer>
+				<integer>99</integer>
 				<key>line</key>
-				<integer>162</integer>
+				<integer>57</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>135</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>28</integer>
-				<key>line</key>
-				<integer>162</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>39</integer>
-				<key>line</key>
-				<integer>162</integer>
-			</dict>
+			<integer>40</integer>
 		</dict>
 		<key>Classes/Controllers/FuzzyWindowController.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>4</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>59</integer>
+				<integer>106</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>62</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Classes/Controllers/PreferencesWindowController.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>22</integer>
 				<key>line</key>
-				<integer>111</integer>
+				<integer>340</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>319</integer>
+		</dict>
+		<key>Classes/Helpers/NSWindowControllerHelper.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>80</integer>
+				<key>line</key>
+				<integer>14</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>91</integer>
+			<integer>0</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>6</integer>
 				<key>line</key>
-				<integer>110</integer>
+				<integer>14</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>80</integer>
 				<key>line</key>
-				<integer>111</integer>
+				<integer>14</integer>
 			</dict>
 		</dict>
 		<key>Classes/Operations/PathOperation.rb</key>
@@ -180,11 +180,14 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
+		<string>Classes/Controllers/PreferencesWindowController.rb</string>
+		<string>Classes/Helpers/NSWindowControllerHelper.rb</string>
 		<string>Classes/Controllers/FuzzyWindowController.rb</string>
+		<string>Classes/Controllers/AppDelegate.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{161, 327}, {1212, 743}}</string>
+	<string>{{90, 297}, {1212, 743}}</string>
 </dict>
 </plist>
