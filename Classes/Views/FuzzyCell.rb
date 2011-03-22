@@ -143,14 +143,16 @@ class FuzzyCell < NSCell
     if !NSUserDefaults.standardUserDefaults.boolForKey("showCellIcon")
       return NSMakeRect(-2.0, 0, 0, 0)
     end
-  
+
+    filetypeLabelFont = NSFont.fontWithName("Futura-CondensedMedium", size:22) ||
+      NSFont.systemFontOfSize(18)
+
     filetypeLabelAttributes = {
       NSForegroundColorAttributeName => NSColor.colorWithCalibratedRed(0.85,
                                                                        green:0.85,
                                                                        blue:0.85,
                                                                        alpha:1.0),
-      NSFontAttributeName => NSFont.fontWithName("Futura-CondensedMedium",
-                                                 size:22)
+      NSFontAttributeName => filetypeLabelFont
     }
     if highlighted? || darkBackground?
       filetypeLabelAttributes[NSForegroundColorAttributeName] = NSColor.whiteColor
@@ -308,7 +310,7 @@ class FuzzyCell < NSCell
 
   ##
   # Background is dark when selected with the mouse.
-  
+
   def darkBackground?
     self.backgroundStyle == NSBackgroundStyleDark
   end

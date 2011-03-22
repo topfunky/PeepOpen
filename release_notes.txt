@@ -7,6 +7,8 @@ h2. MacBook i7 Compatibility, Bugfixes
 * Show better error if project root can't be found.
 * BBEdit plugin (thanks to Andrew Carter).
 * Install TextMate PlugIn to proper directory for case-sensitive filesystems.
+* Gracefully use system font if Futura is unavailable.
+* Clicking a table cell with the mouse opens the selected file.
 
 h1. <span>2011-03-04</span> Release 0.3.0
 

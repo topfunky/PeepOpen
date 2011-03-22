@@ -25,7 +25,7 @@ class FuzzyWindowController < NSWindowController
       progressBar.setWantsLayer(true)
     end
     
-    settingsMenuButton.setMenu(NSApp.delegate.statusMenu)    
+    settingsMenuButton.setMenu(NSApp.delegate.statusMenu)
   end
 
   def showStatusMenu(sender)
