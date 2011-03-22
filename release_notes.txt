@@ -1,3 +1,13 @@
+h1. <span>2011-03-21</span> Release 0.3.1
+
+h2. MacBook i7 Compatibility, Bugfixes
+
+* Compatible with CPU in newest MacBook Pro.
+* Handle spaces in paths correctly.
+* Show better error if project root can't be found.
+* BBEdit plugin (thanks to Andrew Carter).
+* Install TextMate PlugIn to proper directory for case-sensitive filesystems.
+
 h1. <span>2011-03-04</span> Release 0.3.0
 
 h2. New Plugin! 
