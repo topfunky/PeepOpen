@@ -31,12 +31,16 @@ class AppDelegate
       if customUrl.path.length == 0 
         raise "Shouldn't have an empty path"
       end
-      editorName = customUrl.query.gsub('editor=', '')
-      
-      # Save the editor name to a SessionConfig object so we can pluck it out of the air later
-      # (see FuzzyTableViewController.handleRowClick)
-      @sessionConfig.editorName = editorName
 
+      if customUrl.query
+        # Don't try to gsub unless there is a query to work with.
+        editorName = customUrl.query.gsub('editor=', '')
+
+        # Save the editor name to a SessionConfig object so we can pluck it out of the air later
+        # (see FuzzyTableViewController.handleRowClick)
+        @sessionConfig.editorName = editorName
+      end
+      
       application(nil, openFile:customUrl.path)
     end
   end

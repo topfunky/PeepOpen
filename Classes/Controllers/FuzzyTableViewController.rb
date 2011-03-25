@@ -132,11 +132,12 @@ class FuzzyTableViewController
     rowId = 0 if rowId == -1
     if record = @records[rowId]
       FuzzyRecord.storeRecentlyOpenedRecord(record)
-      # TODO: Close window when clicked with the mouse
 
       editorApplicationName = NSApp.delegate.sessionConfig.editorName
-      editorApplicationName =
-        NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName') if editorApplicationName.empty?
+      if editorApplicationName.empty?
+        editorApplicationName =
+          NSUserDefaults.standardUserDefaults.stringForKey('editorApplicationName')
+      end
 
       if (editorApplicationName.strip == "")
         # Haven't a clue where to open the file
