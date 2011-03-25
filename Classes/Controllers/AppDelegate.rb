@@ -28,7 +28,7 @@ class AppDelegate
 
       customUrl = NSURL.URLWithString(event.paramDescriptorForKeyword(KeyDirectObject).stringValue)
       
-      if customUrl.path.length == 0 
+      if customUrl.path && (customUrl.path.length == 0)
         raise "Shouldn't have an empty path"
       end
 

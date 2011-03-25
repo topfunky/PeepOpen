@@ -28,13 +28,15 @@ class FuzzyRecord
     (pathComponents.length - 1).downto(0) do |index|
       path = NSString.pathWithComponents(pathComponents[0..index])
       next if File.file?(path)
-      fileManager.contentsOfDirectoryAtPath(path,
-                                            error:nil).map {|f|
-        if f.match(projectRootRegex)
-          projectRoot, projectRootFoundFlag =  path.to_s, true
-          break
-        end
-      }
+      directoryContents = fileManager.contentsOfDirectoryAtPath(path, error:nil)
+      if directoryContents
+        directoryContents.map {|f|
+          if f.match(projectRootRegex)
+            projectRoot, projectRootFoundFlag =  path.to_s, true
+            break
+          end
+        }
+      end
     end
 
     if projectRoot.empty?
@@ -104,17 +106,17 @@ class FuzzyRecord
 
   ##
   # Add a single record to the existing cache for a project.
-  
+
   def self.addRecord(theRecord, toCacheForProjectRoot:theProjectRoot)
     @@cache ||= {}
     if @@cache[theProjectRoot].nil?
       @@cache[theProjectRoot] = {
-        :records => []  
+        :records => []
       }
     end
     @@cache[theProjectRoot][:records] << theRecord
   end
-  
+
   def self.flushCache(theProjectRoot)
     return if @@cache.nil?
     if @@cache[theProjectRoot]
@@ -171,9 +173,9 @@ class FuzzyRecord
     unless NSFileManager.defaultManager.fileExistsAtPath(projectDotGitPath)
       return
     end
-    
+
     shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL") || "/bin/bash"
-    
+
     if output = `#{shellString} -l -c "cd #{theProjectRoot} && git diff --numstat #{gitDiffAgainst}"`
       output.split(/\n/).each do |outputLine|
         added, deleted, filePath = outputLine.split
@@ -192,9 +194,9 @@ class FuzzyRecord
   def self.loadRecordsWithProjectRoot(theProjectRoot, withFuzzyTableViewController:fuzzyTableViewController)
     fuzzyTableViewController.queue.cancelAllOperations
     self.setCacheRecords([], forProjectRoot:theProjectRoot)
-    
+
     maximumDocumentCount = NSUserDefaults.standardUserDefaults.integerForKey("maximumDocumentCount")
-    
+
     pathOp = PathOperation.alloc.initWithProjectRoot(theProjectRoot,
                                                      maximumDocumentCount:maximumDocumentCount,
                                                      andFuzzyTableViewController:fuzzyTableViewController)
@@ -221,7 +223,7 @@ class FuzzyRecord
         if recentlyOpenedRecords = cacheHash[:recentlyOpenedRecords]
           if recentlyOpenedRecords.length >= 2
             recentRecord = recentlyOpenedRecords.first
-            
+
             sortedRecords.delete(recentRecord)
             sortedRecords.unshift(recentlyOpenedRecords.first)
           end
@@ -232,9 +234,9 @@ class FuzzyRecord
   end
 
   def self.resetMatchesForRecords!(records)
-    # NOTE: parallel_map is possible, but may not be any faster
-    #       unless records array is large. And it causes SIGSEGV.
-    records.map {|r| r.resetMatches! }
+    if records
+      records.map {|r| r.resetMatches! }
+    end
   end
 
   def initWithProjectRoot(theProjectRoot, filePath:theFilePath)
