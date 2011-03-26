@@ -15,7 +15,7 @@ ChocTop.new do |s|
 
   s.build_target = "Embed"
   
-  s.user = "deploy"
+  s.user = "rails"
   s.transport = :scp
 
   # Custom DMG

@@ -1,3 +1,12 @@
+h1. <span>2011-03-25</span> Release 0.3.2
+
+h2. Project Directory Fix, Update Your TextMate Plugin!
+
+* IMPORTANT: Re-install the TextMate plugin from PeepOpen Preferences.
+* Fixes bug introduced in 0.3.1 where the project root directory was not honored.
+* If the custom URL is called without an "editor", the default from Preferences will be used.
+* Fixed several minor nil errors.
+
 h1. <span>2011-03-21</span> Release 0.3.1
 
 h2. MacBook i7 Compatibility, Bugfixes
