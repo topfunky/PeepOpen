@@ -18,6 +18,14 @@ class FuzzyRecord
 
   def self.discoverProjectRootForDirectoryOrFile(directoryOrFile)
     normalizedPath = directoryOrFile.gsub(/\/$/, '') # Normalize: remove trailing slash
+
+    # If a directory was passed, assume it's the project root 
+    # and don't do further searching.
+    if File.directory?(normalizedPath)
+      NSLog("Using Directory as Project Root: #{normalizedPath}") # DEBUG
+      return normalizedPath, true
+    end
+
     projectRoot = ''
     projectRootFoundFlag = false
 
@@ -25,6 +33,7 @@ class FuzzyRecord
 
     fileManager = NSFileManager.defaultManager
     pathComponents = normalizedPath.pathComponents
+    NSLog("Finding Project Root with Path Components: #{pathComponents.inspect}") # DEBUG
     (pathComponents.length - 1).downto(0) do |index|
       path = NSString.pathWithComponents(pathComponents[0..index])
       next if File.file?(path)
@@ -32,7 +41,7 @@ class FuzzyRecord
       if directoryContents
         directoryContents.map {|f|
           if f.match(projectRootRegex)
-            projectRoot, projectRootFoundFlag =  path.to_s, true
+            projectRoot, projectRootFoundFlag = path.to_s, true
             break
           end
         }
@@ -41,14 +50,9 @@ class FuzzyRecord
 
     if projectRoot.empty?
       projectRoot = File.directory?(normalizedPath) ? normalizedPath : File.dirname(normalizedPath)
-      # if File.directory?(normalizedPath)
-      #   projectRoot = normalizedPath
-      # else
-      #   projectRoot = File.dirname(normalizedPath)
-      # end
-      # projectRoot = projectRoot.empty? ? normalizedPath : File.dirname(normalizedPath)
     end
 
+    NSLog("Using Project Root: #{projectRoot}") if projectRootFoundFlag # DEBUG
     return projectRoot, projectRootFoundFlag
   end
 
