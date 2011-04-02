@@ -1,5 +1,7 @@
 require 'test/unit'
 
+$: << 'Classes/Helpers'
+
 require 'Classes/Controllers/AppDelegate'
 require 'Classes/Models/FuzzyRecord'
 require 'Classes/Helpers/Array+GCD'
