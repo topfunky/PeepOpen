@@ -180,6 +180,7 @@ class FuzzyRecord
 
     shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL") || "/bin/bash"
 
+    # TODO: Read Git info asynchronously so it doesn't block the rest of the app.
     if output = `#{shellString} -l -c "cd #{theProjectRoot} && git diff --numstat #{gitDiffAgainst}"`
       output.split(/\n/).each do |outputLine|
         added, deleted, filePath = outputLine.split
@@ -209,7 +210,7 @@ class FuzzyRecord
   end
 
   def self.filterRecords(records, forString:searchString)
-    correctedSearchString = searchString.gsub(" ", "").strip
+    correctedSearchString = searchString.gsub(" ", "/").strip
     if correctedSearchString.length == 0
       filteredRecords = records
     else
@@ -221,7 +222,8 @@ class FuzzyRecord
       filteredRecords.sort_by { |record| [ -record.matchesOnFilenameScore,
                                            record.matchScore,
                                            -record.longestMatch,
-                                           -record.modifiedAt.timeIntervalSince1970 ] }
+                                           -record.modifiedAt.timeIntervalSince1970,
+                                           record.filePath.length ] }
     if (correctedSearchString.length == 0) && (records.first != nil)
       if cacheHash = self.cacheForProjectRoot(records.first.projectRoot)
         if recentlyOpenedRecords = cacheHash[:recentlyOpenedRecords]
