@@ -13,6 +13,7 @@ class FuzzyTableViewController
 
   def initialize
     @records = []
+    @lastSearchString = nil
     @queue = NSOperationQueue.alloc.init
     @fuzzyWindowController = fuzzyWindowController
   end
@@ -36,6 +37,7 @@ class FuzzyTableViewController
   def reset
     @allRecords = []
     @records = []
+    @lastSearchString = nil
     tableView.reloadData
   end
 
@@ -56,9 +58,10 @@ class FuzzyTableViewController
     # TODO: For efficiency, examine previous search string and search
     # filtered records if new search is a continuation of a previous
     # search.
-    filteredRecords = FuzzyRecord.filterRecords(@allRecords,
+    toSearch = searchString.start_with?(@lastSearchString) ? @records : @allRecords
+    filteredRecords = FuzzyRecord.filterRecords(toSearch,
                                                 forString:searchString)
-
+    @lastSearchString = searchString
     performSelectorOnMainThread("didSearchForString:",
                                 withObject:filteredRecords,
                                 waitUntilDone:true)

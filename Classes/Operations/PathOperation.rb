@@ -15,6 +15,13 @@ class PathOperation < NSOperation
     @fuzzyTableViewController = fuzzyTableViewController
     self
   end
+  
+  def strip_path(filename, root)
+    if filename.start_with?(root)
+      return filename[root.length..-1]
+    end
+    filename
+  end
 
   def main
     fileManager = NSFileManager.defaultManager
@@ -22,16 +29,17 @@ class PathOperation < NSOperation
       
     index = 0
     recordsSize = @fuzzyTableViewController.records.size
+    
+    directoryIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("directoryIgnoreRegex"))
+    fileIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("fileIgnoreRegex"))
       
     while ( (index < filenames.length) && ((@maximumDocumentCount >= 4000) || (recordsSize < @maximumDocumentCount)) ) do
       break if isCancelled
       filename = filenames[index]
       index += 1
       next if NSWorkspace.sharedWorkspace.isFilePackageAtPath(filename)
-      relativeFilename = filename.to_s.gsub(/^#{@projectRoot}\//, '')
-      directoryIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("directoryIgnoreRegex"))
+      relativeFilename = strip_path(filename.to_s,@projectRoot + "/")
       next if relativeFilename.match(directoryIgnoreRegex)
-      fileIgnoreRegex = Regexp.new(NSUserDefaults.standardUserDefaults.stringForKey("fileIgnoreRegex"))
       next if relativeFilename.match(fileIgnoreRegex)
 
       if File.directory?(filename)

@@ -1,3 +1,11 @@
+h1. <span>2011-06-29</span> Release 0.3.3
+
+h2. Speed
+
+* Optimization patch from Josh Goebel [@dreamer3]
+* Adding letters to a search should be much faster.
+* Initial load of up to 10,000 files is much faster.
+
 h1. <span>2011-03-25</span> Release 0.3.2
 
 h2. Project Directory Fix, Update Your TextMate Plugin!
