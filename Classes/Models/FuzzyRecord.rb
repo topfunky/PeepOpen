@@ -210,7 +210,7 @@ class FuzzyRecord
   end
 
   def self.filterRecords(records, forString:searchString)
-    correctedSearchString = searchString.gsub(" ", "/").strip
+    correctedSearchString = searchString.gsub(" ", "").strip # TODO: Make configurable
     if correctedSearchString.length == 0
       filteredRecords = records
     else
