@@ -54,13 +54,18 @@ class FuzzyTableViewController
   def filterRecordsForString(searchString)
     # BUG: If called async, needs to lock around table redrawing or
     # setting records.
+    wildcardCharacter = NSUserDefaults.standardUserDefaults.stringForKey('whitespaceSearchCharacter')
+    if wildcardCharacter == 'Anything'
+      wildcardCharacter = ''
+    end
 
     # TODO: For efficiency, examine previous search string and search
     # filtered records if new search is a continuation of a previous
     # search.
     toSearch = searchString.start_with?(@lastSearchString) ? @records : @allRecords
     filteredRecords = FuzzyRecord.filterRecords(toSearch,
-                                                forString:searchString)
+                                                forString:searchString,
+                                                whitespaceSearchCharacter:wildcardCharacter)
     @lastSearchString = searchString
     performSelectorOnMainThread("didSearchForString:",
                                 withObject:filteredRecords,

@@ -2,7 +2,7 @@ h1. <span>2011-07-09</span> Release 0.3.5
 
 h2. Bugfix
 
-* Revert behavior of wildcard space. Typing a space will now be ignored as it was previously (it matches anything).
+* Revert behavior of wildcard space. Typing a space will now be ignored as it was previously (it matches anything). Or, configure it in Preferences ("Space searches for...").
 * Correct directory ignore regex to only ignore directories. It's possible to search for ".gitignore" or files named "login" (they would have previously been ignored). If you want to get this functionality, add "\/" to the end of the "Directory Ignore Regex" in Advanced Preferences.
 
 h1. <span>2011-07-01</span> Release 0.3.4

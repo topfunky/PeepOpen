@@ -62,7 +62,8 @@ class AppDelegate
       "projectRootRegex" => '^(\.git|\.hg|Rakefile|Makefile|README\.?.*|build\.xml|.*\.xcodeproj|.*\.bbprojectd)$',
       "useCoreAnimation" => true,
       "showStatusBarMenu" => true,
-      "showCellIcon" => true
+      "showCellIcon" => true,
+      "whitespaceSearchCharacter" => "Anything"
     }
   end
 

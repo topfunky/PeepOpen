@@ -209,8 +209,8 @@ class FuzzyRecord
     fuzzyTableViewController.queue.addOperation(pathOp)
   end
 
-  def self.filterRecords(records, forString:searchString)
-    correctedSearchString = searchString.gsub(" ", "").strip # TODO: Make configurable
+  def self.filterRecords(records, forString:searchString, whitespaceSearchCharacter:wildcardCharacter)
+    correctedSearchString = searchString.gsub(" ", wildcardCharacter).strip # Treat spaces as special
     if correctedSearchString.length == 0
       filteredRecords = records
     else

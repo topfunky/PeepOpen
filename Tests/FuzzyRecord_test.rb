@@ -2,7 +2,10 @@ require 'test/unit'
 
 $: << 'Classes/Helpers'
 
+require 'Classes/Helpers/Constants'
+require 'Classes/Operations/PathOperation'
 require 'Classes/Controllers/AppDelegate'
+require 'Classes/Controllers/FuzzyTableViewController'
 require 'Classes/Models/FuzzyRecord'
 require 'Classes/Helpers/Array+GCD'
 
@@ -66,7 +69,8 @@ class FuzzyRecordTest < Test::Unit::TestCase
                                            filePath:"Classes/Models/FuzzyRecord.rb")
               ]
     filteredRecords = FuzzyRecord.filterRecords(records,
-                                                forString:"Cell")
+                                                forString:"Cell",
+                                                whitespaceSearchCharacter:"")
     assert_not_nil filteredRecords.first.matchedRanges
     FuzzyRecord.resetMatchesForRecords!(filteredRecords)
     assert_nil filteredRecords.first.matchedRanges
@@ -87,7 +91,8 @@ class FuzzyRecordTest < Test::Unit::TestCase
   test "filters on filename first if it matches" do
     records = createRecords
     filteredRecords = FuzzyRecord.filterRecords(records,
-                                                forString:"del")
+                                                forString:"del",
+                                                whitespaceSearchCharacter:"")
     bestMatchingFile = filteredRecords.first
     assert_equal "Classes/Controllers/AppDelegate.rb", bestMatchingFile.filePath
   end
@@ -99,19 +104,21 @@ class FuzzyRecordTest < Test::Unit::TestCase
 
   test "ignores spaces in search string" do
     records = createRecords
-    assert_in_delta 85, FuzzyRecord.filterRecords(records, forString:"c m").length, 5
+    assert_in_delta 85, FuzzyRecord.filterRecords(records, forString:"c m", whitespaceSearchCharacter:"").length, 5
   end
 
   test "stores recently opened records" do
     records = createRecords
     record = records.last
     assert_not_equal record, FuzzyRecord.filterRecords(records,
-                                                       forString:"").first
+                                                       forString:"",
+                                                       whitespaceSearchCharacter:"").first
     FuzzyRecord.storeRecentlyOpenedRecord(record)
     FuzzyRecord.storeRecentlyOpenedRecord(records[-2])
 
     assert_equal record, FuzzyRecord.filterRecords(records,
-                                                   forString:"").first
+                                                   forString:"",
+                                                   whitespaceSearchCharacter:"").first
   end
 
   test "discovers project root from file" do
@@ -141,7 +148,7 @@ class FuzzyRecordTest < Test::Unit::TestCase
   # Returns an array of records for this project.
 
   def createRecords
-    FuzzyRecord.recordsForProjectRoot(".")
+    FuzzyRecord.recordsForProjectRoot(".", withFuzzyTableViewController:FuzzyTableViewController.new)
   end
 
 end
