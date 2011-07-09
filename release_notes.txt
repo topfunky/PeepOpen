@@ -1,4 +1,10 @@
-h1. <span>2011-06-29</span> Release 0.3.3
+h1. <span>2011-07-01</span> Release 0.3.4
+
+h2. Bugfix
+
+* Fix weird trailing apostrophe issue with MacVim. Project root should be found correctly now.
+
+h1. <span>2011-06-30</span> Release 0.3.3
 
 h2. Speed
 

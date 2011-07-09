@@ -17,7 +17,7 @@ class FuzzyRecord
   MAX_SCORE = 10_000
 
   def self.discoverProjectRootForDirectoryOrFile(directoryOrFile)
-    normalizedPath = directoryOrFile.gsub(/\/$/, '') # Normalize: remove trailing slash
+    normalizedPath = directoryOrFile.gsub(/[\/']$/, '') # Normalize: remove trailing slash
 
     # If a directory was passed, assume it's the project root 
     # and don't do further searching.
