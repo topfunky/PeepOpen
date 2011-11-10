@@ -165,6 +165,7 @@ class FuzzyWindowController < NSWindowController
   def handleKeyWithModifier
     modifierFlags = NSApp.currentEvent.modifierFlags
     if ((modifierFlags & NSCommandKeyMask) == NSCommandKeyMask)
+      # COMMAND key
       case NSApp.currentEvent.charactersIgnoringModifiers
       when /r/
         # Refresh
@@ -197,7 +198,12 @@ class FuzzyWindowController < NSWindowController
         return true
       end
     elsif ((modifierFlags & NSControlKeyMask) == NSControlKeyMask)
-      # Control key is down
+      # Control key
+      case NSApp.currentEvent.charactersIgnoringModifiers
+      when /m/ # C-m is alternate for ENTER
+        handleNewline
+        return true
+      end
     end
     false
   end
