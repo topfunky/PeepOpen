@@ -1,4 +1,4 @@
-h1. <span>2011-08-20</span> Release 0.3.6
+h1. <span>2011-11-10</span> Release 0.3.6
 
 h2. Shell Cleanup
 
@@ -6,6 +6,7 @@ h2. Shell Cleanup
 * Fix retrieval of Git metadata for tcsh.
 * Preferences now correctly save the default editor.
 * Experimental BBEdit and TextWrangler support (Andrew Carter).
+* Control-m is correctly interpreted as ENTER (for searches).
 
 h1. <span>2011-07-09</span> Release 0.3.5
 

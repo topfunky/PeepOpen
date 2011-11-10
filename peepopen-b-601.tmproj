@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Classes/Controllers/PreferencesWindowController.rb</string>
+	<string>release_notes.txt</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -45,6 +45,10 @@
 		<dict>
 			<key>filename</key>
 			<string>release_notes.txt</string>
+			<key>lastUsed</key>
+			<date>2011-11-10T03:14:43Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -177,17 +181,32 @@
 			<key>firstVisibleLine</key>
 			<integer>1</integer>
 		</dict>
+		<key>release_notes.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>51</integer>
+				<key>line</key>
+				<integer>8</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>Classes/Controllers/PreferencesWindowController.rb</string>
+		<string>release_notes.txt</string>
 		<string>Classes/Helpers/NSWindowControllerHelper.rb</string>
 		<string>Classes/Controllers/FuzzyWindowController.rb</string>
 		<string>Classes/Controllers/AppDelegate.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
-	<true/>
+	<false/>
 	<key>windowFrame</key>
-	<string>{{90, 297}, {1212, 743}}</string>
+	<string>{{90, 285}, {1212, 743}}</string>
 </dict>
 </plist>
