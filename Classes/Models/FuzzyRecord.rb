@@ -179,9 +179,14 @@ class FuzzyRecord
     end
 
     shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL") || "/bin/bash"
+    loginFlag = '-l'
+    if shellString.match(/tcsh/)
+      # NOTE: tcsh doesn't support -l unless it's the only option.
+      loginFlag = ''
+    end
 
     # TODO: Read Git info asynchronously so it doesn't block the rest of the app.
-    if output = `#{shellString} -l -c "cd #{theProjectRoot} && git diff --numstat #{gitDiffAgainst}"`
+    if output = `#{shellString} #{loginFlag} -c "cd #{theProjectRoot} && git diff --numstat #{gitDiffAgainst}"`
       output.split(/\n/).each do |outputLine|
         added, deleted, filePath = outputLine.split
         added   = 30 if added.to_i   > 30
