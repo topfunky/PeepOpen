@@ -32,8 +32,7 @@ class PreferencesWindowController < NSWindowController
   end
 
   def windowDidResignKey(notification)
-    # TODO: Text fields should resign focus and file lists should be reloaded
-    window.makeFirstResponder(nil)
+    saveSelectedEditorApplicationName()
   end
 
   def switchToEditor(sender)
@@ -97,16 +96,16 @@ class PreferencesWindowController < NSWindowController
     window.setFrame(newWindowFrame, display:true, animate:true)
   end
 
-
-  def installPlugin(sender)
+  def saveSelectedEditorApplicationName
     # Force NSComboBox to give up focus and save its value.
     window.makeFirstResponder(nil)
-    # HACK: Use value from defaults since NSComboBox doesn't always
-    # record the initial value correctly.
-    
-    # As the binding between Shared User Defaults Controller and the combo box does not appear to work,
+    # HACK: The binding between Shared User Defaults Controller and the combo box does not appear to work,
     # do it programmatically 
     NSUserDefaults.standardUserDefaults.setObject(@applicationPopup.objectValueOfSelectedItem, forKey:"editorApplicationName")
+  end
+
+  def installPlugin(sender)
+    saveSelectedEditorApplicationName()
     editorApplicationName =
       NSUserDefaults.standardUserDefaults.stringForKey("editorApplicationName")
     unless NSUserDefaults.standardUserDefaults.synchronize
