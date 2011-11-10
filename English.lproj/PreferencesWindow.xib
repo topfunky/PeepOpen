@@ -14,7 +14,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="95"/>
 			<integer value="222"/>
-			<integer value="71"/>
+			<integer value="123"/>
 			<integer value="94"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -527,7 +527,7 @@
 						<object class="NSComboBoxCell" key="NSCell" id="895607796">
 							<int key="NSCellFlags">343014976</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents"/>
+							<string key="NSContents">Xcode</string>
 							<reference key="NSSupport" ref="722738096"/>
 							<reference key="NSControlView" ref="774976580"/>
 							<bool key="NSDrawsBackground">YES</bool>
@@ -552,21 +552,23 @@
 								<string>Emacs</string>
 								<string>MacVim</string>
 								<string>TextMate</string>
+								<string>TextWrangler</string>
 								<string>Xcode</string>
 							</object>
 							<reference key="NSDelegate" ref="774976580"/>
 							<object class="NSComboTableView" key="NSTableView" id="198137718">
 								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{13, 147}</string>
+								<string key="NSFrameSize">{77, 147}</string>
 								<reference key="NSSuperview"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSMutableArray" key="NSTableColumns">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="NSTableColumn">
 										<integer value="0" key="NSIdentifier"/>
-										<double key="NSWidth">10</double>
+										<double key="NSWidth">74</double>
 										<double key="NSMinWidth">10</double>
 										<double key="NSMaxWidth">1000</double>
 										<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -581,8 +583,9 @@
 											<reference key="NSTextColor" ref="320377265"/>
 										</object>
 										<object class="NSTextFieldCell" key="NSDataCell">
-											<int key="NSCellFlags">338820672</int>
-											<int key="NSCellFlags2">1024</int>
+											<int key="NSCellFlags">1412562496</int>
+											<int key="NSCellFlags2">268436480</int>
+											<string key="NSContents">Xcode</string>
 											<reference key="NSSupport" ref="722738096"/>
 											<reference key="NSControlView" ref="198137718"/>
 											<bool key="NSDrawsBackground">YES</bool>
@@ -613,7 +616,7 @@
 								</object>
 								<double key="NSRowHeight">19</double>
 								<string key="NSAction">tableViewAction:</string>
-								<int key="NSTvFlags">-765427712</int>
+								<int key="NSTvFlags">-767524864</int>
 								<reference key="NSDelegate" ref="895607796"/>
 								<reference key="NSDataSource" ref="895607796"/>
 								<reference key="NSTarget" ref="895607796"/>
@@ -1013,10 +1016,6 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSUserDefaultsController" id="220320876">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>whitespaceSearchCharacter</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSCustomObject" id="116009762">

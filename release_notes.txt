@@ -2,8 +2,10 @@ h1. <span>2011-08-20</span> Release 0.3.6
 
 h2. Shell Cleanup
 
+* Improve TextMate plugin for use with basic TextMate projects (consisting of a single directory).
 * Fix retrieval of Git metadata for tcsh.
-* 
+* Preferences now correctly save the default editor.
+* Experimental BBEdit and TextWrangler support (Andrew Carter).
 
 h1. <span>2011-07-09</span> Release 0.3.5
 

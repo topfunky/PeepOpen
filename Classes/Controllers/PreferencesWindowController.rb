@@ -13,12 +13,11 @@ class PreferencesWindowController < NSWindowController
   attr_accessor :currentView
 
   include NSWindowControllerHelper
-  
+
   class InstallPluginError < StandardError; end
 
   def awakeFromNib
     applicationPopup.selectItemWithObjectValue(NSUserDefaults.standardUserDefaults.objectForKey('editorApplicationName'))
-    
   end
 
   def show(sender)
@@ -67,8 +66,7 @@ class PreferencesWindowController < NSWindowController
     #     data = pipe.fileHandleForReading.readDataToEndOfFile
     #     gitExecutableLocation = NSString.alloc.initWithData(data, encoding:NSUTF8StringEncoding)
 
-    gitExecutableLabel.stringValue =
-      (gitExecutableLocation == "" ? "Git not found" : gitExecutableLocation)
+    gitExecutableLabel.stringValue = (gitExecutableLocation == "" ? "Git not found" : gitExecutableLocation)
   end
 
   ##
@@ -101,19 +99,18 @@ class PreferencesWindowController < NSWindowController
     # Force NSComboBox to give up focus and save its value.
     window.makeFirstResponder(nil)
     # HACK: The binding between Shared User Defaults Controller and the combo box does not appear to work,
-    # do it programmatically 
+    # do it programmatically
     NSUserDefaults.standardUserDefaults.setObject(@applicationPopup.objectValueOfSelectedItem, forKey:"editorApplicationName")
   end
 
   def installPlugin(sender)
     saveSelectedEditorApplicationName()
-    editorApplicationName =
-      NSUserDefaults.standardUserDefaults.stringForKey("editorApplicationName")
+    editorApplicationName = NSUserDefaults.standardUserDefaults.stringForKey("editorApplicationName")
     unless NSUserDefaults.standardUserDefaults.synchronize
-      puts "PEEPOPEN :: #{Time.now.strftime("%m/%d/%Y %H:%M:%S")} :: Couldn't update UserPreferences in PreferencesController.installPlugin"
+      NSLog("Couldn't update UserPreferences in PreferencesController.installPlugin")
     end
     selector = "install#{editorApplicationName.gsub(' ', '')}:".to_sym
-    if (self.respondsToSelector(selector))
+    if self.respondsToSelector(selector)
       performSelector(selector, withObject:self)
     else
       runWarningAlertWithMessage("No Plugin Found", informativeText:"We don't have a plugin for that editor yet. You can fork our project and add one for future releases: http://github.com/topfunky/PeepOpen-EditorSupport")
@@ -123,9 +120,9 @@ class PreferencesWindowController < NSWindowController
   def installTextMate(sender)
     fileManager = NSFileManager.defaultManager
     applicationSupportPath =
-      NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
-                                          NSUserDomainMask,
-                                          true).lastObject
+    NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
+    NSUserDomainMask,
+    true).lastObject
 
     textmateSupportPath = NSString.pathWithComponents([applicationSupportPath, "TextMate"])
     textmateBundlesPath = NSString.pathWithComponents([textmateSupportPath, "Bundles"])
@@ -133,165 +130,156 @@ class PreferencesWindowController < NSWindowController
 
     # Returns false on error
     fileManager.createDirectoryAtPath(textmateBundlesPath,
-                                      withIntermediateDirectories:true,
-                                      attributes:nil,
-                                      error:nil)
+    withIntermediateDirectories:true,
+    attributes:nil,
+    error:nil)
     fileManager.createDirectoryAtPath(textmatePluginsPath,
-                                      withIntermediateDirectories:true,
-                                      attributes:nil,
-                                      error:nil)
+    withIntermediateDirectories:true,
+    attributes:nil,
+    error:nil)
     # Delete existing PeepOpen.tmbundle if installed in ~/Library
     installedPeepOpenBundlePath =
-      textmateBundlesPath.stringByAppendingPathComponent("PeepOpen.tmbundle")
+    textmateBundlesPath.stringByAppendingPathComponent("PeepOpen.tmbundle")
     if fileManager.fileExistsAtPath(installedPeepOpenBundlePath)
       fileManager.removeItemAtPath(installedPeepOpenBundlePath,
-                                   error:nil)
+      error:nil)
     end
 
     installedPeepOpenPluginPath =
-      textmatePluginsPath.stringByAppendingPathComponent("PeepOpen.tmplugin")
+    textmatePluginsPath.stringByAppendingPathComponent("PeepOpen.tmplugin")
 
     # Remove existing PeepOpen plugin
     if fileManager.fileExistsAtPath(installedPeepOpenPluginPath)
       fileManager.removeItemAtPath(installedPeepOpenPluginPath,
-                                   error:nil)
+      error:nil)
     end
 
     # Copy plugin to ~/Library/ApplicationSupport/TextMate/Plugins
     resourcePath = NSBundle.mainBundle.resourcePath
     localPeepOpenBundlePath = NSString.pathWithComponents([
-                                                           resourcePath,
-                                                           "Support",
-                                                           "PeepOpen.tmplugin"
-                                                          ])
+      resourcePath,
+      "Support",
+      "PeepOpen.tmplugin"
+    ])
     fileManager.copyItemAtPath(localPeepOpenBundlePath,
-                               toPath:installedPeepOpenPluginPath,
-                               error:nil)
+    toPath:installedPeepOpenPluginPath,
+    error:nil)
 
     runConfirmationAlertWithMessage("The TextMate plugin was installed successfully!",
-                                    informativeText:"Restart TextMate and type ⌘-T to navigate with PeepOpen.")
+    informativeText:"Restart TextMate and type ⌘-T to navigate with PeepOpen.")
   end
 
   def installEmacs(sender)
     fileManager = NSFileManager.defaultManager
 
     dotEmacsDirectoryPath =
-      NSString.pathWithComponents(["~", ".emacs.d", "vendor"]).stringByExpandingTildeInPath()
+    NSString.pathWithComponents(["~", ".emacs.d", "vendor"]).stringByExpandingTildeInPath()
 
     resourcePath = NSBundle.mainBundle.resourcePath
     localPeepOpenPluginPath = NSString.pathWithComponents([
-                                                           resourcePath,
-                                                           "Support",
-                                                           "peepopen.el"
-                                                          ])
+      resourcePath,
+      "Support",
+      "peepopen.el"
+    ])
 
     fileManager.createDirectoryAtPath(dotEmacsDirectoryPath,
-                                      withIntermediateDirectories:true,
-                                      attributes:nil,
-                                      error:nil)
+    withIntermediateDirectories:true,
+    attributes:nil,
+    error:nil)
     installedPeepOpenPluginPath =
-      dotEmacsDirectoryPath.stringByAppendingPathComponent("peepopen.el")
+    dotEmacsDirectoryPath.stringByAppendingPathComponent("peepopen.el")
     if fileManager.fileExistsAtPath(installedPeepOpenPluginPath)
       fileManager.removeItemAtPath(installedPeepOpenPluginPath, error:nil)
     end
     fileManager.copyItemAtPath(localPeepOpenPluginPath,
-                               toPath:installedPeepOpenPluginPath,
-                               error:nil)
+    toPath:installedPeepOpenPluginPath,
+    error:nil)
 
     runConfirmationAlertWithMessage("The Emacs plugin was installed successfully!",
-                                    informativeText:"Some additional Emacs configuration is required. See ~/.emacs.d/vendor/peepopen.el for the details.")
+    informativeText:"Some additional Emacs configuration is required. See ~/.emacs.d/vendor/peepopen.el for the details.")
   end
 
   def installAquamacs(sender)
     fileManager = NSFileManager.defaultManager
     dotEmacsDirectoryPath =
-      NSString.pathWithComponents(["~",
-                                   "Library",
-                                   "Application Support",
-                                   "Aquamacs Emacs"]).stringByExpandingTildeInPath()
+    NSString.pathWithComponents(["~",
+      "Library",
+      "Application Support",
+    "Aquamacs Emacs"]).stringByExpandingTildeInPath()
     dotEmacsVendorDirectoryPath =
-      dotEmacsDirectoryPath.stringByAppendingPathComponent("vendor")
+    dotEmacsDirectoryPath.stringByAppendingPathComponent("vendor")
 
     resourcePath = NSBundle.mainBundle.resourcePath
     bundleSupportPath =
-      NSString.pathWithComponents([NSBundle.mainBundle.resourcePath, "Support"])
+    NSString.pathWithComponents([NSBundle.mainBundle.resourcePath, "Support"])
 
     fileManager.createDirectoryAtPath(dotEmacsVendorDirectoryPath,
-                                      withIntermediateDirectories:true,
-                                      attributes:nil,
-                                      error:nil)
+    withIntermediateDirectories:true,
+    attributes:nil,
+    error:nil)
     ["vendor/peepopen.el", "vendor/textmate.el", "Preferences.sample.el"].each do |filename|
       installedFilePath = dotEmacsDirectoryPath.stringByAppendingPathComponent(filename)
       if fileManager.fileExistsAtPath(installedFilePath)
         fileManager.removeItemAtPath(installedFilePath, error:nil)
       end
       bundleFilePath =
-        bundleSupportPath.stringByAppendingPathComponent(File.basename(filename))
+      bundleSupportPath.stringByAppendingPathComponent(File.basename(filename))
       fileManager.copyItemAtPath(bundleFilePath,
-                                 toPath:installedFilePath,
-                                 error:nil)
+      toPath:installedFilePath,
+      error:nil)
     end
 
     runConfirmationAlertWithMessage("The Aquamacs plugin was installed successfully!",
-                                    informativeText:"Some additional Aquamacs configuration is required. See ~/Library/Application Support/Aquamacs Emacs/Preferences.sample.el for the details.")
+    informativeText:"Some additional Aquamacs configuration is required. See ~/Library/Application Support/Aquamacs Emacs/Preferences.sample.el for the details.")
   end
 
   def installXcode(sender)
     runConfirmationAlertWithMessage("See the Help menu for Xcode installation.",
-                                    informativeText:"The PeepOpen Help menu includes instructions for configuring Xcode to use PeepOpen.")
+    informativeText:"The PeepOpen Help menu includes instructions for configuring Xcode to use PeepOpen.")
   end
 
   def installMacVim(sender)
     fileManager = NSFileManager.defaultManager
 
     dotvimDirectoryPath =
-      NSString.pathWithComponents(["~", ".vim"]).stringByExpandingTildeInPath()
+    NSString.pathWithComponents(["~", ".vim"]).stringByExpandingTildeInPath()
 
     resourcePath = NSBundle.mainBundle.resourcePath
     localVimPluginPath = NSString.pathWithComponents([
-                                                      resourcePath,
-                                                      "Support",
-                                                      "vim-peepopen"
-                                                     ])
+      resourcePath,
+      "Support",
+      "vim-peepopen"
+    ])
 
     # If ~/.vim/bundle exists, copy vim-peepopen directory there
     pathogenBundlePath =
-      dotvimDirectoryPath.stringByAppendingPathComponent("bundle")
+    dotvimDirectoryPath.stringByAppendingPathComponent("bundle")
     if fileManager.fileExistsAtPath(pathogenBundlePath)
       # Pathogen installation to ~/.vim/bundle
       installedVimPluginPath =
-        pathogenBundlePath.stringByAppendingPathComponent("vim-peepopen")
+      pathogenBundlePath.stringByAppendingPathComponent("vim-peepopen")
       if fileManager.fileExistsAtPath(installedVimPluginPath)
         fileManager.removeItemAtPath(installedVimPluginPath, error:nil)
       end
       fileManager.copyItemAtPath(localVimPluginPath,
-                                 toPath:installedVimPluginPath,
-                                 error:nil)
+      toPath:installedVimPluginPath,
+      error:nil)
     else
       # Normal ~/.vim/plugin installation
-      dotvimPluginPath =
-        dotvimDirectoryPath.stringByAppendingPathComponent("plugin")
-      fileManager.createDirectoryAtPath(dotvimPluginPath,
-                                        withIntermediateDirectories:true,
-                                        attributes:nil,
-                                        error:nil)
-      installedPeepOpenPluginPath =
-        dotvimPluginPath.stringByAppendingPathComponent("peepopen.vim")
+      dotvimPluginPath = dotvimDirectoryPath.stringByAppendingPathComponent("plugin")
+      fileManager.createDirectoryAtPath(dotvimPluginPath, withIntermediateDirectories:true, attributes:nil, error:nil)
+      installedPeepOpenPluginPath = dotvimPluginPath.stringByAppendingPathComponent("peepopen.vim")
       if fileManager.fileExistsAtPath(installedPeepOpenPluginPath)
         fileManager.removeItemAtPath(installedPeepOpenPluginPath, error:nil)
       end
-      localPeepOpenPluginPath =
-        NSString.pathWithComponents([localVimPluginPath,
-                                     "plugin",
-                                     "peepopen.vim"
-                                    ])
-      fileManager.copyItemAtPath(localPeepOpenPluginPath,
-                                 toPath:installedPeepOpenPluginPath,
-                                 error:nil)
+      localPeepOpenPluginPath = NSString.pathWithComponents([localVimPluginPath,
+        "plugin",
+        "peepopen.vim"
+      ])
+      fileManager.copyItemAtPath(localPeepOpenPluginPath, toPath:installedPeepOpenPluginPath, error:nil)
     end
 
-    runConfirmationAlertWithMessage("The MacVim plugin was installed successfully!",
-                                    informativeText:"Restart Vim, open a Vim project and type <Leader>p to choose a file with PeepOpen.")
+    runConfirmationAlertWithMessage("The MacVim plugin was installed successfully!", informativeText:"Restart Vim, open a Vim project and type <Leader>p to choose a file with PeepOpen.")
   end
 
   def installCoda(sender)
@@ -299,84 +287,78 @@ class PreferencesWindowController < NSWindowController
 
     resourcePath = NSBundle.mainBundle.resourcePath
     localCodaPluginPath = NSString.pathWithComponents([
-                                                       resourcePath,
-                                                       "Support",
-                                                       "PeepOpen.codaplugin"
-                                                      ])
+      resourcePath,
+      "Support",
+      "PeepOpen.codaplugin"
+    ])
 
-    runConfirmationAlertWithMessage("The Coda plugin was installed successfully!",
-                                    informativeText:"Open a Site in Coda and hit ^⌥⌘-T or use the Plug-ins menu.")
+    runConfirmationAlertWithMessage("The Coda plugin will be installed now.",
+    informativeText:"Open a Site in Coda and hit ^⌥⌘-T or use the Plug-ins menu.")
     # HACK: Run openFile after so dialog doesn't show over Coda.
-    NSWorkspace.sharedWorkspace.openFile(localCodaPluginPath,
-                                         withApplication:"Coda")
+    NSWorkspace.sharedWorkspace.openFile(localCodaPluginPath, withApplication:"Coda")
   end
 
   def installBBEdit(sender)
+    installBareBonesEditorPlugin("BBEdit")
+  end
+
+  def installTextWrangler(sender)
+    installBareBonesEditorPlugin("TextWrangler")
+  end
+
+  # Install BBEdit or TextWrangler plugin.
+  def installBareBonesEditorPlugin(bareBonesEditorName)
     fileManager = NSFileManager.alloc.init
     resourcePath = NSBundle.mainBundle.resourcePath
     errorMessage = nil
-    localBBEditPluginPath = NSString.pathWithComponents([
-                                                       resourcePath,
-                                                       "Support",
-                                                       "PeepOpen-bbedit"
-                                                      ])
+    sourcePluginFile = NSString.pathWithComponents([
+      resourcePath,
+      "Support",
+      "PeepOpen-bbedit",
+      "#{bareBonesEditorName}.applescript"
+    ])
 
-    applicationSupportPath =
-      NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
-                                          NSUserDomainMask,
-                                          true).lastObject
+    success = false
+    osApplicationSupportPath = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, true).lastObject
+    [
+      File.expand_path(NSString.pathWithComponents(["~/Dropbox", "Application Support"])),
+      osApplicationSupportPath
+    ].each do |applicationSupportPath|
 
-    bBEditSupportPath = NSString.pathWithComponents([applicationSupportPath, "BBEdit", "Scripts"])
+      bareBonesScriptPath = NSString.pathWithComponents([applicationSupportPath, bareBonesEditorName, "Scripts"])
+      targetPluginFile     = NSString.pathWithComponents([bareBonesScriptPath, "PeepOpen.applescript"])
 
-    error = Pointer.new(:object)
-    unless fileManager.createDirectoryAtPath(bBEditSupportPath,
-                                      withIntermediateDirectories:true,
-                                      attributes:nil,
-                                      error:error)
-      errorMessage = "Couldn't create #{bBEditSupportPath} directory. #{error[0].localizedDescription}"
-      raiseError( errorMessage)
-    end
+      next unless File.exists?(bareBonesScriptPath)
 
-    filesToCopy = fileManager.contentsOfDirectoryAtPath( localBBEditPluginPath, error:error)
-    unless filesToCopy
-      errorMessage = "Couldn't find BBEdit files in #{localBBEditPluginPath} directory. #{error[0].localizedDescription}"
-      raiseError( errorMessage)
-    end
-    if filesToCopy.empty?
-      errorMessage = "Couldn't find BBEdit files in #{localBBEditPluginPath} directory."
-      raiseError( errorMessage)
-    end
-    # fileExistsAtPath:
+      error = Pointer.new(:object)
 
-      filesToCopy.each do |file|
-        # Remove the file if it exists
-        if fileManager.fileExistsAtPath( "#{bBEditSupportPath}/#{file}")
-          unless fileManager.removeItemAtPath( "#{bBEditSupportPath}/#{file}", error:error)
-            errorMessage = "Couldn't remove old BBEdit files #{bBEditSupportPath}/#{file} directory. #{error[0].localizedDescription}"
-            raiseError( errorMessage)
-          end
-        end
-        # Now the old file is gone, replace it with the new one
-        unless fileManager.copyItemAtPath("#{localBBEditPluginPath}/#{file}",
-                                   toPath:("#{bBEditSupportPath}/#{file}"),
-                                   error:error)
-          errorMessage = "Couldn't copy BBEdit files from #{localBBEditPluginPath} to #{bBEditSupportPath} directory. #{error[0].localizedDescription}"
-          raiseError( errorMessage)
-        end
+      # Remove the file if it exists. Ignore errors.
+      if fileManager.fileExistsAtPath(targetPluginFile)
+        fileManager.removeItemAtPath(targetPluginFile, error:error)
+      end
+      # Replace it with the new one.
+      if fileManager.copyItemAtPath(sourcePluginFile, toPath:(targetPluginFile), error:error)
+        success = true
+      else
+        errorMessage = "Couldn't copy from #{sourcePluginFile} to #{targetPluginFile}. #{error[0].localizedDescription}"
+        raiseError(errorMessage)
       end
 
+    end
 
-    runConfirmationAlertWithMessage("The BBEdit plugin was installed successfully!",
-                                    informativeText:"Now create a shortcut\n\nWindow -> Palettes -> Scripts\nSelect PeepOpen and click Set Key ...\nEnter a shortcut key combination\n(recommend Command + Option + T)")
+    if success
+      runConfirmationAlertWithMessage("The BBEdit plugin was installed successfully!", informativeText:"Now create a shortcut\n\nWindow -> Palettes -> Scripts\nSelect PeepOpen and click Set Key ...\nEnter a shortcut key combination\n(recommend Command + Option + T)")
+    else
+      raiseError("Sorry, the plugin could not be installed.")
+    end
 
-    rescue InstallPluginError => e
-      runWarningAlertWithMessage("The BBEdit plugin failed!", informativeText:e)
+  rescue InstallPluginError => e
+    runWarningAlertWithMessage("The BBEdit plugin failed!", informativeText:e)
   end
 
-  def raiseError( errorMessage)
-    puts "PEEPOPEN :: #{Time.now.strftime("%m/%d/%Y %H:%M:%S")} :: #{errorMessage}"
+  def raiseError(errorMessage)
+    NSLog(errorMessage)
     raise InstallPluginError, errorMessage
   end
 
 end
-
