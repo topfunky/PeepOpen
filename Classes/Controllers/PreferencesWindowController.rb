@@ -52,6 +52,7 @@ class PreferencesWindowController < NSWindowController
     shellString = NSProcessInfo.processInfo.environment.objectForKey("SHELL") || "/bin/bash"
     gitExecutableLocation = `#{shellString} -l -c "which git"`
 
+    # TODO: Use a legit pipe with full functionality.
     #     task = NSTask.alloc.init
     #     pipe = NSPipe.pipe
 
