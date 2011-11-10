@@ -1,0 +1,31 @@
+#!/usr/bin/env/rake
+
+task :default => [ :all ]
+
+desc "Install BBEdit script"
+task :bbedit do
+    install_script('bbedit')
+end
+
+desc "Install TextWrangler script"
+task :textwrangler do
+  install_script('textwrangler')
+end
+
+desc "Install all scripts (BBEdit and TextWrangler)"
+task :all => [ :bbedit, :textwrangler ]
+
+def install_script(app)
+  source = File.expand_path("#{app}.applescript", File.dirname(__FILE__))
+    
+  # Copy to all application support directories in use
+  %w(~/Dropbox ~/Library).each do |root|
+    target_root = File.join(File.expand_path(root), "Application Support", app, "Scripts")
+
+    if File.directory?(target_root)
+      target = File.join(target_root, "PeepOpen.applescript")
+      puts "Installing #{target}"
+      FileUtils.cp(source, target)
+    end
+  end
+end
