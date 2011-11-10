@@ -23,11 +23,8 @@ class AppDelegate
       # 
       # The following code converts the event from NSAppleEventDescriptor to an NSURL
       # so that the NSURL path and query methods can be called to extract the file path
-      # and the editor name
-      # 
-
+      # and the editor name.
       customUrl = NSURL.URLWithString(event.paramDescriptorForKeyword(KeyDirectObject).stringValue)
-      
       if customUrl.path && (customUrl.path.length == 0)
         raise "Shouldn't have an empty path"
       end
