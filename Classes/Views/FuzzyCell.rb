@@ -317,7 +317,7 @@ class FuzzyCell < NSCell
 
   def paragraphStyle
     return NSMutableParagraphStyle.new.
-      setLineBreakMode(NSLineBreakByTruncatingTail)
+      setLineBreakMode(NSLineBreakByTruncatingMiddle)
   end
 
   # TODO: Put in own class
