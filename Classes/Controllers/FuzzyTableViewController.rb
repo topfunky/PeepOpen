@@ -152,8 +152,15 @@ class FuzzyTableViewController
         return false
       end
 
+      # Emacs shows as "Emacs-10.4"
+      cleanedEditorApplicationName = if editorApplicationName.match(/Emacs/)
+          cleanedEditorApplicationName = "Emacs"
+        else
+          editorApplicationName
+        end
+
       NSWorkspace.sharedWorkspace.openFile(record.absFilePath,
-                                           withApplication:editorApplicationName)
+                                           withApplication:cleanedEditorApplicationName)
 
       # Reset for next search
       searchForString("")
