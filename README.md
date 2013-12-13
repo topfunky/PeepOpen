@@ -6,7 +6,7 @@ Originally a commercial product at PeepCode (recently acquired by [Pluralsight](
 
 ## Usage/Build
 
-Coming soon. Currently depends on an older plugin that uses Xcode 3. Needs to be upgraded or refactored to work with latest Xcode.
+Coming soon. Currently depends on an older BWToolkit plugin that uses Xcode 3. Needs to be upgraded or refactored to work with latest Xcode.
 
 ## Contribute
 
