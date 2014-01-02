@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+  <channel>
+    <title>PeepOpen</title>
+    <description>PeepOpen updates</description>
+    <link>http://topfunky.github.io/PeepOpen</link>
+    <language>en</language>
+    <pubDate>Wed, 09 Nov 2011 19:18:11 -0800</pubDate>
+    <atom:link type="application/rss+xml" rel="self" href="http://topfunky.github.io/PeepOpen/dl/appcast.xml"/>
+    <item>
+      <title>PeepOpen 0.3.6</title>
+      <sparkle:releaseNotesLink>http://topfunky.github.io/PeepOpen/dl/release_notes.html</sparkle:releaseNotesLink>
+      <pubDate>Wed, 09 Nov 2011 19:18:11 -0800</pubDate>
+      <guid isPermaLink="false">PeepOpen-0.3.6</guid>
+      <enclosure type="application/dmg" length="7982778" sparkle:version="0.3.6" sparkle:dsaSignature="MC0CFQCqvqP0lI8Xkd6yJF408Ufs9h5/VAIUMkQrik/aSnla7Rg9LZI9eRtf/MI=
+        " url="http://topfunky.github.io/PeepOpen/dl/PeepOpen-0.3.6.dmg"/>
+    </item>
+  </channel>
+</rss>

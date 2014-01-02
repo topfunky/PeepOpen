@@ -1,0 +1,302 @@
+<html>
+  <head>
+    <title>Release Notes</title>
+    <style>
+    * { font-family: "Lucida Grande", sans-serif;}
+    body { margin: 0 0 1em 0; }
+    h1 { 
+      background-color: #eee; 
+      padding: 5px 10px;
+      font-size: 1em; }
+    h1 span { font-weight: normal; font-size: 0.7em; padding-top: 1px; color: #aaa; float: right;}
+    h2 { font-size: 1em; padding-left: 10px; }
+    ul li { font-size: 0.9em; }
+    </style>
+  </head>
+  <body>
+    <h1><span>2011-11-10</span> Release 0.3.6</h1>
+
+
+	<h2>Shell Cleanup</h2>
+
+
+	<ul>
+	<li>Improve TextMate plugin for use with basic TextMate projects (consisting of a single directory).</li>
+		<li>Fix retrieval of Git metadata for tcsh.</li>
+		<li>Preferences now correctly save the default editor.</li>
+		<li>Experimental BBEdit and TextWrangler support (Andrew Carter).</li>
+		<li>Control-m is correctly interpreted as <span class="caps">ENTER</span> (for searches).</li>
+	</ul>
+
+
+	<h1><span>2011-07-09</span> Release 0.3.5</h1>
+
+
+	<h2>Bugfix</h2>
+
+
+	<ul>
+	<li>Revert behavior of wildcard space. Typing a space will now be ignored as it was previously (it matches anything). Or, configure it in Preferences (&#8220;Space searches for&#8230;&#8221;).</li>
+		<li>Correct directory ignore regex to only ignore directories. It&#8217;s possible to search for &#8221;.gitignore&#8221; or files named &#8220;login&#8221; (they would have previously been ignored). If you want to get this functionality, add &#8221;\/&#8221; to the end of the &#8220;Directory Ignore Regex&#8221; in Advanced Preferences.</li>
+	</ul>
+
+
+	<h1><span>2011-07-01</span> Release 0.3.4</h1>
+
+
+	<h2>Bugfix</h2>
+
+
+	<ul>
+	<li>Fix weird trailing apostrophe issue with MacVim. Project root should be found correctly now.</li>
+	</ul>
+
+
+	<h1><span>2011-06-30</span> Release 0.3.3</h1>
+
+
+	<h2>Speed</h2>
+
+
+	<ul>
+	<li>Optimization patch from Josh Goebel [@dreamer3]</li>
+		<li>Adding letters to a search should be much faster.</li>
+		<li>Initial load of up to 10,000 files is much faster.</li>
+	</ul>
+
+
+	<h1><span>2011-03-25</span> Release 0.3.2</h1>
+
+
+	<h2>Project Directory Fix, Update Your TextMate Plugin!</h2>
+
+
+	<ul>
+	<li><span class="caps">IMPORTANT</span>: Re-install the TextMate plugin from PeepOpen Preferences.</li>
+		<li>Fixes bug introduced in 0.3.1 where the project root directory was not honored.</li>
+		<li>If the custom <span class="caps">URL</span> is called without an &#8220;editor&#8221;, the default from Preferences will be used.</li>
+		<li>Fixed several minor nil errors.</li>
+	</ul>
+
+
+	<h1><span>2011-03-21</span> Release 0.3.1</h1>
+
+
+	<h2>MacBook i7 Compatibility, Bugfixes</h2>
+
+
+	<ul>
+	<li>Compatible with <span class="caps">CPU</span> in newest MacBook Pro.</li>
+		<li>Handle spaces in paths correctly.</li>
+		<li>Show better error if project root can&#8217;t be found.</li>
+		<li>BBEdit plugin (thanks to Andrew Carter).</li>
+		<li>Install TextMate PlugIn to proper directory for case-sensitive filesystems.</li>
+		<li>Gracefully use system font if Futura is unavailable.</li>
+		<li>Clicking a table cell with the mouse opens the selected file.</li>
+	</ul>
+
+
+	<h1><span>2011-03-04</span> Release 0.3.0</h1>
+
+
+	<h2>New Plugin!</h2>
+
+
+	<ul>
+	<li><span class="caps">IMPORTANT</span>! Open Preferences and run &#8220;Install Plugin&#8221; for any editors you use.</li>
+	</ul>
+
+
+	<h2>Stability, Multi-Editor Support</h2>
+
+
+	<ul>
+	<li>Multi-editor support. The new plugins work dynamically with multiple editors. You can switch between projects in TextMate, Emacs, MacVim, or any other editor without needing to change settings.</li>
+		<li>Tons of work to make the app more stable and crash proof.</li>
+		<li>NSOperation used for background queue. Loading and reloading files is more reliable.</li>
+		<li>Search is faster in many cases. Still somewhat slow for large projects over 5,000 files.</li>
+		<li>Upgraded to MacRuby 0.9. Faster execution, bugs fixed.</li>
+	</ul>
+
+
+	<h1><span>2010-09-23</span> Release 0.2.4</h1>
+
+
+	<h2>Visual Cleanup</h2>
+
+
+	<ul>
+	<li>Progress bar is now labeled with the number of files being loaded (useful for large projects).</li>
+		<li>Selected cell draws text in white for readability.</li>
+		<li>Filetype icon at left of search results can be hidden in preferences.</li>
+		<li>Menu item links to bug tracker.</li>
+	</ul>
+
+
+	<h1><span>2010-07-28</span> Release 0.2.3</h1>
+
+
+	<h2>Git <span class="caps">PATH</span> Fix</h2>
+
+
+	<ul>
+	<li>Your shell&#8217;s <span class="caps">PATH</span> is now used to find Git and should work if you can use Git from your terminal.</li>
+	</ul>
+
+
+	<h1><span>2010-07-20</span> Release 0.2.2</h1>
+
+
+	<h2>Better Sorting, More Preferences, App Speed &#38; Size</h2>
+
+
+	<ul>
+	<li>Better sorting when search string matches beginning of filename</li>
+		<li>Minor speed improvement (Compiles to machine code instead of Ruby source)</li>
+		<li>Smaller executable (Omits unused Ruby standard library)</li>
+		<li>Indexing &#8220;All&#8221; files is now possible in Preferences (previous limit was 4,000)</li>
+		<li>Plugin and sample Preferences.el files for Aquamacs Emacs</li>
+		<li>Option to hide icon in menu bar (in Advanced Preferences)</li>
+	</ul>
+
+
+	<h1><span>2010-06-07</span> Release 0.2.1</h1>
+
+
+	<h2>Custom Ignores, Background Refresh, Progress Bar, Native TextMate helper plugin</h2>
+
+
+	<ul>
+	<li>Directory and file ignore patterns are configurable in the Advanced Preference pane.</li>
+		<li>Files are loaded in a background thread (with a progress bar) for speed. Future updates will use this to refresh file metadata more intelligently.</li>
+		<li>The progress bar uses Core Animation (and will trigger the Nvidia card in the newer MacBook Pro) but it can be disabled in the Advanced Preference pane. Or, force your machine to use a specific graphics chip with <a href="http://codykrieger.com/gfxCardStatus/">gfxCardStatus</a>.</li>
+		<li>Copying, cutting, pasting, and selecting in the search field is now possible.</li>
+		<li>Native TextMate helper plugin activates PeepOpen even with no individual project files open (but a project must be open). Re-install the plugin from the Preferences pane.</li>
+		<li>The preferences window no longer closes after installing the plugin.</li>
+		<li>Experimental Xcode support (see the Help docs).</li>
+		<li>Better build system with Choctop used inside the Xcode build.</li>
+		<li>Various bugfixes.</li>
+	</ul>
+
+
+	<h1><span>2010-05-11</span> Release 0.2.0</h1>
+
+
+	<h2>Menu Bar App, Manual File Reloading</h2>
+
+
+	<ul>
+	<li>The app is now a menu bar item and won&#8217;t show up in the dock or app switcher.</li>
+		<li>Command-R refreshes the cached list of files for a single project (use when switching git branches or after generating new files for your app).</li>
+		<li>New icon! By the talented Eddie Wilson, http://eddit.com</li>
+		<li>Refreshing while searching retains the search term and inserts new files with search applied.</li>
+		<li>UI polishing.</li>
+		<li>Source of BWToolkit and Sparkle are now stored in local Vendor directory for self-contained building.</li>
+		<li>Re-implemented preferences as a legitimate toolbar-driven window.</li>
+		<li>Added preference to <span class="caps">NOT</span> show Git metadata. This will be faster on some older machines.</li>
+		<li>Added preference to run Git diff against current files (not yet in the index) or <span class="caps">HEAD</span> (last commit). Running against <span class="caps">HEAD</span> may be slower on older machines.</li>
+		<li>Extracted graphical window layouts to separate Nib files. May launch faster in some cases.</li>
+	</ul>
+
+
+	<h1><span>2010-04-21</span> Release 0.1.9</h1>
+
+
+	<h2>UI, Help Docs, MacVim, Caching, Default Sort, Coda</h2>
+
+
+	<ul>
+	<li>The Help menu now features functional help documentation.</li>
+		<li>MacVim files are now opened with &#8220;open -a MacVim filename&#8221;. You will need to change your MacVim preferences to &#8220;Open files from applications in the current window and set the arglist.&#8221; </li>
+		<li>Panic&#8217;s Coda editor is now supported.</li>
+		<li>Default sorting works more like TextMate. The previously opened file is at the top, making it possible to switch between two files without searching.</li>
+		<li>The list of project files is cached in memory. A future update will expire the cache when files on disk are updated.</li>
+		<li>File search is now depth-first and works more sensibly with deep directory structures.</li>
+	</ul>
+
+
+	<h1><span>2010-04-15</span> Release 0.1.8</h1>
+
+
+	<h2>Smarter search, spaces</h2>
+
+
+	<ul>
+	<li>Search favors matches on filenames</li>
+		<li>Ignore all .DS_Store files.</li>
+		<li>Treat a space in searches as an underscore.</li>
+		<li>More idiomatic peepopen.el [Josh Peek]</li>
+	</ul>
+
+
+	<h1><span>2010-04-12</span> Release 0.1.7</h1>
+
+
+	<h2>First Public Alpha</h2>
+
+
+	<ul>
+	<li>Ignore a few extra directories (editable in next release)</li>
+	</ul>
+
+
+	<h1><span>2010-04-11</span> Release 0.1.6</h1>
+
+
+	<h2>Visual</h2>
+
+
+	<ul>
+	<li>App Icon (Temporary)</li>
+		<li>Align file extension icons and filenames</li>
+		<li>Ignore Vim .swp files</li>
+	</ul>
+
+
+	<h1><span>2010-04-10</span> Release 0.1.5</h1>
+
+
+	<h2>Performance</h2>
+
+
+	<ul>
+	<li>Builds initial file list much more quickly</li>
+		<li>Stops building file list once limit is reached (rather than freezing)</li>
+	</ul>
+
+
+	<h1><span>2010-04-09</span> Release 0.1.4</h1>
+
+
+	<h2>MacVim Support</h2>
+
+
+	<ul>
+	<li>Installs MacVim plugin (pathogen or standard)</li>
+		<li>Opens chosen file in the currently active MacVim window.</li>
+	</ul>
+
+
+	<h1><span>2010-04-09</span> Release 0.1.3</h1>
+
+
+	<h2>Framework Bundling Bugfix</h2>
+
+
+	<ul>
+	<li>Fix local framework bundle bug</li>
+	</ul>
+
+
+	<h1><span>2010-04-09</span> Release 0.1.2</h1>
+
+
+	<h2>First Alpha Release</h2>
+
+
+	<ul>
+	<li>TextMate plugin included</li>
+		<li>Other editor plugins have been implemented and will be available soon.</li>
+	</ul>
+  </body>
+</html>
